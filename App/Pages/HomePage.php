@@ -7,36 +7,28 @@ use \Models\Page;
 class HomePage extends Page {
 
     public function getHeader() {
-        return
-<<<HTML
-        <title>My new website</title>
-HTML;
+        return $this->header;
     }
     
+
     public function getCSS() {
+        return $this->css;
+    }
+    
+
+    public function getBody() {
+        return $this->body;
     }
 
-    public function getCSSFiles() {
-    }
-    
-    public function getBody() {
-        return
-<<<HTML
-        <h2>BODY</h2>
-HTML;
-    }
 
     public function getFooter() {
-        return
-<<<HTML
-        <h2>FOOTER</h2>
-HTML;
+        return $this->footer;
     }
 
+    
     public function getJS() {
+        return $this->js;
     }
 
-    public function getJSFiles() {
-    }
 
 }
