@@ -23,7 +23,6 @@ class AutoLoader {
     public static function loadClass($className) {
         $classFile = str_replace('\\', DIRECTORY_SEPARATOR, $className);
         $classFileName = sprintf('%s%s%s.php', '..'.DIRECTORY_SEPARATOR.self::DIR_CLASSES, DIRECTORY_SEPARATOR, $classFile);
-        //$classFileName = sprintf('%s\%s.php', self::DIR_CLASSES, $classFile);
         if (file_exists($classFileName)) {
             if (self::$debug_mode) {
                 echo "<script>console.log('Class ".$className." loaded.');</script>";

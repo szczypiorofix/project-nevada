@@ -6,29 +6,9 @@ use \Models\Page;
 
 class HomePage extends Page {
 
-    public function getHeader() {
-        return $this->header;
+    private $viewFile = "index.html";
+
+    public function show() {
+        include_once DIR_VIEWS.$this->viewFile;
     }
-    
-
-    public function getCSS() {
-        return $this->css;
-    }
-    
-
-    public function getBody() {
-        return $this->body;
-    }
-
-
-    public function getFooter() {
-        return $this->footer;
-    }
-
-    
-    public function getJS() {
-        return $this->js;
-    }
-
-
 }

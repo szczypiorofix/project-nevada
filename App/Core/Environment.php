@@ -17,6 +17,7 @@ class Environment {
         define("DIR_VIEWS", DIR_APP . 'Views' . DS);
 
         /* OTHERS */
+        define("PAGE_VERSION", "1.00.001");
         define("CONFIG_FILE", DIR_ROOT.'.config');
     }
 }
