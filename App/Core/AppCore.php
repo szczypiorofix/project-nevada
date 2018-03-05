@@ -12,16 +12,14 @@ class AppCore {
 
     public static function start($status) {
         if ($status) {
-/*             try {
+            /*  try {
                 \Core\Open::go();
             }
             catch(FrameworkException $exc) {
                 echo $exc->showError();
-            } */
-            
+            }
             $url = self::parseUrl();
-
-            //var_dump($url);
+            var_dump($url); */
 
             $page = new HomePage();
 
@@ -29,7 +27,7 @@ class AppCore {
             $page->addJSFile(['name' => 'MainScript', 'path' => 'js/script.js']);
             
 
-            $header =
+            $head =
 <<<HTML
     <link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
@@ -50,23 +48,27 @@ class AppCore {
     <meta name="theme-color" content="#ffffff">
     <title>My new homepage!</title>
 HTML;
-            $header .= $page->getCSSFiles();
-            //$header .= $page->getCSS();
-            $header .= $page->getJsHeaderFiles();
 
-            $page->setHeader($header);
+            $head .= $page->getCSSFiles();
+            $head .= $page->getJsHeadFiles();
 
+            $page->setHead($head);
+            
+            $logo = new \Widgets\Logo();
+            
+            $header = new \Widgets\Header();
+            $header->addBody($logo->show());
+            
+            $footer = new \Widgets\Footer();
+            $footer->addBody("<div><p>Wróblewski Piotr, 2018</p></div>");
+            
             $body =
 <<<HTML
-    <div class="container">
-        <h3>Testing ...</h3>
+    <div class="full-page-container">
+        {$header->getBody()}
+        <footer>{$footer->getBody()}</footer>
     </div>
 HTML;
-
-            $logo = new \Widgets\Logo();
-            //$logo->addCss("div {background: red;}");
-
-            $body .= $logo->show();
 
             $page->setBody($body);
             

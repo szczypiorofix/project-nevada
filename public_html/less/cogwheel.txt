@@ -1,0 +1,217 @@
+@cogwheel-darkcolor: #150;
+
+.cogwheel-and-bricks {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: hard-light;
+
+    .color-divider {
+        position: absolute;
+        left: 50%;
+        width: 50%;
+        height: 100%;
+        background-color: #a50;
+    }
+
+    .cogwheel {
+        position: absolute;
+        top: 50%;
+        left: 280px;
+        //opacity: 0.9;
+        //animation:scope_cw2 20s linear infinite;
+        .shatter {
+            width: 20px;
+            height: 20px;
+            background-color: transparent !important;
+            mix-blend-mode: saturation;
+            position: absolute;
+            transition: all 1s ease;
+            transform: rotate(45deg);
+            border-radius: 50%;
+            box-shadow:
+            0 0 0 24px white,
+              0 0 0 50px @cogwheel-darkcolor;
+          }
+          .shatter:before {
+            content:'';
+            left:50%;
+            top: 50%;
+            margin-left: -13px;
+            margin-top: -13px;
+            width: 26px;
+            height: 26px;
+            display: block;
+            position: absolute;
+            box-shadow:65px 0px 0 @cogwheel-darkcolor, -65px 0px 0 @cogwheel-darkcolor,
+              0 65px 0 @cogwheel-darkcolor, 0 -65px 0 @cogwheel-darkcolor;
+            border-radius: 20%;
+          }
+          .shatter:after {
+            content:'';
+            left:50%;
+            top: 50%;
+            margin-left: -13px;
+            margin-top: -13px;
+            width: 26px;
+            height: 26px;
+            display: block;
+            position: absolute;
+            box-shadow:65px 0px 0 @cogwheel-darkcolor, -65px 0px 0 @cogwheel-darkcolor,
+              0 65px 0 @cogwheel-darkcolor, 0 -65px 0 @cogwheel-darkcolor;
+            border-radius: 20%;
+            transform: rotate(45deg);
+          }
+    }
+
+    .bricks {
+        position: absolute;
+        top: 35%;
+        left: 100px;
+        width: 20px;
+        height: 20px;
+        color: #f60;
+        box-shadow: 
+            25px 0px currentColor,
+            50px 0px currentColor, 
+            75px 0px @cogwheel-darkcolor, 
+            100px 0px currentColor,
+            125px 0px currentColor,
+            150px 0px @cogwheel-darkcolor,
+            175px 0px currentColor,
+            200px 0px currentColor,
+            225px 0px currentColor,
+            250px 0px @cogwheel-darkcolor,
+            275px 0px currentColor,
+            300px 0px currentColor,
+            325px 0px @cogwheel-darkcolor,
+    
+            25px 25px @cogwheel-darkcolor, 
+            50px 25px currentColor,
+            75px 25px currentColor,
+            100px 25px currentColor,
+            125px 25px currentColor,
+            150px 25px currentColor,
+            175px 25px currentColor,
+            200px 25px @cogwheel-darkcolor,
+            225px 25px currentColor,
+            250px 25px currentColor,
+            275px 25px currentColor,
+            300px 25px currentColor,
+            325px 25px currentColor,
+    
+            25px 50px currentColor,
+            50px 50px currentColor,
+            75px 50px @cogwheel-darkcolor,
+            100px 50px currentColor,
+            225px 50px currentColor,
+            250px 50px currentColor,
+            275px 50px currentColor,
+            300px 50px currentColor,
+            325px 50px @cogwheel-darkcolor,
+    
+            25px 75px currentColor,
+            50px 75px currentColor,
+            75px 75px @cogwheel-darkcolor,
+            275px 75px @cogwheel-darkcolor,
+            300px 75px currentColor,
+            325px 75px currentColor,
+    
+            25px 100px currentColor,
+            50px 100px @cogwheel-darkcolor,
+            75px 100px currentColor,
+            275px 100px currentColor,
+            300px 100px currentColor,
+            325px 100px currentColor,
+    
+            25px 125px currentColor,
+            50px 125px currentColor,
+            75px 125px currentColor,
+            275px 125px currentColor,
+            300px 125px @cogwheel-darkcolor,
+            325px 125px currentColor,
+    
+            25px 150px currentColor,
+            50px 150px @cogwheel-darkcolor,
+            75px 150px currentColor,
+            275px 150px @cogwheel-darkcolor,
+            300px 150px currentColor,
+            325px 150px currentColor,
+    
+            25px 175px currentColor,
+            50px 175px currentColor,
+            75px 175px currentColor,
+            275px 175px currentColor,
+            300px 175px currentColor,
+            325px 175px @cogwheel-darkcolor,
+    
+            25px 200px currentColor,
+            50px 200px currentColor,
+            75px 200px @cogwheel-darkcolor,
+            100px 200px currentColor,
+            250px 200px currentColor,
+            275px 200px @cogwheel-darkcolor,
+            300px 200px currentColor,
+            325px 200px currentColor,
+    
+            25px 225px currentColor,
+            50px 225px currentColor,
+            75px 225px currentColor,
+            100px 225px currentColor,
+            125px 225px @cogwheel-darkcolor,
+            150px 225px currentColor,
+            175px 225px currentColor,
+            200px 225px currentColor,
+            225px 225px @cogwheel-darkcolor,
+            250px 225px currentColor,
+            275px 225px currentColor,
+            300px 225px currentColor,
+            325px 225px currentColor,
+    
+            25px 250px @cogwheel-darkcolor,
+            50px 250px currentColor,
+            75px 250px currentColor,
+            100px 250px currentColor,
+            125px 250px currentColor,
+            150px 250px currentColor,
+            175px 250px currentColor,
+            200px 250px @cogwheel-darkcolor,
+            225px 250px currentColor,
+            250px 250px currentColor,
+            275px 250px @cogwheel-darkcolor,
+            300px 250px currentColor,
+            325px 250px currentColor,
+            ;
+    }
+}
+
+
+
+  
+.t1 { left: -5px; top:-5px; transform: rotate(0deg);}
+.cw { animation:scope_cw 10s linear infinite;}
+  
+@keyframes scope_cw {
+    from {transform: rotate(22.5deg)}
+    to {transform: rotate(382.5deg)}
+}
+
+
+
+
+
+
+
+
+
+/// HTML
+
+<div class="cogwheel-and-bricks">
+    <div class="color-divider"></div>
+    <div class="cogwheel"> 
+        <div class="shatter t1 cw"></div>
+    </div>
+    <div class="bricks">            
+</div>

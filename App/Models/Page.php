@@ -4,15 +4,20 @@ namespace Models;
 
 abstract class Page {
 
-    protected $header = "";
+    protected $head = "";
+
     protected $cssFiles = [];
     protected $css = "";
-    protected $body = "";
-    protected $footer = "";
+
+    protected $jsHeadFiles = [];
+    protected $jsHead = "";
+
     protected $jsFiles = [];
     protected $js = "";
-    protected $jsHeaderFiles = [];
-    protected $jsHeader = "";
+
+    protected $body = "";
+    protected $footer = "";
+    
 
 
     /* ABSTRACT FUNCTION "SHOW" */
@@ -73,22 +78,28 @@ abstract class Page {
         }
         return $jsF;
     }
-    
-    public function addJSHeaderFile($jsHeaderFile) {
-        if (($jsHeaderFile !== '' || !is_null($jsHeaderFile)) && is_array($jsHeaderFile) ) {
-            array_push($this->jsHeaderFiles, $jsHeaderFile);
+
+    public function setJSFiles($jsFiles) {
+        if (is_array($jsFiles)) {
+            $this->jsFiles = $jsFiles;
         }
     }
     
-    public function setJSHeaderFiles($jsHeaderFiles) {
-        if (is_array($jsHeaderFiles)) {
-            $this->jsHeaderFiles = $jsHeaderFiles;
+    public function addJSHeadFile($jsHeadFile) {
+        if (($jsHeadFile !== '' || !is_null($jsHeadFile)) && is_array($jsHeadFile) ) {
+            array_push($this->jsHeadFiles, $jsHeadFile);
+        }
+    }
+    
+    public function setJSHeadFiles($jsHeadFiles) {
+        if (is_array($jsHeadFiles)) {
+            $this->jsHeadFiles = $jsHeadFiles;
         }
     }
 
-    public function getJSHeaderFiles() {
+    public function getJSHeadFiles() {
         $jsF = "";
-        foreach ($this->jsHeaderFiles as $key) {
+        foreach ($this->jsHeadFiles as $key) {
             $jsF .= '<script src="'.$key['path'].'?v='.PAGE_VERSION.'"></script>';
         }
         return $jsF;
@@ -97,17 +108,32 @@ abstract class Page {
     public function setJs($js) {
         $this->js = $js;
     }
+
+    public function addJS($js) {
+        $this->js .= $js;
+    }
     
     public function getJs() {
         return $this->js;
     }
+
+    public function setJSHead($jsHead) {
+        $this->jsHead = $jsHead;
+    }
+
+    public function getJSHead() {
+        return $this->jsHead;
+    }
+    
+    public function addJSHead($jsHead) {
+        $this->jsHead .= $jsHead;
+    }
     
 
-    
 
     /* OTHER */
-    public function getHeader() {
-        return $this->header;
+    public function getHead() {
+        return $this->head;
     }
 
     public function getBody() {
@@ -118,8 +144,8 @@ abstract class Page {
         return $this->footer;
     }
 
-    public function setHeader($header) {
-        $this->header = $header;
+    public function setHead($head) {
+        $this->head = $head;
     }
 
     public function setBody($body) {

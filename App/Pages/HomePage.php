@@ -6,9 +6,9 @@ use \Models\Page;
 
 class HomePage extends Page {
 
-    private $viewFile = "index.html";
+    const HOME_PAGE_VIEW_FILE = "index.html";
 
     public function show() {
-        include_once DIR_VIEWS.$this->viewFile;
+        include_once DIR_VIEWS.self::HOME_PAGE_VIEW_FILE;
     }
 }

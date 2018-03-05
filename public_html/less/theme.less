@@ -16,6 +16,7 @@
 @containerWidthPC: 85%;
 
 
+
 html, body {
     margin: 0;
     font-family: 'Mina', sans-serif;
@@ -43,9 +44,30 @@ img {
 }
 
 .logo-container {
+    position: relative;
     padding: 10px;
-    max-width: 300px;
+    max-width: 350px;
 }
+
+.full-page-container {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    background-image: url("../images/under-construction.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+footer {
+    color: pink;
+}
+  
+
 
 // Mobile
 @media only screen and (max-width: @widthMediaBreakPointMobileToTablet) {

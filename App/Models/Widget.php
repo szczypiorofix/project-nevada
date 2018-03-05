@@ -105,6 +105,10 @@ abstract class Widget {
 
     public function setBody($body) {
         $this->body = $body;
-    }    
+    }
+
+    public function addBody($body) {
+        $this->body .= $body;
+    }
     
 }
