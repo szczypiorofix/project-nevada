@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">    
     <?=$this->getHead();?>
+    <link rel="stylesheet" type="text/css" href="css/fontawesome-all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/fa-regular.min.css">
     <?=$this->getCSSFiles();?>
     <?=$this->getCSS();?>
     <?=$this->getJSHeadFiles();?>
@@ -17,17 +19,20 @@
 </head>
 
 <body>
-    
-    <!--[if lte IE 9]>
-        <div>
-            <h3>You are using an <strong>outdated</strong> browser.</h3>
-            <p>Many things may be non-functional if you continue, please upgrade your browser to improve your experience.</p>
-        </div> 
-    <![endif]-->
+    <div class="main-div">
+        <div class="background-img"></div>
+        <!--[if lte IE 9]>
+            <div>
+                <h3>You are using an <strong>outdated</strong> browser.</h3>
+                <p>Many things may be non-functional if you continue, please upgrade your browser to improve your experience.</p>
+            </div>
+        <![endif]-->
 
-    <?=$this->getBody();?>
+        <?=$this->getBody();?>
     
-    <?=$this->getFooter();?>
+        <?=$this->getFooter();?>
+        
+    </div>
     
     <?=$this->getJSFiles();?>
     <?=$this->getJS();?>

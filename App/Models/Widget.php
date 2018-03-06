@@ -11,12 +11,6 @@ abstract class Widget {
     protected $js = "";
     protected $jsHeaderFiles = [];
     protected $jsHeader = "";
-
-
-    /* ABSTRACT FUNCTION "SHOW" */
-    abstract public function show();
-
-
     
 
     /*  CSS FILES  */

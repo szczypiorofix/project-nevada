@@ -1,5 +1,7 @@
 @charset "utf-8";
 
+@import "color-palette.less";
+
 * {
     box-sizing: border-box;
 }
@@ -16,10 +18,10 @@
 @containerWidthPC: 85%;
 
 
-
 html, body {
     margin: 0;
     font-family: 'Mina', sans-serif;
+    font-size: 16px;
 }
 
 a {
@@ -29,6 +31,27 @@ a {
 img {
     max-width: 100%;
     height: auto;
+}
+
+.main-div {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: @clouds;
+    position: relative;
+    
+/*    .background-img {
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        min-height: 100%;
+        background-image: url("../images/background.jpeg");
+        //background-size: cover;
+        background-position: center;
+        background-repeat: repeat;
+        background-attachment: fixed;
+    }*/
 }
 
 .container {
@@ -45,26 +68,15 @@ img {
 
 .logo-container {
     position: relative;
-    padding: 10px;
-    max-width: 350px;
-}
-
-.full-page-container {
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    background-image: url("../images/under-construction.jpeg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    padding: 0 15px;
+    max-width: 400px;
 }
 
 footer {
-    color: pink;
+    display: block;
+    position: relative;
+    text-align: center;
+    font-weight: 600;
 }
   
 
