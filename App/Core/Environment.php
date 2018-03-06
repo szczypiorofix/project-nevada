@@ -15,9 +15,13 @@ class Environment {
         define("DIR_CORE", DIR_APP . 'Core' . DS);
         define("DIR_VENDORS", DIR_APP . 'Vendors' . DS);
         define("DIR_VIEWS", DIR_APP . 'Views' . DS);
+        define("DIR_PAGES", DIR_APP . 'Pages' . DS);
 
         /* OTHERS */
         define("PAGE_VERSION", "1.00.001");
         define("CONFIG_FILE", DIR_ROOT.'.config');
+        
+        /* BASE HREF */
+        define('BASE_HREF', \Core\Config::get("BASE_HREF"));
     }
 }

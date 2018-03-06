@@ -1,3 +1,8 @@
+<Files ".config">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteRule ^(.*)$ public_html/$1 [L]

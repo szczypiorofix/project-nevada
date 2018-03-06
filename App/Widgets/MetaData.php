@@ -15,9 +15,35 @@ namespace Widgets;
  */
 class MetaData extends \Models\Widget {
     
-    public function __construct() {
+    public function __construct($data = []) {
         $this->body =
 <<<HTML
+    <meta name="description" content="{$data['description']}" />
+    <meta name="author" content="{$data['author']}" />
+    <meta name="keywords" content="{$data['keywords']}">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{$data['url']}" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:title" content="{$data['title']}" />
+    <meta property="og:site_name" content="{$data['content']}" />
+    <meta property="og:description" content="{$data['description']}" />
+    <meta property="og:image" content="{$data['image']}" />
+    <meta property="fb:app_id" content="1950237781924240" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:domain" content="{$data['domain']}" />
+    <meta name="twitter:title" content="{$data['title']}" />
+    <meta name="twitter:description" content="{$data['description']}" />
+    <meta name="twitter:image" content="{$data['image']}" />
+    <meta name="twitter:url" content="{$data['url']}" />
+    <meta name="twitter:label1" content="{$data['twitter-meta-field-left']}" />
+    <meta name="twitter:data1" content="{$data['twitter-meta-field-left-below']}" />
+    <meta name="twitter:label2" content="{$data['twitter-meta-field-right']}" />
+    <meta name="twitter:data2" content="{$data['twitter-meta-field-right-below']}" />
+    <meta name="twitter:site" content="@szczypiorofix" />
+    <meta name="twitter:creator" content="@szczypiorofix" />
+    <link href="https://plus.google.com/u/0/117537092421510596426/" rel="publisher" />
+    <link rel="Canonical" href="{$data['url']}">
+    <meta name="robots" content="index,follow" />
     <link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png">
@@ -32,10 +58,10 @@ class MetaData extends \Models\Widget {
     <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
     <link rel="manifest" href="icons/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileColor" content="{$data['accent-color']}">
     <meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
-    <title>My new homepage!</title>
+    <meta name="theme-color" content="{$data['accent-color']}">
+    <title>{$data['title']}</title>
 HTML;
     }
 

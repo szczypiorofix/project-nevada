@@ -1,58 +1,62 @@
 <?php
 
 namespace Core;
-use \Core\FrameworkException, \Pages\HomePage;
+
 
 class AppCore {
 
-    private $url = null;
+    const DEFAULT_CLASS = 'Pagelist'; // DEFAULT PAGE
+    const DEFAULT_METHOD = 'defaultmethod';
 
     private function __construct() {}
     private function __clone() {}
 
     public static function start($status) {
         if ($status) {
-            /*  try {
-                \Core\Open::go();
-            }
-            catch(FrameworkException $exc) {
-                echo $exc->showError();
-            }
+//            try {
+//                \Core\Open::go();
+//            }
+//            catch(FrameworkException $exc) {
+//                echo $exc->showError();
+//            }
+            
+            $class = self::DEFAULT_CLASS;
+            $method = self::DEFAULT_METHOD;
+            $calledDefaultClass = false;
+                        
             $url = self::parseUrl();
-            var_dump($url); */
-
-            $page = new HomePage();
-
-            $page->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
-            $page->addJSFile(['name' => 'MainScript', 'path' => 'js/script.js']);
             
-
-            $metaData = new \Widgets\MetaData(); 
-            $head = $metaData->getBody();            
-
-            $head .= $page->getCSSFiles();
-            $head .= $page->getJsHeadFiles();
-
-            $page->setHead($head);
+            if (file_exists(DIR_PAGES.$url[0].'.php')) {
+                $class = $url[0];
+                unset($url[0]);
+            }
+            else {
+               $class = self::DEFAULT_CLASS;
+               $calledDefaultClass = true;
+            }
             
-            $logo = new \Widgets\Logo();
-            $navbar = new \Widgets\Nav();
+            $className = "\Pages\\".$class;
+            $class = new $className();
             
-            $header = new \Widgets\Header();
-            $header->addBody($logo->getBody().$navbar->getBody());
+            if ($calledDefaultClass) {
+                if (isset($url[0]) && method_exists($class, $url[0])) {
+                    $method = $url[0];
+                    unset($url[0]);
+                }
+            } else {
+                if (isset($url[1]) && method_exists($class, $url[1])) {
+                $method = $url[1];
+                unset($url[1]);
+                }
+            }
+        
+            $params = $url ? array_values($url) : [];
             
-            $footer = new \Widgets\Footer();
             
-            $body =
-<<<HTML
-    <div class="full-page-container">
-        {$header->getBody()}
-        <footer>{$footer->getBody()}</footer>
-    </div>
-HTML;
-
-            $page->setBody($body);
+            call_user_func_array([$class, $method], array($params));
             
+            
+            $page = $class;
             $page->show();
 
         }

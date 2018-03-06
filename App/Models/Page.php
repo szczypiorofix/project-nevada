@@ -18,15 +18,28 @@ abstract class Page {
     protected $body = "";
     protected $footer = "";
     
+    protected $content;
+    
 
 
     /* ABSTRACT FUNCTION "SHOW" */
     abstract public function show();
+    
+    /* DEFAULT METHOD */
+    abstract public function defaultmethod();
 
 
+    public function __toString() {
+        return get_class($this);
+    }
+    
+    public function getContent() {
+        return $this->content;
+    }
 
     
-    
+
+
     /*  CSS FILES  */
     
     public function getCss() {
@@ -56,7 +69,7 @@ abstract class Page {
     public function getCssFiles() {
         $cssF = "";
         foreach ($this->cssFiles as $key) {
-            $cssF .= '<link rel="stylesheet" href="'.$key['path'].'?v='.PAGE_VERSION.'">';
+            $cssF .= '<link rel="stylesheet" type="text/css" href="'.$key['path'].'?v='.PAGE_VERSION.'">';
         }
         return $cssF;
     }
