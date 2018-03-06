@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use \Core\Config, \Core\FrameworkException;
+
 class Environment {
 
     private function __construct() {}
@@ -21,7 +23,19 @@ class Environment {
         define("PAGE_VERSION", "1.00.001");
         define("CONFIG_FILE", DIR_ROOT.'.config');
         
+        try {
+            Config::configFileExists();
+        } catch (FrameworkException $ex) {
+            $ex->showError();
+        }
+        
+        /* MYSQL SETTINGS */
+        define('DB_HOST', Config::get('DB_HOST'));
+        define('DB_NAME', Config::get('DB_NAME'));
+        define('DB_USER', Config::get('DB_USER'));
+        define('DB_PASS', Config::get('DB_PASS'));
+        
         /* BASE HREF */
-        define('BASE_HREF', \Core\Config::get("BASE_HREF"));
+        define('BASE_HREF', Config::get("BASE_HREF"));
     }
 }

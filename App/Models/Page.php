@@ -26,7 +26,7 @@ abstract class Page {
     abstract public function show();
     
     /* DEFAULT METHOD */
-    abstract public function defaultmethod();
+    abstract public function defaultmethod($args);
 
 
     public function __toString() {
@@ -127,7 +127,7 @@ abstract class Page {
     }
     
     public function getJs() {
-        return $this->js;
+        return '<script>'.$this->js.'</script>';
     }
 
     public function setJSHead($jsHead) {

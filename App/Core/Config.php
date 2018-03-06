@@ -13,10 +13,17 @@ class Config {
     private function __clone() {}
 
     public static function configFileExists() {
-        return (file_exists(CONFIG_FILE) && is_file(CONFIG_FILE));
+        if (file_exists(CONFIG_FILE) && is_file(CONFIG_FILE)) {
+            return true;
+        } else {
+            throw new FrameworkException("Błąd !!!", "Brak pliku konfiguracyjnego!");
+        }
     }
 
     public static function get($key) {
+//        if (!self::configFileExists()) {
+//            //return null;
+//        }
         if (self::$firstLoad) {
             self::$firstLoad = false;
             self::$config_data = parse_ini_file(CONFIG_FILE);

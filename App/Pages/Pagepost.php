@@ -27,7 +27,7 @@ class Pagepost extends Page {
         include_once DIR_VIEWS.self::HOME_PAGE_VIEW_FILE;
     }
     
-    public function defaultmethod() {
+    public function defaultmethod($args) {
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'MainScript', 'path' => 'js/script.js']);
             

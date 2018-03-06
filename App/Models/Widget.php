@@ -49,7 +49,7 @@ abstract class Widget {
     
     
 
-    /*  BODY JS FILES  */
+    /*  JS FILES  */
     public function addJSFile($jsFile) {
         if (($jsFile !== '' || !is_null($jsFile)) && is_array($jsFile) ) {
             array_push($this->jsFiles, $jsFile);
@@ -68,6 +68,18 @@ abstract class Widget {
             $jsF .= '<script src="'.$key['path'].'?v='.PAGE_VERSION.'"></script>';
         }
         return $jsF;
+    }
+    
+    public function getJS() {
+        return $this->js;
+    }
+    
+    public function setJS($js) {
+        $this->js = $js;
+    }
+    
+    public function addJS($js) {
+        $this->js .= $js;
     }
 
     public function addJSHeaderFile($jsHeaderFile) {
@@ -89,6 +101,8 @@ abstract class Widget {
         }
         return $jsF;
     }
+    
+    
     
     
     

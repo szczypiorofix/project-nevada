@@ -7,7 +7,6 @@ namespace Core;
  *
  * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
-
 class FrameworkException extends \Exception {
     
     protected $title;
@@ -20,7 +19,7 @@ class FrameworkException extends \Exception {
     }
     
     public function showError() {
-        return
+        echo
     '<div>
         <h2 style="text-align: center;">Uuups, coś poszło nie tak jak powinno !!!</h2>
         <div>
@@ -30,5 +29,6 @@ class FrameworkException extends \Exception {
             <p>Stack Trace: '.parent::getTraceAsString().'</p>
         </div>
     </div>';
+        exit();
     }
 }

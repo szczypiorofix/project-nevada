@@ -26,6 +26,7 @@ html, body {
 
 a {
     text-decoration: none;
+    color: @gray900;
 }
 
 img {
@@ -39,19 +40,6 @@ img {
     height: 100%;
     background-color: @clouds;
     position: relative;
-    
-/*    .background-img {
-        position: fixed;
-        top: 0;
-        left: 0;
-        min-width: 100%;
-        min-height: 100%;
-        background-image: url("../images/background.jpeg");
-        //background-size: cover;
-        background-position: center;
-        background-repeat: repeat;
-        background-attachment: fixed;
-    }*/
 }
 
 .container {
@@ -69,14 +57,51 @@ img {
 .logo-container {
     position: relative;
     padding: 0 15px;
-    max-width: 400px;
+    
+    background-color: @gray300;
+    img {
+        max-width: 400px;
+        width: 100%;
+    }
 }
 
 footer {
     display: block;
     position: relative;
     text-align: center;
-    font-weight: 600;
+    font-weight: 800;
+}
+
+
+div.navbar-container {
+    background-color: @gray300;
+    color: @gray800;
+    nav {
+        
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            li {
+                color: @gray800;
+                a {
+                    display: block;
+                    color: @gray800;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    max-width: 120px;
+                    padding: 10px 15px;
+                    &:hover {
+                        background-color: darken(@gray300, 8%);
+                    }
+                }
+            }
+        }
+    }
 }
   
 
