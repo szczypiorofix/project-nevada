@@ -8,7 +8,7 @@
 
 namespace Pages;
 
-use \Models\Page;
+use \Core\ModelClasses\Page;
 
 /**
  * Description of Pagepost

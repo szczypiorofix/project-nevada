@@ -18,6 +18,8 @@ class Environment {
         define("DIR_VENDORS", DIR_APP . 'Vendors' . DS);
         define("DIR_VIEWS", DIR_APP . 'Views' . DS);
         define("DIR_PAGES", DIR_APP . 'Pages' . DS);
+        //define('DIR_HTML', 'public_html'.DS);
+        define('DIR_UPLOADS_IMAGES', 'uploads'.DS.'images'.DS);
 
         /* OTHERS */
         define("PAGE_VERSION", "1.00.001");
@@ -37,5 +39,6 @@ class Environment {
         
         /* BASE HREF */
         define('BASE_HREF', Config::get("BASE_HREF"));
+        define('DIR_THUMBNAILS', BASE_HREF.'uploads'.DS.'images'.DS);
     }
 }

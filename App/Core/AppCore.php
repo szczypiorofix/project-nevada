@@ -29,24 +29,23 @@ class AppCore {
         }
 
         $className = "\Pages\\".self::PAGES_NAME_PREFIX.$class;
-        $class = new $className();
+        $page = new $className();
 
         if ($calledDefaultClass) {
-            if (isset($url[0]) && method_exists($class, $url[0])) {
+            if (isset($url[0]) && method_exists($page, $url[0])) {
                 $method = $url[0];
                 unset($url[0]);
             }
         } else {
-            if (isset($url[1]) && method_exists($class, $url[1])) {
+            if (isset($url[1]) && method_exists($page, $url[1])) {
             $method = $url[1];
             unset($url[1]);
             }
         }
 
         $params = $url ? array_values($url) : [];
-        call_user_func_array([$class, $method], array($params));
+        call_user_func_array([$page, $method], array($params));
 
-        $page = $class;
         $page->show();
     }
 

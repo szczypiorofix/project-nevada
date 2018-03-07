@@ -2,7 +2,7 @@
 
 namespace Widgets;
 
-use \Models\Widget;
+use \Core\ModelClasses\Widget;
 
 class Nav extends Widget {
     
@@ -28,7 +28,8 @@ class Nav extends Widget {
                 </ol>
             </div>
 HTML;
-        $this->addJS("var app4 = new Vue({
+        $this->addJS("
+  var app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [

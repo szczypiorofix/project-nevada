@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace Core\ModelClasses;
 
 abstract class Widget {
 

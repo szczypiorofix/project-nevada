@@ -8,7 +8,7 @@
 
 namespace Core;
 
-use PDO, Core\FrameworkException;
+use PDO, \Core\FrameworkException;
 
 /**
  * Description of DBConnection
@@ -38,7 +38,7 @@ class DBConnection {
             $this->db = new \PDO($dsn, $db_user, $db_pass, $opt);
         } catch (\PDOException $exc) {
             $this->error = true;
-            throw new FrameworkException("Błąd PDO!!!", "Błąd połączenia z bazą danych!");
+            throw new FrameworkException("Błąd PDO!!!", $exc->getMessage());
         }
     }
     

@@ -2,11 +2,14 @@
 
 namespace Pages;
 
-use \Models\Page;
+use \Core\ModelClasses\Page, Models\PostListModel;
 
 class Pagelist extends Page {
 
     const HOME_PAGE_VIEW_FILE = "index.html";
+    private $db = null;
+    private $error = false;
+    private $errorMsg = null;
     
     
     public function __construct($data = []) {}
@@ -24,8 +27,31 @@ class Pagelist extends Page {
     
     public function defaultmethod($args) {
         
-        $db = \Core\DBConnection::getInstance();
+        if (!isset($args[0])) {
+           $input = '';
+        }
+        else {
+           $input = $args[0];
+        }
+        if (!isset($args[1])) {
+           $pages = 0;
+        }
+        else {
+           $pages = intval($args[1]);
+        }
         
+        try {
+            $dbConnection = \Core\DBConnection::getInstance();
+        } catch (\Core\FrameworkException $fex) {
+            echo $fex->showError();
+        }
+        
+        
+        $this->db = $dbConnection->getDB();
+        $this->error = $dbConnection->isError();
+        $this->errorMsg = $dbConnection->getErrorMsg();
+        
+        $postListModel = new PostListModel(PostListModel::TYPE_ID_SORT, $dbConnection, $input, $pages);
         
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'MainScript', 'path' => 'js/script.js']);
@@ -71,7 +97,7 @@ class Pagelist extends Page {
 <<<HTML
     <div class="full-page-container">
         {$header->getBody()}
-        {$a}
+        {$postListModel->getContent()}
         {$footer->getBody()}
     </div>
 HTML;

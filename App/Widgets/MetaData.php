@@ -8,12 +8,14 @@
 
 namespace Widgets;
 
+use \Core\ModelClasses\Widget;
+
 /**
  * Description of MetaData
  *
  * @author Szczypiorofix
  */
-class MetaData extends \Models\Widget {
+class MetaData extends Widget {
     
     public function __construct($data = []) {
         $this->body =

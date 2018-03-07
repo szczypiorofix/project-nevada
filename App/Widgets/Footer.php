@@ -2,7 +2,7 @@
 
 namespace Widgets;
 
-use \Models\Widget;
+use \Core\ModelClasses\Widget;
 
 class Footer extends Widget {
     
