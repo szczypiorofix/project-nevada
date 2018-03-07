@@ -23,6 +23,21 @@ class Pagelist extends Page {
     private $db = null;
     private $error = false;
     private $errorMsg = null;
+    private $defaultMetaData = [
+        'title' => 'This is my new homepage! Hell yeah!',
+        'description' => 'This is my new homepage. It\'s build in my own home-made CMS :)',
+        'author' => 'Wróblewski Piotr',
+        'keywords' => 'JavaScript',
+        'url' => 'http://localhost/',
+        'content' => 'website',
+        'twitter-meta-field-left' => '',
+        'twitter-meta-field-left-below' => '',
+        'twitter-meta-field-right' => '',
+        'twitter-meta-field-right-below' => '',
+        'image' => 'https://www.wroblewskipiotr.pl/avatar.png',
+        'domain' => 'https://www.wroblewskipiotr.pl/',
+        'accent-color' => '#333333',
+    ];
     
     
     public function __construct($data = []) {}
@@ -66,26 +81,37 @@ class Pagelist extends Page {
         
         $postListModel = new PostListModel(PostListModel::TYPE_ID_SORT, $dbConnection, $input, $pages);
         
+        $content = $postListModel->getContent();
+        
+        
+        $pageContent = "<div>";
+        $defaultImageFile = DIR_UPLOADS_IMAGES."default.jpg";
+        
+        foreach($content as $row) {
+            if (file_exists(DIR_UPLOADS_IMAGES.$row['image']) && !is_dir(DIR_UPLOADS_IMAGES.$row['image'])) {
+                $defaultImageFile = DIR_UPLOADS_IMAGES.$row['image'];
+            }
+            $pageContent .= 
+                    '<section>'.
+                        '<h3>'.
+                            $row['title'].
+                        '</h3>'.
+                        '<div>'.
+                        '<img src="'.$defaultImageFile.'" />'.
+                        '</div>'.
+                    '</section>';
+        }
+        
+        $pageContent .= "</div>";
+        
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'MainScript', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'Vue.JS', 'path' => 'https://cdn.jsdelivr.net/npm/vue']);
 
 
-        $metaData = new \Widgets\MetaData([
-            'title' => 'This is my new homepage! Hell yeah!',
-            'description' => 'This is my new homepage. It\'s build in my own home-made CMS :)',
-            'author' => 'Wróblewski Piotr',
-            'keywords' => 'JavaScript',
-            'url' => 'http://localhost/',
-            'content' => 'website',
-            'twitter-meta-field-left' => '',
-            'twitter-meta-field-left-below' => '',
-            'twitter-meta-field-right' => '',
-            'twitter-meta-field-right-below' => '',
-            'image' => 'https://www.wroblewskipiotr.pl/avatar.png',
-            'domain' => 'https://www.wroblewskipiotr.pl/',
-            'accent-color' => '#333333',
-        ]); 
+        
+        $metaData = new \Widgets\MetaData($this->defaultMetaData);
+        
 
         $head = $metaData->getBody();
         $head .= $this->getCSSFiles();
@@ -110,11 +136,11 @@ class Pagelist extends Page {
 <<<HTML
     <div class="full-page-container">
         {$header->getBody()}
-        {$postListModel->getContent()}
+        {$pageContent}
         {$footer->getBody()}
     </div>
 HTML;
-
+        
         $this->addJS($navbar->getJS());
         $this->setBody($body);
     }
