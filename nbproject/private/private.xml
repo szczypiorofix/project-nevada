@@ -13,12 +13,12 @@
             <file>file:/C:/xampp/htdocs/project-nevada/App/Views/index.html</file>
         </group>
         <group name="htdocs">
-            <file>file:/C:/xampp/htdocs/project-nevada/App/Models/Page.php</file>
-            <file>file:/C:/xampp/htdocs/project-nevada/public_html/less/core.less</file>
+            <file>file:/C:/xampp/htdocs/project-nevada/App/Core/Environment.php</file>
+            <file>file:/C:/xampp/htdocs/project-nevada/App/Core/AppCore.php</file>
+            <file>file:/C:/xampp/htdocs/project-nevada/App/Pages/Pagepost.php</file>
+            <file>file:/C:/xampp/htdocs/project-nevada/App/Core/Config.php</file>
             <file>file:/C:/xampp/htdocs/project-nevada/App/Pages/Pagelist.php</file>
-            <file>file:/C:/xampp/htdocs/project-nevada/App/Models/Widget.php</file>
-            <file>file:/C:/xampp/htdocs/project-nevada/App/Views/index.html</file>
-            <file>file:/C:/xampp/htdocs/project-nevada/App/Widgets/Nav.php</file>
+            <file>file:/C:/xampp/htdocs/project-nevada/App/Core/DBConnection.php</file>
         </group>
     </open-files>
 </project-private>

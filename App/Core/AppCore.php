@@ -1,8 +1,20 @@
 <?php
 
+/*
+ * MIT License
+ * 
+ * Copyright (c) 2018 Piotr Wróblewski
+ * 
+ */
+
+
 namespace Core;
 
-
+/**
+ * This is core application class.
+ *
+ * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
+ */
 class AppCore {
 
     const DEFAULT_CLASS = 'list'; // DEFAULT PAGE
@@ -45,7 +57,9 @@ class AppCore {
 
         $params = $url ? array_values($url) : [];
         call_user_func_array([$page, $method], array($params));
-
+        
+        $page->integrateCSS();
+        $page->integrateJS();
         $page->show();
     }
 

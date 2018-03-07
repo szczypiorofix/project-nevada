@@ -1,9 +1,10 @@
 <?php
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * MIT License
+ * 
+ * Copyright (c) 2018 Piotr Wróblewski
+ * 
  */
 
 namespace Models;
@@ -11,9 +12,9 @@ namespace Models;
 use Core\ModelClasses\DataModel, Core\FrameworkException, PDO, PDOException;
 
 /**
- * Description of PostListModel
+ * This is model class for list of posts.
  *
- * @author Szczypiorofix
+* @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
 class PostListModel extends DataModel {
     

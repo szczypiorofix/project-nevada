@@ -1,9 +1,22 @@
 <?php
 
+/*
+ * MIT License
+ * 
+ * Copyright (c) 2018 Piotr Wróblewski
+ * 
+ */
+
 namespace Pages;
 
-use \Core\ModelClasses\Page, Models\PostListModel;
+use Core\ModelClasses\Page, Models\PostListModel;
 
+
+/**
+ * This is a controller class for list of posts.
+ *
+* @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
+ */
 class Pagelist extends Page {
 
     const HOME_PAGE_VIEW_FILE = "index.html";

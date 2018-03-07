@@ -1,0 +1,8 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}Opis pliku
+${licensePrefix}Opis klasy
+<#if licenseLast??>
+${licenseLast}
+</#if>

@@ -1,19 +1,21 @@
 <?php
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * MIT License
+ * 
+ * Copyright (c) 2018 Piotr Wróblewski
+ * 
  */
+
 
 namespace Core;
 
 use PDO, \Core\FrameworkException;
 
 /**
- * Description of DBConnection
+ * This is class for establishing connection with MySQL database.
  *
- * @author Piotrek
+* @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
 class DBConnection {
     

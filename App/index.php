@@ -1,4 +1,6 @@
 <?php
-// NOTHING HAPPENED HERE...
+/*
+ * NOTHING TO SEE HERE ...
+ */
 
 exit();

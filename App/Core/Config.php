@@ -1,12 +1,24 @@
 <?php
 
+/*
+ * MIT License
+ * 
+ * Copyright (c) 2018 Piotr Wróblewski
+ * 
+ */
+
 namespace Core;
 
 use \Core\FrameworkException;
 
+/**
+ * This is Config class for obtaining data from config (.config) file.
+ *
+* @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
+ */
 class Config {
 
-    private static $config_data = [];
+    private static $configData = [];
     private static $firstLoad = true;
 
     private function __construct() {}
@@ -26,11 +38,11 @@ class Config {
 //        }
         if (self::$firstLoad) {
             self::$firstLoad = false;
-            self::$config_data = parse_ini_file(CONFIG_FILE);
+            self::$configData = parse_ini_file(CONFIG_FILE);
         }
         
-        if (isset(self::$config_data[$key])) {
-           return self::$config_data[$key];
+        if (isset(self::$configData[$key])) {
+           return self::$configData[$key];
         }
         return NULL;
     }

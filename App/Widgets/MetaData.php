@@ -1,23 +1,25 @@
 <?php
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * MIT License
+ * 
+ * Copyright (c) 2018 Piotr Wróblewski
+ * 
  */
 
 namespace Widgets;
 
-use \Core\ModelClasses\Widget;
+use Core\ModelClasses\Widget, Core\Registry;
 
 /**
- * Description of MetaData
+ * This is class for metadata-type widgets.
  *
- * @author Szczypiorofix
+* @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
 class MetaData extends Widget {
     
     public function __construct($data = []) {
+        Registry::add($this, "MetaData");
         $this->body =
 <<<HTML
     <meta name="description" content="{$data['description']}" />

@@ -1,8 +1,21 @@
 <?php
 
+/*
+ * MIT License
+ * 
+ * Copyright (c) 2018 Piotr Wróblewski
+ * 
+ */
+
 namespace Core;
 
 use \Core\Config, \Core\FrameworkException;
+
+/**
+ * This is class where all constants are defined.
+ *
+ * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
+ */
 
 class Environment {
 

@@ -1,7 +1,19 @@
 <?php
 
+/*
+ * MIT License
+ * 
+ * Copyright (c) 2018 Piotr Wróblewski
+ * 
+ */
+
 namespace Core;
 
+/**
+ * This is AutoLoader class.
+ *
+ * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
+ */
 class AutoLoader {
     
     const DIR_CLASSES = 'App';

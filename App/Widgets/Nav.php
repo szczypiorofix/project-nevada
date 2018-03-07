@@ -1,12 +1,25 @@
 <?php
 
+/*
+ * MIT License
+ * 
+ * Copyright (c) 2018 Piotr Wróblewski
+ * 
+ */
+
 namespace Widgets;
 
-use \Core\ModelClasses\Widget;
+use Core\ModelClasses\Widget, Core\Registry;
 
+/**
+ * This is class for nav-type widgets.
+ *
+* @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
+ */
 class Nav extends Widget {
     
     public function __construct() {
+        Registry::add($this);
         $this->body =
 <<<HTML
             <div class="navbar-container">
@@ -38,6 +51,6 @@ HTML;
       { text: 'Build something awesome' }
     ]
   }
-})");
+}); ");
     }
 }

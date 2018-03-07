@@ -1,17 +1,19 @@
 <?php
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * MIT License
+ * 
+ * Copyright (c) 2018 Piotr Wróblewski
+ * 
  */
+
 
 namespace Core\ModelClasses;
 
 /**
- * Description of DataModel
+ * This is an abstract class for obtaining data from MySQL Database.
  *
- * @author Szczypiorofix
+ * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
 abstract class DataModel {
     

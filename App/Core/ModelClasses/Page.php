@@ -1,47 +1,71 @@
 <?php
 
+/*
+ * MIT License
+ * 
+ * Copyright (c) 2018 Piotr Wróblewski
+ * 
+ */
+
 namespace Core\ModelClasses;
 
+/**
+ * This is an abstract class for all page-type content.
+ *
+ * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
+ */
 abstract class Page {
 
     protected $head = "";
-
     protected $cssFiles = [];
     protected $css = "";
-
     protected $jsHeadFiles = [];
     protected $jsHead = "";
-
     protected $jsFiles = [];
     protected $js = "";
-
     protected $body = "";
     protected $footer = "";
     
-    protected $content;
     
-
 
     /* ABSTRACT FUNCTION "SHOW" */
     abstract public function show();
-    
-    /* DEFAULT METHOD */
+    /* ABSTRACT DEFAULT METHOD */
     abstract public function defaultmethod($args);
-
-
-    public function __toString() {
-        return get_class($this);
+    
+    
+    
+    /* FUNCTION WHICH INTEGRATES CSS STYLE FROM ALL WIDGETS */
+    public function integrateCSS() {
+        foreach(\Core\Registry::returnList() as $el) {
+            $this->css .= $el->getCSS();
+        }
     }
     
-    public function getContent() {
-        return $this->content;
+    /* FUNCTION WHICH INTEGRATES CSS STYLE FROM ALL WIDGETS */
+    public function integrateJS() {
+        foreach(\Core\Registry::returnList() as $el) {
+            $this->js .= $el->getJS();
+            $this->jsHead .= $el->getJSHead();
+            foreach ($el->getJSFiles() as $jsFile) {
+                $this->jsFiles[] = $jsFile;
+            }
+            foreach ($el->getJSHeadFiles() as $jsHeadFile) {
+                $this->jsHeadFiles[] = $jsHeadFile;
+            }
+        }
+    }
+    
+
+    /* OVERRIDE toString() METHOD */
+    public function __toString() {
+        return get_class($this);
     }
 
     
 
 
     /*  CSS FILES  */
-    
     public function getCss() {
         return "<style>".$this->css."</style>";
     }
@@ -135,7 +159,7 @@ abstract class Page {
     }
 
     public function getJSHead() {
-        return $this->jsHead;
+        return '<script>'.$this->jsHead.'</script>';
     }
     
     public function addJSHead($jsHead) {

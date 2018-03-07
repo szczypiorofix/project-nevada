@@ -1,9 +1,16 @@
 <?php
 
+/*
+ * MIT License
+ * 
+ * Copyright (c) 2018 Piotr Wróblewski
+ * 
+ */
+
 namespace Core;
 
 /**
- * Description of FrameworkException
+ * This is custom exception class.
  *
  * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */

@@ -1,9 +1,10 @@
 <?php
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * MIT License
+ * 
+ * Copyright (c) 2018 Piotr Wróblewski
+ * 
  */
 
 namespace Pages;
@@ -11,9 +12,9 @@ namespace Pages;
 use \Core\ModelClasses\Page;
 
 /**
- * Description of Pagepost
+ * This is a controller class for single post.
  *
- * @author Piotrek
+* @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
 class Pagepost extends Page {
     

@@ -4,5 +4,6 @@
  * and open the template in the editor.
  */
 
-
-console.log('Scripts loaded!');
+window.addEventListener("DOMContentLoaded", function() {
+   console.log('Scripts loaded!'); 
+});

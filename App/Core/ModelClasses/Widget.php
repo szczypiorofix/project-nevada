@@ -1,6 +1,19 @@
 <?php
 
+/*
+ * MIT License
+ * 
+ * Copyright (c) 2018 Piotr Wróblewski
+ * 
+ */
+
 namespace Core\ModelClasses;
+
+/**
+ * This is an abstract class for all widget-type content.
+ *
+ * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
+ */
 
 abstract class Widget {
 
@@ -9,8 +22,14 @@ abstract class Widget {
     protected $body = "";
     protected $jsFiles = [];
     protected $js = "";
-    protected $jsHeaderFiles = [];
-    protected $jsHeader = "";
+    protected $jsHeadFiles = [];
+    protected $jsHead = "";
+
+    
+    /* OVERRIDE toString() METHOD */
+    public function __toString() {
+        return get_class($this);
+    }
     
 
     /*  CSS FILES  */
@@ -35,7 +54,7 @@ abstract class Widget {
     }
     
     public function getCss() {
-        return '<style>'.$this->css.'</style>';
+        return $this->css;
     }
 
     public function setCss($css) {
@@ -63,11 +82,11 @@ abstract class Widget {
     }
 
     public function getJSFiles() {
-        $jsF = "";
-        foreach ($this->jsFiles as $key) {
-            $jsF .= '<script src="'.$key['path'].'?v='.PAGE_VERSION.'"></script>';
-        }
-        return $jsF;
+        return $this->jsFiles;
+    }
+    
+    public function getJSHead() {
+        return $this->jsHead;
     }
     
     public function getJS() {
@@ -82,26 +101,29 @@ abstract class Widget {
         $this->js .= $js;
     }
 
-    public function addJSHeaderFile($jsHeaderFile) {
+    public function addJSHeadFile($jsHeaderFile) {
         if (($jsHeaderFile !== '' || !is_null($jsHeaderFile)) && is_array($jsHeaderFile) ) {
-            array_push($this->jsHeaderFiles, $jsHeaderFile);
+            array_push($this->jsHeadFiles, $jsHeaderFile);
         }
     }
 
-    public function setJSHeaderFiles($jsHeaderFiles) {
+    public function setJSHeadFiles($jsHeaderFiles) {
         if (is_array($jsHeaderFiles)) {
-            $this->jsHeaderFiles = $jsHeaderFiles;
+            $this->jsHeadFiles = $jsHeaderFiles;
         }
     }
 
-    public function getJSHeaderFiles() {
-        $jsF = "";
-        foreach ($this->jsHeaderFiles as $key) {
-            $jsF .= '<script src="'.$key['path'].'?v='.PAGE_VERSION.'"></script>';
-        }
-        return $jsF;
+    public function getJSHeadFiles() {
+        return $this->jsHeadFiles;
     }
     
+    public function addJSHead($jsHead) {
+        $this->jsHead .= $jsHead;
+    }
+
+    public function setJsHead($jsHead) {
+        $this->jsHead = $jsHead;
+    }    
     
     
     
