@@ -24,11 +24,11 @@ class AppCore {
     private function __construct() {}
     private function __clone() {}
 
-    public static function start() {
+    public static function start($maintenance = false) {
         $class = self::DEFAULT_CLASS;
         $method = self::DEFAULT_METHOD;
         $calledDefaultClass = false;
-
+       
         $url = self::parseUrl();
 
         if (file_exists(DIR_PAGES.self::PAGES_NAME_PREFIX.$url[0].'.php')) {
@@ -40,8 +40,14 @@ class AppCore {
            $calledDefaultClass = true;
         }
 
+        /* Calling Maintenance class */
+        if ($maintenance) {
+            $class = "Maintenance";
+        }
+        
         $className = "\Pages\\".self::PAGES_NAME_PREFIX.$class;
         $page = new $className();
+        
 
         if ($calledDefaultClass) {
             if (isset($url[0]) && method_exists($page, $url[0])) {

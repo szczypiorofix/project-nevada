@@ -27,5 +27,6 @@ require_once '../App/Core/Autoloader.php';
 
 /*
  * Start core application.
+ * 
  */
-\Core\AppCore::start();
+\Core\AppCore::start(true);

@@ -18,15 +18,11 @@ use \Core\ModelClasses\Page;
  */
 class Pagepost extends Page {
     
-    const HOME_PAGE_VIEW_FILE = "index.html";
     
     public function __construct($data = []) {
         
     }
     
-    public function show() {
-        include_once DIR_VIEWS.self::HOME_PAGE_VIEW_FILE;
-    }
     
     public function defaultmethod($args) {
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);

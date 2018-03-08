@@ -19,18 +19,13 @@ use Core\ModelClasses\Page, Models\PostListModel;
  */
 class Pagelist extends Page {
 
-    const HOME_PAGE_VIEW_FILE = "index.html";
+    
     private $db = null;
     private $error = false;
     private $errorMsg = null;
     
     
     public function __construct($data = []) {}
-
-    
-    public function show() {
-        include_once DIR_VIEWS.self::HOME_PAGE_VIEW_FILE;
-    }
     
     
     public function __toString() {
@@ -59,22 +54,19 @@ class Pagelist extends Page {
             $fex->showError();
         }
         
-        
         $this->db = $dbConnection->getDB();
         $this->error = $dbConnection->isError();
         $this->errorMsg = $dbConnection->getErrorMsg();
         
         $postListModel = new PostListModel(PostListModel::TYPE_ID_SORT, $dbConnection, $input, $pages);
-        
         $content = $postListModel->getContent();
         
-        var_dump($content);
+        //var_dump($content);
         
         $pageContent = "<div>";
         $defaultImageFile = DIR_UPLOADS_IMAGES."default.jpg";
         $imageFile = $defaultImageFile;
-        
-        
+
         
         foreach($content as $row) {
             if (file_exists(DIR_UPLOADS_IMAGES.$row['image']) && !is_dir(DIR_UPLOADS_IMAGES.$row['image'])) {
@@ -121,14 +113,9 @@ class Pagelist extends Page {
         $this->addJSFile(['name' => 'MainScript', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'Vue.JS', 'path' => 'https://cdn.jsdelivr.net/npm/vue']);
 
-
         $metaData = new \Widgets\MetaData();
-        
-
         $head = $metaData->getBody();
-        $head .= $this->getCSSFiles();
-        $head .= $this->getJsHeadFiles();
-
+        
         $this->setHead($head);
 
         $logo = new \Widgets\Logo();
@@ -153,7 +140,6 @@ class Pagelist extends Page {
     </div>
 HTML;
         
-        $this->addJS($navbar->getJS());
         $this->setBody($body);
     }
     

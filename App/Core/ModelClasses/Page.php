@@ -25,15 +25,18 @@ abstract class Page {
     protected $js = "";
     protected $body = "";
     protected $footer = "";
+    const HOME_PAGE_VIEW_FILE = "index.html";
     
     
 
-    /* ABSTRACT FUNCTION "SHOW" */
-    abstract public function show();
     /* ABSTRACT DEFAULT METHOD */
     abstract public function defaultmethod($args);
     
+
     
+    public function show() {
+        include_once DIR_VIEWS.self::HOME_PAGE_VIEW_FILE;
+    }
     
     /* FUNCTION WHICH INTEGRATES CSS STYLE FROM ALL WIDGETS */
     public function integrateCSS() {
