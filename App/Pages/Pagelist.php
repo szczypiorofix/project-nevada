@@ -23,21 +23,6 @@ class Pagelist extends Page {
     private $db = null;
     private $error = false;
     private $errorMsg = null;
-    private $defaultMetaData = [
-        'title' => 'This is my new homepage! Hell yeah!',
-        'description' => 'This is my new homepage. It\'s build in my own home-made CMS :)',
-        'author' => 'Wróblewski Piotr',
-        'keywords' => 'JavaScript',
-        'url' => 'http://localhost/',
-        'content' => 'website',
-        'twitter-meta-field-left' => '',
-        'twitter-meta-field-left-below' => '',
-        'twitter-meta-field-right' => '',
-        'twitter-meta-field-right-below' => '',
-        'image' => 'https://www.wroblewskipiotr.pl/avatar.png',
-        'domain' => 'https://www.wroblewskipiotr.pl/',
-        'accent-color' => '#333333',
-    ];
     
     
     public function __construct($data = []) {}
@@ -71,7 +56,7 @@ class Pagelist extends Page {
         try {
             $dbConnection = \Core\DBConnection::getInstance();
         } catch (\Core\FrameworkException $fex) {
-            echo $fex->showError();
+            $fex->showError();
         }
         
         
@@ -83,22 +68,31 @@ class Pagelist extends Page {
         
         $content = $postListModel->getContent();
         
+        var_dump($content);
         
         $pageContent = "<div>";
         $defaultImageFile = DIR_UPLOADS_IMAGES."default.jpg";
+        $imageFile = $defaultImageFile;
         
         foreach($content as $row) {
             if (file_exists(DIR_UPLOADS_IMAGES.$row['image']) && !is_dir(DIR_UPLOADS_IMAGES.$row['image'])) {
-                $defaultImageFile = DIR_UPLOADS_IMAGES.$row['image'];
+                $imageFile = DIR_UPLOADS_IMAGES.$row['image'];
+            } else {
+                $imageFile = $defaultImageFile;
             }
             $pageContent .= 
-                    '<section>'.
-                        '<h3>'.
-                            $row['title'].
-                        '</h3>'.
+                    '<section class="postlist postcard">'.
+                        '<h1><a href="post/'.$row['url'].'">'.$row['title'].'</a><small> '.$row['short_title'].'</small>'.
+                        '</h1>'.
+                        '<p>'.$row['update_date'].'</p>'.
                         '<div>'.
-                        '<img src="'.$defaultImageFile.'" />'.
+                            '<img src="'.$imageFile.'" />'.
+                            '<p>'.$row['abstract'].'</p>'.
                         '</div>'.
+                        '<p>Kategoria: '.$row['kategorie'].'</p>'.
+                        '<p>Tagi: '.$row['tagi'].'</p>'.
+                        '<a class="btn btn-primary" href="post/'.$row['url'].'"><i class="fas fa-chevron-right"></i> Read more
+                        </a>'.
                     '</section>';
         }
         
@@ -109,8 +103,7 @@ class Pagelist extends Page {
         $this->addJSFile(['name' => 'Vue.JS', 'path' => 'https://cdn.jsdelivr.net/npm/vue']);
 
 
-        
-        $metaData = new \Widgets\MetaData($this->defaultMetaData);
+        $metaData = new \Widgets\MetaData();
         
 
         $head = $metaData->getBody();

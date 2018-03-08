@@ -18,7 +18,26 @@ use Core\ModelClasses\Widget, Core\Registry;
  */
 class MetaData extends Widget {
     
-    public function __construct($data = []) {
+    private $defaultMetaData = [
+        'title' => 'This is my new homepage! Hell yeah!',
+        'description' => 'This is my new homepage. It\'s build in my own home-made CMS :)',
+        'author' => 'Wróblewski Piotr',
+        'keywords' => 'JavaScript',
+        'url' => 'http://localhost/',
+        'content' => 'website',
+        'twitter-meta-field-left' => '',
+        'twitter-meta-field-left-below' => '',
+        'twitter-meta-field-right' => '',
+        'twitter-meta-field-right-below' => '',
+        'image' => 'https://www.wroblewskipiotr.pl/avatar.png',
+        'domain' => 'https://www.wroblewskipiotr.pl/',
+        'accent-color' => '#333333',
+    ];
+    
+    public function __construct($data = null) {
+        if (is_null($data)) {
+            $data = $this->defaultMetaData;
+        }
         Registry::add($this, "MetaData");
         $this->body =
 <<<HTML
