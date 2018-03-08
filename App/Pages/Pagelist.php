@@ -74,6 +74,8 @@ class Pagelist extends Page {
         $defaultImageFile = DIR_UPLOADS_IMAGES."default.jpg";
         $imageFile = $defaultImageFile;
         
+        
+        
         foreach($content as $row) {
             if (file_exists(DIR_UPLOADS_IMAGES.$row['image']) && !is_dir(DIR_UPLOADS_IMAGES.$row['image'])) {
                 $imageFile = DIR_UPLOADS_IMAGES.$row['image'];
@@ -95,6 +97,23 @@ class Pagelist extends Page {
                         </a>'.
                     '</section>';
         }
+        
+        /*
+         * 
+         * TODOs:
+         * 1. żadnych bootstrapów, tylko grid & flex
+         * 2. komentarze z Disqusem (?)
+         * 3. poprawna semantyka układu strony jak tutaj : https://www.semrush.com/blog/semantic-html5-guide/
+         * 4. baza do przebudowy (moze zupełnie od nowa?) - pola smallTitle niepotrzebne, dodawanie tagów w trakcie dodawania/edycji postów
+         * 5. pole abstrakt - do wywalenia - zastąpić ma je zajawka jak z wordpressa czyli pierwsze np. 100 znaków z treści
+         * 6. strona po polsku z możliwością tłumaczenia treści przez google translator https://www.w3schools.com/howto/tryit.asp?filename=tryhow_google_translate
+         * 7. automatyczna edycja pliku sitemap
+         * 8. rezygnacja ze staromodnego "www" na stronie
+         * 9. strona "w przygotowaniu" jako strona tymczasowa
+         * 10. integracja z trello i github project
+         * 
+         */
+        
         
         $pageContent .= "</div>";
         

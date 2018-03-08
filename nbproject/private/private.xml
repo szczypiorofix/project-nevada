@@ -12,8 +12,9 @@
             <file>file:/C:/xampp/htdocs/project-nevada/App/Core/DBConnection.php</file>
         </group>
         <group>
-            <file>file:/C:/xampp/htdocs/project-nevada/App/Core/FrameworkException.php</file>
             <file>file:/C:/xampp/htdocs/project-nevada/App/Models/PostListModel.php</file>
+            <file>file:/C:/xampp/htdocs/project-nevada/App/Core/FrameworkException.php</file>
+            <file>file:/C:/xampp/htdocs/project-nevada/App/Widgets/MetaData.php</file>
             <file>file:/C:/xampp/htdocs/project-nevada/App/Pages/Pagelist.php</file>
         </group>
     </open-files>
