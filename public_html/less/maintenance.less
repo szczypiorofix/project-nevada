@@ -13,150 +13,114 @@ Copyright 2018 Piotr Wróblewski.
 
 @import "color-palette.less";
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Rajdhani|Roboto');
 
+@rajdhaniFont: 'Rajdhani', sans-serif;
+@robotoFont: 'Roboto', sans-serif;
 
 
 html, body {
     display: block;
     position: relative;
-    font-family: 'Montserrat', sans-serif;
-    background-color: @mainbackgroundcolor;
+    font-family: @robotoFont;
+    background: @peterriver;
+    color: @midnightblue;
     margin: 0;
     padding: 0;
 }
 
-@title-color: @belizehole;
-@cogwheel-darkcolor: @carrot;
-@mainbackgroundcolor: @belizehole;
 
+.fsvideo-container {
+    display: block;
+    opacity: 0.2;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    video {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%; 
+        min-height: 100%;
+    }
+}
 
-.information {
-    background-color: @clouds;
-    padding: 15px;
+.bg-main {
+    z-index: 0;
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
     
-    .logo {
-        position: relative;
+    .logo-container {
+        align-self: flex-start;
         width: 100%;
-        height: auto;
-        margin: 0 auto;
-        
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.75);
         img {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            max-width: 500px;
+            max-width: 400px;
             width: 100%;
             height: auto;
-            
         }
-    }
-    .title {
-        width: 100%;
-        display: block;
-        text-align: center;
-        color: @title-color;
-        font-size: 56px;
-        font-weight: 100;
-        text-transform: uppercase;
-        padding-top: 100px;
-    }
-    .small-title {
-        width: 100%;
-        display: block;
-        text-align: center;
-        color: @title-color;
-        font-size: 32px;
-        font-weight: 100;
-        padding-top: 40px;
-    }
-}
-
-.maintenance-maindiv {
-    position: relative;
-    width: 100%;
-    height: 300px;
-    padding-top: 30px;
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;
-    
-    img {
-        position: relative;
-        max-width: 400px;
-        width: 100%;
-        height: auto;
     }
     
-    .cogwheel-container {
-        position: relative;
-        .cogwheel {
-/*            position: relative;
-            top: 50%;
-            left: 50%;*/
-
-            .shatter {
-                width: 20px;
-                height: 20px;
-                background-color: transparent !important;
-                position: absolute;
-                transition: all 1s ease;
-                transform: rotate(45deg);
-                border-radius: 50%;
-                box-shadow:
-                0 0 0 24px @mainbackgroundcolor,
-                  0 0 0 50px @cogwheel-darkcolor;
-            }
-            .shatter:before {
-                content:'';
-                left:50%;
-                top: 50%;
-                margin-left: -13px;
-                margin-top: -13px;
-                width: 26px;
-                height: 26px;
-                display: block;
-                position: absolute;
-                box-shadow:65px 0px 0 @cogwheel-darkcolor, -65px 0px 0 @cogwheel-darkcolor,
-                  0 65px 0 @cogwheel-darkcolor, 0 -65px 0 @cogwheel-darkcolor;
-                border-radius: 20%;
-            }
-            .shatter:after {
-                content:'';
-                left:50%;
-                top: 50%;
-                margin-left: -13px;
-                margin-top: -13px;
-                width: 26px;
-                height: 26px;
-                display: block;
-                position: absolute;
-                box-shadow:65px 0px 0 @cogwheel-darkcolor, -65px 0px 0 @cogwheel-darkcolor,
-                  0 65px 0 @cogwheel-darkcolor, 0 -65px 0 @cogwheel-darkcolor;
-                border-radius: 20%;
-                transform: rotate(45deg);
-            }
+    .caption-container {
+        width: 100%;
+        align-self: center;
+        position: fixed;
+        bottom: 50%;
+        width: 100%;
+        span.caption-big {
+            display: block;
+            color: @clouds;
+            opacity: 0.5;
+            font-size: 72px;
+            text-transform: uppercase;
+            font-weight: 100;
+        }
+        div.caption-counter {
+            display: block;
+            color: @clouds;
+            //opacity: 0.5;
+            padding-top: 20px;
+            font-size: 42px;
+            //text-transform: uppercase;
+            font-weight: 100;
         }
     }
-}
-
-.t1 { left: -5px; top:-5px; transform: rotate(0deg);}
-.cw { animation:scope_cw 10s linear infinite;}
-
-@keyframes scope_cw {
-    from {transform: rotate(22.5deg)}
-    to {transform: rotate(382.5deg)}
-}
-
-@media screen and (max-width: 600px) {
-    .information {
-        .title {
-            font-size: 32px;
+    
+    .social-icons-container {
+        position: fixed;
+        bottom: 50px;
+        width: 100%;
+        color: @clouds;
+        a {
+        color: @clouds;
+        transition: 0.5s all ease;
+        i {
+            padding: 15px;
+            width: 15px;
+            height: 15px;
+            border: 1px solid @clouds;
+            border-radius: 50%;
         }
-        .small-title {
-            font-size: 24px;
+        &:hover {
+            i {
+                background-color: @clouds;
+                color: @wetasphalt;
+            }
+        }
         }
     }
+    
 }
+
+

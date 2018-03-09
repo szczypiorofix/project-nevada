@@ -28,7 +28,7 @@ class PageMaintenance extends Page {
         
         $this->addCSSFile(['name' => 'MaintenanceCSSFile', 'path' => 'css/maintenance.css']);
         $this->addJSFile(['name' => 'MainScript', 'path' => 'js/script.js']);
-        $this->addJSFile(['name' => 'Vue.JS', 'path' => 'https://cdn.jsdelivr.net/npm/vue']);
+        $this->addJSFile(['name' => 'Countdown script', 'path' => 'js/countdownscript.js']);
         
         
         $metaData = new \Widgets\MetaData();

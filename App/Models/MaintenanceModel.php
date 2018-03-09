@@ -21,22 +21,32 @@ class MaintenanceModel extends DataModel {
     public function __construct() {
         $this->content =
 <<<HTML
-   <div class="information">
-        <div class="logo"><img src="images/logo-min.png"/></div>
-        <span class="title">PRZERWA TECHNICZNA</span>
-        <span class="small-title">Nowa wersja strony jest w trakcie przygotowywania</span>
-   </div>
-   <div class="maintenance-maindiv">
-        <img src="images/tech-support.jpg" />
-   </div>
+   <div class="fsvideo-container">
+        <video autoplay muted loop id="fullVideo">
+            <source src="video/typing.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
+    <div class="bg-main">
+        <div class="logo-container">
+            <img src="images/logo-min.png">
+        </div>
+        <div class="caption-container">
+            <span class="caption-big">Coming soon</span>
+            <div class="caption-counter">
+                <span id="counter-days"></span>
+                <span id="counter-hours"></span>
+                <span id="counter-minutes"></span>
+                <span id="counter-seconds"></span>
+            </div>
+        </div>
+        <div class="social-icons-container">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+    </div>
    
 HTML;
-        /*
-         * <div class="cogwheel-container">
-            <div class="cogwheel"> 
-                <div class="shatter t1 cw"></div>
-            </div>          
-        </div>
-         */
     }
 }
