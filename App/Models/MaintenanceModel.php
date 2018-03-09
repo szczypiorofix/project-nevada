@@ -34,10 +34,18 @@ class MaintenanceModel extends DataModel {
         <div class="caption-container">
             <span class="caption-big">Coming soon</span>
             <div class="caption-counter">
-                <span id="counter-days"></span>
-                <span id="counter-hours"></span>
-                <span id="counter-minutes"></span>
-                <span id="counter-seconds"></span>
+                <div class="counter-part">
+                    <span id="counter-days"></span>
+                </div>
+                <div class="counter-part">
+                    <span id="counter-hours"></span>
+                </div>
+                <div class="counter-part">
+                    <span id="counter-minutes"></span>
+                </div>
+                <div class="counter-part">
+                    <span id="counter-seconds"></span>
+                </div>
             </div>
         </div>
         <div class="social-icons-container">
