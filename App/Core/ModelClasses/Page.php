@@ -114,7 +114,15 @@ abstract class Page {
     public function getJSFiles() {
         $jsF = "";
         foreach ($this->jsFiles as $key) {
-            $jsF .= '<script src="'.$key['path'].'?v='.PAGE_VERSION.'"></script>';
+            $jsF .= '<script ';
+            if (isset($key['async']) && $key['async'] === true) {
+                $jsF .= ' async ';
+            }
+            $jsF .= 'type="text/javascript" src="'.$key['path'];
+            if (isset($key['versioning']) && $key['versioning'] === true) {
+                $jsF .= '?v='.PAGE_VERSION;
+            }
+            $jsF .= '"></script>';
         }
         return $jsF;
     }
@@ -140,7 +148,7 @@ abstract class Page {
     public function getJSHeadFiles() {
         $jsF = "";
         foreach ($this->jsHeadFiles as $key) {
-            $jsF .= '<script src="'.$key['path'].'?v='.PAGE_VERSION.'"></script>';
+            $jsF .= '<script type="text/javascript" src="'.$key['path'].'?v='.PAGE_VERSION.'"></script>';
         }
         return $jsF;
     }

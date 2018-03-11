@@ -65,7 +65,7 @@ html, body {
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    
+    margin-bottom: 100px;
     .logo-container {
         align-self: flex-start;
         width: 100%;
@@ -76,7 +76,11 @@ html, body {
             height: auto;
         }
     }
-    
+    #google_translate_element {
+        text-align: right;
+        margin-right: 10px;
+        margin-top: 5px;
+    }
     .caption-container {
         width: 100%;
         align-self: center;
@@ -96,7 +100,7 @@ html, body {
             display: flex;
             flex-direction: row;
             justify-content: center;
-            padding-top: 60px;
+            padding-top: 30px;
             
             div.counter-part {
                 text-align: center;
@@ -114,7 +118,7 @@ html, body {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                border-radius: 5px;
+                border-radius: 2%;
                 box-shadow: 1px 1px 0px 1px rgba(250, 250, 250, 0.8),
                     0px 0px 0px 1px rgba(0, 0, 0, 0.8);
                 span {
@@ -149,13 +153,14 @@ html, body {
         color: @clouds;
         font-family: @rajdhaniFont;
         font-size: 32px;
-        padding-top: 50px;
+        padding-top: 20px;
         text-shadow: 2px 2px 6px rgba(10, 10, 10, 0.8);
     }
     
-    .trello-feed {
+    .github-feed {
         width: 80%;
         max-width: 500px;
+        min-height: 300px;
         border: 1px solid rgba(0, 0, 0, 0.2);
         padding: 5px;
         background: rgba(0, 0, 0, 0.2);
@@ -175,9 +180,10 @@ html, body {
         width: 100%;
         color: @clouds;
         
+        
         a {
         color: @clouds;
-        transition: 0.5s all ease;
+        
         i {
             padding: 15px;
             width: 15px;
@@ -186,11 +192,32 @@ html, body {
             border-radius: 50%;
             margin: 0 3px;
             box-shadow: 1px 1px 6px rgba(50, 50, 50, 0.4);
+            //background: rgba(100, 100, 100, 0.5);
+            transition: 0.5s ease;
+            &.fab.fa-github {
+                background: @gray800;
+                color: white;
+            }
+            &.fab.fa-facebook-f {
+                background: #3B5998;
+                color: white;
+            }
+            &.fab.fa-twitter {
+                background: #55ACEE;
+                color: white;
+            }
         }
         &:hover {
             i {
-                background-color: @clouds;
-                color: @wetasphalt;
+               &.fab.fa-github {
+                    background: darken(@gray800, 10%);
+                }
+                &.fab.fa-facebook-f {
+                    background: darken(#3B5998, 10%);
+                }
+                &.fab.fa-twitter {
+                    background: darken(#55ACEE, 10%);
+                }
             }
         }
         }

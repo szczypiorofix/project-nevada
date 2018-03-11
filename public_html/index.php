@@ -29,4 +29,4 @@ require_once '../App/Core/Autoloader.php';
  * Start core application.
  * @param true - run maintenance page, false - run in default mode
  */
-\Core\AppCore::start(false);
+\Core\AppCore::start(true);

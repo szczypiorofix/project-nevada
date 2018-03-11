@@ -19,6 +19,26 @@ use Core\ModelClasses\DataModel;
 class MaintenanceModel extends DataModel {
    
     public function __construct() {
+        
+//        $curl = curl_init();
+//        $headers = array( 
+//            "POST HTTP/1.0", 
+//            "Content-type: application/vnd.github.inertia-preview+json;charset=\"utf-8\"", 
+//            "Accept: application/vnd.github.inertia-preview+json", 
+//            "Cache-Control: no-cache", 
+//            "Pragma: no-cache"
+//        ); 
+//        curl_setopt_array($curl, array(
+//            CURLOPT_RETURNTRANSFER => 1,
+//            CURLOPT_URL => 'https://api.github.com/repos/szczypiorofix/project-nevada',
+//            CURLOPT_HTTPHEADER => $headers,
+//            CURLOPT_USERAGENT => 'Codular Sample cURL Request'
+//        ));
+//        $server_output = curl_exec($curl);
+//        curl_close($curl);
+//        echo $server_output;
+//        exit();
+        
         $this->content =
 <<<HTML
    <div class="fsvideo-container">
@@ -32,6 +52,7 @@ class MaintenanceModel extends DataModel {
         <div class="logo-container">
             <img src="images/logo-min.png">
         </div>
+        <div id="google_translate_element"></div>
         <div class="caption-container">
             <span class="caption-big">Coming soon</span>
             <div class="caption-counter">
@@ -56,15 +77,17 @@ class MaintenanceModel extends DataModel {
             </div>
         </div>
         <div id="counter-end">
-            <p>HOORAY !!!</p>
+            <p>IT'S ON !!!</p>
         </div>
         <div class="describe-container">
               <p>Something big is coming...</p>
         </div>
-        <!--<div class="trello-feed">
-            <p>Some trello information</p>
-            <p>Curabitur magna fringilla condimentum, pulvinar mollis, metus. Vestibulum euismod non, sagittis sed, elementum vitae, bibendum tellus, eleifend quam nec tellus. Cras enim metus vitae erat sed felis non dui. Vivamus faucibus orci luctus congue, velit adipiscing elit. Pellentesque nunc. Phasellus lorem velit tristique commodo. Suspendisse elit tincidunt quis, interdum consectetuer tellus non neque vel urna luctus et netus et magnis dis parturient montes, nascetur ridiculus mus. Mauris auctor libero ipsum ullamcorper pellentesque. Nullam pharetra sem, posuere cubilia Curae, Quisque lobortis, mi at quam in sem. Cras ut ligula. Lorem ipsum dolor ac lacus. Sed sollicitudin eget, condimentum velit. In sodales.</p>
-        </div>-->
+                
+        <div class="github-feed">
+            <p>Some Github information:</p>
+            <p id="githubFeed"></p>
+        </div>
+
         <div class="social-icons-container">
             <a href="#"><i class="fab fa-github"></i></a>
             <a href="#"><i class="fab fa-facebook-f"></i></a>

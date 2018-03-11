@@ -60,7 +60,7 @@ var CountDownToDate = {
 
 window.addEventListener("DOMContentLoaded", function() {
     CountDownToDate.start({
-        "date": "Mar 9, 2018 16:07:01",
+        "date": "Mar 13, 2018 23:53:01",
         "daysElement": "counter-days",
         "hoursElement": "counter-hours",
         "minutesElement": "counter-minutes",

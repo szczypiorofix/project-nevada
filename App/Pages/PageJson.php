@@ -9,6 +9,8 @@
 
 namespace Pages;
 
+use Models\PostListModel, Core\Registry;
+
 /**
  * Description of PageJson
  *
@@ -16,11 +18,29 @@ namespace Pages;
  */
 class PageJson extends \Core\ModelClasses\Page {
     
+    private $db = null;
     
     public function defaultmethod($args) {
-        $data = array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
-        header('Content-Type: application/json');
-        echo json_encode($data);
+        
+        try {
+            $dbConnection = \Core\DBConnection::getInstance();
+        } catch (\Core\FrameworkException $fex) {
+            $fex->showError();
+        }
+        
+        $this->db = $dbConnection->getDB();
+        
+        $postList = new PostListModel(PostListModel::TYPE_ID_SORT, $dbConnection, 0, 0);
+        
+        
+        var_dump($postList->getContent());
+        
+        //header('Content-Type: application/json');
+        //$je = json_encode($postList->getContent());
+        
+        //$jd = json_decode($je);
+        //var_dump($jd);
+        
         exit();
     }
 
