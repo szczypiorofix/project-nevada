@@ -1,7 +1,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2018 Semiko.
+ * Copyright 2018 Piotr Wróblewski.
  *
  */
 
@@ -58,13 +58,32 @@ var CountDownToDate = {
     }
 };
 
+function getDataFromTreloAPI() {
+    var contentDiv = document.getElementById('trelloFeed');
+    var loaderDiv = document.getElementById('spinner');
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            contentDiv.style.display = 'block';
+            loaderDiv.style.display = 'none';
+            contentDiv.innerHTML = this.responseText;
+            //console.log(this.response);
+        }
+    };
+    xmlhttp.open("POST", "trellocontent", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("task=clear");
+}
+
 window.addEventListener("DOMContentLoaded", function() {
     CountDownToDate.start({
-        "date": "Mar 13, 2018 23:53:01",
+        "date": "May 1, 2018 00:00:00",
         "daysElement": "counter-days",
         "hoursElement": "counter-hours",
         "minutesElement": "counter-minutes",
         "secondsElement": "counter-seconds",
         "counterEndElement": "counter-end"
     });
+    
+    getDataFromTreloAPI();
 });

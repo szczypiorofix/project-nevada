@@ -31,18 +31,23 @@ class AppCore {
        
         $url = self::parseUrl();
 
-        if (file_exists(DIR_PAGES.self::PAGES_NAME_PREFIX.$url[0].'.php')) {
-            $class = $url[0];
-            unset($url[0]);
-        }
-        else {
-           $class = self::DEFAULT_CLASS;
-           $calledDefaultClass = true;
-        }
-
-        /* Calling Maintenance class */
-        if ($maintenance) {
-            $class = "Maintenance";
+        if (!$maintenance) {
+            if (file_exists(DIR_PAGES.self::PAGES_NAME_PREFIX.$url[0].'.php')) {
+                $class = $url[0];
+                unset($url[0]);
+            }
+            else {
+               $class = self::DEFAULT_CLASS;
+               $calledDefaultClass = true;
+            }
+        } else { // MAINTENANCE PAGE && AJAX
+            if (count($url) === 0) {
+                $class = "Maintenance";
+            } else {
+                if ($url[0] == 'trellocontent') {
+                    $class = "TrelloContent";
+                }
+            }
         }
         
         $className = "\Pages\\".self::PAGES_NAME_PREFIX.$class;

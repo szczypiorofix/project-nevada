@@ -12,9 +12,9 @@ namespace Models;
 use Core\ModelClasses\DataModel;
 
 /**
- * Description of JsonModel
+ * Return JSON data from database.
  *
- * @author Piort Wróblewski
+ * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
 class JsonModel extends DataModel {
     

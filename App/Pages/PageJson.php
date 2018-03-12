@@ -1,10 +1,10 @@
 <?php
 
 /*
- * The MIT License
- *
- * Copyright 2018 Piotrek.
- *
+ * MIT License
+ * 
+ * Copyright (c) 2018 Piotr Wróblewski
+ * 
  */
 
 namespace Pages;
@@ -12,9 +12,9 @@ namespace Pages;
 use Models\PostListModel, Core\Registry;
 
 /**
- * Description of PageJson
+ * Page that returns JSON data
  *
- * @author Piotr Wróblewski
+ * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
 class PageJson extends \Core\ModelClasses\Page {
     

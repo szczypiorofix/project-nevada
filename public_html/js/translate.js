@@ -1,11 +1,11 @@
 /* 
  * The MIT License
  *
- * Copyright 2018 Semiko.
+ * Copyright 2018 Piotr Wróblewski.
  *
  */
 
 
 function googleTranslateElementInit() {
-    new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    new google.translate.TranslateElement({pageLanguage: 'pl'}, 'google_translate_element');
 };

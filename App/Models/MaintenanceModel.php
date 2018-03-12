@@ -1,10 +1,10 @@
 <?php
 
 /*
- * The MIT License
- *
- * Copyright 2018 Piotrek.
- *
+ * MIT License
+ * 
+ * Copyright (c) 2018 Piotr Wróblewski
+ * 
  */
 
 namespace Models;
@@ -14,87 +14,88 @@ use Core\ModelClasses\DataModel;
 /**
  * This is model class for maintenance page.
  *
- * @author Piotr Wróblewski
+ * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
 class MaintenanceModel extends DataModel {
    
     public function __construct() {
-        
-//        $curl = curl_init();
-//        $headers = array( 
-//            "POST HTTP/1.0", 
-//            "Content-type: application/vnd.github.inertia-preview+json;charset=\"utf-8\"", 
-//            "Accept: application/vnd.github.inertia-preview+json", 
-//            "Cache-Control: no-cache", 
-//            "Pragma: no-cache"
-//        ); 
-//        curl_setopt_array($curl, array(
-//            CURLOPT_RETURNTRANSFER => 1,
-//            CURLOPT_URL => 'https://api.github.com/repos/szczypiorofix/project-nevada',
-//            CURLOPT_HTTPHEADER => $headers,
-//            CURLOPT_USERAGENT => 'Codular Sample cURL Request'
-//        ));
-//        $server_output = curl_exec($curl);
-//        curl_close($curl);
-//        echo $server_output;
-//        exit();
-        
+        $baseHref = BASE_HREF;
         $this->content =
 <<<HTML
-   <div class="fsvideo-container">
-        <video autoplay muted loop id="fullVideo">
-            <source src="video/typing.mp4" type="video/mp4">
-            Your browser does not support HTML5 video.
-        </video>
-    </div>
-    <div class="bg"></div>
+    <div class="bg"><img src="images/maintenance-bg.jpeg" alt="Background image" /></div>
     <div class="bg-main">
         <div class="logo-container">
-            <img src="images/logo-min.png">
+            <a href="{$baseHref}"><img src="images/logo-min.png"></a>
         </div>
         <div id="google_translate_element"></div>
-        <div class="caption-container">
-            <span class="caption-big">Coming soon</span>
-            <div class="caption-counter">
-                <div class="counter-part">
-                    <span id="counter-days"></span>
+            
+        <div class="divided-content">
+            <div class="left-side">
+                <div class="caption-container">
+                    <span class="caption-big">Już wkrótce ...</span>
+                    <span class="caption-small">Nowa wersja strony jest właśnie przygotowywana...</span>
+                    <div class="caption-counter">
+                        <div class="counter-part">
+                            <span id="counter-days"></span>
+                        </div>
+                        <div class="counter-part">
+                            <span id="counter-hours"></span>
+                        </div>
+                        <div class="counter-part">
+                            <span id="counter-minutes"></span>
+                        </div>
+                        <div class="counter-part">
+                            <span id="counter-seconds"></span>
+                        </div>
+                    </div>
+                    <div class="caption-titles">
+                        <span class="title">DNI</span>
+                        <span class="title">GODZIN</span>
+                        <span class="title">MINUT</span>
+                        <span class="title">SEKUND</span>
+                    </div>
                 </div>
-                <div class="counter-part">
-                    <span id="counter-hours"></span>
-                </div>
-                <div class="counter-part">
-                    <span id="counter-minutes"></span>
-                </div>
-                <div class="counter-part">
-                    <span id="counter-seconds"></span>
+                <div id="counter-end">
+                    <p>WYSTARTOWAŁ !!!</p>
                 </div>
             </div>
-            <div class="caption-titles">
-                <span class="title">DAYS</span>
-                <span class="title">HOURS</span>
-                <span class="title">MINUTES</span>
-                <span class="title">SECONDS</span>
-            </div>
-        </div>
-        <div id="counter-end">
-            <p>IT'S ON !!!</p>
-        </div>
-        <div class="describe-container">
-              <p>Something big is coming...</p>
+            <div class="right-side">
+                <div class="describe-container">
+                    <p>Plany i pomysły: <small>(dane z Trello)</small></p>
+                </div>
+                <div class="trello-feed">
+                    <div id = "spinner" class="spinner">
+                        <div class="bounce1"></div>
+                        <div class="bounce2"></div>
+                        <div class="bounce3"></div>
+                    </div>
+                    <div id="trelloFeed"></div>
+                </div>
+            </div>  
         </div>
                 
-        <div class="github-feed">
-            <p>Some Github information:</p>
-            <p id="githubFeed"></p>
+        <div class="subscribe-container">
+            <button class="moreinfo-btn">WIĘCEJ INFORMACJI</button>         
+            <button class="subscribe-btn">ZAPISZ SIĘ</button>
         </div>
-
+        <!-- <div class="donate-main">
+            <p>PayPal Sandbox</p>
+            <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="QNN53UP6TR9YC">
+                <input type="image" src="https://www.sandbox.paypal.com/pl_PL/PL/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal – Płać wygodnie i bezpiecznie">
+                <img alt="" border="0" src="https://www.sandbox.paypal.com/pl_PL/i/scr/pixel.gif" width="1" height="1">
+            </form>
+        </div>-->
+                
         <div class="social-icons-container">
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="https://github.com/szczypiorofix"><i class="fab fa-github"></i></a>
+            <a href="https://www.facebook.com/szczypiorofix"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/szczypiorofix"><i class="fab fa-twitter"></i></a>
         </div>
     </div>
    
 HTML;
     }
+
 }

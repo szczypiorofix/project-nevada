@@ -27,13 +27,10 @@ class PageMaintenance extends Page {
         $pageContent = $maintenancePage->getContent();
         
         $this->addCSSFile(['name' => 'MaintenanceCSSFile', 'path' => 'css/maintenance.css']);
-        //$this->addJSFile(['name' => 'MainScript', 'path' => 'js/script.js']);
-        $this->addJSFile(['name' => 'Countdown script', 'path' => 'js/countdownscript.js', 'versioning' => true]);
-        $this->addJSFile(['name' => 'Google Translate Script', 'path' => 'http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit', 'versioning' => false, 'async' => false]);
+        $this->addJSFile(['name' => 'Countdown script', 'path' => 'js/maintenance.js', 'versioning' => true]);
+        $this->addJSFile(['name' => 'Google Translate Script', 'path' => 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit', 'versioning' => false, 'async' => false]);
         $this->addJSFile(['name' => 'Google Translate Script Starter', 'path' => 'js/translate.js', 'versioning' => true]);
-        
-        
-        
+
         $metaData = new \Widgets\MetaData();
 
         $head = $metaData->getBody();
