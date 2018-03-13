@@ -181,6 +181,7 @@ html, body {
     }
 
     .subscribe-container {
+        margin-bottom: 15px;
         button.subscribe-btn {
             background-color: @pomegranate;
             border: none;
@@ -222,15 +223,12 @@ html, body {
         position: fixed;
         bottom: 0;
         width: 100%;        
-        //background: rgba(0, 0, 0, 0.2);
         a {
             color: @mainLightColor;
             i {
                 padding: 15px;
                 width: 15px;
                 height: 15px;
-                //border: 1px solid @clouds;
-                //border-radius: 50%;
                 margin: 0 3px;
                 box-shadow: 1px 1px 6px rgba(50, 50, 50, 0.4);
                 transition: 0.5s ease;
@@ -289,38 +287,44 @@ html, body {
 
 
 
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 620px) {
     .bg-main {
-        .caption-container {
-            top: 20%;
-            span.caption-big {
-                font-size: 42px;
-            }
-            div.caption-counter {            
-                div.counter-part {
-                    width: 40px;
-                    height: 40px;
-                    padding: 10px;
-                    font-size: 28px;
+        .divided-content {
+            .left-side {
+                .caption-container {
+                    top: 20%;
+                    span.caption-big {
+                        font-size: 42px;
+                    }
+                    div.caption-counter {            
+                        div.counter-part {
+                            width: 40px;
+                            height: 40px;
+                            padding: 10px;
+                            font-size: 28px;
+                        }
+                    }
+                    div.caption-titles {
+                        span.title {
+                            width: 40px;
+                            height: 40px;
+                            padding: 10px;
+                            margin: 0 8px;
+                            font-size: 10px;
+                        }
+                    }
                 }
             }
-            div.caption-titles {
-                span.title {
-                    width: 40px;
-                    height: 40px;
-                    padding: 10px;
-                    margin: 0 8px;
-                    font-size: 10px;
+            .right-side {
+                .describe-container {
+                    bottom: 50%;
+                    font-size: 26px;
+                }
+                .trello-feed {
+                    max-width: 98%;
+                    width: 90%;
                 }
             }
-        }
-        .describe-container {
-            bottom: 50%;
-            font-size: 26px;
-        }
-        .trello-feed {
-            max-width: 98%;
-            width: 90%;
         }
     }
 }

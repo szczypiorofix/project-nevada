@@ -105,37 +105,18 @@ class TrelloDataModel extends DataModel {
         $tableOfObjects = [];
         if ($dataFromAPI !== '') {
             
-            $content .= '<strong>'.$dataFromAPI->name.':</strong>';
+            $content .= '<strong>'.$dataFromAPI->name.':</strong><ul>';
             for ($i = 0; $i < count($dataFromAPI->checkItems); $i++) {
                 $tableOfObjects[$i] = new \stdClass();
                 $tableOfObjects[$i]->name = $dataFromAPI->checkItems[$i]->name;
                 $tableOfObjects[$i]->state = $dataFromAPI->checkItems[$i]->state;
                 if ($tableOfObjects[$i]->state === 'complete') {
-                    $content .= '<p><input type="checkbox" checked>'.$tableOfObjects[$i]->name.'</p>';
+                    $content .= '<li><s>'.$tableOfObjects[$i]->name.'</s></li>';
                 } else {
-                    $content .= '<p><input type="checkbox">'.$tableOfObjects[$i]->name.'</p>';
+                    $content .= '<li>'.$tableOfObjects[$i]->name.'</li>';
                 }
             }
-            
-            //for ($i = 0; $i < count($dataFromAPI); $i++) {
-                //$tableOfObjects[$i] = new \stdClass();
-                //$tableOfObjects[$i]->id = $dataFromAPI[$i]->id;
-                //$content .= $dataFromAPI[$i]->id.'<br>';
-               
-//                $tableOfObjects[$i]->name = $dataFromAPI[$i]->name;
-//                $tableOfObjects[$i]->state = $dataFromAPI[$i]->state;
-//                $tableOfObjects[$i]->nameData = $dataFromAPI[$i]->nameData;
-            //}
-//            for ($i = 0; $i < count($tableOfObjects); $i++) {
-//                $content .= '<p>';
-//                if ($tableOfObjects[$i]->state !== 'incomplete') {
-//                    $content .= ' <input type="checkbox" checked>';
-//                }
-//                else {
-//                    $content .= ' <input type="checkbox">';
-//                }
-//                $content .= $tableOfObjects[$i]->name.'</p>';
-//            }
+            $content .= '</ul>';
         }
         return $content;
     }
