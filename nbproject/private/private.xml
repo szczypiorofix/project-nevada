@@ -10,6 +10,7 @@
             <file>file:/C:/xampp/htdocs/project-nevada/.config</file>
         </group>
         <group name="htdocs">
+            <file>file:/C:/xampp/htdocs/project-nevada/App/Core/SitemMapCreator.php</file>
             <file>file:/C:/xampp/htdocs/project-nevada/App/Models/PostListModel.php</file>
             <file>file:/C:/xampp/htdocs/project-nevada/App/Core/Database/example.sql</file>
             <file>file:/C:/xampp/htdocs/project-nevada/App/Pages/Pagepost.php</file>
