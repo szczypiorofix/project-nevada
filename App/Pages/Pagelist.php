@@ -15,7 +15,7 @@ use Core\ModelClasses\Page, Models\PostListModel;
 /**
  * This is a controller class for list of posts.
  *
-* @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
+ * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
 class Pagelist extends Page {
 
@@ -67,11 +67,11 @@ class Pagelist extends Page {
         
         //var_dump($content);
         
-        $pageContent = "<div>";
+        $pageContent = '<div class="maincontent-div">';
         $defaultImageFile = DIR_UPLOADS_IMAGES."default.jpg";
         $imageFile = $defaultImageFile;
 
-        
+        $pageContent .= '<div class="postlist-container">';
         foreach($content as $row) {
             if (file_exists(DIR_UPLOADS_IMAGES.$row['image']) && !is_dir(DIR_UPLOADS_IMAGES.$row['image'])) {
                 $imageFile = DIR_UPLOADS_IMAGES.$row['image'];
@@ -79,22 +79,22 @@ class Pagelist extends Page {
                 $imageFile = $defaultImageFile;
             }
             $pageContent .= 
-                    '<section class="postlist postcard">'.
-                        '<h1><a href="post/'.$row['url'].'">'.$row['title'].'</a><small> '.$row['short_title'].'</small>'.
+                    '<section class="postcard">'.
+                        '<h1><a href="post/'.$row['url'].'">'.$row['title'].'</a>'.
                         '</h1>'.
                         '<p>'.$row['update_date'].'</p>'.
                         '<div>'.
                             '<img src="'.$imageFile.'" />'.
-                            '<p>'.$row['abstract'].'</p>'.
+                            '<p>'.substr($row['content'], 0, 185).'...</p>'.
                         '</div>'.
                         '<p>Kategoria: '.$row['kategorie'].'</p>'.
                         '<p>Tagi: '.$row['tagi'].'</p>'.
-                        '<a class="btn btn-primary" href="post/'.$row['url'].'"><i class="fas fa-chevron-right"></i> Read more
-                        </a>'.
+                        '<a class="btn btn-primary" href="post/'.$row['url'].'"><i class="fas fa-chevron-right"></i> Czytaj więcej</a>'.
                     '</section>';
-        }        
-        
-        $pageContent .= "</div>";
+        }
+        $pageContent .= '</div>';
+        $pagination = new \Widgets\Pagination("lewo", "prawo");
+        $pageContent .= $pagination->getBody()."</div>";
         
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'MainScript', 'path' => 'js/script.js']);
@@ -109,14 +109,9 @@ class Pagelist extends Page {
         $navbar = new \Widgets\Nav();
 
         $header = new \Widgets\Header();
-        $header->addBody($logo->getBody().$navbar->getBody().'Wywołana klasa: '.$this.', metoda: '.__FUNCTION__.", plik: ".__FILE__.", linia: ".__LINE__."\n");
+        $header->addBody($logo->getBody().$navbar->getBody());
 
         $footer = new \Widgets\Footer();
-
-        $a = "<br><br>Arguments: <br>";
-        foreach($args as $ar) {
-            $a .= $ar.' / ';
-        }
         
         $body =
 <<<HTML

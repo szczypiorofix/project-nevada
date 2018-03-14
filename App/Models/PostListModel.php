@@ -60,7 +60,7 @@ OFFSET
     
     function __construct($type, $dbConnection, $input, $inputPage) {
         $maxrecords = -1;
-        $postsOnSite = 5;
+        $postsOnSite = 6;
         $this->input = $input;
         $this->inputPage = $inputPage;
         if (empty($inputPage)) {

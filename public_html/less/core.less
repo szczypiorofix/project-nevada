@@ -95,7 +95,7 @@ div.navbar-container {
                     color: @gray800;
                     font-weight: 600;
                     text-transform: uppercase;
-                    max-width: 120px;
+                    max-width: 180px;
                     padding: 10px 15px;
                     &:hover {
                         background-color: darken(@gray300, 8%);
@@ -106,28 +106,72 @@ div.navbar-container {
     }
 }
 
-section.post-card {
-    background-color: @belizehole;
-    padding: 10px;
-    margin: 10px;
-    
-    .img-responsive {
-        max-width: 400px;
-        width: 100%;
-        height: auto;
-        margin: 0 auto;
+
+.maincontent-div {
+    width: 90%;
+    margin: 0 auto;
+  
+    section.postcard {
         display: flex;
-        align-items: center;
-        justify-content: center
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: @belizehole;
+        color: @clouds;
+        padding: 15px;
+
+        h1 a {
+            color: @clouds;
+        }
+        a.btn.btn-primary {
+            display: block;
+            width: 150px;
+            color: @clouds;
+            padding: 10px 15px;
+            background-color: @pomegranate;
+            box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.3);
+            &:hover {
+                background-color: darken(@pomegranate, 10%);
+            }
+        }
+        .img-responsive {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+    }
+    
+    .pagination-div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        min-height: 20px;
+        margin: 10px 0;
+        a {
+            padding: 10px 15px;
+            background-color: @pomegranate;
+            box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.3);
+            color: @clouds;
+            &:hover {
+                background-color: darken(@pomegranate, 10%);
+            }
+        }
     }
 }
-  
 
 
 // Mobile
 @media only screen and (max-width: @widthMediaBreakPointMobileToTablet) {
     .container {
         width: @containerWidthMobile;
+    }
+    .postlist-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 }
 
@@ -136,11 +180,27 @@ section.post-card {
     .container {
         width: @containerWidthTablet;
     }
+    .postlist-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-column-gap: 5px;
+        grid-row-gap: 5px;
+        justify-content: space-between;
+    }
 }
 
 // PC
 @media only screen and (min-width: @widthMediaBreakPointTabletToPC) {
     .container {
         width: @containerWidthPC;
+    }
+    .postlist-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-column-gap: 5px;
+        grid-row-gap: 5px;
+        justify-content: space-between;
     }
 }

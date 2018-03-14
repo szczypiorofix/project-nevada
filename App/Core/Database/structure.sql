@@ -69,14 +69,13 @@ ENGINE=InnoDB
 CREATE TABLE IF NOT EXISTS  `posts` (
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Id' PRIMARY KEY,
     `title` VARCHAR (150) COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Title',
-    `description` VARCHAR (250) COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Description',
     `content` TEXT COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Content',
     `url` VARCHAR(200) COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'post URL',
     `image` VARCHAR(50) COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Image file',
     `image_description` TEXT COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Image file description',
     `insert_date` DATETIME NOT NULL COMMENT 'Insert date',
     `update_date` DATETIME NOT NULL COMMENT 'Update date',
-    FULLTEXT (`title`, `description`, `content`)
+    FULLTEXT (`title`, `content`)
 )
 COMMENT='Posts data'
 COLLATE='utf8mb4_unicode_ci'
@@ -181,20 +180,6 @@ CREATE TABLE IF NOT EXISTS `config` (
     PRIMARY KEY(`name`)
 )
 COMMENT='Configuration'
-COLLATE='utf8mb4_unicode_ci'
-ENGINE=InnoDB
-;
-
-
-/**
--------------------------- SUBMISSIONS --------------------------
-*/
-CREATE TABLE IF NOT EXISTS `submissions` (
-    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Subscription Id' PRIMARY KEY,
-    `email` VARCHAR(200) COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'E-mail',
-    `insert_date` DATETIME NOT NULL COMMENT 'Insert date'
-)
-COMMENT='Subscriptions table'
 COLLATE='utf8mb4_unicode_ci'
 ENGINE=InnoDB
 ;

@@ -25,10 +25,10 @@ class Nav extends Widget {
             <div class="navbar-container">
                 <nav>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Projects</a></li>
-                        <li><a href="#">Download</a></li>
-                        <li><a href="#">About me</a></li>
+                        <li><a href="#">Strona główna</a></li>
+                        <li><a href="#">Projekty</a></li>
+                        <li><a href="#">Do pobrania</a></li>
+                        <li><a href="#">O mnie</a></li>
                         <li><a href="#"><i class="fas fa-cog"></i></a></li>
                     </ul>
                 </nav>

@@ -34,7 +34,6 @@ GROUP BY
     `posts`.`id`";
     
     function __construct($dbConnection, $input) {
-        $this->content = ["input" => $input];
         
         $db = $dbConnection->getDB();
         $this->error = true;

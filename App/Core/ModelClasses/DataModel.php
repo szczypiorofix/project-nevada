@@ -17,7 +17,7 @@ namespace Core\ModelClasses;
  */
 abstract class DataModel {
     
-    protected $content;
+    protected $content = null;
     protected $type;
     protected $error;
     protected $errorMsg;

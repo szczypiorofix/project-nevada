@@ -14,7 +14,7 @@ use Core\ModelClasses\Page, Models\PostModel;
 /**
  * This is a controller class for single post.
  *
-* @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
+ * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
 class Pagepost extends Page {
     
@@ -32,12 +32,6 @@ class Pagepost extends Page {
         else {
            $input = $args[0];
         }
-        if (!isset($args[1])) {
-           $pages = 0;
-        }
-        else {
-           $pages = intval($args[1]);
-        }
         
         try {
             $dbConnection = \Core\DBConnection::getInstance();
@@ -51,37 +45,35 @@ class Pagepost extends Page {
         
         $postModel = new PostModel($dbConnection, $input);
         $content = $postModel->getContent();
+                        
+        \Core\SitemMapXML::create($this->db);
         
-        //var_dump($content);
-        
-        
-        \Core\SitemMapCreator::makeXML($this->db);
-        
-        
-        $pageContent = "<div>";
+        $pageContent = '<div class="maincontent-div">';
         $defaultImageFile = DIR_UPLOADS_IMAGES."default.jpg";
         $imageFile = $defaultImageFile;
-
         
-        if (file_exists(DIR_UPLOADS_IMAGES.$content['image']) && !is_dir(DIR_UPLOADS_IMAGES.$content['image'])) {
-            $imageFile = DIR_UPLOADS_IMAGES.$content['image'];
+        if (is_array($content) || !is_null($content)) {
+            if (file_exists(DIR_UPLOADS_IMAGES.$content['image']) && !is_dir(DIR_UPLOADS_IMAGES.$content['image'])) {
+                $imageFile = DIR_UPLOADS_IMAGES.$content['image'];
+            } else {
+                $imageFile = $defaultImageFile;
+            }
+            $pageContent .= 
+                '<section class="postlist postcard">'.
+                    '<h1><a href="post/'.$content['url'].'">'.$content['title'].'</a>'.
+                    '</h1>'.
+                    '<p>'.$content['update_date'].'</p>'.
+                    '<div>'.
+                        '<img src="'.$imageFile.'" alt="'.$content['image_description'].'"/>'.
+                        '<p>'.$content['content'].'</p>'.
+                    '</div>'.
+                    '<p>Kategoria: '.$content['kategorie'].'</p>'.
+                    '<p>Tagi: '.$content['tagi'].'</p>'.
+                '</section>';  
         } else {
-            $imageFile = $defaultImageFile;
+            $pageContent = '<div><h1>404<h1><h3>NIE ZNALEZIONO POSTU !!!</h3></div>';
         }
-        $pageContent .= 
-            '<section class="postlist postcard">'.
-                '<h1><a href="post/'.$content['url'].'">'.$content['title'].'</a><small> '.$content['short_title'].'</small>'.
-                '</h1>'.
-                '<p>'.$content['update_date'].'</p>'.
-                '<div>'.
-                    '<img src="'.$imageFile.'" />'.
-                    '<p>'.$content['content'].'</p>'.
-                '</div>'.
-                '<p>Kategoria: '.$content['kategorie'].'</p>'.
-                '<p>Tagi: '.$content['tagi'].'</p>'.
-                '<a class="btn btn-primary" href="post/'.$content['url'].'"><i class="fas fa-chevron-right"></i> Read more
-                </a>'.
-            '</section>';       
+             
         
         $pageContent .= "</div>";
         
@@ -98,14 +90,9 @@ class Pagepost extends Page {
         $navbar = new \Widgets\Nav();
 
         $header = new \Widgets\Header();
-        $header->addBody($logo->getBody().$navbar->getBody().'Wywołana klasa: '.$this.', metoda: '.__FUNCTION__.", plik: ".__FILE__.", linia: ".__LINE__."\n");
+        $header->addBody($logo->getBody().$navbar->getBody());
 
         $footer = new \Widgets\Footer();
-
-        $a = "<br><br>Arguments: <br>";
-        foreach($args as $ar) {
-            $a .= $ar.' / ';
-        }
         
         $body =
 <<<HTML
