@@ -43,41 +43,21 @@ class SitemMapCreator {
     private function __construct() {}
     
     public static function makeXML($db) {
-        /**
-        $xml = new \SimpleXMLElement("<?xml version=\"1.0\" encoding=\"utf-8\" ?><urlset></urlset>");
-
-        for ($i = 1; $i <= 8; ++$i) {
-            $track = $xml->addChild('url');
-            $track->addChild('loc', "url #$i");
-            $track->addChild('lastmod', date('l jS F Y h:i:s A'));
-            $track->addChild('changefreq', "weekly");
-            $track->addChild('priority', "0.8");
-        }
-        */
         
-        $domtree = new \DOMDocument('1.0', 'UTF-8');
+        $doc = new \DOMDocument('1.0');
+        $doc->formatOutput = true;
 
-        /* create the root element of the xml tree */
-        $xmlRoot = $domtree->createElement("xml");
-        /* append it to the document created */
-        $xmlRoot = $domtree->appendChild($xmlRoot);
+        $root = $doc->createElement('urlset');
+        $root = $doc->appendChild($root);
 
-        $currentTrack = $domtree->createElement("track");
-        $currentTrack = $xmlRoot->appendChild($currentTrack);
+        $title = $doc->createElement('title');
+        $title = $root->appendChild($title);
 
-        /* you should enclose the following two lines in a cicle */
-        $currentTrack->appendChild($domtree->createElement('path','song1.mp3'));
-        $currentTrack->appendChild($domtree->createElement('title','title of song1.mp3'));
+        $text = $doc->createTextNode('This is the title');
+        $text = $title->appendChild($text);
 
-        $currentTrack->appendChild($domtree->createElement('path','song2.mp3'));
-        $currentTrack->appendChild($domtree->createElement('title','title of song2.mp3'));
+        $doc->save("sitemap.xml");
 
-        /* get the xml printed */
-        echo $domtree->saveXML();
-        $domtree->save(BASE_HREF.'/xml/xmlfile.xml');
 
-//        Header('Content-type: text/xml');
-//        print($xml->asXML());
-//        exit();
     }
 }
