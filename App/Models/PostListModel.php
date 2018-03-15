@@ -72,6 +72,8 @@ OFFSET
         else {
             $this->inputPage = $inputPage;
         }
+        
+        echo $this->input.' '.$this->inputPage;
 
         $this->type = $type;
         $db = $dbConnection->getDB();
@@ -101,7 +103,9 @@ OFFSET
         }
     
         if (!$this->error) {
-            $this->content = $query->fetchAll();
+            $this->content['posts'] = $query->fetchAll();
+            $this->content['maxrecords'] = $maxrecords;
+            $this->content['postsonsite'] = $postsOnSite;
         }
     }
     

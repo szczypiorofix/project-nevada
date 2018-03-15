@@ -18,12 +18,22 @@ use Core\ModelClasses\Widget;
  */
 class Pagination extends Widget {
     
-    public function __construct($leftLink, $rightLink) {
+    public function __construct($data) {
+        $curLeft = intval($data['current'])-1;
+        $curRight = intval($data['current'])+1;
+        
+        $leftLink = '"'.$data['linkPrefix'].'/'.$curLeft.'"';
+        $rightLink = '"'.$data['linkPrefix'].'/'.$curRight.'"';
+        
+        if ($curLeft < 0) {
+            $leftLink .=' style="pointer-events:none;"';
+        }
+        
         $this->body = 
 <<<HTML
     <div class="pagination-div">
-         <a href="{$leftLink}">STARSZE</a>
-         <a href="{$rightLink}">NOWSZE</a>
+         <a href={$leftLink}>NOWSZE</a>
+         <a href={$rightLink}>STARSZE</a>
     </div>
 HTML;
     }

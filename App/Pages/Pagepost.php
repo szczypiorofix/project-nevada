@@ -45,8 +45,10 @@ class Pagepost extends Page {
         
         $postModel = new PostModel($dbConnection, $input);
         $content = $postModel->getContent();
-                        
-        \Core\SitemMapXML::create($this->db);
+          
+        //var_dump($content);
+        
+        //\Core\SitemMapXML::create($this->db);
         
         $pageContent = '<div class="maincontent-div">';
         $defaultImageFile = DIR_UPLOADS_IMAGES."default.jpg";

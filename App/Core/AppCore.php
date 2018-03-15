@@ -49,6 +49,8 @@ class AppCore {
                 }
             }
         }
+
+        //var_dump($url);
         
         $className = "\Pages\\".self::PAGES_NAME_PREFIX.$class;
         $page = new $className();
@@ -60,9 +62,9 @@ class AppCore {
                 unset($url[0]);
             }
         } else {
-            if (isset($url[1]) && method_exists($page, $url[1])) {
-            $method = $url[1];
-            unset($url[1]);
+                if (isset($url[1]) && method_exists($page, $url[1])) {
+                $method = $url[1];
+                unset($url[1]);
             }
         }
 

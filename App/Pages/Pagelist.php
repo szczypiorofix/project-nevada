@@ -34,12 +34,11 @@ class Pagelist extends Page {
 
     
     public function defaultmethod($args) {
-        
         if (!isset($args[0])) {
-           $input = '';
+           $type = 'list';
         }
         else {
-           $input = $args[0];
+           $type = $args[0];
         }
         if (!isset($args[1])) {
            $pages = 0;
@@ -47,6 +46,8 @@ class Pagelist extends Page {
         else {
            $pages = intval($args[1]);
         }
+        
+        $type = 'list';
         
         try {
             $dbConnection = \Core\DBConnection::getInstance();
@@ -58,21 +59,21 @@ class Pagelist extends Page {
         $this->error = $dbConnection->isError();
         $this->errorMsg = $dbConnection->getErrorMsg();
         
-        $postListModel = new PostListModel(PostListModel::TYPE_ID_SORT, $dbConnection, $input, $pages);
+        $postListModel = new PostListModel(PostListModel::TYPE_ID_SORT, $dbConnection, $type, $pages);
         $content = $postListModel->getContent();
+        
+        //var_dump($content);
         
         if (is_null($content)) {
             $content = [];
         }
-        
-        //var_dump($content);
-        
+
         $pageContent = '<div class="maincontent-div">';
         $defaultImageFile = DIR_UPLOADS_IMAGES."default.jpg";
         $imageFile = $defaultImageFile;
 
         $pageContent .= '<div class="postlist-container">';
-        foreach($content as $row) {
+        foreach($content['posts'] as $row) {
             if (file_exists(DIR_UPLOADS_IMAGES.$row['image']) && !is_dir(DIR_UPLOADS_IMAGES.$row['image'])) {
                 $imageFile = DIR_UPLOADS_IMAGES.$row['image'];
             } else {
@@ -93,7 +94,14 @@ class Pagelist extends Page {
                     '</section>';
         }
         $pageContent .= '</div>';
-        $pagination = new \Widgets\Pagination("lewo", "prawo");
+        
+        $pagination = new \Widgets\Pagination([
+            'current' => $pages,
+            'maxRecords' => $content['maxrecords'],
+            'postOnSite' => $content['postsonsite'],
+            'linkPrefix' => $type
+        ]);
+        
         $pageContent .= $pagination->getBody()."</div>";
         
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
