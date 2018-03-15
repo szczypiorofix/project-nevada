@@ -20,12 +20,13 @@ class Nav extends Widget {
     
     public function __construct() {
         Registry::add($this);
+        $baseHref = BASE_HREF;
         $this->body =
 <<<HTML
             <div class="navbar-container">
                 <nav>
                     <ul>
-                        <li><a href="#">Strona główna</a></li>
+                        <li><a href="{$baseHref}">Strona główna</a></li>
                         <li><a href="#">Projekty</a></li>
                         <li><a href="#">Do pobrania</a></li>
                         <li><a href="#">O mnie</a></li>

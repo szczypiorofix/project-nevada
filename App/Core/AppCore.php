@@ -17,7 +17,7 @@ namespace Core;
  */
 class AppCore {
 
-    const DEFAULT_CLASS = 'list'; // DEFAULT PAGE
+    const DEFAULT_CLASS = 'showcase'; // DEFAULT PAGE
     const DEFAULT_METHOD = 'defaultmethod';
     const PAGES_NAME_PREFIX = 'Page';
 

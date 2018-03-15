@@ -26,7 +26,7 @@ class Logo extends Widget {
         $this->body =
 <<<HTML
     <div class="logo-container">
-        <a href="{$baseHref}"><img src="images/logo-min.png" alt="Wróblewski Piotr logo"/></a>
+        <a href="{$baseHref}"><img src="images/logo2.png" alt="Wróblewski Piotr logo"/></a>
     </div>
 HTML;
     }
