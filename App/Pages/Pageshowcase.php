@@ -20,23 +20,32 @@ class Pageshowcase extends Page {
     
     public function defaultmethod($args) {
         
-        $pageContent = '<div class="maincontent-div">';
-        $pageContent .= '<h3>HELLO WORLD!</h3>';
-        
-             
-        $pageContent .= "</div>";
+        $pageContent =
+<<<HTML
+    <div class="content-maindiv">
+        <h3 style="text-align:center">HELLO STUPID WORLD !!!</h3>
+    </div>
+HTML;
         
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'MainScript', 'path' => 'js/script.js']);
-        $this->addJSFile(['name' => 'Vue.JS', 'path' => 'https://cdn.jsdelivr.net/npm/vue']);
+        //$this->addJSFile(['name' => 'Vue.JS', 'path' => 'https://cdn.jsdelivr.net/npm/vue']);
 
         $metaData = new \Widgets\MetaData();
         $head = $metaData->getBody();
         
         $this->setHead($head);
-
+        
+        
         /**
          * http://preview.themeforest.net/item/borderland-a-daring-multiconcept-theme/full_screen_preview/10939025?_ga=2.55963629.714486595.1521158072-400241280.1521158072
+         * 
+         * http://demo.elated-themes.com/borderland1/
+         * 
+         * 
+         * FAJNY DLA BLOGA:
+         * http://demo.elated-themes.com/borderland6/
+         * 
          */
         
         
@@ -50,7 +59,7 @@ class Pageshowcase extends Page {
         
         $body =
 <<<HTML
-    <div class="full-page-container">
+    <div class="full-page-container" id="mainDiv">
         <div class="fullscreenbackground"></div>
         {$header->getBody()}
         {$pageContent}

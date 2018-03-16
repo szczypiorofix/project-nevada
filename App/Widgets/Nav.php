@@ -24,16 +24,27 @@ class Nav extends Widget {
         $this->body =
 <<<HTML
             <div class="navbar-container">
-                <nav>
+                <nav id="mySidenav" class="sidenav">
+                    <p class="title"><span>Menu</span></p>
                     <ul>
+                        <li><a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fas fa-times"></i></a></li>
                         <li><a href="{$baseHref}">Strona główna</a></li>
                         <li><a href="#">Projekty</a></li>
                         <li><a href="#">Do pobrania</a></li>
                         <li><a href="#">O mnie</a></li>
-                        <li><a href="#"><i class="fas fa-cog"></i></a></li>
                     </ul>
+                    <div class="socialmedia-div">
+                        <a href="http://facebook.com" target="_blank" title="Facebook" class="fab fa-facebook-f"></a>
+                        <a href="http://twitter.com" target="_blank" title="Twitter" class="fab fa-twitter"></a>
+                        <a href="http://slack.com" target="_blank" title="Slack" class="fab fa-slack"></a>
+                        <a href="http://youtube.com" target="_blank" title="Youtube" class="fab fa-youtube"></a>
+                        <a href="http://github.com" target="_blank" title="GitHub" class="fab fa-github"></a>
+                        <!-- <a href="http://skype.com" target="_blank" title="Skype" class="fab fa-skype"></a> -->
+                    </div>
                 </nav>
+                <span id="navbarLauncher" class="navbar-launcher" onclick="openNav()">&#9776;</span>
             </div>
+            
             <!--<div id="app-4">
                 <ol>
                     <li v-for="todo in todos">
