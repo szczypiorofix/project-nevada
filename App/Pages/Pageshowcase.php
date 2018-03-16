@@ -35,11 +35,16 @@ class Pageshowcase extends Page {
         
         $this->setHead($head);
 
+        /**
+         * http://preview.themeforest.net/item/borderland-a-daring-multiconcept-theme/full_screen_preview/10939025?_ga=2.55963629.714486595.1521158072-400241280.1521158072
+         */
+        
+        
         $logo = new \Widgets\Logo();
         $navbar = new \Widgets\Nav();
 
         $header = new \Widgets\Header();
-        $header->addBody($logo->getBody().$navbar->getBody());
+        $header->addBody($navbar->getBody().$logo->getBody());
 
         $footer = new \Widgets\Footer();
         
