@@ -10,11 +10,13 @@
             <file>file:/C:/xampp/htdocs/project-nevada/App/Pages/Pagelist.php</file>
         </group>
         <group name="htdocs">
+            <file>file:/C:/xampp/htdocs/project-nevada/App/Widgets/Nav.php</file>
             <file>file:/C:/xampp/htdocs/project-nevada/public_html/less/core.less</file>
-            <file>file:/C:/xampp/htdocs/project-nevada/App/Core/Database/example.sql</file>
+            <file>file:/C:/xampp/htdocs/project-nevada/App/Pages/Pageshowcase.php</file>
+            <file>file:/C:/xampp/htdocs/project-nevada/.gitignore</file>
+            <file>file:/C:/xampp/htdocs/project-nevada/App/Core/AppCore.php</file>
             <file>file:/C:/xampp/htdocs/project-nevada/App/Pages/Pagepost.php</file>
-            <file>file:/C:/xampp/htdocs/project-nevada/App/Widgets/Pagination.php</file>
-            <file>file:/C:/xampp/htdocs/project-nevada/App/Pages/Pagelist.php</file>
+            <file>file:/C:/xampp/htdocs/project-nevada/App/Widgets/Logo.php</file>
         </group>
     </open-files>
 </project-private>
