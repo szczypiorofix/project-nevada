@@ -50,7 +50,7 @@ html, body {
     margin: 0;
     font-family: 'Mina', sans-serif;
     font-size: 16px;
-    background: @wetasphalt;
+    //background: @wetasphalt;
     color: @clouds;
 }
 
@@ -88,10 +88,13 @@ img {
 .logo-container {
     position: relative;
     padding: 0 15px;
-    
-    img {
-        max-width: 400px;
+    width: 100%;
+    display: flex;    
+    justify-content: center;
+    a img {
+        max-width: 250px;
         width: 100%;
+        margin: 0 auto;
     }
 }
 
@@ -104,9 +107,9 @@ footer {
 
 
 div.navbar-container {
+    padding: 10px;
     color: @clouds;
     nav {
-        
         ul {
             list-style-type: none;
             margin: 0;
@@ -114,7 +117,7 @@ div.navbar-container {
             display: flex;
             flex-direction: row;
             justify-content: flex-end;
-            //flex-wrap: wrap;
+            flex-wrap: wrap;
             li {
                 a {
                     display: block;
@@ -146,7 +149,7 @@ div.navbar-container {
         background-size: cover;
         background-position: center;
         z-index: -1;
-        opacity: 0.6;
+        //opacity: 0.6;
     }
 }
 
