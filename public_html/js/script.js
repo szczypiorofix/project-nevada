@@ -9,17 +9,22 @@
 function openNav() {
     document.getElementById("mySidenav").style.left = "0px";
     document.getElementById("mainDiv").style.marginLeft = "250px";
-    document.getElementById("navbarLauncher").style.visibility = "hidden";
+    document.getElementById("navbarLauncher").style.display = "none";
 }
 
 function closeNav() {
     document.getElementById("mySidenav").style.left = "-250px";
     document.getElementById("mainDiv").style.marginLeft= "0";
-    document.getElementById("navbarLauncher").style.visibility = "visible";
+    document.getElementById("navbarLauncher").style.display = "block";
 }
-    
 
 
 window.addEventListener("DOMContentLoaded", function() {
-   console.log('Scripts loaded!'); 
+   console.log('Scripts loaded!');
+   window.onclick = function(event) {
+       console.log(event.target);
+        if (event.target !== document.getElementById("navbarLauncher")) {
+            closeNav();
+        }
+    };
 });

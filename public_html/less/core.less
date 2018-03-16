@@ -46,6 +46,48 @@
 
 
 
+
+/* #################### CUSTOM MIXINS #################### */
+.boxShadow(@hl, @vl, @br, @sr, @c) {
+    -webkit-box-shadow: @hl @vl @br @sr @c;
+    -moz-box-shadow: @hl @vl @br @sr @c;
+    -ms-box-shadow: @hl @vl @br @sr @c;
+    box-shadow: @hl @vl @br @sr @c;
+}
+
+.transition(@t) {
+    -webkit-transition: @t;
+    -moz-transition: @t;
+    -ms-transition: @t;
+    -o-transition: @t;
+    transition: @t;
+}
+
+.animation(@a) {
+    -webkit-animation: @a;
+    animation: @a;
+}
+
+.flexbox() {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.borderRadius(@a) {
+    border-radius: @a;
+    -moz-border-radius: @a;
+    -webkit-border-radius: @a;
+    -o-border-radius: @a;
+}
+
+.backgroundSize(@a) {
+    -moz-background-size: @a;
+    -webkit-background-size: @a;
+    background-size: @a;
+}
+
+
 html, body {
     margin: 0;
     font-family: 'Lato', sans-serif;
@@ -107,7 +149,6 @@ footer {
 
 
 div.navbar-container {
-    padding: 10px;
     color: @clouds;
     height: 100%;
     
@@ -121,7 +162,7 @@ div.navbar-container {
         left: -250px;
         background-color: #111;
         overflow-x: hidden;
-        transition: 0.3s;
+        .transition(0.3s);
         padding: 60px 20px;
         p.title {
             font-size: 38px;
@@ -146,7 +187,7 @@ div.navbar-container {
                 letter-spacing: 0.05em;
                 font-weight: 800;
                 display: block;
-                transition: 0.3s;
+                .transition(0.3s);
                 &.closebtn {
                     position: absolute;
                     top: 0;
@@ -154,10 +195,10 @@ div.navbar-container {
                     font-size: 36px;
                 }
                 &.closebtn:hover {
-                    color: @silver;
+                    color: @pomegranate;
                 }
                 &:hover {
-                    color: @silver;
+                    color: @pomegranate;
                 }
             }
         }
@@ -176,17 +217,29 @@ div.navbar-container {
                 text-align: center;
                 margin: 5px 2px;
                 border: 1px solid @clouds;
-                border-radius: 50%;
-                -moz-border-radius: 50%;
-                -webkit-border-radius: 50%;
-                -o-border-radius: 50%;
+                .borderRadius(50%);
+                .transition(0.3s);
+                &:hover {
+                    color: @pomegranate;
+                    border-color: @pomegranate;
+                }
             }
         }
     }
-    span.navbar-launcher {
-        font-size: 30px;
-        cursor: pointer;
-        display: block;
+    div.navbar-launcher-container {
+        .flexbox;
+        justify-content: flex-start;
+        span.navbar-launcher {
+           font-size: 30px;
+           cursor: pointer;
+           .transition(0.3s);
+           i {
+               padding: 15px 15px;
+           }
+           &:hover {
+               color: @pomegranate;
+           }
+        }   
     }
 }
 
@@ -207,13 +260,13 @@ div.content-maindiv {
         display: block;
         background-image: url(../images/bg-main.jpeg);
         background-attachment: fixed;
-        background-size: cover;
+        .backgroundSize(cover);
         background-position: center;
         z-index: -1;
         //opacity: 0.6;
     }
     &#mainDiv {
-        transition: margin-left .3s;
+        .transition(margin-left .3s);
     }
 }
 
@@ -221,13 +274,12 @@ div.content-maindiv {
     width: 90%;
     margin: 10px auto;
     
-    
     div.first-part {
         letter-spacing: 5px;
     }
   
     section.postcard {
-        display: flex;
+        .flexbox();
         flex-direction: column;
         justify-content: space-between;
         background-color: @greensea;
@@ -253,14 +305,14 @@ div.content-maindiv {
             width: 100%;
             height: auto;
             margin: 0 auto;
-            display: flex;
+            .flexbox();
             align-items: center;
             justify-content: center
         }
     }
     
     .pagination-div {
-        display: flex;
+        .flexbox();
         flex-direction: row;
         justify-content: space-between;
         min-height: 20px;
@@ -284,7 +336,7 @@ div.content-maindiv {
         width: @containerWidthMobile;
     }
     .postlist-container {
-        display: flex;
+        .flexbox();
         flex-direction: column;
         justify-content: space-between;
     }

@@ -42,7 +42,9 @@ class Nav extends Widget {
                         <!-- <a href="http://skype.com" target="_blank" title="Skype" class="fab fa-skype"></a> -->
                     </div>
                 </nav>
-                <span id="navbarLauncher" class="navbar-launcher" onclick="openNav()">&#9776;</span>
+                <div class="navbar-launcher-container">
+                    <span class="navbar-launcher" onclick="openNav()"><i class="fas fa-bars" id="navbarLauncher"></i></span>
+                </div>
             </div>
             
             <!--<div id="app-4">
