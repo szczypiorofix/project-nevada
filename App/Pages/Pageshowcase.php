@@ -22,9 +22,28 @@ class Pageshowcase extends Page {
         
         $pageContent =
 <<<HTML
-    <div class="content-maindiv">
-        <h3 style="text-align:center">HELLO STUPID WORLD !!!</h3>
-    </div>
+    <main class="content-maindiv">
+        <section class="myskills">
+            <div class="title">
+                <h1>My skills</h1>
+            </div>
+            <div class="subtitle">
+                <h3>This is a subtitle...</h3>
+            </div>
+            <div class="skill-container">
+                <div class="skills html">90%</div>
+            </div>
+            <div class="skill-container">
+                <div class="skills css">80%</div>
+            </div>
+            <div class="skill-container">
+                <div class="skills js">70%</div>
+            </div>
+            <div class="skill-container">
+                <div class="skills php">60%</div>
+            </div>
+        </section>
+    </main>
 HTML;
         
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
