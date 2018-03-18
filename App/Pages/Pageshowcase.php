@@ -30,17 +30,29 @@ class Pageshowcase extends Page {
             <div class="subtitle">
                 <h3>This is a subtitle...</h3>
             </div>
+            <img src="images/html5_icon.png"/>
             <div class="skill-container">
                 <div class="skills html">90%</div>
             </div>
+            <img src="images/java_icon.png"/>
+            <div class="skill-container">
+                <div class="skills java">60%</div>
+            </div>
+            <img src="images/css3_icon.png"/>
             <div class="skill-container">
                 <div class="skills css">80%</div>
             </div>
+            <img src="images/js_icon.png"/>
             <div class="skill-container">
                 <div class="skills js">70%</div>
             </div>
+            <img src="images/php_icon.png"/>
             <div class="skill-container">
                 <div class="skills php">60%</div>
+            </div>
+            <img src="images/git_icon.png"/>
+            <div class="skill-container">
+                <div class="skills git">55%</div>
             </div>
         </section>
     </main>
