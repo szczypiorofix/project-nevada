@@ -24,35 +24,44 @@ class Pageshowcase extends Page {
 <<<HTML
     <main class="content-maindiv">
         <section class="myskills">
-            <div class="title">
-                <h1>My skills</h1>
+            <div class="left-side">
+                <span>Left side...</span>
             </div>
-            <div class="subtitle">
-                <h3>This is a subtitle...</h3>
-            </div>
-            <img src="images/html5_icon.png"/>
-            <div class="skill-container">
-                <div class="skills html">90%</div>
-            </div>
-            <img src="images/java_icon.png"/>
-            <div class="skill-container">
-                <div class="skills java">60%</div>
-            </div>
-            <img src="images/css3_icon.png"/>
-            <div class="skill-container">
-                <div class="skills css">80%</div>
-            </div>
-            <img src="images/js_icon.png"/>
-            <div class="skill-container">
-                <div class="skills js">70%</div>
-            </div>
-            <img src="images/php_icon.png"/>
-            <div class="skill-container">
-                <div class="skills php">60%</div>
-            </div>
-            <img src="images/git_icon.png"/>
-            <div class="skill-container">
-                <div class="skills git">55%</div>
+            <div class="right-side">
+                <div class="title">
+                    <h1>My skills</h1>
+                </div>
+                <div class="subtitle">
+                    <h3>This is a subtitle...</h3>
+                </div>
+                <img src="images/html5_icon.png"/>
+                <div class="skill-container">
+                    <div class="skills html">90%</div>
+                </div>
+                <img src="images/java_icon.png"/>
+                <div class="skill-container">
+                    <div class="skills java">60%</div>
+                </div>
+                <img src="images/css3_icon.png"/>
+                <div class="skill-container">
+                    <div class="skills css">80%</div>
+                </div>
+                <img src="images/js_icon.png"/>
+                <div class="skill-container">
+                    <div class="skills js">70%</div>
+                </div>
+                <img src="images/php_icon.png"/>
+                <div class="skill-container">
+                    <div class="skills php">60%</div>
+                </div>
+                <img src="images/git_icon.png"/>
+                <div class="skill-container">
+                    <div class="skills git">55%</div>
+                </div>
+                <img src="images/mysql_icon.png"/>
+                <div class="skill-container">
+                    <div class="skills mysql">65%</div>
+                </div>
             </div>
         </section>
     </main>

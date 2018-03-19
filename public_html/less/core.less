@@ -1,3 +1,12 @@
+/*
+ * MIT License
+ * 
+ * Copyright (c) 2018 Piotr Wróblewski
+ * 
+ * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
+ * 
+ */
+
 @charset "utf-8";
 
 //@import "color-palette.less";
@@ -78,12 +87,12 @@
 }
 
 .flexbox() {
-    display: flex;
     display: -webkit-flex;
     display: -webkit-box;
     display: -ms-flexbox;
     display: -o-flex;
-    display: -moz-flex;    
+    display: -moz-flex;
+    display: flex;
 }
 
 .borderRadius(@a) {
@@ -262,36 +271,49 @@ main.content-maindiv {
     padding: 20px 5px;
     
     section.myskills {
+        width: 100%;
         padding: 30px 15px;
-        div.title {
-            h1 {
-                text-align: center;
-            }
+        .flexbox;
+        flex-direction: row;
+        justify-content: space-around;
+        
+        .left-side {
+            
         }
-        div.subtitle {
-            h3 {
-                text-align: center;
-            }
-        }
-        div.skill-container {
+        
+        .right-side {
             width: 100%;
-            background-color: #ddd;
-            .skills {
-                text-align: right;
-                padding-right: 20px;
-                line-height: 40px;
-                color: white;
-                &.html {width: 90%; background-color: #4CAF50;}
-                &.css {width: 80%; background-color: #2196F3;}
-                &.js {width: 65%; background-color: #f4f54a;}
-                &.php {width: 60%; background-color: #a170c0;}
-                &.java {width: 85%; background-color: #f44336;}
-                &.git {width: 55%; background-color: #31b0c0;}
+            div.title {
+                h1 {
+                    text-align: center;
+                }
             }
-        }
-        img {
-            max-width: 80px;
-            height: auto;
+            div.subtitle {
+                h3 {
+                    text-align: center;
+                }
+            }
+            div.skill-container {
+                width: 100%;
+                background-color: #ddd;
+                .skills {
+                    text-align: right;
+                    padding-right: 20px;
+                    line-height: 40px;
+                    color: white;
+                    &.html {width: 90%; background-color: #4CAF50;}
+                    &.css {width: 80%; background-color: #2196F3;}
+                    &.js {width: 65%; background-color: #f4f54a;}
+                    &.php {width: 60%; background-color: #a170c0;}
+                    &.java {width: 85%; background-color: #f44336;}
+                    &.git {width: 55%; background-color: #31b0c0;}
+                    &.mysql {width: 65%; background-color: #317030;}
+                }
+            }
+            img {
+                max-width: 80px;
+                height: auto;
+            }
         }
     }
 }

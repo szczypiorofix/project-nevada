@@ -1,8 +1,10 @@
-/* 
- * The MIT License
- *
- * Copyright 2018 Piotr Wróblewski.
- *
+/*
+ * MIT License
+ * 
+ * Copyright (c) 2018 Piotr Wróblewski
+ * 
+ * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
+ * 
  */
 
 

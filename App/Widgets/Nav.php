@@ -14,7 +14,7 @@ use Core\ModelClasses\Widget, Core\Registry;
 /**
  * This is class for nav-type widgets.
  *
-* @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
+ * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
 class Nav extends Widget {
     

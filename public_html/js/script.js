@@ -1,8 +1,10 @@
-/* 
- * The MIT License
- *
- * Copyright 2018 Piotr Wróblewski.
- *
+/*
+ * MIT License
+ * 
+ * Copyright (c) 2018 Piotr Wróblewski
+ * 
+ * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
+ * 
  */
 
 
@@ -22,7 +24,7 @@ function closeNav() {
 window.addEventListener("DOMContentLoaded", function() {
    console.log('Scripts loaded!');
    window.onclick = function(event) {
-       console.log(event.target);
+        //console.log(event.target);
         if (event.target !== document.getElementById("navbarLauncher")) {
             closeNav();
         }
