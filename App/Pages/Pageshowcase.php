@@ -34,33 +34,40 @@ class Pageshowcase extends Page {
                 <div class="subtitle">
                     <h3>This is a subtitle...</h3>
                 </div>
-                <img src="images/html5_icon.png"/>
-                <div class="skill-container">
-                    <div class="skills html">90%</div>
+                <div class="skillBox">
+                    <p>Html</p>
+                    <p>90%</p>
+                    <div class="skill">
+                        <div class="skill_level html5"></div>
+                    </div>
                 </div>
-                <img src="images/java_icon.png"/>
-                <div class="skill-container">
-                    <div class="skills java">60%</div>
+                <div class="skillBox">
+                    <p>Css3</p>
+                    <p>80%</p>
+                    <div class="skill">
+                        <div class="skill_level css3"></div>
+                    </div>
                 </div>
-                <img src="images/css3_icon.png"/>
-                <div class="skill-container">
-                    <div class="skills css">80%</div>
+                <div class="skillBox">
+                    <p>PHP</p>
+                    <p>85%</p>
+                    <div class="skill">
+                        <div class="skill_level php"></div>
+                    </div>
                 </div>
-                <img src="images/js_icon.png"/>
-                <div class="skill-container">
-                    <div class="skills js">70%</div>
+                <div class="skillBox">
+                    <p>JavaScript</p>
+                    <p>75%</p>
+                    <div class="skill">
+                        <div class="skill_level javascript"></div>
+                    </div>
                 </div>
-                <img src="images/php_icon.png"/>
-                <div class="skill-container">
-                    <div class="skills php">60%</div>
-                </div>
-                <img src="images/git_icon.png"/>
-                <div class="skill-container">
-                    <div class="skills git">55%</div>
-                </div>
-                <img src="images/mysql_icon.png"/>
-                <div class="skill-container">
-                    <div class="skills mysql">65%</div>
+                <div class="skillBox">
+                    <p>Java</p>
+                    <p>85%</p>
+                    <div class="skill">
+                        <div class="skill_level java"></div>
+                    </div>
                 </div>
             </div>
         </section>

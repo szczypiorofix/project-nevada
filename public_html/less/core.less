@@ -283,6 +283,8 @@ main.content-maindiv {
         
         .right-side {
             width: 100%;
+            background-color: #303030;
+            padding: 10px;
             div.title {
                 h1 {
                     text-align: center;
@@ -293,26 +295,49 @@ main.content-maindiv {
                     text-align: center;
                 }
             }
-            div.skill-container {
+            .skillBox {
                 width: 100%;
-                background-color: #ddd;
-                .skills {
-                    text-align: right;
-                    padding-right: 20px;
-                    line-height: 40px;
-                    color: white;
-                    &.html {width: 90%; background-color: #4CAF50;}
-                    &.css {width: 80%; background-color: #2196F3;}
-                    &.js {width: 65%; background-color: #f4f54a;}
-                    &.php {width: 60%; background-color: #a170c0;}
-                    &.java {width: 85%; background-color: #f44336;}
-                    &.git {width: 55%; background-color: #31b0c0;}
-                    &.mysql {width: 65%; background-color: #317030;}
+                margin: 20px 0;
+                p {
+                    color:#fff;
+                    text-transform: uppercase;
+                    margin: 0 0 10px;
+                    padding: 0;
+                    letter-spacing: 1px;
+                    font-weight: bold;
+                    &:nth-child(2) {
+                        float: right;
+                        position: relative;
+                        top: -25px;
+                    }
                 }
-            }
-            img {
-                max-width: 80px;
-                height: auto;
+                .skill {
+                    background: #262626;
+                    padding: 4px;
+                    box-sizing: border-box;
+                    border: 1px solid #0fffb7;
+                    border-radius: 2px;
+                    .skill_level {
+                        background: #0fffb7;
+                        width: 100%;
+                        height: 10px;
+                        &.html5 {
+                            width: 90%;
+                        }
+                        &.css3 {
+                            width: 80%;
+                        }
+                        &.php {
+                            width: 85%;
+                        }
+                        &.javascript {
+                            width: 75%;
+                        }
+                        &.java {
+                            width: 85%;
+                        }
+                    }
+                }
             }
         }
     }
