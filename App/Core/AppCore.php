@@ -41,12 +41,9 @@ class AppCore {
                $calledDefaultClass = true;
             }
         } else { // MAINTENANCE PAGE && AJAX
-            if (count($url) === 0) {
-                $class = "Maintenance";
-            } else {
-                if ($url[0] == 'trellocontent') {
-                    $class = "TrelloContent";
-                }
+            $class = "Maintenance";
+            if ($url[0] == 'trellocontent') {
+                $class = "TrelloContent";
             }
         }
 
@@ -54,7 +51,6 @@ class AppCore {
         
         $className = "\Pages\\".self::PAGES_NAME_PREFIX.$class;
         $page = new $className();
-        
 
         if ($calledDefaultClass) {
             if (isset($url[0]) && method_exists($page, $url[0])) {

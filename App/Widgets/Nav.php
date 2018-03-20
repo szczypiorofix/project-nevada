@@ -27,7 +27,7 @@ class Nav extends Widget {
                 <nav id="mySidenav" class="sidenav">
                     <p class="title"><span>Menu</span></p>
                     <ul>
-                        <li><a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fas fa-times"></i></a></li>
+                        <li><a href="javascript:void(0)" class="closebtn" onclick="SideNavbar.closeNav()"><i class="fas fa-times"></i></a></li>
                         <li><a href="{$baseHref}">Strona główna</a></li>
                         <li><a href="#">Projekty</a></li>
                         <li><a href="#">Do pobrania</a></li>
@@ -43,7 +43,7 @@ class Nav extends Widget {
                     </div>
                 </nav>
                 <div class="navbar-launcher-container">
-                    <span class="navbar-launcher" onclick="openNav()"><i class="fas fa-bars" id="navbarLauncher"></i></span>
+                    <span class="navbar-launcher" onclick="SideNavbar.openNav()"><i class="fas fa-bars" id="navbarLauncher"></i></span>
                 </div>
             </div>
             

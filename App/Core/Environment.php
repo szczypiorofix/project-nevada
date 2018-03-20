@@ -31,7 +31,6 @@ class Environment {
         define("DIR_VENDORS", DIR_APP . 'Vendors' . DS);
         define("DIR_VIEWS", DIR_APP . 'Views' . DS);
         define("DIR_PAGES", DIR_APP . 'Pages' . DS);
-        //define('DIR_HTML', 'public_html'.DS);
         define('DIR_UPLOADS_IMAGES', 'uploads'.DS.'images'.DS);
 
         /* OTHERS */
@@ -41,7 +40,7 @@ class Environment {
         try {
             Config::configFileExists();
         } catch (FrameworkException $ex) {
-            $ex->showError();
+            //$ex->showError();
         }
         
         /* MYSQL SETTINGS */

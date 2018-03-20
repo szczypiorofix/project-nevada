@@ -11,19 +11,30 @@ Copyright 2018 Piotr Wróblewski.
     Author     : Piotr Wróblewski
 */
 
+
 @import "color-palette.less";
 
-@import url('https://fonts.googleapis.com/css?family=Raleway:200|Roboto');
+@font-face {
+    font-family: LatoRegular;
+    src: url(../webfonts/Lato-Regular.ttf);
+}
+
+@font-face {
+    font-family: RalewayLight;
+    src: url(../webfonts/Raleway-ExtraLight.ttf);
+}
 
 
-@rajdhaniFont: 'Raleway', sans-serif;
-@robotoFont: 'Roboto', sans-serif;
+
+@ralewayLight: 'RalewayLight', sans-serif;
+@latoRegular: 'LatoRegular', sans-serif;
 
 @mainLightColor: #FAFAFA;
 
+
 html, body {
     display: block;
-    font-family: @robotoFont;
+    font-family: @latoRegular;
     color: @mainLightColor;
     margin: 0;
     padding: 0;
@@ -82,7 +93,8 @@ html, body {
                 padding-top: 25px;
                 span.caption-big {
                     display: block;
-                    font-family: @rajdhaniFont;
+                    font-family: @ralewayLight
+                ;
                     font-size: 48px;
                     text-transform: uppercase;
                     font-weight: 100;
@@ -90,7 +102,8 @@ html, body {
                 }
                 span.caption-small {
                     display: block;
-                    font-family: @rajdhaniFont;
+                    font-family: @ralewayLight
+                ;
                     font-size: 18px;
                     text-transform: uppercase;
                     font-weight: 100;
@@ -103,46 +116,55 @@ html, body {
                     justify-content: center;
                     padding-top: 50px;
                     
-                    div.counter-part {
-                        text-align: center;
-                        width: 80px;
-                        height: 80px;    
-                        padding: 20px;
-                        font-family: @robotoFont;
-                        font-size: 42px;
-                        text-transform: uppercase;
-                        font-weight: 100;
-                        margin: 0 10px;
-                        background: rgba(0,0,0,0.2);
+                    div.counter-container {
                         display: flex;
                         flex-direction: column;
-                        justify-content: center;
-                        border-radius: 2%;
-                        box-shadow: 1px 1px 0px 1px rgba(250, 250, 250, 0.8),
-                            0px 0px 0px 1px rgba(0, 0, 0, 0.8);
-                        span {
-                            text-shadow: 1px 1px 6px rgba(10, 10, 10, 0.8);
-                            font-weight: 800;
+                        justify-content: space-around;
+                        div.counter-part {
+                            text-align: center;
+                            width: 80px;
+                            height: 80px;    
+                            padding: 20px;
+                            font-family: @latoRegular;
+                            font-size: 42px;
+                            text-transform: uppercase;
+                            font-weight: 100;
+                            margin: 0 10px;
+                            background: rgba(0,0,0,0.2);
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            border-radius: 2%;
+                            box-shadow: 1px 1px 0px 1px rgba(250, 250, 250, 0.8),
+                                0px 0px 0px 1px rgba(0, 0, 0, 0.8);
+                            span {
+                                text-shadow: 1px 1px 6px rgba(10, 10, 10, 0.8);
+                                font-weight: 800;
+                            }
+                        }
+                        span.title {
+                            display: inline-block;
+                            font-family: @ralewayLight;
+                            font-weight: 500;
+                            width: 80px;
+                            padding: 15px;
+                            margin: 0 10px;
+                            text-align: center;
+                            text-shadow: 2px 2px 6px rgba(10, 10, 10, 0.8);
                         }
                     }
                 }
                 div.caption-titles {
                     padding-top: 10px;
-                    span.title {
-                        display: inline-block;
-                        font-family: @rajdhaniFont;
-                        font-weight: 500;
-                        width: 80px;
-                        padding: 20px;
-                        margin: 0 10px;
-                        text-align: center;
-                        text-shadow: 2px 2px 6px rgba(10, 10, 10, 0.8);
-                    }
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    
                 }
             }
             #counter-end {
                 display: none;
-                font-family: @rajdhaniFont;
+                font-family: @ralewayLight;
                 font-size: 32px;
             }
         }
@@ -151,7 +173,7 @@ html, body {
             padding: 0 15px;
             .describe-container {
                 width: 100%;
-                font-family: @rajdhaniFont;
+                font-family: @ralewayLight;
                 font-size: 32px;
                 text-shadow: 2px 2px 6px rgba(10, 10, 10, 0.8);
             }
@@ -165,7 +187,7 @@ html, body {
                 padding: 5px;
                 background: rgba(0, 0, 0, 0.2);
                 margin: 0 auto;
-                font-family: @robotoFont;
+                font-family: @latoRegular;
                 font-size: 12px;
                 overflow-y: auto;
                 text-align: left;
@@ -316,27 +338,23 @@ html, body {
     .bg-main {
         .divided-content {
             .left-side {
-                .caption-container {
-                    top: 20%;
+                div.caption-container {
+                    div.caption-counter {
+                        div.counter-container {
+                            div.counter-part {
+                                width: 40px;
+                                height: 40px;
+                                padding: 10px;
+                                font-size: 28px;
+                            }
+                            span.title {
+                                font-size: 10px;
+                                text-align: left;
+                            }
+                        }
+                    }
                     span.caption-big {
                         font-size: 42px;
-                    }
-                    div.caption-counter {            
-                        div.counter-part {
-                            width: 40px;
-                            height: 40px;
-                            padding: 10px;
-                            font-size: 28px;
-                        }
-                    }
-                    div.caption-titles {
-                        span.title {
-                            width: 40px;
-                            height: 40px;
-                            padding: 10px;
-                            margin: 0 8px;
-                            font-size: 10px;
-                        }
                     }
                 }
             }

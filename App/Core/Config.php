@@ -25,17 +25,22 @@ class Config {
     private function __clone() {}
 
     public static function configFileExists() {
-        if (file_exists(CONFIG_FILE) && is_file(CONFIG_FILE)) {
-            return true;
-        } else {
-            throw new FrameworkException("Błąd !!!", "Brak pliku konfiguracyjnego!");
+        try {
+            if (file_exists(CONFIG_FILE) && is_file(CONFIG_FILE)) {
+                return true;
+            } else {
+                throw new FrameworkException("Błąd !!!", "Brak pliku konfiguracyjnego!");
+            }
+        } catch (FrameworkException $e) {
+            $e->showError();
+            exit;
         }
     }
 
     public static function get($key) {
-//        if (!self::configFileExists()) {
-//            //return null;
-//        }
+        if (!self::configFileExists()) {
+            return null;
+        }
         if (self::$firstLoad) {
             self::$firstLoad = false;
             self::$configData = parse_ini_file(CONFIG_FILE);

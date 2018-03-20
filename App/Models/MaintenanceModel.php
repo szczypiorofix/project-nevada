@@ -35,24 +35,35 @@ class MaintenanceModel extends DataModel {
                     <span class="caption-big">Już wkrótce ...</span>
                     <span class="caption-small">Nowa wersja strony jest właśnie przygotowywana...</span>
                     <div class="caption-counter">
-                        <div class="counter-part">
-                            <span id="counter-days"></span>
+                        
+                        <div class="counter-container">
+                            <div class="counter-part">
+                                <span id="counter-days"></span>
+                            </div>
+                            <span class="title">DNI</span>
                         </div>
-                        <div class="counter-part">
-                            <span id="counter-hours"></span>
+
+                        <div class="counter-container">
+                            <div class="counter-part">
+                                <span id="counter-hours"></span>
+                            </div>
+                            <span class="title">GODZIN</span>
                         </div>
-                        <div class="counter-part">
-                            <span id="counter-minutes"></span>
+
+                        <div class="counter-container">
+                            <div class="counter-part">
+                                <span id="counter-minutes"></span>
+                            </div>
+                            <span class="title">MINUT</span>
                         </div>
-                        <div class="counter-part">
-                            <span id="counter-seconds"></span>
+                        
+                        <div class="counter-container">
+                            <div class="counter-part">
+                                <span id="counter-seconds"></span>
+                            </div>
+                            <span class="title">SEKUND</span>
                         </div>
-                    </div>
-                    <div class="caption-titles">
-                        <span class="title">DNI</span>
-                        <span class="title">GODZIN</span>
-                        <span class="title">MINUT</span>
-                        <span class="title">SEKUND</span>
+
                     </div>
                 </div>
                 <div id="counter-end">

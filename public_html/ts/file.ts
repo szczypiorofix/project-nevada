@@ -17,4 +17,3 @@
 
  let myObj = new MyClass("To jest powitanie!");
  myObj.show();
-

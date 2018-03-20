@@ -1,32 +1,34 @@
 /*
  * MIT License
- * 
+ *
  * Copyright (c) 2018 Piotr Wróblewski
- * 
+ *
  * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
- * 
+ *
  */
-
-
-function openNav() {
-    document.getElementById("mySidenav").style.left = "0px";
-    document.getElementById("mainDiv").style.marginLeft = "250px";
-    document.getElementById("navbarLauncher").style.display = "none";
-}
-
-function closeNav() {
-    document.getElementById("mySidenav").style.left = "-250px";
-    document.getElementById("mainDiv").style.marginLeft= "0";
-    document.getElementById("navbarLauncher").style.display = "block";
-}
-
-
-window.addEventListener("DOMContentLoaded", function() {
-   console.log('Scripts loaded!');
-   window.onclick = function(event) {
-        //console.log(event.target);
+var SideNavbar = /** @class */ (function () {
+    function SideNavbar() {
+    }
+    SideNavbar.e = function (el) {
+        return document.getElementById(el);
+    };
+    SideNavbar.openNav = function () {
+        this.e("mySidenav").style.left = "0px";
+        this.e("mainDiv").style.marginLeft = "250px";
+        this.e("navbarLauncher").style.display = "none";
+    };
+    SideNavbar.closeNav = function () {
+        this.e("mySidenav").style.left = "-250px";
+        this.e("mainDiv").style.marginLeft = "0";
+        this.e("navbarLauncher").style.display = "block";
+    };
+    return SideNavbar;
+}());
+window.addEventListener("DOMContentLoaded", function () {
+    window.onclick = function (event) {
         if (event.target !== document.getElementById("navbarLauncher")) {
-            closeNav();
+            SideNavbar.closeNav();
         }
     };
 });
+//# sourceMappingURL=script.js.map

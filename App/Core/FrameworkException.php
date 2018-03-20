@@ -27,16 +27,16 @@ class FrameworkException extends \Exception {
     
     public function showError() {
         echo
-    '<div>
-        <h2 style="text-align: center;">Uuups, coś poszło nie tak jak powinno !!!</h2>
-        <div>
-            <h3>'.$this->title.'</h3>
-            <p>Treść: '.$this->message.'</p>
-            <p>Plik: '.parent::getFile().'</p>
-            <p>Linia: '.parent::getLine().'</p>
-            <p>Stack Trace: '.parent::getTraceAsString().'</p>
-        </div>
-    </div>';
+        '<div>
+            <h2 style="text-align: center;">Uuups, coś poszło nie tak jak powinno !!!</h2>
+            <div>
+                <h3>'.$this->title.'</h3>
+                <p>Treść: '.$this->message.'</p>
+                <p>Plik: '.parent::getFile().'</p>
+                <p>Linia: '.parent::getLine().'</p>
+                <p>Stack Trace: '.parent::getTraceAsString().'</p>
+            </div>
+        </div>';
         exit();
     }
 }
