@@ -23,9 +23,11 @@ class Pageshowcase extends Page {
         $pageContent =
 <<<HTML
     <main class="content-maindiv">
+
         <section class="myskills">
             <div class="left-side">
-                <span>Left side...</span>
+                <img src="images/code.jpeg" alt="My Skills" />
+                <p>My goal is ...</p>
             </div>
             <div class="right-side">
                 <div class="title">
@@ -69,6 +71,20 @@ class Pageshowcase extends Page {
                         <div class="skill_level java"></div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section>
+            <div>
+                <p>Lorem ispsum.....</p>
+                <p>Lorem ispsum.....</p>
+                <p>Lorem ispsum.....</p>
+                <p>Lorem ispsum.....</p>
+                <p>Lorem ispsum.....</p>
+                <p>Lorem ispsum.....</p>
+                <p>Lorem ispsum.....</p>
+                <p>Lorem ispsum.....</p>
+
             </div>
         </section>
     </main>

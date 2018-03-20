@@ -8,6 +8,18 @@
             "tsconfig": "public_html\\ts\\tsconfig.json",
             "problemMatcher": [
                 "$tsc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "typescript",
+            "tsconfig": "public_html\\ts\\tsconfig.json",
+            "option": "watch",
+            "problemMatcher": [
+                "$tsc-watch"
             ]
         }
     ]

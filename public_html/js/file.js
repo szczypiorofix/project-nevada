@@ -10,6 +10,6 @@ var MyClass = /** @class */ (function () {
     };
     return MyClass;
 }());
-var myObj = new MyClass("Siemka!");
+var myObj = new MyClass("To jest powitanie!");
 myObj.show();
 //# sourceMappingURL=file.js.map

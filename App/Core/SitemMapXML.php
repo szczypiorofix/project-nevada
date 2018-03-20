@@ -20,6 +20,7 @@ class SitemMapXML {
     
     const GET_URLS = "SELECT `url`, `update_date` FROM `posts`";
     static private $error = true;
+    static private $errorMsg = '';
     
     private function __construct() {}
     
@@ -31,7 +32,7 @@ class SitemMapXML {
         }
         catch (FrameworkException $exc) {
            self::$error = true;
-           $this->errorMsg = $exc->getMessage();
+           self::$errorMsg = $exc->getMessage();
         }
         if ($query->rowCount() > 0) {
            self::$error = false;

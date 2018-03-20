@@ -15,5 +15,6 @@
      }
  }
 
- let myObj = new MyClass("Siemka!");
+ let myObj = new MyClass("To jest powitanie!");
  myObj.show();
+
