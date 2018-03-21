@@ -85,16 +85,17 @@ html, body {
         justify-content: center;
         background: rgba(50, 50, 50, 0.6);
         padding: 30px 0 40px 0;
+        
         .left-side {
             padding: 0 15px;
+            width: 100%;
             .caption-container {
                 width: 100%;
                 align-self: center;
                 padding-top: 25px;
                 span.caption-big {
                     display: block;
-                    font-family: @ralewayLight
-                ;
+                    font-family: @ralewayLight;
                     font-size: 48px;
                     text-transform: uppercase;
                     font-weight: 100;
@@ -102,20 +103,21 @@ html, body {
                 }
                 span.caption-small {
                     display: block;
-                    font-family: @ralewayLight
-                ;
+                    font-family: @ralewayLight;
                     font-size: 18px;
                     text-transform: uppercase;
                     font-weight: 100;
                     text-shadow: 2px 2px 6px rgba(10, 10, 10, 0.8);
                     padding-top: 25px;
                 }
+
                 div.caption-counter {
                     display: flex;
                     flex-direction: row;
-                    justify-content: center;
+                    justify-content: space-evenly;
                     padding-top: 50px;
-                    
+                    width: 100%;
+
                     div.counter-container {
                         display: flex;
                         flex-direction: column;
@@ -123,7 +125,7 @@ html, body {
                         div.counter-part {
                             text-align: center;
                             width: 80px;
-                            height: 80px;    
+                            height: 80px;
                             padding: 20px;
                             font-family: @latoRegular;
                             font-size: 42px;
@@ -146,7 +148,7 @@ html, body {
                             display: inline-block;
                             font-family: @ralewayLight;
                             font-weight: 500;
-                            width: 80px;
+                            //width: 80px;
                             padding: 15px;
                             margin: 0 10px;
                             text-align: center;
@@ -338,6 +340,7 @@ html, body {
     .bg-main {
         .divided-content {
             .left-side {
+                padding: 0;
                 div.caption-container {
                     div.caption-counter {
                         div.counter-container {
@@ -359,6 +362,7 @@ html, body {
                 }
             }
             .right-side {
+                padding: 0;
                 .describe-container {
                     bottom: 50%;
                     font-size: 26px;

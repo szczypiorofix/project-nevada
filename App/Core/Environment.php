@@ -34,7 +34,7 @@ class Environment {
         define('DIR_UPLOADS_IMAGES', 'uploads'.DS.'images'.DS);
 
         /* OTHERS */
-        define("PAGE_VERSION", "1.00.004");
+        define("PAGE_VERSION", "1.00.005");
         define("CONFIG_FILE", DIR_ROOT.'.config');
         
         try {

@@ -27,14 +27,14 @@ class Pageshowcase extends Page {
         <section class="myskills">
             <div class="left-side">
                 <img src="images/code.jpeg" alt="My Skills" />
-                <p>My goal is ...</p>
+                <p>Moim celem jest ...</p>
             </div>
             <div class="right-side">
                 <div class="title">
-                    <h1>My skills</h1>
+                    <h1>Umiejętności</h1>
                 </div>
                 <div class="subtitle">
-                    <h3>This is a subtitle...</h3>
+                    <h3>Czyli to czego się nauczyłem...</h3>
                 </div>
                 <div class="skillBox">
                     <p>Html</p>
@@ -74,17 +74,158 @@ class Pageshowcase extends Page {
             </div>
         </section>
 
-        <section>
-            <div>
-                <p>Lorem ispsum.....</p>
-                <p>Lorem ispsum.....</p>
-                <p>Lorem ispsum.....</p>
-                <p>Lorem ispsum.....</p>
-                <p>Lorem ispsum.....</p>
-                <p>Lorem ispsum.....</p>
-                <p>Lorem ispsum.....</p>
-                <p>Lorem ispsum.....</p>
+        <section class="whatIDo">
+            <div class="title">
+                <h1>Co robię</h1>
+                <h3>Tutaj jakieś info...</h3>
+            </div>
+            <div class="iDos-container">
+                <div class="iDos-part">
+                    <i class="fas fa-coffee"></i>
+                    <h3>Web Design</h3>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                </div>
+                <div class="iDos-part">
+                    <i class="fas fa-coffee"></i>
+                    <h3>Web Design</h3>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                </div>
+                <div class="iDos-part">
+                    <i class="fas fa-desktop"></i>
+                    <h3>Desktop apps</h3>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                </div>
+                <div class="iDos-part">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Mobile apps</h3>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                </div>
+                <div class="iDos-part">
+                    <i class="fab fa-css3-alt"></i>
+                    <h3>Responsive design</h3>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                </div>
+                <div class="iDos-part">
+                    <i class="fas fa-coffee"></i>
+                    <h3>Web Design</h3>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                </div>
+            </div>
+        </section>
 
+        <section class="numbers">
+            <div class="title">
+                <h1>Liczby...</h1>
+                <h3>Tutaj jakieś info...</h3>
+            </div>
+            <div class="numbers-container">
+                <div class="numbers-part">
+                    <i class="fas fa-coffee"></i>
+                    <h3>Web Design</h3>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                </div>
+                <div class="numbers-part">
+                    <i class="fas fa-coffee"></i>
+                    <h3>Web Design</h3>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                </div>
+                <div class="numbers-part">
+                    <i class="fas fa-desktop"></i>
+                    <h3>Desktop apps</h3>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                </div>
+                <div class="numbers-part">
+                    <i class="fas fa-coffee"></i>
+                    <h3>Kubki kawy</h3>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="portfolio">
+            <div class="title">
+                <h1>Moje portfolio...</h1>
+                <h3>Tutaj jakieś info...</h3>
+            </div>
+            <div class="portfolio-container">
+                <div class="portfolio-part">
+                    <i class="fas fa-coffee"></i>
+                    <h3>Web Design</h3>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                </div>
+                <div class="portfolio-part">
+                    <i class="fas fa-coffee"></i>
+                    <h3>Web Design</h3>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                </div>
+                <div class="portfolio-part">
+                    <i class="fas fa-desktop"></i>
+                    <h3>Desktop apps</h3>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                </div>
+                <div class="portfolio-part">
+                    <i class="fas fa-coffee"></i>
+                    <h3>Kubki kawy</h3>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="news">
+            <div class="title">
+                <h1>Najnowsze informacje...</h1>
+                <h3>Tutaj jakieś info...</h3>
+            </div>
+            <div class="news-container">
+                <div class="news-part">
+                    <i class="fas fa-coffee"></i>
+                    <h3>Web Design</h3>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                </div>
+                <div class="news-part">
+                    <i class="fas fa-coffee"></i>
+                    <h3>Web Design</h3>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                </div>
+                <div class="news-part">
+                    <i class="fas fa-desktop"></i>
+                    <h3>Desktop apps</h3>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                </div>
+                <div class="news-part">
+                    <i class="fas fa-coffee"></i>
+                    <h3>Kubki kawy</h3>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact">
+            <div class="title">
+                <h1>Kontakt...</h1>
+                <h3>Tutaj jakieś info...</h3>
+            </div>
+            <div class="contact-container">
+                <div class="contact-part">
+                    <i class="fas fa-coffee"></i>
+                    <h3>Web Design</h3>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                </div>
+                <div class="contact-part">
+                    <i class="fas fa-coffee"></i>
+                    <h3>Web Design</h3>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                </div>
+                <div class="contact-part">
+                    <i class="fas fa-desktop"></i>
+                    <h3>Desktop apps</h3>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                </div>
+                <div class="contact-part">
+                    <i class="fas fa-coffee"></i>
+                    <h3>Kubki kawy</h3>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                </div>
             </div>
         </section>
     </main>
@@ -101,13 +242,8 @@ HTML;
         
         
         /**
-         * http://preview.themeforest.net/item/borderland-a-daring-multiconcept-theme/full_screen_preview/10939025?_ga=2.55963629.714486595.1521158072-400241280.1521158072
          * 
-         * http://demo.elated-themes.com/borderland1/
-         * 
-         * 
-         * FAJNY DLA BLOGA:
-         * http://demo.elated-themes.com/borderland6/
+         * http://rajibweb.com/html/collis/index-one.html
          * 
          */
         

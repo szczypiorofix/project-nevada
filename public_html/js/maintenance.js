@@ -15,7 +15,7 @@ var CountDownToDate = {
     minutesElement: null,
     secondsElement: null,
     counterEndElement: null,
-    currentDate: null,
+    //currentDate: null,
     distance: null,
     counterDate: {},
     counterInterval: null,
