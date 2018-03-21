@@ -76,14 +76,14 @@ class Pageshowcase extends Page {
 
         <section class="whatIDo">
             <div class="title">
-                <h1>Co robię</h1>
-                <h3>Tutaj jakieś info...</h3>
+                <h1>Co ja robię</h1>
+                <h3>czyli kilka złotych zasad...</h3>
             </div>
             <div class="iDos-container">
                 <div class="iDos-part">
                     <i class="fas fa-coffee"></i>
                     <h3>Web Design</h3>
-                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                    <p>Strona sama się nie zrobi...</p>
                 </div>
                 <div class="iDos-part">
                     <i class="fas fa-coffee"></i>
@@ -93,22 +93,22 @@ class Pageshowcase extends Page {
                 <div class="iDos-part">
                     <i class="fas fa-desktop"></i>
                     <h3>Desktop apps</h3>
-                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                    <p>Aplikacja na desktopy sama się nie zrobi...</p>
                 </div>
                 <div class="iDos-part">
                     <i class="fas fa-mobile-alt"></i>
                     <h3>Mobile apps</h3>
-                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                    <p>Apka na telefon sama się nie stworzy...</p>
                 </div>
                 <div class="iDos-part">
                     <i class="fab fa-css3-alt"></i>
                     <h3>Responsive design</h3>
-                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                    <p>Strona ma dobrze wyglądać zarówno na PC, na tablecie jak i na smartfonie...</p>
                 </div>
                 <div class="iDos-part">
                     <i class="fas fa-coffee"></i>
-                    <h3>Web Design</h3>
-                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                    <h3>Covfefe</h3>
+                    <p>Kawa sama się nie wypije...</p>
                 </div>
             </div>
         </section>
@@ -255,6 +255,8 @@ HTML;
         $header->addBody($navbar->getBody().$logo->getBody());
 
         $footer = new \Widgets\Footer();
+
+        $ctaButton = new \Widgets\CTAButton();
         
         $body =
 <<<HTML
@@ -262,6 +264,7 @@ HTML;
         <div class="fullscreenbackground"></div>
         {$header->getBody()}
         {$pageContent}
+        {$ctaButton->getBody()}
         {$footer->getBody()}
     </div>
 HTML;

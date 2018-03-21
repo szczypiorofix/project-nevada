@@ -37,29 +37,36 @@
 
 
 /** ############ COLOR PALETTE ############ */
-/** --------------- FRENCH --------------- */
+/** --------------- FLAT COLORS --------------- */
 
-@turquoise    : #1abc9c;
-@emerald      : #2ecc71;
-@peterriver   : #3498db;
-@amethyst     : #9b59b6;
-@wetasphalt   : #34495e;
-@greensea     : #16a085;
-@nephritis    : #27ae60;
-@belizehole   : #2980b9;
-@wisteria     : #8e44ad;
-@midnightblue : #2c3e50;
-@sunflower    : #f1c40f;
-@carrot       : #e67e22;
-@alizarin     : #e74c3c;
-@clouds       : #ecf0f1;
-@concrete     : #95a5a6;
-@orange       : #f39c12;
-@pumpkin      : #d35400;
-@pomegranate  : #c0392b;
-@silver       : #bdc3c7;
-@asbestos     : #7f8c8d;
 
+// @turquoise    : #1abc9c;
+// @emerald      : #2ecc71;
+// @peterriver   : #3498db;
+// @amethyst     : #9b59b6;
+// @wetasphalt   : #34495e;
+// @greensea     : #16a085;
+// @nephritis    : #27ae60;
+// @belizehole   : #2980b9;
+// @wisteria     : #8e44ad;
+// @midnightblue : #2c3e50;
+// @sunflower    : #f1c40f;
+// @carrot       : #e67e22;
+// @alizarin     : #e74c3c;
+// @clouds       : #ecf0f1;
+// @concrete     : #95a5a6;
+// @orange       : #f39c12;
+// @pumpkin      : #d35400;
+// @pomegranate  : #c0392b;
+// @silver       : #bdc3c7;
+// @asbestos     : #7f8c8d;
+
+
+
+@primaryDarkColor: rgb(65, 63, 68);
+@primaryColor: rgb(105, 105, 105);
+@accentColor: #FF4081;
+@textColor: #FAFAFA;
 
 
 
@@ -126,12 +133,12 @@ html, body {
     margin: 0;
     font-family: 'LatoRegular', sans-serif;
     font-size: 16px;
-    color: @clouds;
+    color: @textColor;
 }
 
 a {
     text-decoration: none;
-    color: @clouds;
+    color: @textColor;
 }
 
 img {
@@ -166,7 +173,7 @@ img {
     width: 100%;
     display: flex;    
     justify-content: center;
-    background: fade(@belizehole, 95%);
+    background: fade(@primaryDarkColor, 95%);
     a img {
         max-width: 250px;
         width: 100%;
@@ -179,14 +186,14 @@ footer {
     position: relative;
     text-align: center;
     font-weight: 800;
-    background: fade(@wetasphalt, 95%);
+    background: fade(@primaryDarkColor, 95%);
     padding: 20px 0;
 }
 
 
 div.navbar-container {
-    background: fade(@belizehole, 95%);
-    color: @clouds;
+    background: fade(@primaryDarkColor, 95%);
+    color: @textColor;
     height: 100%;
     
     nav.sidenav {
@@ -197,7 +204,7 @@ div.navbar-container {
         display: block;
         top: 0;
         left: -250px;
-        background-color: @midnightblue;
+        background-color: @primaryColor;
         overflow-x: hidden;
         .transition(0.3s);
         padding: 60px 20px;
@@ -209,7 +216,7 @@ div.navbar-container {
             span {
                 letter-spacing: 0.05em;
                 padding: 10px 0;
-                border-bottom: 2px solid @silver;
+                border-bottom: 2px solid @textColor;
             }
         }
         ul {
@@ -219,7 +226,7 @@ div.navbar-container {
                 padding: 8px 0 8px 0;
                 text-decoration: none;
                 font-size: 16px;
-                color: @clouds;
+                color: @textColor;
                 text-transform: uppercase;
                 letter-spacing: 0.05em;
                 font-weight: 800;
@@ -232,10 +239,10 @@ div.navbar-container {
                     font-size: 36px;
                 }
                 &.closebtn:hover {
-                    color: @pomegranate;
+                    color: @primaryColor;
                 }
                 &:hover {
-                    color: @pomegranate;
+                    color: @primaryColor;
                 }
             }
         }
@@ -246,19 +253,19 @@ div.navbar-container {
             flex-wrap: wrap;
             justify-content: space-between;
             a {
-                color: @clouds;
+                color: @textColor;
                 padding: 8px;
                 font-size: 12px;
                 width: 30px;
                 text-decoration: none;
                 text-align: center;
                 margin: 5px 2px;
-                border: 1px solid @clouds;
+                border: 1px solid @textColor;
                 .borderRadius(50%);
                 .transition(0.3s);
                 &:hover {
-                    color: @pomegranate;
-                    border-color: @pomegranate;
+                    color: @primaryColor;
+                    border-color: @primaryColor;
                 }
             }
         }
@@ -275,7 +282,7 @@ div.navbar-container {
                padding: 15px 15px;
            }
            &:hover {
-               color: @pomegranate;
+               color: @primaryColor;
            }
         }   
     }
@@ -293,13 +300,13 @@ main.content-maindiv {
         .flexbox;
         flex-direction: row;
         justify-content: space-around;
-        background: fade(@turquoise, 95%);
+        background: fade(@primaryColor, 95%);
         align-items: center;
         .left-side {
             padding: 10px;
             img {
                 max-width: 450px;
-                box-shadow: 2px 2px 6px 0 darken(@pomegranate, 30%);
+                box-shadow: 2px 2px 6px 0 darken(@primaryColor, 30%);
             }
         }
         
@@ -307,13 +314,13 @@ main.content-maindiv {
             width: 100%;
             padding: 10px;
             div.title {
-                text-shadow: 1px 1px 6px darken(@midnightblue, 10%);
+                text-shadow: 1px 1px 6px darken(@primaryColor, 10%);
                 h1 {
                     text-align: center;
                 }
             }
             div.subtitle {
-                text-shadow: 1px 1px 6px darken(@midnightblue, 10%);
+                text-shadow: 1px 1px 6px darken(@primaryColor, 10%);
                 h3 {
                     text-align: center;
                 }
@@ -322,13 +329,12 @@ main.content-maindiv {
                 width: 100%;
                 margin: 20px 0;
                 p {
-                    color:#fff;
                     text-transform: uppercase;
                     margin: 0 0 10px;
                     padding: 0;
                     letter-spacing: 1px;
                     font-weight: bold;
-                    text-shadow: 1px 1px 6px darken(@midnightblue, 10%);
+                    text-shadow: 1px 1px 6px darken(@primaryColor, 10%);
                     &:nth-child(2) {
                         float: right;
                         position: relative;
@@ -336,14 +342,14 @@ main.content-maindiv {
                     }
                 }
                 .skill {
-                    background: #262626;
+                    background: @primaryDarkColor;
                     padding: 4px;
                     box-sizing: border-box;
-                    border: 1px solid @greensea;
+                    border: 1px solid @primaryDarkColor;
                     border-radius: 2px;
-                    box-shadow: 2px 2px 6px 0 darken(@pomegranate, 30%);
+                    box-shadow: 2px 2px 6px 0 darken(@primaryDarkColor, 30%);
                     .skill_level {
-                        background: @greensea;
+                        background: @primaryColor;
                         width: 100%;
                         height: 10px;
                         &.html5 {
@@ -368,7 +374,7 @@ main.content-maindiv {
     }
 
     section.whatIDo {
-        background: fade(@wisteria, 95%);
+        background: fade(@primaryColor, 95%);
         //color: @midnightblue;
         padding: 20px 0;
         .title {
@@ -400,7 +406,7 @@ main.content-maindiv {
     }
 
     section.numbers {
-        background: fade(@belizehole, 95%);
+        background: fade(@primaryColor, 95%);
         padding: 20px 0;
         .title {
             text-align: center;
@@ -429,7 +435,7 @@ main.content-maindiv {
     }
 
     section.portfolio {
-        background: fade(@wisteria, 95%);
+        background: fade(@primaryColor, 95%);
         padding: 20px 0;
         .title {
             text-align: center;
@@ -458,7 +464,7 @@ main.content-maindiv {
     }
 
     section.news {
-        background: fade(@nephritis, 95%);
+        background: fade(@primaryColor, 95%);
         padding: 20px 0;
         .title {
             text-align: center;
@@ -487,7 +493,7 @@ main.content-maindiv {
     }
 
     section.contact {
-        background: fade(@peterriver, 95%);
+        background: fade(@primaryColor, 95%);
         padding: 20px 0;
         .title {
             text-align: center;
@@ -545,21 +551,21 @@ main.content-maindiv {
         .flexbox();
         flex-direction: column;
         justify-content: space-between;
-        background-color: @greensea;
-        color: @clouds;
+        background-color: @primaryColor;
+        color: @textColor;
         padding: 15px;
         h1 a {
-            color: @clouds;
+            color: @textColor;
         }
         a.btn.btn-primary {
             display: block;
             width: 150px;
-            color: @clouds;
+            color: @textColor;
             padding: 10px 15px;
-            background-color: @pumpkin;
+            background-color: @primaryColor;
             box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.3);
             &:hover {
-                background-color: darken(@pumpkin, 10%);
+                background-color: darken(@primaryColor, 10%);
             }
         }
         .img-responsive {
@@ -580,13 +586,30 @@ main.content-maindiv {
         margin: 10px 0;
         a {
             padding: 10px 15px;
-            background-color: @pomegranate;
+            background-color: @primaryColor;
             box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.3);
-            color: @clouds;
+            color: @textColor;
             &:hover {
-                background-color: darken(@pomegranate, 10%);
+                background-color: darken(@primaryColor, 10%);
             }
         }
+    }
+}
+
+.ctabutton-container {
+    position: fixed;
+    display: block;
+    bottom: 10px;
+    right: 20px;
+    z-index: 100;
+    a {
+        display: block;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        background: @textColor;
+        color: @primaryColor;
+        border-radius: 50%;
     }
 }
 
