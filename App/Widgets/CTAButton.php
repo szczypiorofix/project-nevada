@@ -25,7 +25,7 @@ class CTAButton extends Widget {
         $this->body =
 <<<HTML
     <div class="ctabutton-container">
-        <a href="#">UP!</a>
+        <a href="#"><i class="fas fa-chevron-up"></i></a>
     </div>
 HTML;
     }

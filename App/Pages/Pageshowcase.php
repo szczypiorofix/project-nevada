@@ -25,50 +25,57 @@ class Pageshowcase extends Page {
     <main class="content-maindiv">
 
         <section class="myskills">
-            <div class="left-side">
-                <img src="images/code.jpeg" alt="My Skills" />
-                <p>Moim celem jest ...</p>
-            </div>
-            <div class="right-side">
-                <div class="title">
-                    <h1>Umiejętności</h1>
-                </div>
-                <div class="subtitle">
-                    <h3>Czyli to czego się nauczyłem...</h3>
-                </div>
-                <div class="skillBox">
-                    <p>Html</p>
-                    <p>90%</p>
-                    <div class="skill">
-                        <div class="skill_level html5"></div>
+            <div class="container">
+                <div class="left-side">
+                    <img src="images/code.jpeg" alt="My Skills" />
+                    <p>Kilka słów o mnie ...</p>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true.</p>
+                    <div class="skills-button-container">
+                        <a href="#" class="cv-download">POBIERZ CV</a>
+                        <a href="#" class="hire-me">ZATRUDNIJ MNIE</a>
                     </div>
                 </div>
-                <div class="skillBox">
-                    <p>Css3</p>
-                    <p>80%</p>
-                    <div class="skill">
-                        <div class="skill_level css3"></div>
+                <div class="right-side">
+                    <div class="title">
+                        <h1>Umiejętności</h1>
                     </div>
-                </div>
-                <div class="skillBox">
-                    <p>PHP</p>
-                    <p>85%</p>
-                    <div class="skill">
-                        <div class="skill_level php"></div>
+                    <div class="subtitle">
+                        <h3>Czyli to czego się nauczyłem...</h3>
                     </div>
-                </div>
-                <div class="skillBox">
-                    <p>JavaScript</p>
-                    <p>75%</p>
-                    <div class="skill">
-                        <div class="skill_level javascript"></div>
+                    <div class="skillBox">
+                        <p>Html</p>
+                        <p>90%</p>
+                        <div class="skill">
+                            <div class="skill_level html5"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="skillBox">
-                    <p>Java</p>
-                    <p>85%</p>
-                    <div class="skill">
-                        <div class="skill_level java"></div>
+                    <div class="skillBox">
+                        <p>Css3</p>
+                        <p>80%</p>
+                        <div class="skill">
+                            <div class="skill_level css3"></div>
+                        </div>
+                    </div>
+                    <div class="skillBox">
+                        <p>PHP</p>
+                        <p>85%</p>
+                        <div class="skill">
+                            <div class="skill_level php"></div>
+                        </div>
+                    </div>
+                    <div class="skillBox">
+                        <p>JavaScript</p>
+                        <p>75%</p>
+                        <div class="skill">
+                            <div class="skill_level javascript"></div>
+                        </div>
+                    </div>
+                    <div class="skillBox">
+                        <p>Java</p>
+                        <p>85%</p>
+                        <div class="skill">
+                            <div class="skill_level java"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -261,7 +268,7 @@ HTML;
         $body =
 <<<HTML
     <div class="full-page-container" id="mainDiv">
-        <div class="fullscreenbackground"></div>
+        <!-- <div class="fullscreenbackground"></div> -->
         {$header->getBody()}
         {$pageContent}
         {$ctaButton->getBody()}

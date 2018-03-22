@@ -14,7 +14,12 @@ var SideNavbar = /** @class */ (function () {
     };
     SideNavbar.openNav = function () {
         this.e("mySidenav").style.left = "0px";
-        this.e("mainDiv").style.marginLeft = "250px";
+        if (window.innerWidth > 650) {
+            this.e("mainDiv").style.marginLeft = "250px";
+        }
+        else {
+            this.e("mySidenav").style.left = "0px";
+        }
         this.e("navbarLauncher").style.display = "none";
     };
     SideNavbar.closeNav = function () {
