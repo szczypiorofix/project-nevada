@@ -29,6 +29,15 @@ var SideNavbar = /** @class */ (function () {
     };
     return SideNavbar;
 }());
+function goToTop() {
+    (function smoothscroll() {
+        var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        if (currentScroll > 0) {
+            window.requestAnimationFrame(smoothscroll);
+            window.scrollTo(0, currentScroll - (currentScroll / 6));
+        }
+    })();
+}
 window.addEventListener("DOMContentLoaded", function () {
     window.onclick = function (event) {
         if (event.target !== document.getElementById("navbarLauncher")) {

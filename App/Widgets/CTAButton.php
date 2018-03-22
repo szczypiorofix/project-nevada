@@ -25,7 +25,7 @@ class CTAButton extends Widget {
         $this->body =
 <<<HTML
     <div class="ctabutton-container">
-        <a href="#"><i class="fas fa-chevron-up"></i></a>
+        <a href="javascript:void(0)" onclick="goToTop()"><i class="fas fa-chevron-up"></i></a>
     </div>
 HTML;
     }
