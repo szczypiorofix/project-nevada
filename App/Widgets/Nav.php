@@ -28,10 +28,14 @@ class Nav extends Widget {
                     <p class="title"><span>Menu</span></p>
                     <ul>
                         <li><a href="javascript:void(0)" class="closebtn" onclick="SideNavbar.closeNav()"><i class="fas fa-times"></i></a></li>
-                        <li><a href="{$baseHref}">Strona główna</a></li>
-                        <li><a href="#">Projekty</a></li>
-                        <li><a href="#">Do pobrania</a></li>
-                        <li><a href="#">O mnie</a></li>
+                        <li><a href="{$baseHref}" class="scroll-btn">Strona główna</a></li>
+                        <li><a href="#aboutMe" class="scroll-btn">O mnie</a></li>
+                        <li><a href="#mySkills" class="scroll-btn">Umiejętności</a></li>
+                        <li><a href="#whatIDo" id="whatIDoButton" class="scroll-btn">Co ja robię</a></li>
+                        <li><a href="#numbers" class="scroll-btn">Liczby</a></li>
+                        <li><a href="#portfolio" class="scroll-btn">Portfolio</a></li>
+                        <li><a href="#news" class="scroll-btn">Informacje</a></li>
+                        <li><a href="#contact" class="scroll-btn">Kontakt</a></li>
                     </ul>
                     <div class="socialmedia-div">
                         <a href="http://facebook.com" target="_blank" title="Facebook" class="fab fa-facebook-f"></a>

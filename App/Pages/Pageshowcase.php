@@ -26,7 +26,7 @@ class Pageshowcase extends Page {
 
         <section class="myskills">
             <div class="container">
-                <div class="left-side">
+                <div class="left-side" id="aboutMe">
                     <img src="images/code.jpeg" alt="My Skills" />
                     <p>Kilka słów o mnie ...</p>
                     <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true.</p>
@@ -35,7 +35,7 @@ class Pageshowcase extends Page {
                         <a href="#" class="hire-me">ZATRUDNIJ MNIE</a>
                     </div>
                 </div>
-                <div class="right-side">
+                <div class="right-side" id="mySkills">
                     <div class="title">
                         <h1>Umiejętności</h1>
                     </div>
@@ -81,7 +81,7 @@ class Pageshowcase extends Page {
             </div>
         </section>
 
-        <section class="whatIDo">
+        <section class="whatIDo" id="whatIDo">
             <div class="container">
                 <div class="title">
                     <h1>Co ja robię</h1>
@@ -122,66 +122,78 @@ class Pageshowcase extends Page {
             </div>
         </section>
 
-        <section class="numbers">
+        <section class="numbers" id="numbers">
             <div class="bg"></div>
             <div class="container">
-                <div class="title">
-                    <h1>Liczby...</h1>
-                    <h3>Tutaj jakieś info...</h3>
-                </div>
                 <div class="numbers-container">
                     <div class="numbers-part">
-                        <h3>234</h3>
-                        <h4>Zadowolonych klientów</h4>
+                        <h3>14</h3>
+                        <h4>Ukończonych projektów</h4>
                     </div>
                     <div class="numbers-part">
                         <h3>234</h3>
                         <h4>Zadowolonych klientów</h4>
                     </div>
                     <div class="numbers-part">
-                        <h3>234</h3>
-                        <h4>Zadowolonych klientów</h4>
+                        <h3>546</h3>
+                        <h4>kubków kawy</h4>
                     </div>
                     <div class="numbers-part">
-                        <h3>234</h3>
-                        <h4>Zadowolonych klientów</h4>
+                        <h3>256</h3>
+                        <h4>kolorów w palecie</h4>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="portfolio">
+        <section class="portfolio" id="portfolio">
             <div class="container">
                 <div class="title">
                     <h1>Moje portfolio...</h1>
-                    <h3>Tutaj jakieś info...</h3>
+                    <h3>Informacje o moich projektach ...</h3>
                 </div>
                 <div class="portfolio-container">
                     <div class="portfolio-part">
-                        <i class="fas fa-coffee"></i>
-                        <h3>Web Design</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                        <div class="image-div">
+                            <img src="images/portfolio/si-update3.png" />
+                            <div class="overlay">
+                                <p>Space Invaders</p>
+                                <a href="#"><i class="far fa-play-circle"></i></a>
+                            </div>
+                        </div>
                     </div>
                     <div class="portfolio-part">
-                        <i class="fas fa-coffee"></i>
-                        <h3>Web Design</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                        <div class="image-div">
+                            <img src="images/portfolio/tequila - logo.png" />
+                            <div class="overlay">
+                                <p>Tequila Platformer</p>
+                                <a href="#"><i class="far fa-play-circle"></i></a>
+                            </div>
+                        </div>
                     </div>
                     <div class="portfolio-part">
-                        <i class="fas fa-desktop"></i>
-                        <h3>Desktop apps</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                        <div class="image-div">
+                            <img src="images/portfolio/kanciarz1.png" />
+                            <div class="overlay">
+                                <p>Kanciarz - kalkulator walut</p>
+                                <a href="#"><i class="far fa-play-circle"></i></a>
+                            </div>
+                        </div>
                     </div>
                     <div class="portfolio-part">
-                        <i class="fas fa-coffee"></i>
-                        <h3>Kubki kawy</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                        <div class="image-div">
+                            <img src="images/portfolio/furyroadscreenshot.png" />
+                            <div class="overlay">
+                                <p>Fury Road</p>
+                                <a href="#"><i class="far fa-play-circle"></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="news">
+        <section class="news" id="news">
             <div class="container">
                 <div class="title">
                     <h1>Najnowsze informacje...</h1>
@@ -212,7 +224,7 @@ class Pageshowcase extends Page {
             </div>
         </section>
 
-        <section class="contact">
+        <section class="contact" id="contact">
             <div class="container">
                 <div class="title">
                     <h1>Kontakt...</h1>
