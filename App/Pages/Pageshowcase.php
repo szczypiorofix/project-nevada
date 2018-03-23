@@ -123,6 +123,7 @@ class Pageshowcase extends Page {
         </section>
 
         <section class="numbers">
+            <div class="bg"></div>
             <div class="container">
                 <div class="title">
                     <h1>Liczby...</h1>
@@ -130,24 +131,20 @@ class Pageshowcase extends Page {
                 </div>
                 <div class="numbers-container">
                     <div class="numbers-part">
-                        <i class="fas fa-coffee"></i>
-                        <h3>Web Design</h3>
-                        <p>Hello world</p>
+                        <h3>234</h3>
+                        <h4>Zadowolonych klientów</h4>
                     </div>
                     <div class="numbers-part">
-                        <i class="fas fa-coffee"></i>
-                        <h3>Web Design</h3>
-                        <p>Hello world</p>
+                        <h3>234</h3>
+                        <h4>Zadowolonych klientów</h4>
                     </div>
                     <div class="numbers-part">
-                        <i class="fas fa-desktop"></i>
-                        <h3>Desktop apps</h3>
-                        <p>Hello world</p>
+                        <h3>234</h3>
+                        <h4>Zadowolonych klientów</h4>
                     </div>
                     <div class="numbers-part">
-                        <i class="fas fa-coffee"></i>
-                        <h3>Kubki kawy</h3>
-                        <p>Hello world</p>
+                        <h3>234</h3>
+                        <h4>Zadowolonych klientów</h4>
                     </div>
                 </div>
             </div>
