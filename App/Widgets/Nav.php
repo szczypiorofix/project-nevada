@@ -31,7 +31,7 @@ class Nav extends Widget {
                         <li><a href="{$baseHref}" class="scroll-btn">Strona główna</a></li>
                         <li><a href="#aboutMe" class="scroll-btn">O mnie</a></li>
                         <li><a href="#mySkills" class="scroll-btn">Umiejętności</a></li>
-                        <li><a href="#whatIDo" id="whatIDoButton" class="scroll-btn">Co ja robię</a></li>
+                        <li><a href="#whatIDo" class="scroll-btn">Co ja robię</a></li>
                         <li><a href="#numbers" class="scroll-btn">Liczby</a></li>
                         <li><a href="#portfolio" class="scroll-btn">Portfolio</a></li>
                         <li><a href="#news" class="scroll-btn">Informacje</a></li>
@@ -50,25 +50,6 @@ class Nav extends Widget {
                     <span class="navbar-launcher" onclick="SideNavbar.openNav()"><i class="fas fa-bars" id="navbarLauncher"></i></span>
                 </div>
             </div>
-            
-            <!--<div id="app-4">
-                <ol>
-                    <li v-for="todo in todos">
-                        {{ todo.text }}
-                    </li>
-                </ol>
-            </div>-->
 HTML;
-//        $this->addJS("
-//  var app4 = new Vue({
-//  el: '#app-4',
-//  data: {
-//    todos: [
-//      { text: 'Learn JavaScript' },
-//      { text: 'Learn Vue' },
-//      { text: 'Build something awesome' }
-//    ]
-//  }
-//}); ");
     }
 }

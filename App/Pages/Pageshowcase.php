@@ -9,7 +9,7 @@
 
 namespace Pages;
 
-use Core\ModelClasses\Page;
+use Core\ModelClasses\Page, Core\Config;
 
 /**
  * This is showcase of Page
@@ -27,8 +27,10 @@ class Pageshowcase extends Page {
         <section class="myskills">
             <div class="container">
                 <div class="left-side" id="aboutMe">
-                    <img src="images/code.jpeg" alt="My Skills" />
-                    <p>Kilka słów o mnie ...</p>
+                    <div class="title">
+                        <h1>Kilka słów o mnie</h1>
+                    </div>
+                    <img src="images/dog.jpeg" alt="My Skills" />
                     <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true.</p>
                     <div class="skills-button-container">
                         <a href="#" class="cv-download">POBIERZ CV</a>
@@ -149,7 +151,7 @@ class Pageshowcase extends Page {
         <section class="portfolio" id="portfolio">
             <div class="container">
                 <div class="title">
-                    <h1>Moje portfolio...</h1>
+                    <h1>Portfolio</h1>
                     <h3>Informacje o moich projektach ...</h3>
                 </div>
                 <div class="portfolio-container">
@@ -196,60 +198,103 @@ class Pageshowcase extends Page {
         <section class="news" id="news">
             <div class="container">
                 <div class="title">
-                    <h1>Najnowsze informacje...</h1>
+                    <h1>Najnowsze informacje</h1>
                     <h3>Tutaj jakieś info...</h3>
                 </div>
                 <div class="news-container">
                     <div class="news-part">
-                        <i class="fas fa-coffee"></i>
-                        <h3>Web Design</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                        <div class="image-div">
+                            <img src="images/portfolio/si-update3.png" />
+                        </div>
+                        <a href="#"><h3>Web Design</h3></a>
+                        <p>Skrót newsa...</p>
+                        <div class="additional-info">
+                            <span class="post-date">23 Marzec 2018</span>
+                            <span class="post-comments"><i class="far fa-comment-alt"></i> 5</span>
+                        </div>
                     </div>
                     <div class="news-part">
-                        <i class="fas fa-coffee"></i>
-                        <h3>Web Design</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                        <div class="image-div">
+                            <img src="images/portfolio/tequila - logo.png" />
+                        </div>
+                        <a href="#"><h3>Web Design</h3></a>
+                        <p>Skrót newsa...</p>
+                        <div class="additional-info">
+                            <span class="post-date">23 Marzec 2018</span>
+                            <span class="post-comments"><i class="far fa-comment-alt"></i> 5</span>
+                        </div>
                     </div>
                     <div class="news-part">
-                        <i class="fas fa-desktop"></i>
-                        <h3>Desktop apps</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                        <div class="image-div">
+                            <img src="images/portfolio/kanciarz1.png" />
+                        </div>
+                        <a href="#"><h3>Desktop apps</h3></a>
+                        <p>Skrót newsa...</p>
+                        <div class="additional-info">
+                            <span class="post-date">23 Marzec 2018</span>
+                            <span class="post-comments"><i class="far fa-comment-alt"></i> 5</span>
+                        </div>
                     </div>
                     <div class="news-part">
-                        <i class="fas fa-coffee"></i>
-                        <h3>Kubki kawy</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                        <div class="image-div">
+                            <img src="images/portfolio/furyroadscreenshot.png" />
+                        </div>
+                        <a href="#"><h3>Kubki kawy</h3></a>
+                        <p>Skrót newsa...</p>
+                        <div class="additional-info">
+                            <span class="post-date">23 Marzec 2018</span>
+                            <span class="post-comments"><i class="far fa-comment-alt"></i> 5</span>
+                        </div>
+                    </div>
+                    <div class="news-part">
+                        <div class="image-div">
+                            <img src="images/portfolio/kanciarz1.png" />
+                        </div>
+                        <a href="#"><h3>Desktop apps</h3></a>
+                        <p>Skrót newsa...</p>
+                        <div class="additional-info">
+                            <span class="post-date">23 Marzec 2018</span>
+                            <span class="post-comments"><i class="far fa-comment-alt"></i> 5</span>
+                        </div>
+                    </div>
+                    <div class="news-part">
+                        <div class="image-div">
+                            <img src="images/portfolio/furyroadscreenshot.png" />
+                        </div>
+                        <a href="#"><h3>Kubki kawy</h3></a>
+                        <p>Skrót newsa...</p>
+                        <div class="additional-info">
+                            <span class="post-date">23 Marzec 2018</span>
+                            <span class="post-comments"><i class="far fa-comment-alt"></i> 5</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <section class="contact" id="contact">
+            <div class="title">
+                <h1>Kontakt</h1>
+            </div>
             <div class="container">
-                <div class="title">
-                    <h1>Kontakt...</h1>
-                    <h3>Tutaj jakieś info...</h3>
-                </div>
                 <div class="contact-container">
-                    <div class="contact-part">
-                        <i class="fas fa-coffee"></i>
-                        <h3>Web Design</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                    <div class="left-part">
+                        <h3 class="title">Skontaktuj się ze mną</h3>
+                        <form action="/action_page.php">
+                            <input type="text" id="name" name="name" placeholder="Imię...">
+
+                            <input type="email" id="email" name="email" placeholder="E-mail...">
+
+                            <textarea rows="4" cols="50" placeholder="Wiadomość..."></textarea>
+                        
+                            <input type="submit" value="Wyślij">
+                        </form>
                     </div>
-                    <div class="contact-part">
-                        <i class="fas fa-coffee"></i>
-                        <h3>Web Design</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
-                    </div>
-                    <div class="contact-part">
-                        <i class="fas fa-desktop"></i>
-                        <h3>Desktop apps</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
-                    </div>
-                    <div class="contact-part">
-                        <i class="fas fa-coffee"></i>
-                        <h3>Kubki kawy</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                    <div class="right-part">
+                        <div class="contact-card-maps">
+                            <h3 class="title">Znajdź mnie tutaj</h3>
+                            <div id="googlemapscontainer"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -259,7 +304,8 @@ HTML;
         
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'MainScript', 'path' => 'js/script.js']);
-        //$this->addJSFile(['name' => 'Vue.JS', 'path' => 'https://cdn.jsdelivr.net/npm/vue']);
+        $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
+        $this->addJSFile(['name' => 'Google Maps API', 'path' => 'https://maps.googleapis.com/maps/api/js?key='.Config::get("GOOGLE_MAPS_API_KEY").'&callback=showGoogleMaps']);
 
         $metaData = new \Widgets\MetaData();
         $head = $metaData->getBody();
