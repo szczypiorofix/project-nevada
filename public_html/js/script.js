@@ -34,7 +34,6 @@ var SideNavbar = /** @class */ (function () {
 
 function showGoogleMaps() {
     if (typeof google === 'object' && typeof google.maps === 'object') {
-        // 52.160161, 21.022213
         var myLatLng = {lat: 52.160161, lng: 21.022213};
         var map = new google.maps.Map(document.getElementById('googlemapscontainer'), {
             zoom: 11,
