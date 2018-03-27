@@ -42,8 +42,11 @@ class AppCore {
             }
         } else { // MAINTENANCE PAGE && AJAX
             $class = "Maintenance";
-            if ($url[0] == 'trellocontent') {
+            if ($url[0] === 'trellocontent') {
                 $class = "TrelloContent";
+            }
+            if ($url[0] === 'sendmail') {
+                $class = "SendMail";
             }
         }
 

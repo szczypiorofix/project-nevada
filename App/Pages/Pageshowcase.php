@@ -290,14 +290,13 @@ class Pageshowcase extends Page {
                 <div class="contact-container">
                     <div class="left-part">
                         <h3 class="title">Skontaktuj się ze mną</h3>
-                        <form action="/action_page.php">
-                            <input type="text" id="name" name="name" placeholder="Imię...">
-
-                            <input type="email" id="email" name="email" placeholder="E-mail...">
-
-                            <textarea rows="4" cols="50" placeholder="Wiadomość..."></textarea>
-                        
-                            <input type="submit" value="Wyślij">
+                        <form class="contact-us-form" id="submitMessageForm" method="POST">
+                            <input type="text" placeholder="Imię i nazwisko" name="contact-form-name" required>
+                            <input type="email" placeholder="E-mail" name="contact-form-email" required>
+                            <textarea rows="12" placeholder="Twoja wiadomość" name="contact-form-message" required></textarea>
+                            <div class="contact-us-form-actions">
+                                <input type="submit" class="button" value="Wyślij"/>
+                            </div>
                         </form>
                     </div>
                     <div class="right-part">
@@ -313,9 +312,12 @@ class Pageshowcase extends Page {
 HTML;
         
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
-        $this->addJSFile(['name' => 'MainScript', 'path' => 'js/script.js']);
+        $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
-        //$this->addJSFile(['name' => 'Google Maps API', 'path' => 'https://maps.googleapis.com/maps/api/js?key='.Config::get("GOOGLE_MAPS_API_KEY").'&callback=showGoogleMaps']);
+        
+        $this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
+        $this->addJSFile(['name' => 'Google Maps API', 'path' => 'https://maps.googleapis.com/maps/api/js?key='.Config::get("GOOGLE_MAPS_API_KEY").'&callback=showGoogleMaps']);
+        
 
         $metaData = new \Widgets\MetaData();
         $head = $metaData->getBody();
@@ -348,6 +350,9 @@ HTML;
         {$pageContent}
         {$ctaButton->getBody()}
         {$footer->getBody()}
+        <div id="notificationsPanel">
+            <span id="notificationsContent"></span>
+        </div>
     </div>
 HTML;
         

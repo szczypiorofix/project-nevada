@@ -6,7 +6,6 @@
  * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  *
  */
-
 var SideNavbar = /** @class */ (function () {
     function SideNavbar() {
     }
@@ -30,26 +29,6 @@ var SideNavbar = /** @class */ (function () {
     };
     return SideNavbar;
 }());
-
-
-function showGoogleMaps() {
-    if (typeof google === 'object' && typeof google.maps === 'object') {
-        var myLatLng = {lat: 52.160161, lng: 21.022213};
-        var map = new google.maps.Map(document.getElementById('googlemapscontainer'), {
-            zoom: 11,
-            center: myLatLng
-        });
-        var marker = new google.maps.Marker({
-            position: myLatLng,
-            map: map,
-            title: 'Piotr Wróblewski'
-        });
-    } else {
-        console.log('Uuups coś poszło nie tak ...');
-    }
-}
-
-
 function goToTop() {
     (function smoothscroll() {
         var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
@@ -59,25 +38,7 @@ function goToTop() {
         }
     })();
 }
-
-
-function smoothScrollToSections() {
-    $(".scroll-btn").on('click', function (event) {
-        if (this.hash !== "") {
-            event.preventDefault();
-            var hash = this.hash;
-            $('html, body').animate({
-                scrollTop: $(hash).offset().top
-            }, 500, function () {
-                window.location.hash = hash;
-            });
-        }
-    });
-}
-
-
 window.addEventListener("DOMContentLoaded", function () {
-    smoothScrollToSections();
     window.onclick = function (event) {
         if (event.target !== document.getElementById("navbarLauncher")) {
             SideNavbar.closeNav();
