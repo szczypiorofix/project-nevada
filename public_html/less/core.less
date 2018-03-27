@@ -155,6 +155,13 @@ img {
     width: 100%;
 }
 
+.nav-and-logo {
+    background: url(../images/bg-main3.jpeg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: bottom;
+}
+
 .logo-container {
     position: relative;
     padding: 15px;
@@ -163,11 +170,6 @@ img {
     display: flex;    
     justify-content: center;
     //background: @primaryColor;
-    background: url(../images/bg-main3.jpeg);
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: bottom;
-    opacity: 0.85;
     .boxShadow(0, 2px, 6px, 0, rgba(50, 50, 50, 0.5));
     a img {
         max-width: 250px;
@@ -189,20 +191,19 @@ footer {
 
 
 div.navbar-container {
-    background-color: @primaryColor;
+    //background-color: @primaryColor;
     color: @textColor;
     height: 100%;
     
     nav.sidenav {
         height: 100%;
-        width: 250px;
+        width: 260px;
         position: fixed;
-        z-index: 1;
         display: block;
         top: 0;
         left: -260px;
-        background-color: @primaryColorDark;
-        .boxShadow(1px, 0, 6px, 0, @primaryColorDark);
+        background-color: @primaryColorDark;        
+        .boxShadow(0px, 0, 2px, 0, @primaryColorDark);
         color: @textColor;
         overflow-x: hidden;
         .transition(0.3s);

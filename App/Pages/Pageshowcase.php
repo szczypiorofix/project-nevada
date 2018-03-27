@@ -207,19 +207,19 @@ class Pageshowcase extends Page {
             <div class="container">
                 <div class="numbers-container">
                     <div class="numbers-part">
-                        <h3>14</h3>
+                        <h3 id="num-pro">0</h3>
                         <h4>Ukończonych projektów</h4>
                     </div>
                     <div class="numbers-part">
-                        <h3>234</h3>
+                        <h3 id="num-cli">0</h3>
                         <h4>Zadowolonych klientów</h4>
                     </div>
                     <div class="numbers-part">
-                        <h3>546</h3>
+                        <h3  id="num-cof">0</h3>
                         <h4>kubków kawy</h4>
                     </div>
                     <div class="numbers-part">
-                        <h3>256</h3>
+                        <h3 id="num-col">0</h3>
                         <h4>kolorów w palecie</h4>
                     </div>
                 </div>
@@ -349,7 +349,9 @@ HTML;
 <<<HTML
     <div class="full-page-container" id="mainDiv">
         <!-- <div class="fullscreenbackground"></div> -->
-        {$header->getBody()}
+        <div class="nav-and-logo">
+            {$header->getBody()}
+        </div>
         {$pageContent}
         {$ctaButton->getBody()}
         {$footer->getBody()}
