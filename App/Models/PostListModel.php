@@ -73,7 +73,7 @@ OFFSET
             $this->inputPage = $inputPage;
         }
         
-        echo $this->input.' '.$this->inputPage;
+        //echo $this->input.' '.$this->inputPage;
 
         $this->type = $type;
         $db = $dbConnection->getDB();

@@ -16,7 +16,7 @@ class SideNavbar {
     static openNav() {
         this.e("mySidenav").style.left = "0px";
         if (window.innerWidth > 650) {
-            this.e("mainDiv").style.marginLeft = "250px";
+            this.e("mainDiv").style.marginLeft = "260px";
         } else {
             this.e("mySidenav").style.left = "0px";
         }
@@ -24,7 +24,7 @@ class SideNavbar {
     }
 
     static closeNav() {
-        this.e("mySidenav").style.left = "-250px";
+        this.e("mySidenav").style.left = "-260px";
         this.e("mainDiv").style.marginLeft= "0";
         this.e("navbarLauncher").style.display = "block";
     }

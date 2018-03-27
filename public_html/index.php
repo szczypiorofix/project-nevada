@@ -10,6 +10,7 @@
  * 
  */
 
+error_reporting(E_ALL ^ E_WARNING);
 
 /*
  * Load AutoLoader class.
@@ -18,7 +19,7 @@ require_once '../App/Core/Autoloader.php';
 /*
  * Run the AutoLoader class.
  */
-\Core\AutoLoader::run(false);
+\Core\AutoLoader::run();
 
 /*
  * Set required environmental variables and constants.

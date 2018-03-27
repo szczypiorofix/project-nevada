@@ -9,7 +9,7 @@
 
 namespace Pages;
 
-use Core\ModelClasses\Page, Core\Config;
+use Core\ModelClasses\Page, Core\Config, Models\PostListModel;
 
 /**
  * This is showcase of Page
@@ -17,9 +17,77 @@ use Core\ModelClasses\Page, Core\Config;
  * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
 class Pageshowcase extends Page {
-    
+
+
+    private $db = null;
+    private $error = false;
+    private $errorMsg = null;
+
+    public function __toString() {
+        return get_class($this);
+    }
+
     public function defaultmethod($args) {
         
+
+        if (!isset($args[0])) {
+            $type = 'list';
+        }
+        else {
+            $type = $args[0];
+        }
+        if (!isset($args[1])) {
+            $pages = 0;
+        }
+        else {
+            $pages = intval($args[1]);
+        }
+        
+        $type = 'list';
+        
+        try {
+            $dbConnection = \Core\DBConnection::getInstance();
+        } catch (\Core\FrameworkException $fex) {
+            $fex->showError();
+        }
+        
+        $this->db = $dbConnection->getDB();
+        $this->error = $dbConnection->isError();
+        $this->errorMsg = $dbConnection->getErrorMsg();
+        
+        $postListModel = new PostListModel(PostListModel::TYPE_ID_SORT, $dbConnection, $type, $pages);
+        $content = $postListModel->getContent();
+        
+        //var_dump($content);
+        
+        if (is_null($content)) {
+            $content = [];
+        }
+ 
+        $defaultImageFile = DIR_UPLOADS_IMAGES."default.jpg";
+        $imageFile = $defaultImageFile;
+
+        $pageDynamicContent = '';
+        foreach($content['posts'] as $row) {
+            if (file_exists(DIR_UPLOADS_IMAGES.$row['image']) && !is_dir(DIR_UPLOADS_IMAGES.$row['image'])) {
+                $imageFile = DIR_UPLOADS_IMAGES.$row['image'];
+            } else {
+                $imageFile = $defaultImageFile;
+            }
+            $pageDynamicContent .= '<div class="news-part">
+                                        <div class="image-div">
+                                            <a href="post/'.$row['url'].'"><img src="'.$imageFile.'" /></a>
+                                        </div>
+                                        <a href="post/'.$row['url'].'"><h3>'.$row['title'].'</h3></a>
+                                        <p>'.mb_substr($row['content'], 0, 185).'...</p>
+                                        <div class="additional-info">
+                                            <span class="post-date">'.$row['update_date'].'</span>
+                                            <span class="post-comments"><i class="far fa-comment-alt"></i> 1</span>
+                                        </div>';
+            $pageDynamicContent .= '</div>';
+        }
+
+
         $pageContent =
 <<<HTML
     <main class="content-maindiv">
@@ -212,72 +280,7 @@ class Pageshowcase extends Page {
                     <h3>czyli co w kodzie piszczy...</h3>
                 </div>
                 <div class="news-container">
-                    <div class="news-part">
-                        <div class="image-div">
-                            <a href="#"><img src="images/portfolio/spaceinvaders1.png" /></a>
-                        </div>
-                        <a href="#"><h3>Space Invaders update v.3</h3></a>
-                        <p>Gra Space Invader otrzymała dzisiaj aktualizację. Changelog : ...</p>
-                        <div class="additional-info">
-                            <span class="post-date">23 Marzec 2018</span>
-                            <span class="post-comments"><i class="far fa-comment-alt"></i> 5</span>
-                        </div>
-                    </div>
-                    <div class="news-part">
-                        <div class="image-div">
-                            <a href="#"><img src="images/portfolio/tequilaplatformer1.png" /></a>
-                        </div>
-                        <a href="#"><h3>Tequila Platformer - informacje</h3></a>
-                        <p>Aktualizacja bazy danych w toku ...</p>
-                        <div class="additional-info">
-                            <span class="post-date">23 Marzec 2018</span>
-                            <span class="post-comments"><i class="far fa-comment-alt"></i> 3</span>
-                        </div>
-                    </div>
-                    <div class="news-part">
-                        <div class="image-div">
-                            <a href="#"><img src="images/portfolio/kanciarz1.png" /></a>
-                        </div>
-                        <a href="#"><h3>Kanciarz - aktualizacja 1.1</h3></a>
-                        <p>Aplikacja do przeliczania kursów walut została zaktualizowana do wersji 1.1...</p>
-                        <div class="additional-info">
-                            <span class="post-date">23 Marzec 2018</span>
-                            <span class="post-comments"><i class="far fa-comment-alt"></i> 2</span>
-                        </div>
-                    </div>
-                    <div class="news-part">
-                        <div class="image-div">
-                            <a href="#"><img src="images/portfolio/furyroad1.png" /></a>
-                        </div>
-                        <a href="#"><h3>Fury road aktualizacja</h3></a>
-                        <p>Gra Fury Road została zaktualizowana do wersji ...</p>
-                        <div class="additional-info">
-                            <span class="post-date">23 Marzec 2018</span>
-                            <span class="post-comments"><i class="far fa-comment-alt"></i> 1</span>
-                        </div>
-                    </div>
-                    <div class="news-part">
-                        <div class="image-div">
-                            <a href="#"><img src="images/portfolio/kanciarz1.png" /></a>
-                        </div>
-                        <a href="#"><h3>Kanciarz początek projektu</h3></a>
-                        <p>Rozpocząłem nowy projekt pt. Kanciarz. Będzie to kalkulator wymiany walut.</p>
-                        <div class="additional-info">
-                            <span class="post-date">23 Marzec 2018</span>
-                            <span class="post-comments"><i class="far fa-comment-alt"></i> 0</span>
-                        </div>
-                    </div>
-                    <div class="news-part">
-                        <div class="image-div">
-                            <a href="#"><img src="images/portfolio/furyroad1.png" /></a>
-                        </div>
-                        <a href="#"><h3>Fury Road - początek projektu</h3></a>
-                        <p>Nowy projekt został właśnie rozpoczęty.</p>
-                        <div class="additional-info">
-                            <span class="post-date">23 Marzec 2018</span>
-                            <span class="post-comments"><i class="far fa-comment-alt"></i> 5</span>
-                        </div>
-                    </div>
+                    {$pageDynamicContent}
                 </div>
             </div>
         </section>
@@ -316,7 +319,7 @@ HTML;
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
         
         $this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
-        $this->addJSFile(['name' => 'Google Maps API', 'path' => 'https://maps.googleapis.com/maps/api/js?key='.Config::get("GOOGLE_MAPS_API_KEY").'&callback=showGoogleMaps']);
+        //$this->addJSFile(['name' => 'Google Maps API', 'path' => 'https://maps.googleapis.com/maps/api/js?key='.Config::get("GOOGLE_MAPS_API_KEY").'&callback=showGoogleMaps']);
         
 
         $metaData = new \Widgets\MetaData();

@@ -162,7 +162,12 @@ img {
     width: 100%;
     display: flex;    
     justify-content: center;
-    background: @primaryColor;
+    //background: @primaryColor;
+    background: url(../images/bg-main3.jpeg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: bottom;
+    opacity: 0.85;
     .boxShadow(0, 2px, 6px, 0, rgba(50, 50, 50, 0.5));
     a img {
         max-width: 250px;
@@ -195,8 +200,9 @@ div.navbar-container {
         z-index: 1;
         display: block;
         top: 0;
-        left: -250px;
+        left: -260px;
         background-color: @primaryColorDark;
+        .boxShadow(1px, 0, 6px, 0, @primaryColorDark);
         color: @textColor;
         overflow-x: hidden;
         .transition(0.3s);
@@ -221,7 +227,7 @@ div.navbar-container {
                 font-size: 16px;
                 color: @textColor;
                 text-transform: uppercase;
-                letter-spacing: 0.05em;
+                letter-spacing: 0.1em;
                 font-weight: 800;
                 display: block;
                 .transition(0.3s);
@@ -300,6 +306,7 @@ main.content-maindiv {
                 padding: 15px;
                 text-align: center;
                 .title {
+                    letter-spacing: 0.08em;
                     text-align: center;
                     text-transform: uppercase;
                     h1 {
@@ -308,10 +315,12 @@ main.content-maindiv {
                 }
                 p {
                     text-align: justify;
+                    letter-spacing: 0.05em;
+                    line-height: 150%;
                 }
                 img {
                     max-width: 200px;
-                    border-radius: 50%;
+                    .borderRadius(50%);
                     width: 100%;
                     .boxShadow(0, 0, 6px, 1px, rgba(50, 50, 50, 0.5));
                     transition: all 0.25s;
@@ -331,6 +340,7 @@ main.content-maindiv {
                         background-color: @textColorDark;
                         color: @textColor;
                         margin: 5px;
+                        letter-spacing: 0.08em;
                         transition: all 0.25s;
                         .boxShadow(0, 4px, 12px, 1px, rgba(50, 50, 50, 0.3));
                         &:hover {
@@ -344,6 +354,7 @@ main.content-maindiv {
                         margin: 5px;
                         background-color: @secondary1Color;
                         color: @textColor;
+                        letter-spacing: 0.08em;
                         transition: all 0.25s;
                         .boxShadow(0, 4px, 12px, 1px, rgba(50, 50, 50, 0.3));
                         &:hover {
@@ -359,6 +370,7 @@ main.content-maindiv {
                 padding: 15px;
                 .title {
                     text-transform: uppercase;
+                    letter-spacing: 0.08em;
                     h1 {
                         margin: 0 0 0.67em 0;
                         padding: 0;
@@ -366,6 +378,7 @@ main.content-maindiv {
                     }
                 }
                 div.subtitle {
+                    letter-spacing: 0.08em;
                     h3 {
                         text-align: center;
                     }
@@ -373,12 +386,12 @@ main.content-maindiv {
                 .skillBox {
                     width: 100%;
                     margin: 20px 0;
-                    
                     p {
                         text-transform: uppercase;
                         margin: 0 0 10px;
                         padding: 0;
-                        letter-spacing: 1px;
+                        //letter-spacing: 1px;
+                        letter-spacing: 0.08em;
                         font-weight: bold;
                         &:nth-child(2) {
                             float: right;
@@ -389,11 +402,12 @@ main.content-maindiv {
                     .skill {
                         background: @textColor;
                         box-sizing: border-box;
-                        border-radius: 2px;
+                        .borderRadius(2px);
                         .skill_level {
                             background: @secondary1Color;
                             width: 100%;
                             height: 8px;
+                            .boxShadow(2px, 2px, 8px, 0, rgba(0,0,0,0.2));
                             &.html5 {
                                 width: 80%;
                             }
@@ -424,6 +438,7 @@ main.content-maindiv {
         background-color: @gray200;
         .container {
             .title {
+                letter-spacing: 0.08em;
                 text-align: center;
                 text-transform: uppercase;
             }
@@ -433,8 +448,13 @@ main.content-maindiv {
                 .iDos-part {
                     text-align: center;
                     padding: 10px;
+                    letter-spacing: 0.08em;
                     i {
                         font-size: 32px;
+                    }
+                    p {
+                        letter-spacing: 0.01em;
+                        line-height: 150%;
                     }
                 }
             }
@@ -471,6 +491,7 @@ main.content-maindiv {
                     padding: 10px;
                     max-width: 350px;
                     background-color: @secondary1Color;
+                    letter-spacing: 0.08em;
                     h3 {
                         margin: 0 0 15px 0;
                         font-size: 42px;
@@ -487,6 +508,7 @@ main.content-maindiv {
     section.portfolio {
         padding: 20px 0;
         .title {
+            letter-spacing: 0.08em;
             text-align: center;
             text-transform: uppercase;
         }
@@ -502,6 +524,7 @@ main.content-maindiv {
                         background-color: @textColorDark;
                         position: relative;
                         overflow: hidden;
+                        .boxShadow(2px, 2px, 8px, 0, rgba(0,0,0,0.2));
                         transition: background-color 0.5s;
                         img {
                             width: 100%;
@@ -560,19 +583,12 @@ main.content-maindiv {
         }
     }
 
-    @keyframes slideRight {
-        0% {
-            transform: scale(1.0);
-        }
-        100% {
-            transform: scale(1.1);
-        }
-    }
 
     section.news {
         padding: 20px 0;
         background-color: darken(@textColor, 13%);
         .title {
+            letter-spacing: 0.08em;
             text-align: center;
             text-transform: uppercase;
         }
@@ -582,7 +598,6 @@ main.content-maindiv {
                 width: 100%;
                 .news-part {
                     text-align: center;
-                    padding: 10px;
                     margin: 20px 0;
                     .flexBox();
                     flex-direction: column;
@@ -605,12 +620,15 @@ main.content-maindiv {
                             height: auto;
                             width: auto;
                             z-index: 0;
+                            .boxShadow(2px, 2px, 8px, 0, rgba(0,0,0,0.2));
                         }  
                     }
                     p {
+                        letter-spacing: 0.02em;
                         width: 85%;
                         margin: 0 auto;
-                        line-height: 1.6;
+                        line-height: 150%;
+                        text-align: justify;
                     }
                     .additional-info {
                         background: @textColorDark;
@@ -619,9 +637,11 @@ main.content-maindiv {
                         width: 85%;
                         margin: 0 auto;
                         .post-date {
+                            letter-spacing: 0.08em;
                             margin-right: 10px;
                         }
                         .post-comments {
+                            letter-spacing: 0.08em;
                             margin-left: 10px;
                         }
                     }
@@ -636,6 +656,7 @@ main.content-maindiv {
     section.contact {
         padding: 20px 0;
         .title {
+            letter-spacing: 0.08em;
             text-align: center;
             text-transform: uppercase;
         }
@@ -656,10 +677,7 @@ main.content-maindiv {
                             margin-bottom: 1.3rem;
                             padding: 5px;
                             border: 1px solid #dadada;
-                            border-radius: 2px;
-                            -moz-border-radius: 2px;
-                            -webkit-border-radius: 2px;
-                            -o-border-radius: 2px;
+                            .borderRadius(2px);
                             outline: none;
                             .transition(0.3s ease);
                             &:active, &:focus {
@@ -676,10 +694,7 @@ main.content-maindiv {
                             background-color: @secondary1Color;
                             color: @textColor;
                             padding: 6px 12px;
-                            border-radius: 2px;
-                            -moz-border-radius: 2px;
-                            -webkit-border-radius: 2px;
-                            -o-border-radius: 2px;
+                            .borderRadius(2px);
                             .boxShadow(0, 4px, 8px, 0, rgba(0,0,0,0.2));
                             .transition(all 0.2s ease);
                             &:hover {
@@ -753,7 +768,7 @@ main.content-maindiv {
         background: @secondary1Color;
         .boxShadow(0, 4px, 12px, 2px, rgba(50, 50, 50, 0.4));
         color: @textColor;
-        border-radius: 50%;
+        .borderRadius(50%);
         .transition(.25s all);
         i {
             position: absolute;
@@ -777,10 +792,7 @@ main.content-maindiv {
     background-color: @secondary1Color;
     color: @textColor;
     text-align: center;
-    border-radius: 2px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    -o-border-radius: 2px;
+    .borderRadius(2px);
     padding: 16px;
     position: fixed;
     z-index: 2;
@@ -794,11 +806,28 @@ main.content-maindiv {
     }
     &.show {
         visibility: visible;
-        -webkit-animation: notificationFadeIn 0.5s, notificationFadeOut 0.5s 2.5s;
-        animation: notificationFadeIn 0.5s, notificationFadeOut 0.5s 2.5s;
+        -webkit-animation: notificationFadeIn 0.7s, notificationFadeOut 0.7s 2.5s;
+        animation: notificationFadeIn 0.7s, notificationFadeOut 0.7s 2.5s;
     }
 }
 
+
+@-webkit-keyframes notificationFadeIn {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+@keyframes notificationFadeIn {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+@-webkit-keyframes notificationFadeOut {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+@keyframes notificationFadeOut {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
 
 
 // Mobile
@@ -866,7 +895,6 @@ main.content-maindiv {
                 .news-container {
                     .gridBox();
                     grid-template-columns: 1fr 1fr;
-                    grid-gap: 10px;
                     .news-part {
                     }
                 }
@@ -932,7 +960,6 @@ main.content-maindiv {
                 .news-container {
                     .gridBox();
                     grid-template-columns: 1fr 1fr 1fr;
-                    grid-gap: 10px;
                     .news-part {
                     }
                 }
@@ -955,3 +982,20 @@ main.content-maindiv {
     div.navbar-container nav.sidenav ul li a {font-size: 20px;}
 }
 
+
+
+
+
+/**
+ * ########################### ANIMATIONS ###########################
+ */
+
+@-webkit-keyframes slideRight {
+    0%   {transform: scale(1.0);}
+    100% {transform: scale(1.1);}
+}
+    
+@keyframes slideRight {
+    0%   {transform: scale(1.0);}
+    100% {transform: scale(1.1);}
+}

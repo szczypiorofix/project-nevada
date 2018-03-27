@@ -30,7 +30,6 @@ function showGoogleMaps() {
 };
 
 (function setSubmitMessageForm() {
-    console.log('OK@!');
     var request;
     $("#submitMessageForm").submit(function(event) {
         event.preventDefault();
