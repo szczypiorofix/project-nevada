@@ -17,7 +17,7 @@ namespace Core;
  */
 class AppCore {
 
-    const DEFAULT_CLASS = 'showcase'; // DEFAULT PAGE
+    const DEFAULT_CLASS = 'Showcase'; // DEFAULT PAGE
     const DEFAULT_METHOD = 'defaultmethod';
     const PAGES_NAME_PREFIX = 'Page';
 
@@ -39,6 +39,7 @@ class AppCore {
             else {
                $class = self::DEFAULT_CLASS;
                $calledDefaultClass = true;
+               //$class = "Error";
             }
         } else { // MAINTENANCE PAGE && AJAX
             $class = "Maintenance";

@@ -18,4 +18,7 @@ use \Core\ModelClasses\Widget;
  */
 class Aside extends Widget {
     
+    public function __construct() {
+        $this->body = '<aside class="sidebar"><p>SIDE BAR...</p></aside>';
+    }
 }

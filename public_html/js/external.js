@@ -77,28 +77,17 @@ var countDownToNumer = (function(e) {
      return function(e) {
         if (!executed) {
             executed = true;
-            var counter = 0;
-            //console.log(e);
-            var interval0 = setInterval(function() {
-                counter++; 
-                e[0].el.innerHTML = counter;
-                if (counter >= e[0].c) clearInterval(interval0);
-            }, parseInt(5000/e[0].c));
-            var interval1 = setInterval(function() {
-                counter++; 
-                e[1].el.innerHTML = counter;
-                if (counter >= e[1].c) clearInterval(interval1);
-            }, parseInt(5000/e[1].c));
-            var interval2 = setInterval(function() {
-                counter++; 
-                e[2].el.innerHTML = counter;
-                if (counter >= e[2].c) clearInterval(interval2);
-            }, parseInt(5000/e[2].c));
-            var interval3 = setInterval(function() {
-                counter++; 
-                e[3].el.innerHTML = counter;
-                if (counter >= e[3].c) clearInterval(interval3);
-            }, parseInt(5000/e[3].c));
+            var counter = [];
+            for (let i = 0; i < e.length; i++) {
+                counter[i] = {};
+                counter[i].count = 0;
+                counter[i].element = e[i];
+                counter[i].interval = setInterval(function() {
+                    counter[i].count++;
+                    counter[i].element.e.innerHTML = counter[i].count;
+                    if (counter[i].count >= counter[i].element.c) clearInterval(counter[i].interval);
+                }, parseInt(2000 / counter[i].element.c));
+            }
         }
     };
 })();
@@ -108,10 +97,10 @@ var el = document.getElementById("numbers");
 window.onscroll = function() {
     if ( document.body.scrollTop > (el.offsetTop - el.offsetHeight - 300) || document.documentElement.scrollTop > (el.offsetTop - el.offsetHeight - 300)) {
         countDownToNumer(
-            [{el: document.getElementById('num-cli'), c: 7},
-            {el: document.getElementById('num-pro'), c: 31},
-            {el: document.getElementById('num-cof'), c: 125},
-            {el: document.getElementById('num-col'), c: 256}]
+            [{e: document.getElementById('num-cli'), c: 7},
+            {e: document.getElementById('num-pro'), c: 31},
+            {e: document.getElementById('num-cof'), c: 125},
+            {e: document.getElementById('num-col'), c: 256}]
         );      
     }
 };

@@ -50,7 +50,7 @@ GROUP BY
         if ($query->rowCount() > 0) {
            $this->error = false;
         }
-    
+
         if (!$this->error) {
             $this->content = $query->fetch();
         }

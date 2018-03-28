@@ -53,7 +53,7 @@ class Pagepost extends Page {
         $pageContent = '<div class="maincontent-div">';
         $defaultImageFile = DIR_UPLOADS_IMAGES."default.jpg";
         $imageFile = $defaultImageFile;
-        
+
         if (is_array($content) || !is_null($content)) {
             if (file_exists(DIR_UPLOADS_IMAGES.$content['image']) && !is_dir(DIR_UPLOADS_IMAGES.$content['image'])) {
                 $imageFile = DIR_UPLOADS_IMAGES.$content['image'];
@@ -61,7 +61,7 @@ class Pagepost extends Page {
                 $imageFile = $defaultImageFile;
             }
             $pageContent .= 
-                '<section class="postlist postcard">'.
+                '<section class="post-content">'.
                     '<h1><a href="post/'.$content['url'].'">'.$content['title'].'</a>'.
                     '</h1>'.
                     '<p>'.$content['update_date'].'</p>'.
@@ -80,8 +80,10 @@ class Pagepost extends Page {
         $pageContent .= "</div>";
         
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
-        $this->addJSFile(['name' => 'MainScript', 'path' => 'js/script.js']);
-        $this->addJSFile(['name' => 'Vue.JS', 'path' => 'https://cdn.jsdelivr.net/npm/vue']);
+        $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
+        $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
+        
+        //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
 
         $metaData = new \Widgets\MetaData();
         $head = $metaData->getBody();
@@ -92,16 +94,30 @@ class Pagepost extends Page {
         $navbar = new \Widgets\Nav();
 
         $header = new \Widgets\Header();
-        $header->addBody($logo->getBody().$navbar->getBody());
+        $header->addBody($navbar->getBody().$logo->getBody());
 
         $footer = new \Widgets\Footer();
+
+        $sideBar = new \Widgets\Aside();
+
+        $ctaButton = new \Widgets\CTAButton();
         
         $body =
 <<<HTML
-    <div class="full-page-container">
-        {$header->getBody()}
-        {$pageContent}
+    <div class="full-page-container" id="mainDiv">
+        <!-- <div class="fullscreenbackground"></div> -->
+        <div class="nav-and-logo">
+            {$header->getBody()}
+        </div>
+        <main class="post-card">
+            {$pageContent}
+            {$sideBar->getBody()}
+        </main>
+        {$ctaButton->getBody()}
         {$footer->getBody()}
+        <div id="notificationsPanel">
+            <span id="notificationsContent"></span>
+        </div>
     </div>
 HTML;
         

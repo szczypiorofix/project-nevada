@@ -16,7 +16,7 @@ use Core\ModelClasses\Page, Core\Config, Models\PostListModel;
  *
  * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
-class Pageshowcase extends Page {
+class PageShowcase extends Page {
 
 
     private $db = null;
