@@ -44,20 +44,20 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 -------------------------- TAGS --------------------------
 */
 INSERT INTO `tags` (`id`, `name`) VALUES
-(1, 'Android'),
+(1, 'android'),
 (2, 'info'),
 (3, 'gry'),
 (4, 'web'),
-(5, 'PHP'),
-(6, 'MySQL'),
-(7, 'CSS'),
-(8, 'Java'),
-(9, 'JavaScript'),
+(5, 'php'),
+(6, 'mysql'),
+(7, 'css'),
+(8, 'java'),
+(9, 'javascript'),
 (10, 'desktop'),
 (11, 'software'),
 (12, 'hardware'),
-(13, 'Bootstrap'),
-(14, 'Articy-Draft');
+(13, 'bootstrap'),
+(14, 'articy-draft');
 
 
 

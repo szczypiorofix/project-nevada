@@ -738,13 +738,43 @@ main.content-maindiv {
 
 // POST CARD SECTION
 main.post-card {
-    .gridBox();
-    grid-template-columns: 1fr 1fr;
+    width: 100%;
     section.post-content {
+        padding: 10px;
+        width: 100%;
+        .post-title {
+            letter-spacing: 0.1em;
+        }
+        .post-date {
 
+        }
+        .post-image {
+            text-align: center;
+            img {
+                width: 100%;
+                max-width: 500px;
+            }
+        }
+        .post-content {
+            padding-top: 20px;
+            text-align: justify;
+            text-indent: 1.5em;
+            line-height: 1.4em;
+        }
+        .additional {
+            .flexBox();
+            flex-direction: row;
+            .post-categories {
+                margin-right: 5px;
+            }
+            .post-tags {
+                margin-left: 5px;
+            }
+        }
     }
     aside.sidebar {
-
+        padding: 10px;
+        width: 100%;
     }
 }
 

@@ -50,7 +50,8 @@ class Pagepost extends Page {
         
         //\Core\SitemMapXML::create($this->db);
         
-        $pageContent = '<div class="maincontent-div">';
+        //$pageContent = '<div class="maincontent-div">';
+        $pageContent = '';
         $defaultImageFile = DIR_UPLOADS_IMAGES."default.jpg";
         $imageFile = $defaultImageFile;
 
@@ -60,24 +61,46 @@ class Pagepost extends Page {
             } else {
                 $imageFile = $defaultImageFile;
             }
+            $date = new \DateTime($content['update_date']);
+            $dateString = $date->format('Y-m-d H:i');
+
+            $tagsOfPost = explode(',', $content['tagi']);
+            $taglist = '';
+            foreach($tagsOfPost as $tags) {
+                $taglist .= '<a href="tag/'.$tags.'">'.$tags.'</a>, ';
+            }
+            // USUNIĘCIE OSATNIEGO PRZECINKA Z LISTY TAGÓW
+            $taglist = rtrim($taglist,", ");
+
             $pageContent .= 
-                '<section class="post-content">'.
-                    '<h1><a href="post/'.$content['url'].'">'.$content['title'].'</a>'.
-                    '</h1>'.
-                    '<p>'.$content['update_date'].'</p>'.
-                    '<div>'.
-                        '<img src="'.$imageFile.'" alt="'.$content['image_description'].'"/>'.
-                        '<p>'.$content['content'].'</p>'.
-                    '</div>'.
-                    '<p>Kategoria: '.$content['kategorie'].'</p>'.
-                    '<p>Tagi: '.$content['tagi'].'</p>'.
-                '</section>';  
+                '<section class="post-content">
+                    <div class="post-title">
+                        <h1><a href="post/'.$content['url'].'">'.$content['title'].'</a></h1>
+                    </div>
+                    <div class="post-date">
+                        <p>'.$dateString.'</p>
+                    </div>
+                    <div class="post-image">
+                        <img src="'.$imageFile.'" alt="'.$content['image_description'].'"/>
+                    </div>
+                    <div class="post-content"
+                        <p>'.$content['content'].'</p>
+                    </div>
+                    <div class="additional">
+                        <div class="post-categories">
+                            <p><strong>Kategoria</strong>: <a href="kategoria/'.$content['kategorie'].'">'.$content['kategorie'].'</a></p>
+                        </div>
+                        <div class="post-tags">
+                            <p><strong>Tagi</strong>: '.$taglist.'</p>
+                        </div>
+                    </div>
+                </section>';  
         } else {
             $pageContent = '<div><h1>404<h1><h3>NIE ZNALEZIONO POSTU !!!</h3></div>';
         }
              
         
-        $pageContent .= "</div>";
+        //$pageContent .= "</div>";
         
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
@@ -105,7 +128,6 @@ class Pagepost extends Page {
         $body =
 <<<HTML
     <div class="full-page-container" id="mainDiv">
-        <!-- <div class="fullscreenbackground"></div> -->
         <div class="nav-and-logo">
             {$header->getBody()}
         </div>

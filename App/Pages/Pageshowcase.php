@@ -74,6 +74,8 @@ class PageShowcase extends Page {
             } else {
                 $imageFile = $defaultImageFile;
             }
+            $date = new \DateTime($row['update_date']);
+            $dateString = $date->format('Y-m-d H:i');
             $pageDynamicContent .= '<div class="news-part">
                                         <div class="image-div">
                                             <a href="post/'.$row['url'].'"><img src="'.$imageFile.'" /></a>
@@ -81,7 +83,7 @@ class PageShowcase extends Page {
                                         <a href="post/'.$row['url'].'"><h3>'.$row['title'].'</h3></a>
                                         <p>'.mb_substr($row['content'], 0, 185).'...</p>
                                         <div class="additional-info">
-                                            <span class="post-date">'.$row['update_date'].'</span>
+                                            <span class="post-date">'.$dateString.'</span>
                                             <span class="post-comments"><i class="far fa-comment-alt"></i> 1</span>
                                         </div>';
             $pageDynamicContent .= '</div>';
