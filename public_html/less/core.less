@@ -121,6 +121,7 @@ html, body {
     .latoRegularFont();
     font-size: 16px;
     color: @textColorDark;
+    background-color: @textColor;
 }
 
 a {
@@ -773,7 +774,9 @@ main.post-card {
         }
     }
     aside.sidebar {
+        background-color: @textColor;
         padding: 10px;
+        max-width: 450px;
         width: 100%;
     }
 }
@@ -947,6 +950,41 @@ main.post-card {
                     }
                 }
             }
+        }
+    }
+    main.post-card {
+        //width: 100%;
+        .flexBox();
+        flex-direction: row;
+        section.post-content {
+            .post-title {
+            }
+            .post-date {
+
+            }
+            .post-image {
+                //text-align: center;
+                img {
+                    //width: 100%;
+                    //max-width: 500px;
+                }
+            }
+            .post-content {
+                
+            }
+            .additional {
+                //.flexBox();
+                //flex-direction: row;
+                .post-categories {
+                    //margin-right: 5px;
+                }
+                .post-tags {
+                    //margin-left: 5px;
+                }
+            }
+        }
+        aside.sidebar {
+            max-width: 400px;
         }
     }
 }
