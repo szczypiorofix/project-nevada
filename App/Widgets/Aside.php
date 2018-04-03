@@ -33,8 +33,7 @@ class Aside extends Widget {
                     <a class="twitter-follow-button" href="https://twitter.com/szczypiorofix">Follow @Szczypiorofix</a>
                 </div>
             </div>
-        </aside>';
-        
+        </aside>';        
         
         $twitterJS = '$(document).ready(function(){	
 	window.twttr = (function(d, s, id) {
