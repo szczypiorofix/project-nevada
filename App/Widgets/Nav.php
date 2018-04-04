@@ -29,13 +29,13 @@ class Nav extends Widget {
                     <ul>
                         <li><a href="javascript:void(0)" class="closebtn" onclick="SideNavbar.closeNav()"><i class="fas fa-times"></i></a></li>
                         <li><a href="{$baseHref}" class="scroll-btn">Strona główna</a></li>
-                        <li><a href="#aboutMe" class="scroll-btn">O mnie</a></li>
-                        <li><a href="#mySkills" class="scroll-btn">Umiejętności</a></li>
-                        <li><a href="#whatIDo" class="scroll-btn">Co ja robię</a></li>
-                        <li><a href="#numbers" class="scroll-btn">Liczby</a></li>
-                        <li><a href="#portfolio" class="scroll-btn">Portfolio</a></li>
-                        <li><a href="#news" class="scroll-btn">Informacje</a></li>
-                        <li><a href="#contact" class="scroll-btn">Kontakt</a></li>
+                        <li><a href="{$baseHref}#aboutMe" class="scroll-btn">O mnie</a></li>
+                        <li><a href="{$baseHref}#mySkills" class="scroll-btn">Umiejętności</a></li>
+                        <li><a href="{$baseHref}#whatIDo" class="scroll-btn">Co ja robię</a></li>
+                        <li><a href="{$baseHref}#numbers" class="scroll-btn">Liczby</a></li>
+                        <li><a href="{$baseHref}#portfolio" class="scroll-btn">Portfolio</a></li>
+                        <li><a href="{$baseHref}#news" class="scroll-btn">Informacje</a></li>
+                        <li><a href="{$baseHref}#contact" class="scroll-btn">Kontakt</a></li>
                     </ul>
                     <div class="socialmedia-div">
                         <a href="http://facebook.com" target="_blank" title="Facebook" class="fab fa-facebook-f"></a>
@@ -43,11 +43,14 @@ class Nav extends Widget {
                         <a href="http://slack.com" target="_blank" title="Slack" class="fab fa-slack"></a>
                         <a href="http://youtube.com" target="_blank" title="Youtube" class="fab fa-youtube"></a>
                         <a href="http://github.com" target="_blank" title="GitHub" class="fab fa-github"></a>
-                        <!-- <a href="http://skype.com" target="_blank" title="Skype" class="fab fa-skype"></a> -->
                     </div>
                 </nav>
                 <div class="navbar-launcher-container">
                     <span class="navbar-launcher" onclick="SideNavbar.openNav()"><i class="fas fa-bars" id="navbarLauncher"></i></span>
+                    <div class="search-field-container">
+                        <input class="search-field close" type="text" name="input-text-field" id="input-text-field">
+                        <span class="search-launcher" onclick="SearchField.open()"><i class="fas fa-search" id="searchLauncher"></i></span>
+                    </div>
                 </div>
             </div>
 HTML;

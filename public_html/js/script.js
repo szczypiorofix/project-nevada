@@ -29,6 +29,22 @@ var SideNavbar = /** @class */ (function () {
     };
     return SideNavbar;
 }());
+var SearchField = /** @class */ (function () {
+    function SearchField() {
+    }
+    SearchField.e = function (el) {
+        return document.getElementById(el);
+    };
+    SearchField.open = function () {
+        this.isOpened = !this.isOpened;
+        if (this.isOpened)
+            this.e("input-text-field").className = "search-field open";
+        else
+            this.e("input-text-field").className = "search-field close";
+    };
+    SearchField.isOpened = false;
+    return SearchField;
+}());
 function goToTop() {
     (function smoothscroll() {
         var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;

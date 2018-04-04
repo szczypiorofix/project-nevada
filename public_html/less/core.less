@@ -273,9 +273,9 @@ div.navbar-container {
         }
     }
     div.navbar-launcher-container {
-        .flexBox;
+        .flexBox();
         min-height: 60px;
-        justify-content: flex-start;
+        justify-content: space-between;
         span.navbar-launcher {
            font-size: 30px;
            cursor: pointer;
@@ -286,9 +286,67 @@ div.navbar-container {
            &:hover {
                color: @secondary1Color;
            }
-        }   
+        }
+        div.search-field-container {
+            .flexBox();
+            flex-direction: row;
+            align-items: center;
+            span.search-launcher {
+                font-size: 30px;
+                cursor: pointer;
+                .transition(0.3s);
+                i {
+                    padding: 15px 15px;
+                }
+                &:hover {
+                    color: @secondary1Color;
+                }
+            }
+            input.search-field {
+                width: 130px;
+                box-sizing: border-box;
+                border: 2px solid #ccc;
+                border-radius: 4px;
+                font-size: 16px;
+                background-color: white;
+                background-image: url('searchicon.png');
+                background-position: 10px 10px; 
+                background-repeat: no-repeat;
+                padding: 12px 20px 12px 40px;
+                -webkit-transition: width 0.4s ease-in-out;
+                transition: width 0.4s ease-in-out;
+                &:focus {
+                    width: 100%;
+                }
+            }
+        }
+        
     }
 }
+
+
+// WIDTH LEFT ANIMATION
+@-webkit-keyframes openFieldAnim {
+    0% {width: 0;} 
+    100% {width: 250px;}
+}
+
+@keyframes openFieldAnim {
+    0% {width: 0;} 
+    100% {width: 250px;}
+}
+
+// WIDTH RIGHT ANIMATION
+@-webkit-keyframes closeFieldAnim {
+    0% {width: 250px;} 
+    100% {width: 0;}
+}
+
+@keyframes closeFieldAnim {
+    0% {width: 250px;} 
+    100% {width: 0px;}
+}
+
 
 
 main.content-maindiv {
@@ -754,6 +812,61 @@ main.post-card {
             img {
                 width: 100%;
                 max-width: 500px;
+                transition: opacity 0.2s ease-in-out;
+                &:hover {
+                    opacity: 0.8;
+                    cursor: pointer;
+                }
+            }
+            
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 2;
+                padding-top: 100px;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgb(0,0,0);
+                background-color: rgba(0,0,0,0.9);
+                .modal-content {
+                    margin: auto;
+                    display: block;
+                    width: 98%;
+                    max-width: 700px;
+                }
+                .close {
+                    position: absolute;
+                    top: 15px;
+                    right: 35px;
+                    color: @secondary2Color;
+                    font-size: 40px;
+                    font-weight: bold;
+                    transition: 0.3s;
+                    &:hover, &:focus {
+                        color: @secondary1Color;
+                        text-decoration: none;
+                        cursor: pointer;
+                    }
+                }
+                #imageModalCaption {
+                    margin: auto;
+                    display: block;
+                    width: 80%;
+                    max-width: 700px;
+                    text-align: center;
+                    color: #ccc;
+                    padding: 10px 0;
+                    height: 150px;
+                }
+                .modal-content, #imageModalCaption {    
+                    -webkit-animation-name: zoom;
+                    -webkit-animation-duration: 0.6s;
+                    animation-name: zoom;
+                    animation-duration: 0.6s;
+                }
             }
         }
         .post-content {
@@ -776,12 +889,23 @@ main.post-card {
     aside.sidebar {
         background-color: @textColor;
         padding: 10px;
-        max-width: 450px;
+        max-width: 500px;
         width: 100%;
+        margin: 0 auto;
     }
 }
 
 
+// ZOOM ANIMATION
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)} 
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
 
 
 
@@ -808,7 +932,7 @@ main.post-card {
     display: block;
     bottom: 20px;
     right: 20px;
-    z-index: 100;
+    z-index: 1;
     a {
         position: relative;
         display: block;
@@ -968,6 +1092,7 @@ main.post-card {
                     //width: 100%;
                     //max-width: 500px;
                 }
+                
             }
             .post-content {
                 

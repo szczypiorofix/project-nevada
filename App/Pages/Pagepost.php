@@ -81,7 +81,12 @@ class Pagepost extends Page {
                         <p>'.$dateString.'</p>
                     </div>
                     <div class="post-image">
-                        <img src="'.$imageFile.'" alt="'.$content['image_description'].'"/>
+                        <img id="imageModalSrc" src="'.$imageFile.'" alt="'.$content['image_description'].'" />
+                        <div id="imageModalDiv" class="modal">
+                            <span class="close" id="imageModalClose">&times;</span>
+                            <img class="modal-content" id="imageModalDest">
+                            <div id="imageModalCaption"></div>
+                        </div>
                     </div>
                     <div class="post-content"
                         <p>'.$content['content'].'</p>
@@ -105,8 +110,25 @@ class Pagepost extends Page {
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
-        
+
         //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
+
+        $this->addJS('
+        var modal = document.getElementById("imageModalDiv");
+        var img = document.getElementById("imageModalSrc");
+        var modalImg = document.getElementById("imageModalDest");
+        var captionText = document.getElementById("imageModalCaption");
+        img.onclick = function() {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+        }
+        var span = document.getElementById("imageModalClose");
+        span.onclick = function() { 
+            modal.style.display = "none";
+        }
+        ');
+
 
         $metaData = new \Widgets\MetaData();
         $head = $metaData->getBody();
