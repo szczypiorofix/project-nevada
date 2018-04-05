@@ -47,7 +47,9 @@ class Nav extends Widget {
                 </nav>
                 <div class="navbar-launcher-container">
                     <span class="navbar-launcher" onclick="SideNavbar.openNav()"><i class="fas fa-bars" id="navbarLauncher"></i></span>
+                    <div id="google_translate_element"></div>
                 </div>
+                
             </div>
 HTML;
     }

@@ -133,6 +133,8 @@ class Pagepost extends Page {
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
+        $this->addJSFile(['name' => 'Google Translate Script', 'path' => 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit', 'versioning' => false, 'async' => false]);
+        $this->addJSFile(['name' => 'Google Translate Script Starter', 'path' => 'js/translate.js', 'versioning' => true]);
 
         //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
 
