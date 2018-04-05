@@ -47,10 +47,6 @@ class Nav extends Widget {
                 </nav>
                 <div class="navbar-launcher-container">
                     <span class="navbar-launcher" onclick="SideNavbar.openNav()"><i class="fas fa-bars" id="navbarLauncher"></i></span>
-                    <div class="search-field-container">
-                        <input class="search-field close" type="text" name="input-text-field" id="input-text-field">
-                        <span class="search-launcher" onclick="SearchField.open()"><i class="fas fa-search" id="searchLauncher"></i></span>
-                    </div>
                 </div>
             </div>
 HTML;

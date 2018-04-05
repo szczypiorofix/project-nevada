@@ -23,7 +23,7 @@ class MetaData extends Widget {
         'description' => 'This is my new homepage. It\'s build in my own home-made CMS :)',
         'author' => 'Wróblewski Piotr',
         'keywords' => 'JavaScript',
-        'url' => 'http://localhost/',
+        'url' => 'https://www.wroblewskipiotr.pl/',
         'content' => 'website',
         'twitter-meta-field-left' => '',
         'twitter-meta-field-left-below' => '',

@@ -71,11 +71,13 @@ class Pagepost extends Page {
             }
             // USUNIĘCIE OSATNIEGO PRZECINKA Z LISTY TAGÓW
             $taglist = rtrim($taglist,", ");
-
+            
+            $actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+            
             $pageContent .= 
                 '<section class="post-content">
                     <div class="post-title">
-                        <h1><a href="post/'.$content['url'].'">'.$content['title'].'</a></h1>
+                        <h1>'.$content['title'].'</h1>
                     </div>
                     <div class="post-date">
                         <p>'.$dateString.'</p>
@@ -93,11 +95,32 @@ class Pagepost extends Page {
                     </div>
                     <div class="additional">
                         <div class="post-categories">
-                            <p><strong>Kategoria</strong>: <a href="kategoria/'.$content['kategorie'].'">'.$content['kategorie'].'</a></p>
+                            <p><strong><i class="fas fa-folder-open"></i></strong>: <a href="kategoria/'.$content['kategorie'].'">'.$content['kategorie'].'</a></p>
                         </div>
                         <div class="post-tags">
-                            <p><strong>Tagi</strong>: '.$taglist.'</p>
+                            <p><strong><i class="fas fa-tags"></i></strong>: '.$taglist.'</p>
                         </div>
+                    </div>
+                    <div class="disqus-container">
+                        <div id="disqus_thread"></div>
+                        <script>
+                        /**
+                        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                        /*
+                        var disqus_config = function () {
+                        this.page.url = '.$actual_link.';  // Replace PAGE_URL with your pages canonical URL variable
+                        this.page.identifier = '.$content['id'].'; // Replace PAGE_IDENTIFIER with your pages unique identifier variable
+                        };
+                        */
+                        (function() { // DONT EDIT BELOW THIS LINE
+                        var d = document, s = d.createElement("script");
+                        s.src = "https://wroblewskipiotr.disqus.com/embed.js";
+                        s.setAttribute("data-timestamp", +new Date());
+                        (d.head || d.body).appendChild(s);
+                        })();
+                        </script>
+                        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
                     </div>
                 </section>';  
         } else {
@@ -143,7 +166,7 @@ class Pagepost extends Page {
 
         $footer = new \Widgets\Footer();
 
-        $sideBar = new \Widgets\Aside();
+        $sideBar = new \Widgets\Aside($dbConnection);
 
         $ctaButton = new \Widgets\CTAButton();
         

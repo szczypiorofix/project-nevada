@@ -31,22 +31,6 @@ class SideNavbar {
 }
 
 
-class SearchField {
-
-    private static isOpened: boolean = false;
-
-    private static e(el: string) {
-        return document.getElementById(el);
-    }
-
-    static open() {        
-        this.isOpened = !this.isOpened;
-        if (this.isOpened) this.e("input-text-field").className = "search-field open";
-        else this.e("input-text-field").className = "search-field close";
-    }
-
-}
-
 function goToTop() {
     (function smoothscroll(){
         var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
