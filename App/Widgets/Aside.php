@@ -25,13 +25,32 @@ class Aside extends Widget {
         $categoriesListModel = new CategoriesListModel($dbConnection);
         $categoriesListContent = "";
         foreach($categoriesListModel->getContent() as $row) {
-            $categoriesListContent .= '<li><a href="#">'.$row['name'].' ( '.$row['post_count'].' )</a></li>';
+            $categoriesListContent .= '<li><a href="kategoria/'.strtolower($row['name']).'"><span class="title">'.$row['name'].'</span><span class="post-count">'.$row['post_count'].'</span></a></li>';
         }
 
         $tagsListModel = new TagsListModel($dbConnection);
         $tagsListContent = "";
-        foreach($tagsListModel->getContent() as $row) {
-            $tagsListContent .= '<li><a href="#">'.$row['name'].' ( '.$row['post_count'].' )</a></li>';
+        $tagsContent = $tagsListModel->getContent();
+        $maxTags = 0;
+        for ($i = 0; $i < count($tagsContent); $i++) {
+            $maxTags = max($maxTags, $tagsContent[$i]['post_count']);
+        }
+        
+        foreach($tagsContent as $row) {
+            $c = '';
+            if ($row['post_count'] <= $maxTags) {
+                $c = 'biggest';
+            }
+            if ($row['post_count'] <= ($maxTags * 0.75)) {
+                $c = 'big';
+            }
+            if ($row['post_count'] <= ($maxTags * 0.5)) {
+                $c = 'medium';
+            }
+            if ($row['post_count'] <= ($maxTags * 0.25)) {
+                $c = 'small';
+            }
+            $tagsListContent .= '<a class="cloudtag '. $c .'" href="tag/'.strtolower($row['name']).'"><span class="title">'.$row['name'].'</span><span class="post-count">'.$row['post_count'].'</span></a>';
         }
         
         $this->body = 
@@ -49,7 +68,7 @@ class Aside extends Widget {
             </div>
             <div class="tags-list-container">
                 <h3>Tagi:</h3>
-                <ul>{$tagsListContent}</ul>
+                <div class="tags">{$tagsListContent}</div>
             </div>
             <a class="twitter-timeline" data-lang="pl" data-height="800" href="https://twitter.com/szczypiorofix?ref_src=twsrc%5Etfw"></a>
         </aside>

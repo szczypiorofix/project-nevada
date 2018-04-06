@@ -16,7 +16,7 @@ use Core\ModelClasses\Page, Core\Config;
  *
  * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
-class PageError extends Page {
+class PageAdmin extends Page {
 
 
     private $db = null;
@@ -51,41 +51,37 @@ class PageError extends Page {
         $this->db = $dbConnection->getDB();
         $this->error = $dbConnection->isError();
         $this->errorMsg = $dbConnection->getErrorMsg();
-        $baseHref = BASE_HREF;
-        $pageContent =
-<<<HTML
-    <main class="content-maindiv">
 
-        <section class="error-container">
-            <div class="video-container">
-                <div class="video404">
-                    <video autoplay muted loop width="320" height="240">
-                        <source src="video/r2d2.mp4" type="video/mp4">
-                        Your browser does not support HTML5 video.
-                    </video>
-                </div>
-            </div>
-            <div class="error-caption">
-                <h1>404</h1>
-                <h3>Nie znaleziono strony</h3>
-                <p>Spróbuj:</p>
-                <ul>
-                    <li>użyć wyszukiwarki</li>
-                    <li>przejść do <a href="{$baseHref}">strony głównej</a></li>
-                    <li>wrócić do poprzedniej <a href="javascript:history.back()">strony</a></li>
-                </ul>
-            </div>
-        </section>
-    </main>
-HTML;
+        $sessionContent = "";
+        $isSession = \Core\Session::check($this->db);  
+        if ($isSession) {
+            $sessionContent = "Użytkownik zalogowany";
+        } else {
+            $sessionContent = "Użytkownik niezalogowany!";
+        }
         
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
         
         //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
-        //$this->addJSFile(['name' => 'Google Maps API', 'path' => 'https://maps.googleapis.com/maps/api/js?key='.Config::get("GOOGLE_MAPS_API_KEY").'&callback=showGoogleMaps']);
         
+
+        $baseHref = BASE_HREF;
+        $pageContent =
+<<<HTML
+    <main class="content-maindiv">
+        <h1>ADMIN PAGES</h1>
+        <p>TODOs:</p>
+        <ul>
+            <li>tutaj będzie zarządzanie całym contentem strony</li>
+            <li>Sprawdzanie zalogowania przez sesje (ciasteczka?). Jesli nie zalogowany to przerzuca na stronę logowania</li>
+            <li>Strony: logowanie, strona panelu admina (odnośniki do: dodaj, edytuj, usuń posty)</li>            
+        </ul>
+        <h3>Stan sesji: {$sessionContent}</h3>
+    </main>
+HTML;
+
 
         $metaData = new \Widgets\MetaData();
         $head = $metaData->getBody();

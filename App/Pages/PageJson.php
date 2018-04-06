@@ -32,16 +32,9 @@ class PageJson extends \Core\ModelClasses\Page {
         
         $postList = new PostListModel(PostListModel::TYPE_ID_SORT, $dbConnection, 0, 0);
         
-        
-        var_dump($postList->getContent());
-        
-        //header('Content-Type: application/json');
-        //$je = json_encode($postList->getContent());
-        
-        //$jd = json_decode($je);
-        //var_dump($jd);
-        
-        exit();
+        header('Content-Type: application/json');
+        echo json_encode($postList->getContent());
+        exit;
     }
 
 }

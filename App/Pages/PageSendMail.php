@@ -55,8 +55,7 @@ class PageSendMail extends Page {
                     $response = $sg->client->mail()->send()->post($mail);
 
                     $rc = $response->statusCode();
-                    $rc == 201;
-                    if ($rc !== 202) {
+                    if ($rc === 202) {
                         echo 'Wiadomość została wysłana. Dziękuję!';
                     } else {
                         echo 'Wystąpił błąd podczas wysyłania wiadomości. Kod odpowiedzi: '.$rc.'. Skontaktuj się z administratorem strony. Adres e-mail: poczta@wroblewskipiotr.pl.';

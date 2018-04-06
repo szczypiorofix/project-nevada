@@ -37,9 +37,12 @@ class AppCore {
                 unset($url[0]);
             }
             else {
-               $class = self::DEFAULT_CLASS;
-               $calledDefaultClass = true;
-               //$class = "Error";
+                if (!is_null($url)) {
+                    $class = "Error";
+                } else {
+                    $class = self::DEFAULT_CLASS;
+                    $calledDefaultClass = true;
+                }
             }
         } else { // MAINTENANCE PAGE && AJAX
             $class = "Maintenance";
@@ -55,7 +58,7 @@ class AppCore {
         
         $className = "\Pages\\".self::PAGES_NAME_PREFIX.$class;
         $page = new $className();
-
+        
         if ($calledDefaultClass) {
             if (isset($url[0]) && method_exists($page, $url[0])) {
                 $method = $url[0];
