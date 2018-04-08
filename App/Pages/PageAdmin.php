@@ -57,9 +57,15 @@ class PageAdmin extends Page {
         if ($isSession) {
             $sessionContent = "Użytkownik zalogowany";
         } else {
-            $sessionContent = "Użytkownik niezalogowany!";
+            $sessionContent = "Użytkownik niezalogowany!";    
+        }
+
+        
+        if (isset($_POST['loginname']) && isset($_POST['loginpassword'])) {
+            $sessionContent = 'Login OK!';
         }
         
+
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
@@ -71,14 +77,33 @@ class PageAdmin extends Page {
         $pageContent =
 <<<HTML
     <main class="content-maindiv">
-        <h1>ADMIN PAGES</h1>
-        <p>TODOs:</p>
-        <ul>
-            <li>tutaj będzie zarządzanie całym contentem strony</li>
-            <li>Sprawdzanie zalogowania przez sesje (ciasteczka?). Jesli nie zalogowany to przerzuca na stronę logowania</li>
-            <li>Strony: logowanie, strona panelu admina (odnośniki do: dodaj, edytuj, usuń posty)</li>            
-        </ul>
-        <h3>Stan sesji: {$sessionContent}</h3>
+        <section class="admin-container">
+            <h1>ADMIN PAGES</h1>
+            <p>TODOs:</p>
+            <ul>
+                <li>tutaj będzie zarządzanie całym contentem strony</li>
+                <li>Sprawdzanie zalogowania przez sesje (ciasteczka?). Jesli nie zalogowany to przerzuca na stronę logowania</li>
+                <li>Strony: logowanie, strona panelu admina (odnośniki do: dodaj, edytuj, usuń posty)</li>            
+            </ul>
+            <h3>Stan sesji: {$sessionContent}</h3>
+            <form class="login-container" id="loginAdminForm" method="POST">
+                <div class="input-group">
+                    <input type="text" placeholder="login" name="loginname" required/>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="hasło" name="loginpassword" required/>
+                </div>
+                <div class="input-group">
+                    <input type="submit" value="Zaloguj" />
+                </div>
+            </form>
+
+            <div class="admin-panel">
+                <div class="add-post-panel">
+                    <button class="button">Dodaj post</button>
+                </div>
+            </div>
+        </section>
     </main>
 HTML;
 

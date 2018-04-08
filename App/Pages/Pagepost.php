@@ -72,7 +72,8 @@ class Pagepost extends Page {
             // USUNIĘCIE OSATNIEGO PRZECINKA Z LISTY TAGÓW
             $taglist = rtrim($taglist,", ");
             
-            $actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+            //$actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+            $actual_link = $this->getCurrentUrl();
             
             $pageContent .= 
                 '<section class="post-content">
