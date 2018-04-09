@@ -161,13 +161,30 @@ class PageAdmin extends Page {
     <main class="content-maindiv">
         <section class="admin-container">
             
-            <h1>ADMIN PAGES</h1>
+            <h3>EDYCJA POSTU</h3>
             
-            <input type="text" value="{$content['title']}" />
-            <input type="text" value="{$content['image_description']}" />
-            <textarea class="tmce">{$content['content']}</textarea>
-            <input type="file" />
-            <input type="submit" value="Zapisz" />
+            <div class="edit-panel">
+                <div class="input-group">
+                    <label>Tytuł:</label>
+                    <input type="text" value="{$content['title']}" />
+                </div>
+                <div class="input-group">
+                    <label>Treść:</label>
+                    <textarea class="tmce">{$content['content']}</textarea>
+                </div>
+                <div class="input-group">
+                    <label>Obrazek:</label>
+                    <input type="file" name="file" id="file" />
+                    <label for="file"><i class="fas fa-upload"></i> Wybierz plik</label>
+                </div>
+                <div class="input-group">
+                    <label>Opis obrazka:</label>
+                    <input type="text" value="{$content['image_description']}" />
+                </div>
+                <div class="input-group">
+                    <button class="submit" onclick="savePost()">Zapisz</button>
+                </div>
+            </div>
 
         </section>
     </main>
@@ -209,6 +226,11 @@ HTML;
 HTML;
         
         $this->setBody($body);
+    }
+    
+    public function save($args) {
+        echo 'Rekord zapisany!';
+        exit;
     }
     
     public function delete($args) {

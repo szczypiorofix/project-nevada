@@ -78,3 +78,26 @@ var tableOfPosts = {
     }
 };
 
+function savePost() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "admin/save", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            console.log(this.response);
+            console.log('OK!');
+            showNotification(this.response);
+        }
+    };
+    xhttp.send("postid="+1);
+}
+
+function showNotification(n) {
+    let notificationsPanel = document.getElementById("notificationsPanel");
+    let notificationsContent = document.getElementById("notificationsContent");
+    notificationsContent.innerHTML = n;
+    notificationsPanel.className = "show";
+    setTimeout(function() {
+        notificationsPanel.className = notificationsPanel.className.replace("show", "");
+    }, 3000);
+}
