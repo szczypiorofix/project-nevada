@@ -19,15 +19,6 @@ use Core\ModelClasses\Page, Core\Config;
 class PageSendMail extends Page {
     
 
-    private function checkFilters($fields) {
-        foreach($fields as $field => $filter) {
-            if (filter_input(INPUT_POST, $field, $filter) == null) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     public function defaultmethod($args) {
         
         $inputFields = [
@@ -35,7 +26,7 @@ class PageSendMail extends Page {
             'contact-form-email' => FILTER_SANITIZE_STRING,
             'contact-form-message' => FILTER_SANITIZE_STRING
         ];
-
+        
         if (isset($_POST['contact-form-email'])) {
             if (filter_var($_POST['contact-form-email'], FILTER_VALIDATE_EMAIL)) {
                 if ($this->checkFilters($inputFields)) {
@@ -50,8 +41,8 @@ class PageSendMail extends Page {
                     $to = new \SendGrid\Email("Wróblewski Piotr", "szczypiorofix@o2.pl");
                     $content = new \SendGrid\Content("text/plain", $contactFormName." pisze: ".$contactFormMessage);
                     $mail = new \SendGrid\Mail($from, $subject, $to, $content);
-                    $apiKey = Config::get('SENDGRID_API_KEY');
-                    $sg = new \SendGrid($apiKey);
+                    
+                    $sg = new \SendGrid(Config::get('SENDGRID_API_KEY'));
                     $response = $sg->client->mail()->send()->post($mail);
 
                     $rc = $response->statusCode();

@@ -1,3 +1,12 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2018 Piotr Wróblewski
+ *
+ * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
+ *
+ */
+
 (function smoothScrollToSections() {
     $(".scroll-btn").on('click', function (event) {
         if (this.hash !== "") {

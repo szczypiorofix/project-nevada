@@ -60,12 +60,32 @@ abstract class Page {
     }
     
 
-    /* OVERRIDE toString() METHOD */
+    /**
+     * Override of __toString() function
+     * @return type - name of class
+     */
     public function __toString() {
         return get_class($this);
     }
 
+    /**
+     * Checking filter from from inputs
+     * @param type $fields - form inputs
+     * @return boolean
+     */
+    public function checkFilters($fields) {
+        foreach($fields as $field => $filter) {
+            if (filter_input(INPUT_POST, $field, $filter) == null) {
+                return false;
+            }
+        }
+        return true;
+    }
 
+    /**
+     * Get current url
+     * @return boolean
+     */
     public function getCurrentUrl() {
         return (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     }
@@ -136,6 +156,10 @@ abstract class Page {
         }
     }
     
+    /**
+     * Add JavaScript script file to the head part of html
+     * @param String $jsHeadFile - JS file name
+     */
     public function addJSHeadFile($jsHeadFile) {
         if (($jsHeadFile !== '' || !is_null($jsHeadFile)) && is_array($jsHeadFile) ) {
             array_push($this->jsHeadFiles, $jsHeadFile);

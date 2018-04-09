@@ -18,6 +18,7 @@ use Core\ModelClasses\DataModel, Core\FrameworkException, PDO, PDOException;
  */
 class PostListModel extends DataModel {
     
+    const GET_ALL_POSTS = -1;
     const TYPE_ID_SORT = 1;
     private $input = null;
     private $inputPage = null;
@@ -58,9 +59,9 @@ LIMIT
 OFFSET
    :offset";
     
-    function __construct($type, $dbConnection, $input, $inputPage) {
+    function __construct($type, $dbConnection, $input, $inputPage, $postsToDisplay = 6) {
         $maxrecords = -1;
-        $postsOnSite = 6;
+        $postsOnSite = $postsToDisplay;
         $this->input = $input;
         $this->inputPage = $inputPage;
         if (empty($inputPage)) {
@@ -79,19 +80,22 @@ OFFSET
         $db = $dbConnection->getDB();
         $this->error = true;
         $offset = ($this->inputPage) * $postsOnSite;
-      
+        
         // ############## POST ID SORT ####################### ///
         if ($this->type == self::TYPE_ID_SORT) {
              try {
-                $query = $db->prepare(self::GET_POSTS_PAGE);
-                $query->bindValue(':postsonsite', $postsOnSite, PDO::PARAM_INT);
-                $query->bindValue(':offset', $offset, PDO::PARAM_INT);
-                $query->execute();
-
                 $getNumberQuery = $db->prepare(self::GET_POSTS_PAGE_COUNTER);
                 $getNumberQuery->execute();
                 $results = $getNumberQuery->fetch();
                 $maxrecords = $results['counter'];
+                
+                if ($postsOnSite === -1) {
+                    $postsOnSite = $maxrecords;
+                }
+                $query = $db->prepare(self::GET_POSTS_PAGE);
+                $query->bindValue(':postsonsite', $postsOnSite, PDO::PARAM_INT);
+                $query->bindValue(':offset', $offset, PDO::PARAM_INT);
+                $query->execute();
              }
              catch (FrameworkException $exc) {
                 $this->error = true;

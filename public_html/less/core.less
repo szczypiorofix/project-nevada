@@ -852,6 +852,35 @@ main.content-maindiv {
                     }
                 }
             }
+            table.posts-table {
+                border-collapse: collapse;
+                width: 100%;
+                td, th {
+                    border: 1px solid #dddddd;
+                    text-align: left;
+                    padding: 8px;
+                }
+                
+                td button.admin-button {
+                    border: none;
+                    background-color: @secondary2Color;
+                    color: @textColor;
+                    padding: 6px 16px;
+                    margin: 2px;
+                    &:hover {
+                        background-color: darken(@secondary2Color, 10%);
+                        cursor: pointer;
+                    }
+                }
+                
+                td button:nth-child(even) i {
+                    color: red;
+                }
+
+                tr:nth-child(even) {
+                    background-color: #dddddd;
+                }
+            }
         }
     }
 }
