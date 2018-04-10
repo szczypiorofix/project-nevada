@@ -80,6 +80,10 @@ var tableOfPosts = {
 
 function savePost() {
     var xhttp = new XMLHttpRequest();
+    let inputValues = "posttitle="+document.getElementById('post-title').value
+    +"&post-content="+document.getElementById('post-content').value
+    +"&post-file="+document.getElementById('post-file').value
+    +"&post-imagetitle="+document.getElementById('post-imagetitle').value;
     xhttp.open("POST", "admin/save", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.onreadystatechange = function() {
@@ -89,7 +93,7 @@ function savePost() {
             showNotification(this.response);
         }
     };
-    xhttp.send("postid="+1);
+    xhttp.send(inputValues);
 }
 
 function showNotification(n) {

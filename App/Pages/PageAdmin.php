@@ -277,7 +277,8 @@ HTML;
     }
     
     public function save($args) {
-        echo 'Zapisano!';
+        //echo 'Zapisano!';
+        var_dump($_POST);
         exit;
     }
     
