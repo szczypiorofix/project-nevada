@@ -107,9 +107,24 @@ class PageAdmin extends Page {
 
         $this->error = true;
         try {
-            $query = $this->db->prepare("SELECT * FROM posts WHERE id=:postid");
+            $query = $this->db->prepare("SELECT * FROM `posts` WHERE `id`=:postid");
             $query->bindValue(':postid', $id, PDO::PARAM_INT);
             $query->execute();
+
+            $queryPostCategories = $this->db->prepare("SELECT `post_categories`.categoryid FROM `post_categories` WHERE `postid`=:postid");
+            $queryPostCategories->bindValue(':postid', $id, PDO::PARAM_INT);
+            $queryPostCategories->execute();
+
+            $queryCategories = $this->db->prepare("SELECT * FROM `categories`");
+            $queryCategories->execute();
+
+            $queryPostTags = $this->db->prepare("SELECT `post_tags`.tagid FROM `post_tags` WHERE `postid`=:postid");
+            $queryPostTags->bindValue(':postid', $id, PDO::PARAM_INT);
+            $queryPostTags->execute();
+
+            $queryTags = $this->db->prepare("SELECT * FROM `tags`");
+            $queryTags->execute();
+
             $this->error = false;
         }
         catch (FrameworkException $exc) {
@@ -124,8 +139,32 @@ class PageAdmin extends Page {
             $sessionContent = 'Login OK!';
         }
         
-        //$postListModel = new PostListModel(PostListModel::TYPE_ID_SORT, $dbConnection, $type, $pages, PostListModel::GET_ALL_POSTS);
-        //$content = $postListModel->getContent();
+
+        $postCategory = $queryPostCategories->fetch();
+        $categoriesList = $queryCategories->fetchAll();
+        $categoriesContent = '<div class="categories-list">';
+        for($i = 0; $i < count($categoriesList); $i++) {
+            $checked = "";
+            if ($categoriesList[$i]['id'] === $postCategory['categoryid']) {
+                $checked = "checked";
+            }
+            $categoriesContent .= '<div class="radio-item"><input type="radio" id="categoryid'.$categoriesList[$i]['id'].'" name="category" value="'.$categoriesList[$i]['name'].'" '.$checked.'/><label for="categoryid'.$categoriesList[$i]['id'].'">'.$categoriesList[$i]['name'].'</label></div>';
+        }
+        $categoriesContent .= '</div>';
+
+        $postTags = $queryPostTags->fetchAll();
+        $tagsList = $queryTags->fetchAll();
+        $tagsContent = '<div class="tags-list">';
+        for($i = 0; $i < count($tagsList); $i++) {
+            $checked = "";
+            for ($j = 0; $j < count($postTags); $j++) {
+                if ($tagsList[$i]['id'] === $postTags[$j]['tagid']) {
+                    $checked = "checked";
+                }
+            }
+            $tagsContent .= '<div class="checkbox-item"><input type="checkbox" id="categoryid'.$tagsList[$i]['id'].'" name="category" value="'.$tagsList[$i]['name'].'" '.$checked.'/><label for="categoryid'.$tagsList[$i]['id'].'">'.$tagsList[$i]['name'].'</label></div>';        
+        }
+        $tagsContent .= '</div>';
         
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
@@ -137,6 +176,7 @@ class PageAdmin extends Page {
         $tinyMceLoadingScritps = '
         tinymce.init({
             selector: "textarea.tmce",
+            height : 350,
             plugins: [
             "advlist autolink lists link image charmap print preview anchor image imagetools",
             "searchreplace visualblocks code codesample fullscreen",
@@ -165,21 +205,29 @@ class PageAdmin extends Page {
             
             <div class="edit-panel">
                 <div class="input-group">
-                    <label>Tytuł:</label>
-                    <input type="text" value="{$content['title']}" />
+                    <label><strong>Tytuł:</strong></label>
+                    <input type="text" value="{$content['title']}" id="post-title" />
                 </div>
                 <div class="input-group">
-                    <label>Treść:</label>
-                    <textarea class="tmce">{$content['content']}</textarea>
+                    <label><strong>Treść:</strong></label>
+                    <textarea class="tmce" id="post-content">{$content['content']}</textarea>
                 </div>
                 <div class="input-group">
-                    <label>Obrazek:</label>
-                    <input type="file" name="file" id="file" />
+                    <label><strong>Kategoria:</strong></label>
+                    {$categoriesContent}
+                </div>
+                <div class="input-group">
+                    <label><strong>Tagi:</strong></label>
+                    {$tagsContent}
+                </div>
+                <div class="input-group">
+                    <label><strong>Obrazek:</strong></label><br>
+                    <input type="file" name="file" id="post-file" />
                     <label for="file"><i class="fas fa-upload"></i> Wybierz plik</label>
                 </div>
                 <div class="input-group">
-                    <label>Opis obrazka:</label>
-                    <input type="text" value="{$content['image_description']}" />
+                    <label><strong>Opis obrazka:</strong></label>
+                    <input type="text" id="post-imagetitle" value="{$content['image_description']}" />
                 </div>
                 <div class="input-group">
                     <button class="submit" onclick="savePost()">Zapisz</button>
@@ -229,7 +277,7 @@ HTML;
     }
     
     public function save($args) {
-        echo 'Rekord zapisany!';
+        echo 'Zapisano!';
         exit;
     }
     

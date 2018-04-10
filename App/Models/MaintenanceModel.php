@@ -72,7 +72,7 @@ class MaintenanceModel extends DataModel {
             </div>
             <div class="right-side">
                 <div class="describe-container">
-                    <p>Plany i pomysły: <small>(dane z Trello)</small></p>
+                    <p>Plany i pomysły: <small>(Trello)</small></p>
                 </div>
                 <div class="trello-feed">
                     <div id = "spinner" class="spinner">

@@ -1,35 +1,26 @@
 <?php
-
 /*
  * The MIT License
  *
  * Copyright 2018 Piotr Wróblewski.
  *
  */
-
 namespace Pages;
-
 use Core\ModelClasses\Page, Core\Config, Models\PostListModel;
-
 /**
  * This is showcase of Page
  *
  * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
 class PageShowcase extends Page {
-
-
     private $db = null;
     private $error = false;
     private $errorMsg = null;
-
     public function __toString() {
         return get_class($this);
     }
-
     public function defaultmethod($args) {
         
-
         if (!isset($args[0])) {
             $type = 'list';
         }
@@ -66,7 +57,6 @@ class PageShowcase extends Page {
  
         $defaultImageFile = DIR_UPLOADS_IMAGES."default.jpg";
         $imageFile = $defaultImageFile;
-
         $pageDynamicContent = '';
         foreach($content['posts'] as $row) {
             if (file_exists(DIR_UPLOADS_IMAGES.$row['image']) && !is_dir(DIR_UPLOADS_IMAGES.$row['image'])) {
@@ -88,12 +78,9 @@ class PageShowcase extends Page {
                                         </div>';
             $pageDynamicContent .= '</div>';
         }
-
-
         $pageContent =
 <<<HTML
     <main class="content-maindiv">
-
         <section class="myskills">
             <div class="container">
                 <div class="left-side" id="aboutMe">
@@ -162,7 +149,6 @@ class PageShowcase extends Page {
                 </div>
             </div>
         </section>
-
         <section class="whatIDo" id="whatIDo">
             <div class="container">
                 <div class="title">
@@ -203,7 +189,6 @@ class PageShowcase extends Page {
                 </div>
             </div>
         </section>
-
         <section class="numbers" id="numbers">
             <div class="bg"></div>
             <div class="container">
@@ -227,7 +212,6 @@ class PageShowcase extends Page {
                 </div>
             </div>
         </section>
-
         <section class="portfolio" id="portfolio">
             <div class="container">
                 <div class="title">
@@ -274,7 +258,6 @@ class PageShowcase extends Page {
                 </div>
             </div>
         </section>
-
         <section class="news" id="news">
             <div class="container">
                 <div class="title">
@@ -286,7 +269,6 @@ class PageShowcase extends Page {
                 </div>
             </div>
         </section>
-
         <section class="contact" id="contact">
             <div class="title">
                 <h1>Kontakt</h1>
@@ -325,7 +307,6 @@ HTML;
         $this->addJSFile(['name' => 'Google Translate Script Starter', 'path' => 'js/translate.js', 'versioning' => true]);
         //$this->addJSFile(['name' => 'Google Maps API', 'path' => 'https://maps.googleapis.com/maps/api/js?key='.Config::get("GOOGLE_MAPS_API_KEY").'&callback=showGoogleMaps']);
         
-
         $metaData = new \Widgets\MetaData();
         $head = $metaData->getBody();
         
@@ -341,12 +322,9 @@ HTML;
         
         $logo = new \Widgets\Logo();
         $navbar = new \Widgets\Nav();
-
         $header = new \Widgets\Header();
         $header->addBody($navbar->getBody().$logo->getBody());
-
         $footer = new \Widgets\Footer();
-
         $ctaButton = new \Widgets\CTAButton();
         
         $body =
@@ -367,5 +345,4 @@ HTML;
         
         $this->setBody($body);
     }
-
 }

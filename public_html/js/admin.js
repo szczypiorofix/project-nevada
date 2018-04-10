@@ -32,7 +32,7 @@ var tableOfPosts = {
             let nb = document.createElement('button');
             nb.className = "admin-button";
             nb.onclick = function() {
-                window.location.href = "admin/edit?&postid=1";
+                window.location.href = "admin/edit?&postid="+item.id;
             };
             let bi = document.createElement('i');
             bi.className = 'fas fa-edit';
