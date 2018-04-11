@@ -911,6 +911,19 @@ main.content-maindiv {
                         .boxShadow(0, 4px, 12px, 2px, rgba(50,50,50,0.4));
                     }
                 }
+                a.preview {
+                    background-color: @secondary1Color;
+                    color: @textColor;
+                    font-weight: 600;
+                    border: none;
+                    padding: 6px 16px;
+                    .boxShadow(0, 2px, 8px, 1px, rgba(50,50,50,0.4));
+                    &:hover {
+                        cursor: pointer;
+                        background-color: darken(@secondary1Color, 10%);
+                        .boxShadow(0, 4px, 12px, 2px, rgba(50,50,50,0.4));
+                    }
+                }
                 input[type=file] {
                     width: 0.1px;
                     height: 0.1px;

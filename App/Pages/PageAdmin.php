@@ -148,7 +148,7 @@ class PageAdmin extends Page {
             if ($categoriesList[$i]['id'] === $postCategory['categoryid']) {
                 $checked = "checked";
             }
-            $categoriesContent .= '<div class="radio-item"><input type="radio" id="categoryid'.$categoriesList[$i]['id'].'" name="category" value="'.$categoriesList[$i]['name'].'" '.$checked.'/><label for="categoryid'.$categoriesList[$i]['id'].'">'.$categoriesList[$i]['name'].'</label></div>';
+            $categoriesContent .= '<div class="radio-item"><input type="radio" id="categoryid'.$categoriesList[$i]['id'].'" name="category[]" value="'.$categoriesList[$i]['name'].'" '.$checked.'/><label for="categoryid'.$categoriesList[$i]['id'].'">'.$categoriesList[$i]['name'].'</label></div>';
         }
         $categoriesContent .= '</div>';
 
@@ -162,7 +162,7 @@ class PageAdmin extends Page {
                     $checked = "checked";
                 }
             }
-            $tagsContent .= '<div class="checkbox-item"><input type="checkbox" id="categoryid'.$tagsList[$i]['id'].'" name="category" value="'.$tagsList[$i]['name'].'" '.$checked.'/><label for="categoryid'.$tagsList[$i]['id'].'">'.$tagsList[$i]['name'].'</label></div>';        
+            $tagsContent .= '<div class="checkbox-item"><input type="checkbox" id="categoryid'.$tagsList[$i]['id'].'" name="tags[]" value="'.$tagsList[$i]['name'].'" '.$checked.'/><label for="categoryid'.$tagsList[$i]['id'].'">'.$tagsList[$i]['name'].'</label></div>';        
         }
         $tagsContent .= '</div>';
         
@@ -223,7 +223,7 @@ class PageAdmin extends Page {
                 <div class="input-group">
                     <label><strong>Obrazek:</strong></label><br>
                     <input type="file" name="file" id="post-file" />
-                    <label for="file"><i class="fas fa-upload"></i> Wybierz plik</label>
+                    <label for="post-file"><i class="fas fa-upload"></i> Wybierz plik</label>
                 </div>
                 <div class="input-group">
                     <label><strong>Opis obrazka:</strong></label>
@@ -231,6 +231,7 @@ class PageAdmin extends Page {
                 </div>
                 <div class="input-group">
                     <button class="submit" onclick="savePost()">Zapisz</button>
+                    <a class="preview" href="#" target="_blank">Podgląd</a>
                 </div>
             </div>
 
@@ -391,7 +392,7 @@ HTML;
                 <li>Strony: logowanie, strona panelu admina (odnośniki do: dodaj, edytuj, usuń posty)</li>            
             </ul>
             <h3>Stan sesji: {$sessionContent}</h3>
-            <form class="login-container" id="loginAdminForm" method="POST">
+            <form class="login-container" id="loginAdminForm" method="POST" enctype="multipart/form-data">
                 <div class="input-group">
                     <input type="text" placeholder="login" name="loginname" required/>
                 </div>
@@ -460,6 +461,15 @@ HTML;
 HTML;
         
         $this->setBody($body);
+    }
+
+    private function cleanUrl($string) {
+        $polskie_znaki = array("ą", "ć", "ę", "ł", "ń", "ó", "ś", "ż", "ź", "Ą", "Ć", "Ę", "Ł", "Ń", "Ó", "Ś", "Ż", "Ź");
+        $bez_polskich_znakow = array("a", "c", "e", "l", "n", "o", "s", "z", "z", "A", "C", "E", "L", "N", "O", "S", "Z", "Z");
+        $string = str_replace(' ', '-', $string);
+        $string = str_replace($polskie_znaki, $bez_polskich_znakow, $string);
+        $string = strtolower($string);
+        return preg_replace('/[^A-Za-z0-9\-]/', '', $string);
     }
 
 }
