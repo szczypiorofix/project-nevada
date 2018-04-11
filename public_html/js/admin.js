@@ -78,23 +78,68 @@ var tableOfPosts = {
     }
 };
 
-function savePost() {
-    var xhttp = new XMLHttpRequest();
-    let inputValues = "posttitle="+document.getElementById('post-title').value
-    +"&post-content="+document.getElementById('post-content').value
-    +"&post-file="+document.getElementById('post-file').value
-    +"&post-imagetitle="+document.getElementById('post-imagetitle').value;
-    xhttp.open("POST", "admin/save", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            console.log(this.response);
-            console.log('OK!');
-            showNotification(this.response);
-        }
-    };
-    xhttp.send(inputValues);
-}
+//(function setSubmitMessageForm() {
+//    var request;
+//    $("#editpostform").submit(function(event) {
+//        event.preventDefault();
+//        if (request) {
+//            request.abort();
+//        }
+//        var $form = $(this);
+//        var $inputs = $form.find("input, button, textarea");
+//        var serializedData = $form.serialize();
+//        $inputs.prop("disabled", true);
+//        request = $.ajax({
+//            url: "Admin/save",
+//            type: "post",
+//            data: serializedData
+//        });
+//        request.done(function (response, textStatus, jqXHR){
+//            console.log(response);
+//            showNotification(response);
+//            //$('input[type="text"],input[type="email"],textarea').val('');
+//        });
+//        request.fail(function (jqXHR, textStatus, errorThrown){
+//            console.error(
+//                "The following error occurred: "+textStatus, errorThrown
+//            );
+//        });
+//        request.always(function () {
+//            $inputs.prop("disabled", false);
+//        });
+//    });
+//})();
+
+(function savePostSetup() {
+    $("#submitbutton").click(function (event) {
+        event.preventDefault();
+        var form = $('#editpostform')[0];
+        var data = new FormData(form);
+        $("#submitbutton").prop("disabled", true);
+
+        $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "Admin/save",
+            data: data,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            timeout: 600000,
+            success: function (data) {
+                showNotification("Zapisano: "+data);
+                console.log("Zapisano: ", data);
+                $("#submitbutton").prop("disabled", false);
+            },
+            error: function (e) {
+                console.log("Błąd : ", e);
+                showNotification("Błąd: "+e.responseText);
+                $("#submitbutton").prop("disabled", false);
+            }
+        });
+    });
+})();
 
 function showNotification(n) {
     let notificationsPanel = document.getElementById("notificationsPanel");

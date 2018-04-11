@@ -910,6 +910,9 @@ main.content-maindiv {
                         background-color: darken(@secondary1Color, 10%);
                         .boxShadow(0, 4px, 12px, 2px, rgba(50,50,50,0.4));
                     }
+                    &:disabled {
+                        color: blue;
+                    }
                 }
                 a.preview {
                     background-color: @secondary1Color;
@@ -924,7 +927,7 @@ main.content-maindiv {
                         .boxShadow(0, 4px, 12px, 2px, rgba(50,50,50,0.4));
                     }
                 }
-                input[type=file] {
+/*                input[type=file] {
                     width: 0.1px;
                     height: 0.1px;
                     opacity: 0;
@@ -944,7 +947,7 @@ main.content-maindiv {
                         background-color: darken(@secondary1Color, 10%);
                         .boxShadow(0, 4px, 12px, 2px, rgba(50,50,50,0.4));
                     }
-                }
+                }*/
                 .categories-list {
                     .flexBox();
                     flex-direction: column;

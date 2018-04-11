@@ -141,19 +141,19 @@ class PageAdmin extends Page {
         
 
         $postCategory = $queryPostCategories->fetch();
-        $categoriesList = $queryCategories->fetchAll();
+        $categoriesList = $queryCategories->fetchAll(PDO::FETCH_ASSOC);
         $categoriesContent = '<div class="categories-list">';
         for($i = 0; $i < count($categoriesList); $i++) {
             $checked = "";
             if ($categoriesList[$i]['id'] === $postCategory['categoryid']) {
                 $checked = "checked";
             }
-            $categoriesContent .= '<div class="radio-item"><input type="radio" id="categoryid'.$categoriesList[$i]['id'].'" name="category[]" value="'.$categoriesList[$i]['name'].'" '.$checked.'/><label for="categoryid'.$categoriesList[$i]['id'].'">'.$categoriesList[$i]['name'].'</label></div>';
+            $categoriesContent .= '<div class="radio-item"><input type="radio" name="category[]" value="'.$categoriesList[$i]['name'].'" '.$checked.'/><label>'.$categoriesList[$i]['name'].'</label></div>';
         }
         $categoriesContent .= '</div>';
 
-        $postTags = $queryPostTags->fetchAll();
-        $tagsList = $queryTags->fetchAll();
+        $postTags = $queryPostTags->fetchAll(PDO::FETCH_ASSOC);
+        $tagsList = $queryTags->fetchAll(PDO::FETCH_ASSOC);
         $tagsContent = '<div class="tags-list">';
         for($i = 0; $i < count($tagsList); $i++) {
             $checked = "";
@@ -162,13 +162,14 @@ class PageAdmin extends Page {
                     $checked = "checked";
                 }
             }
-            $tagsContent .= '<div class="checkbox-item"><input type="checkbox" id="categoryid'.$tagsList[$i]['id'].'" name="tags[]" value="'.$tagsList[$i]['name'].'" '.$checked.'/><label for="categoryid'.$tagsList[$i]['id'].'">'.$tagsList[$i]['name'].'</label></div>';        
+            $tagsContent .= '<div class="checkbox-item"><input type="checkbox" name="tags[]" value="'.$tagsList[$i]['name'].'" '.$checked.'/><label>'.$tagsList[$i]['name'].'</label></div>';
         }
         $tagsContent .= '</div>';
         
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
+        //$this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js']);
         $this->addJSFile(['name' => 'Admin scripts', 'path' => 'js/admin.js']);
         
         
@@ -195,7 +196,7 @@ class PageAdmin extends Page {
         //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
         
         $content = $query->fetch();
-        
+        //var_dump($content);
         $pageContent =
 <<<HTML
     <main class="content-maindiv">
@@ -203,14 +204,14 @@ class PageAdmin extends Page {
             
             <h3>EDYCJA POSTU</h3>
             
-            <div class="edit-panel">
+            <form id="editpostform" class="edit-panel" method="POST" enctype="multipart/form-data">
                 <div class="input-group">
                     <label><strong>Tytuł:</strong></label>
-                    <input type="text" value="{$content['title']}" id="post-title" />
+                    <input type="text" value="{$content['title']}" name="post-title" />
                 </div>
                 <div class="input-group">
                     <label><strong>Treść:</strong></label>
-                    <textarea class="tmce" id="post-content">{$content['content']}</textarea>
+                    <textarea class="tmce" name="post-content">{$content['content']}</textarea>
                 </div>
                 <div class="input-group">
                     <label><strong>Kategoria:</strong></label>
@@ -222,18 +223,19 @@ class PageAdmin extends Page {
                 </div>
                 <div class="input-group">
                     <label><strong>Obrazek:</strong></label><br>
-                    <input type="file" name="file" id="post-file" />
+                    <input type="file" name="post-file" id="post-file"/>
                     <label for="post-file"><i class="fas fa-upload"></i> Wybierz plik</label>
                 </div>
                 <div class="input-group">
                     <label><strong>Opis obrazka:</strong></label>
-                    <input type="text" id="post-imagetitle" value="{$content['image_description']}" />
+                    <input type="text" name="post-imagetitle" value="{$content['image_description']}" />
                 </div>
                 <div class="input-group">
-                    <button class="submit" onclick="savePost()">Zapisz</button>
+                    <input type="hidden" name="postid" value="{$content['id']}">
+                    <button class="submit" id="submitbutton">Zapisz</button>
                     <a class="preview" href="#" target="_blank">Podgląd</a>
                 </div>
-            </div>
+            </form>
 
         </section>
     </main>
@@ -252,7 +254,7 @@ HTML;
 
         $footer = new \Widgets\Footer();
 
-        $sideBar = new \Widgets\Aside($dbConnection);
+        //$sideBar = new \Widgets\Aside($dbConnection);
 
         $ctaButton = new \Widgets\CTAButton();
         
@@ -264,7 +266,6 @@ HTML;
         </div>
         <main class="post-card">
             {$pageContent}
-            {$sideBar->getBody()}
         </main>
         {$ctaButton->getBody()}
         {$footer->getBody()}
@@ -278,8 +279,63 @@ HTML;
     }
     
     public function save($args) {
-        //echo 'Zapisano!';
-        var_dump($_POST);
+        $inputFields = [
+            'postid' => FILTER_SANITIZE_NUMBER_INT,
+            'post-title' => FILTER_SANITIZE_STRING,
+            'post-content' => FILTER_SANITIZE_STRING,
+            'post-imagetitle' => FILTER_SANITIZE_STRING
+        ];
+        if ($this->checkFilters($inputFields)) {
+            //$postId = filter_input(INPUT_POST, 'postid', FILTER_SANITIZE_NUMBER_INT);
+            //$postTitle = filter_input(INPUT_POST, 'post-title', FILTER_SANITIZE_NUMBER_INT);
+            //$postContent = filter_input(INPUT_POST, 'post-content', FILTER_SANITIZE_NUMBER_INT);
+            //$postImageTitle = filter_input(INPUT_POST, 'post-imagetitle', FILTER_SANITIZE_NUMBER_INT);
+            
+            $postId = filter_input(INPUT_POST, 'postid', FILTER_SANITIZE_NUMBER_INT);
+            $postTitle = $_POST['post-title'];
+            $postContent = $_POST['post-content'];
+            $postImageTitle = $_POST['post-imagetitle'];
+            
+            //var_dump($_POST);
+            //var_dump($_FILES);
+            echo $postContent;
+            //exit;
+            
+            try {
+                $dbConnection = \Core\DBConnection::getInstance();
+            } catch (\Core\FrameworkException $fex) {
+                $fex->showError();
+            }
+            
+            $this->db = $dbConnection->getDB();
+            $this->error = $dbConnection->isError();
+            $this->errorMsg = $dbConnection->getErrorMsg();
+
+            $sessionContent = "";
+            $isSession = \Core\Session::check($this->db);  
+            if ($isSession) {
+                $sessionContent = "Użytkownik zalogowany";
+            } else {
+                $sessionContent = "Użytkownik niezalogowany!";    
+            }
+
+            $this->error = true;
+            try {
+                $query = $this->db->prepare("UPDATE `posts` SET `title`=:title, `content`=:content, `image_description`=:postimagetitle, `update_date`=NOW()  WHERE `id`=:postid");
+                $query->bindValue(':title', $postTitle, PDO::PARAM_STR);
+                $query->bindValue(':content', $postContent, PDO::PARAM_STR);
+                $query->bindValue(':postimagetitle', $postImageTitle, PDO::PARAM_STR);
+                $query->bindValue(':postid', $postId, PDO::PARAM_INT);
+                $query->execute();
+
+                $this->error = false;
+                echo 'Zapisano!';
+            }
+            catch (FrameworkException $exc) {
+               $this->error = true;
+               $this->errorMsg = $exc->getMessage();
+            }
+        }
         exit;
     }
     
