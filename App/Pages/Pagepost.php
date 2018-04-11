@@ -75,6 +75,12 @@ class Pagepost extends Page {
             //$actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
             $actual_link = $this->getCurrentUrl();
             
+            /**
+             * https://github.com/erusev/parsedown
+             */
+            $Parsedown = new \Vendors\Parsedown\Parsedown();
+            $postContent = $Parsedown->text($content['content']);
+            
             $pageContent .= 
                 '<section class="post-content">
                     <div class="post-title">
@@ -92,7 +98,7 @@ class Pagepost extends Page {
                         </div>
                     </div>
                     <div class="post-content"
-                        <p>'.$content['content'].'</p>
+                        <p>'.$postContent.'</p>
                     </div>
                     <div class="additional">
                         <div class="post-categories">

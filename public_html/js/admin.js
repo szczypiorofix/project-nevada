@@ -110,6 +110,13 @@ var tableOfPosts = {
 //    });
 //})();
 
+(function setupFileUploader() {
+    var fileFiels = document.getElementById('post-file');    
+    fileFiels.addEventListener('change', function(e) {
+        document.getElementById('post-file-label').innerHTML = '<i class="fas fa-upload"></i> '+e.target.files[0].name;
+    });
+})();
+
 (function savePostSetup() {
     $("#submitbutton").click(function (event) {
         event.preventDefault();

@@ -55,6 +55,11 @@ class PageShowcase extends Page {
             $content = [];
         }
  
+        /**
+         * https://github.com/erusev/parsedown
+        */
+        $Parsedown = new \Vendors\Parsedown\Parsedown();
+        
         $defaultImageFile = DIR_UPLOADS_IMAGES."default.jpg";
         $imageFile = $defaultImageFile;
         $pageDynamicContent = '';
@@ -71,7 +76,7 @@ class PageShowcase extends Page {
                                             <a href="post/'.$row['url'].'"><img src="'.$imageFile.'" /></a>
                                         </div>
                                         <a href="post/'.$row['url'].'#disqus_thread"><h3>'.$row['title'].'</h3></a>
-                                        <p>'.mb_substr($row['content'], 0, 185).'...</p>
+                                        <p>'.mb_substr($Parsedown->text($row['content']), 0, 185).'...</p>
                                         <div class="additional-info">
                                             <span class="post-date">'.$dateString.'</span>
                                             <span class="post-comments"><i class="far fa-comment-alt"></i> 1</span>

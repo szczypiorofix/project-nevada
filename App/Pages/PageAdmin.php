@@ -172,26 +172,24 @@ class PageAdmin extends Page {
         //$this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js']);
         $this->addJSFile(['name' => 'Admin scripts', 'path' => 'js/admin.js']);
         
-        
         // TinyMCE scripts ...
-        $tinyMceLoadingScritps = '
-        tinymce.init({
-            selector: "textarea.tmce",
-            height : 350,
-            plugins: [
-            "advlist autolink lists link image charmap print preview anchor image imagetools",
-            "searchreplace visualblocks code codesample fullscreen",
-            "insertdatetime media table contextmenu paste imagetools", 
-               "advlist autolink link lists image lists charmap print preview table media code textcolor colorpicker wordcount emoticons"],
-            toolbar: ["insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-               "emoticons forecolor backcolor codesample"],
-            language: "pl"
-            ';
-        $tinyMceLoadingScritps .= '});';
+        // $tinyMceLoadingScritps = '
+        // tinymce.init({
+        //     selector: "textarea.tmce",
+        //     height : 350,
+        //     plugins: [
+        //     "advlist autolink lists link image charmap print preview anchor image imagetools",
+        //     "searchreplace visualblocks code codesample fullscreen",
+        //     "insertdatetime media table contextmenu paste imagetools", 
+        //        "advlist autolink link lists image lists charmap print preview table media code textcolor colorpicker wordcount emoticons"],
+        //     toolbar: ["insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+        //        "emoticons forecolor backcolor codesample"],
+        //     language: "pl"
+        //     ';
+        // $tinyMceLoadingScritps .= '});';
         
-        $this->addJSHeadFile(['name' => 'TinyMCE scripts', 'path' => 'js/tinymce/tinymce.min.js']);
-        $this->addJSHead($tinyMceLoadingScritps);
-        
+        //$this->addJSHeadFile(['name' => 'TinyMCE scripts', 'path' => 'js/tinymce/tinymce.min.js']);
+        //$this->addJSHead($tinyMceLoadingScritps);
         
         //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
         
@@ -211,7 +209,7 @@ class PageAdmin extends Page {
                 </div>
                 <div class="input-group">
                     <label><strong>Treść:</strong></label>
-                    <textarea class="tmce" name="post-content">{$content['content']}</textarea>
+                    <textarea class="tmce" name="post-content" rows="15" cols="50">{$content['content']}</textarea>
                 </div>
                 <div class="input-group">
                     <label><strong>Kategoria:</strong></label>
@@ -224,7 +222,7 @@ class PageAdmin extends Page {
                 <div class="input-group">
                     <label><strong>Obrazek:</strong></label><br>
                     <input type="file" name="post-file" id="post-file"/>
-                    <label for="post-file"><i class="fas fa-upload"></i> Wybierz plik</label>
+                    <label for="post-file" id="post-file-label"><i class="fas fa-upload"></i> Wybierz plik</label>
                 </div>
                 <div class="input-group">
                     <label><strong>Opis obrazka:</strong></label>
@@ -254,7 +252,7 @@ HTML;
 
         $footer = new \Widgets\Footer();
 
-        //$sideBar = new \Widgets\Aside($dbConnection);
+        $sideBar = new \Widgets\Aside($dbConnection);
 
         $ctaButton = new \Widgets\CTAButton();
         
@@ -266,6 +264,7 @@ HTML;
         </div>
         <main class="post-card">
             {$pageContent}
+            {$sideBar->getBody()}
         </main>
         {$ctaButton->getBody()}
         {$footer->getBody()}
@@ -286,19 +285,20 @@ HTML;
             'post-imagetitle' => FILTER_SANITIZE_STRING
         ];
         if ($this->checkFilters($inputFields)) {
-            //$postId = filter_input(INPUT_POST, 'postid', FILTER_SANITIZE_NUMBER_INT);
-            //$postTitle = filter_input(INPUT_POST, 'post-title', FILTER_SANITIZE_NUMBER_INT);
-            //$postContent = filter_input(INPUT_POST, 'post-content', FILTER_SANITIZE_NUMBER_INT);
-            //$postImageTitle = filter_input(INPUT_POST, 'post-imagetitle', FILTER_SANITIZE_NUMBER_INT);
-            
+
             $postId = filter_input(INPUT_POST, 'postid', FILTER_SANITIZE_NUMBER_INT);
-            $postTitle = $_POST['post-title'];
-            $postContent = $_POST['post-content'];
-            $postImageTitle = $_POST['post-imagetitle'];
-            
+            $postTitle = filter_input(INPUT_POST, 'post-title', FILTER_SANITIZE_STRING);
+            $postContent = filter_input(INPUT_POST, 'post-content', FILTER_SANITIZE_STRING);
+            $postImageTitle = filter_input(INPUT_POST, 'post-imagetitle', FILTER_SANITIZE_STRING);
+
+            //$postId = filter_input(INPUT_POST, 'postid', FILTER_SANITIZE_NUMBER_INT);
+            //$postTitle = $_POST['post-title'];
+            //$postContent = $_POST['post-content'];
+            //$postImageTitle = $_POST['post-imagetitle'];
+
             //var_dump($_POST);
             //var_dump($_FILES);
-            echo $postContent;
+            //echo $postContent;
             //exit;
             
             try {
