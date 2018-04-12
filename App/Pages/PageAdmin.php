@@ -284,8 +284,8 @@ HTML;
             'post-content' => FILTER_SANITIZE_STRING,
             'post-imagetitle' => FILTER_SANITIZE_STRING
         ];
-        if ($this->checkFilters($inputFields)) {
 
+        if ($this->checkFilters($inputFields)) {
             $postId = filter_input(INPUT_POST, 'postid', FILTER_SANITIZE_NUMBER_INT);
             $postTitle = filter_input(INPUT_POST, 'post-title', FILTER_SANITIZE_STRING);
             $postContent = filter_input(INPUT_POST, 'post-content', FILTER_SANITIZE_STRING);
@@ -298,19 +298,22 @@ HTML;
 
             //var_dump($_POST);
             //var_dump($_FILES);
-            //echo $postContent;
             //exit;
             
+
+            // TODO przerobić zeby nie trzeba było ciągle pisać tego samego kodu.
             try {
                 $dbConnection = \Core\DBConnection::getInstance();
             } catch (\Core\FrameworkException $fex) {
                 $fex->showError();
             }
-            
             $this->db = $dbConnection->getDB();
             $this->error = $dbConnection->isError();
             $this->errorMsg = $dbConnection->getErrorMsg();
+            //
 
+
+            // TODO przenieść do oddzielnej metody
             $sessionContent = "";
             $isSession = \Core\Session::check($this->db);  
             if ($isSession) {
@@ -318,6 +321,8 @@ HTML;
             } else {
                 $sessionContent = "Użytkownik niezalogowany!";    
             }
+            //
+            
 
             $this->error = true;
             try {
