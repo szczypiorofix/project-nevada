@@ -844,7 +844,6 @@ main.content-maindiv {
             .add-post-panel {
                 margin: 15px 5px;
                 button.button {
-                    padding: 5px;
                     border-radius: 2px;
                     outline: none;
                     background-color: @secondary1Color;
@@ -885,6 +884,25 @@ main.content-maindiv {
 
                 tr:nth-child(even) {
                     background-color: #dddddd;
+                }
+            }
+            .backup-container {
+                margin-top: 25px;
+                button {
+                    border-radius: 2px;
+                    outline: none;
+                    background-color: @secondary1Color;
+                    color: @textColor;
+                    border: none;
+                    border-radius: 2px;
+                    padding: 6px 12px;
+                    &:hover {
+                        background-color: darken(@secondary1Color, 5%);
+                        cursor: pointer;
+                    }
+                    i#backupSpinner {
+                        display: none;
+                    }   
                 }
             }
         }
@@ -928,6 +946,7 @@ main.content-maindiv {
                     color: @textColor;
                     font-weight: 600;
                     width: 120px;
+                    text-align: center;
                     border: none;
                     padding: 6px 16px;
                     margin: 5px 0;

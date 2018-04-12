@@ -338,7 +338,9 @@ HTML;
                 $insTagRelStmt = "INSERT INTO post_tags (tagid, postid) VALUES ";
                 for ($i = 0; $i < count($postTags); $i++) {
                         $insTagRelStmt = $insTagRelStmt.'('.$postTags[$i].', '.$postId.')';
-                        if ($i < (count($postTags))-1) $insTagRelStmt = $insTagRelStmt.', ';
+                        if ($i < (count($postTags))-1) {
+                            $insTagRelStmt = $insTagRelStmt.', ';
+                        }
                 }
                 $insTagRelStmt = $insTagRelStmt.';';
                 $queryUpdateTags = $this->db->prepare($insTagRelStmt);
@@ -404,6 +406,10 @@ HTML;
         exit;
     }
 
+    public function backup($args) {
+        \Core\BackupManager::makeBackup();
+    }
+
     public function defaultmethod($args) {
         
         if (!isset($args[0])) {
@@ -451,7 +457,6 @@ HTML;
         
         //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
         
-        
         $pageContent =
 <<<HTML
     <main class="content-maindiv">
@@ -492,6 +497,9 @@ HTML;
                     </thead>
                     <tbody id="tablePostsBody"></tbody>
                 </table>
+                <div class="backup-container">
+                    <button onclick="makeBackup(this)">Backup <i class="fas fa-spinner fa-spin" id="backupSpinner"></i></button>
+                </div>
             </div>
         </section>
     </main>

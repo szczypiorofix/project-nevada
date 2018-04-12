@@ -172,6 +172,22 @@ function savePost() {
     }); 
 })();
 
+function makeBackup(b) {
+    b.disabled = true;
+    document.getElementById('backupSpinner').style.display = "inline-block";
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            showNotification(this.response);
+            console.log(this.response);
+            document.getElementById('backupSpinner').style.display = "none";
+            b.disabled = false;
+        }
+    };
+    xhttp.open("GET", "Admin/backup", true);
+    xhttp.send();
+}
+
 function showNotification(n) {
     let notificationsPanel = document.getElementById("notificationsPanel");
     let notificationsContent = document.getElementById("notificationsContent");
