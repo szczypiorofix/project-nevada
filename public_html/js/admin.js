@@ -74,7 +74,7 @@ var tableOfPosts = {
         this.refresh();
     },
     show: function() {
-        console.log(this.data);
+        //console.log(this.data);
     }
 };
 
@@ -111,41 +111,65 @@ var tableOfPosts = {
 //})();
 
 (function setupFileUploader() {
-    var fileFiels = document.getElementById('post-file');    
-    fileFiels.addEventListener('change', function(e) {
-        document.getElementById('post-file-label').innerHTML = '<i class="fas fa-upload"></i> '+e.target.files[0].name;
-    });
+    var fileFields = document.getElementById('post-file');
+    if (fileFields) {
+        fileFields.addEventListener('change', function(e) {
+            document.getElementById('post-file-label').innerHTML = '<i class="fas fa-upload"></i> '+e.target.files[0].name;
+        });
+    }
 })();
+
+function savePost() {
+    var form = $('#editpostform')[0];
+    var data = new FormData(form);
+    $("#submitbutton").prop("disabled", true);
+
+    $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: "Admin/save",
+        data: data,
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
+        timeout: 600000,
+        success: function (data) {
+            showNotification(data);
+            console.log(data);
+            $("#submitbutton").prop("disabled", false);
+        },
+        error: function (e) {
+            console.log("Błąd : ", e);
+            showNotification("Błąd: "+e.responseText);
+            $("#submitbutton").prop("disabled", false);
+        }
+    });
+}
 
 (function savePostSetup() {
     $("#submitbutton").click(function (event) {
         event.preventDefault();
-        var form = $('#editpostform')[0];
-        var data = new FormData(form);
-        $("#submitbutton").prop("disabled", true);
-
-        $.ajax({
-            type: "POST",
-            enctype: 'multipart/form-data',
-            url: "Admin/save",
-            data: data,
-            async: false,
-            cache: false,
-            contentType: false,
-            processData: false,
-            timeout: 600000,
-            success: function (data) {
-                showNotification("Zapisano: "+data);
-                console.log("Zapisano: ", data);
-                $("#submitbutton").prop("disabled", false);
-            },
-            error: function (e) {
-                console.log("Błąd : ", e);
-                showNotification("Błąd: "+e.responseText);
-                $("#submitbutton").prop("disabled", false);
-            }
-        });
+        savePost();
     });
+})();
+
+(function saveOnCtrlSPressed() {
+    $(document).keydown(function(e) {
+        var key = undefined;
+        var possible = [e.key, e.keyIdentifier, e.keyCode, e.which];
+        while (key === undefined && possible.length > 0)
+        {
+            key = possible.pop();
+        }
+        if (key && (key == '115' || key == '83' ) && (e.ctrlKey || e.metaKey) && !(e.altKey))
+        {
+            e.preventDefault();
+            savePost();
+            return false;
+        }
+        return true;
+    }); 
 })();
 
 function showNotification(n) {

@@ -12,7 +12,7 @@ namespace Pages;
 use Core\ModelClasses\Page, Core\Config, Models\PostListModel, PDO;
 
 /**
- * This is error 404 Page
+ * This is admin panel page.
  *
  * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
@@ -148,7 +148,7 @@ class PageAdmin extends Page {
             if ($categoriesList[$i]['id'] === $postCategory['categoryid']) {
                 $checked = "checked";
             }
-            $categoriesContent .= '<div class="radio-item"><input type="radio" name="category[]" value="'.$categoriesList[$i]['name'].'" '.$checked.'/><label>'.$categoriesList[$i]['name'].'</label></div>';
+            $categoriesContent .= '<div class="radio-item"><input type="radio" name="category[]" value="'.$categoriesList[$i]['id'].'" '.$checked.'/><label>'.$categoriesList[$i]['name'].'</label></div>';
         }
         $categoriesContent .= '</div>';
 
@@ -162,7 +162,7 @@ class PageAdmin extends Page {
                     $checked = "checked";
                 }
             }
-            $tagsContent .= '<div class="checkbox-item"><input type="checkbox" name="tags[]" value="'.$tagsList[$i]['name'].'" '.$checked.'/><label>'.$tagsList[$i]['name'].'</label></div>';
+            $tagsContent .= '<div class="checkbox-item"><input type="checkbox" name="tags[]" value="'.$tagsList[$i]['id'].'" '.$checked.'/><label>'.$tagsList[$i]['name'].'</label></div>';
         }
         $tagsContent .= '</div>';
         
@@ -172,24 +172,6 @@ class PageAdmin extends Page {
         //$this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js']);
         $this->addJSFile(['name' => 'Admin scripts', 'path' => 'js/admin.js']);
         
-        // TinyMCE scripts ...
-        // $tinyMceLoadingScritps = '
-        // tinymce.init({
-        //     selector: "textarea.tmce",
-        //     height : 350,
-        //     plugins: [
-        //     "advlist autolink lists link image charmap print preview anchor image imagetools",
-        //     "searchreplace visualblocks code codesample fullscreen",
-        //     "insertdatetime media table contextmenu paste imagetools", 
-        //        "advlist autolink link lists image lists charmap print preview table media code textcolor colorpicker wordcount emoticons"],
-        //     toolbar: ["insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-        //        "emoticons forecolor backcolor codesample"],
-        //     language: "pl"
-        //     ';
-        // $tinyMceLoadingScritps .= '});';
-        
-        //$this->addJSHeadFile(['name' => 'TinyMCE scripts', 'path' => 'js/tinymce/tinymce.min.js']);
-        //$this->addJSHead($tinyMceLoadingScritps);
         
         //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
         
@@ -291,15 +273,12 @@ HTML;
             $postContent = filter_input(INPUT_POST, 'post-content', FILTER_SANITIZE_STRING);
             $postImageTitle = filter_input(INPUT_POST, 'post-imagetitle', FILTER_SANITIZE_STRING);
 
-            //$postId = filter_input(INPUT_POST, 'postid', FILTER_SANITIZE_NUMBER_INT);
-            //$postTitle = $_POST['post-title'];
-            //$postContent = $_POST['post-content'];
-            //$postImageTitle = $_POST['post-imagetitle'];
+            $postCategory = $_POST['category'][0];
+            $postTags = $_POST['tags'];
 
             //var_dump($_POST);
-            //var_dump($_FILES);
+            //var_dump($_FILES);            
             //exit;
-            
 
             // TODO przerobić zeby nie trzeba było ciągle pisać tego samego kodu.
             try {
@@ -312,29 +291,61 @@ HTML;
             $this->errorMsg = $dbConnection->getErrorMsg();
             //
 
+            $fileManager = new \Core\FileManager($this->db);
+            $fileManager->checkFileToUpload($_FILES['post-file'], $postId);
+            
+            //var_dump($_FILES);
+            //exit;
 
             // TODO przenieść do oddzielnej metody
-            $sessionContent = "";
-            $isSession = \Core\Session::check($this->db);  
-            if ($isSession) {
-                $sessionContent = "Użytkownik zalogowany";
-            } else {
-                $sessionContent = "Użytkownik niezalogowany!";    
-            }
+            // $sessionContent = "";
+            // $isSession = \Core\Session::check($this->db);  
+            // if ($isSession) {
+            //     $sessionContent = "Użytkownik zalogowany";
+            // } else {
+            //     $sessionContent = "Użytkownik niezalogowany!";    
+            // }
             //
             
+            /**
+             * Update post url
+             */
+            $newUrl = $this->cleanUrl($postTitle);
 
             $this->error = true;
             try {
-                $query = $this->db->prepare("UPDATE `posts` SET `title`=:title, `content`=:content, `image_description`=:postimagetitle, `update_date`=NOW()  WHERE `id`=:postid");
+                // UPDATE POST
+                $query = $this->db->prepare("UPDATE `posts` SET `title`=:title, `content`=:content, `url`=:newurl, `image_description`=:postimagetitle, `update_date`=NOW() WHERE `id`=:postid");
                 $query->bindValue(':title', $postTitle, PDO::PARAM_STR);
                 $query->bindValue(':content', $postContent, PDO::PARAM_STR);
                 $query->bindValue(':postimagetitle', $postImageTitle, PDO::PARAM_STR);
+                $query->bindValue(':newurl', $newUrl, PDO::PARAM_STR);
                 $query->bindValue(':postid', $postId, PDO::PARAM_INT);
                 $query->execute();
 
+                // UPDATE POST CATEGORY
+                $queryTags = $this->db->prepare('UPDATE `post_categories` SET `categoryid`=:catid WHERE `id`=:id');
+                $queryTags->bindValue(':id', $postId, PDO::PARAM_INT);
+                $queryTags->bindValue(':catid', $postCategory, PDO::PARAM_INT);
+                $queryTags->execute();
+
+                // DELETE PREVIOUS DATA ABOUT POST TAGS
+                $queryDelTag = $this->db->prepare("DELETE FROM `post_tags` WHERE `postid` =:postid");
+                $queryDelTag->bindParam(':postid', $postId, PDO::PARAM_INT);
+                $queryDelTag->execute();
+
+                // ADD NEW DATA ABOUT POST TAGS
+                $insTagRelStmt = "INSERT INTO post_tags (tagid, postid) VALUES ";
+                for ($i = 0; $i < count($postTags); $i++) {
+                        $insTagRelStmt = $insTagRelStmt.'('.$postTags[$i].', '.$postId.')';
+                        if ($i < (count($postTags))-1) $insTagRelStmt = $insTagRelStmt.', ';
+                }
+                $insTagRelStmt = $insTagRelStmt.';';
+                $queryUpdateTags = $this->db->prepare($insTagRelStmt);
+                $queryUpdateTags->execute();
+
                 $this->error = false;
-                echo 'Zapisano!';
+                echo ' Post zapisany.';
             }
             catch (FrameworkException $exc) {
                $this->error = true;

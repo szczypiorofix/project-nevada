@@ -22,7 +22,9 @@ class Footer extends Widget {
         Registry::add($this);
         $this->body =
 <<<HTML
-    <footer><p>Wróblewski Piotr, 2018</p></footer>
+    <footer>
+        <p>Wróblewski Piotr, 2018</p>
+    </footer>
 HTML;
     }
     

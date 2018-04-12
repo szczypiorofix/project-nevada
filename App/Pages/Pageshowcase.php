@@ -75,8 +75,7 @@ class PageShowcase extends Page {
                                         <div class="image-div">
                                             <a href="post/'.$row['url'].'"><img src="'.$imageFile.'" /></a>
                                         </div>
-                                        <a href="post/'.$row['url'].'#disqus_thread"><h3>'.$row['title'].'</h3></a>
-                                        <p>'.mb_substr($Parsedown->text($row['content']), 0, 185).'...</p>
+                                        <div class="main-content"><a href="post/'.$row['url'].'#disqus_thread"><h3>'.$row['title'].'</h3></a>'.mb_substr($Parsedown->text($row['content']), 0, 185).'...</div>
                                         <div class="additional-info">
                                             <span class="post-date">'.$dateString.'</span>
                                             <span class="post-comments"><i class="far fa-comment-alt"></i> 1</span>

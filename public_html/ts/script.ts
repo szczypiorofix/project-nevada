@@ -41,8 +41,6 @@ function goToTop() {
     })();
 }
 
-
-
 window.addEventListener("DOMContentLoaded", function() {
 
     window.onclick = function(event) {

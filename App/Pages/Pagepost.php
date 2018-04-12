@@ -131,7 +131,12 @@ class Pagepost extends Page {
                     </div>
                 </section>';  
         } else {
-            $pageContent = '<div><h1>404<h1><h3>NIE ZNALEZIONO POSTU !!!</h3></div>';
+            $pageContent = '<section class="post-content">
+                <div class="post-not-found">
+                    <h1 class="post-title">404<h1>
+                    <h3 class="post-title">NIE ZNALEZIONO POSTU !!!</h3>
+                </div>
+            </section>';
         }
              
         
@@ -150,14 +155,18 @@ class Pagepost extends Page {
         var img = document.getElementById("imageModalSrc");
         var modalImg = document.getElementById("imageModalDest");
         var captionText = document.getElementById("imageModalCaption");
-        img.onclick = function() {
-            modal.style.display = "block";
-            modalImg.src = this.src;
-            captionText.innerHTML = this.alt;
-        }
+        if (img) {
+            img.onclick = function() {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            }
+        }    
         var span = document.getElementById("imageModalClose");
-        span.onclick = function() { 
-            modal.style.display = "none";
+        if (span) {
+            span.onclick = function() { 
+                modal.style.display = "none";
+            }
         }
         ');
 

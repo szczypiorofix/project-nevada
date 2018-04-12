@@ -629,11 +629,15 @@ main.content-maindiv {
             .news-container {
                 width: 100%;
                 .news-part {
-                    text-align: center;
+                    //text-align: center;
                     margin: 20px 0;
-                    .flexBox();
-                    flex-direction: column;
-                    justify-content: space-around;
+                    padding: 5px;
+                    //.flexBox();
+                    //flex-direction: column;
+                    //justify-content: space-between;
+                    .gridBox();
+                    grid-template-columns: 1fr;
+                    grid-template-rows: 180px auto 40px;
                     .image-div {
                         width: 85%;
                         margin: 0 auto;
@@ -655,10 +659,11 @@ main.content-maindiv {
                             .boxShadow(2px, 2px, 8px, 0, rgba(0,0,0,0.2));
                         }  
                     }
+                    .main-content {
+                        text-align: left;
+                    }
                     p {
                         letter-spacing: 0.02em;
-                        width: 85%;
-                        margin: 0 auto;
                         line-height: 150%;
                         text-align: justify;
                     }
@@ -666,8 +671,9 @@ main.content-maindiv {
                         background: @textColorDark;
                         padding: 10px 5px;
                         color: @textColor;
-                        width: 85%;
-                        margin: 0 auto;
+                        // width: 85%;
+                        // margin: 0 auto;
+                        text-align: center;
                         .post-date {
                             letter-spacing: 0.08em;
                             margin-right: 10px;
@@ -947,8 +953,6 @@ main.content-maindiv {
                     color: @textColor;
                     background-color: @secondary1Color;
                     display: inline-block;
-                    // outline: 1px dotted #000;
-	                // outline: -webkit-focus-ring-color auto 5px;
                     .boxShadow(0, 2px, 8px, 1px, rgba(50,50,50,0.4));
                     &:hover, &:active {
                         cursor: pointer;
@@ -993,8 +997,8 @@ main.post-card {
         .post-title {
             letter-spacing: 0.1em;
         }
-        .post-date {
-
+        .post-not-found {
+            text-align: center;
         }
         .post-image {
             text-align: center;
@@ -1382,6 +1386,8 @@ main.post-card {
             padding: 20px 0;
             .container {
                 .news-container {
+                    grid-gap: 5px;
+                    grid-row-gap: 15px;
                     .gridBox();
                     grid-template-columns: 1fr 1fr;
                     .news-part {
@@ -1484,6 +1490,8 @@ main.post-card {
             .container {
                 .news-container {
                     .gridBox();
+                    grid-gap: 5px;
+                    grid-row-gap: 15px;
                     grid-template-columns: 1fr 1fr 1fr;
                     .news-part {
                     }
