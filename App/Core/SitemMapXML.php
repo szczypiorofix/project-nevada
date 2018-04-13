@@ -86,10 +86,7 @@ class SitemMapXML {
             $priorityText = $priority->appendChild($priorityText);
         }
         
-        
-
         $doc->save("sitemap.xml");
-
 
     }
 }

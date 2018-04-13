@@ -67,24 +67,151 @@ class PageAdmin extends Page {
     public function __toString() {
         return get_class($this);
     }
-    
+
+    public function new($args) {
+        
+        try {
+            $dbConnection = \Core\DBConnection::getInstance();
+        } catch (\Core\FrameworkException $fex) {
+            $fex->showError();
+        }
+        
+        $this->db = $dbConnection->getDB();
+        $this->error = $dbConnection->isError();
+        $this->errorMsg = $dbConnection->getErrorMsg();
+
+        $sessionContent = "";
+        $isSession = \Core\Session::check($this->db);  
+        if ($isSession) {
+            $sessionContent = "Użytkownik zalogowany";
+        } else {
+            $sessionContent = "Użytkownik niezalogowany!";    
+        }
+
+        $this->error = true;
+        try {
+
+            $queryCategories = $this->db->prepare("SELECT * FROM `categories`");
+            $queryCategories->execute();
+
+            $queryTags = $this->db->prepare("SELECT * FROM `tags`");
+            $queryTags->execute();
+
+            $this->error = false;
+        }
+        catch (FrameworkException $exc) {
+           $this->error = true;
+           $this->errorMsg = $exc->getMessage();
+        }
+
+        $categoriesList = $queryCategories->fetchAll(PDO::FETCH_ASSOC);
+        $categoriesContent = '<div class="categories-list">';
+        for($i = 0; $i < count($categoriesList); $i++) {
+            $categoriesContent .= '<div class="radio-item"><input type="radio" name="category[]" value="'.$categoriesList[$i]['id'].'" /><label>'.$categoriesList[$i]['name'].'</label></div>';
+        }
+        $categoriesContent .= '</div>';
+
+        $tagsList = $queryTags->fetchAll(PDO::FETCH_ASSOC);
+        $tagsContent = '<div class="tags-list">';
+        for($i = 0; $i < count($tagsList); $i++) {
+            $tagsContent .= '<div class="checkbox-item"><input type="checkbox" name="tags[]" value="'.$tagsList[$i]['id'].'" /><label>'.$tagsList[$i]['name'].'</label></div>';
+        }
+        $tagsContent .= '</div>';
+        
+        $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
+        $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
+        $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
+        //$this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js']);
+        $this->addJSFile(['name' => 'Admin scripts', 'path' => 'js/admin.js']);
+        
+        
+        //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
+        
+        $pageContent =
+<<<HTML
+    <main class="content-maindiv">
+        <section class="admin-container">
+            
+            <h3>NOWY POST</h3>
+
+            <form id="addpostform" class="edit-panel" method="POST" enctype="multipart/form-data">
+                <div class="input-group">
+                    <label><strong>Tytuł:</strong></label>
+                    <input type="text" name="post-title" />
+                </div>
+                <div class="input-group">
+                    <label><strong>Treść:</strong></label>
+                    <textarea class="tmce" name="post-content" rows="15" cols="50"></textarea>
+                </div>
+                <div class="input-group">
+                    <label><strong>Kategoria:</strong></label>
+                    {$categoriesContent}
+                </div>
+                <div class="input-group">
+                    <label><strong>Tagi:</strong></label>
+                    {$tagsContent}
+                </div>
+                <div class="input-group">
+                    <label><strong>Obrazek:</strong></label><br>
+                    <input type="file" name="post-file" id="post-file"/>
+                    <label for="post-file" id="post-file-label"><i class="fas fa-upload"></i> Wybierz plik</label>
+                </div>
+                <div class="input-group">
+                    <label><strong>Opis obrazka:</strong></label>
+                    <input type="text" name="post-imagetitle" />
+                </div>
+                <div class="input-group">
+                    <button class="submit" id="addbutton">Dodaj</button>
+                    <a class="preview" href="#" target="_blank">Podgląd</a>
+                </div>
+            </form>
+
+        </section>
+    </main>
+HTML;
+
+        $metaData = new \Widgets\MetaData();
+        $head = $metaData->getBody();
+        
+        $this->setHead($head);
+
+        $logo = new \Widgets\Logo();
+        $navbar = new \Widgets\Nav();
+
+        $header = new \Widgets\Header();
+        $header->addBody($navbar->getBody().$logo->getBody());
+
+        $footer = new \Widgets\Footer();
+
+        $sideBar = new \Widgets\Aside($dbConnection);
+
+        $ctaButton = new \Widgets\CTAButton();
+        
+        $body =
+<<<HTML
+    <div class="full-page-container" id="mainDiv">
+        <div class="nav-and-logo">
+            {$header->getBody()}
+        </div>
+        <main class="post-card">
+            {$pageContent}
+            {$sideBar->getBody()}
+        </main>
+        {$ctaButton->getBody()}
+        {$footer->getBody()}
+        <div id="notificationsPanel">
+            <span id="notificationsContent"></span>
+        </div>
+    </div>
+HTML;
+        $this->setBody($body);
+    }
+
     public function edit($args) {
-        if (!isset($args[0])) {
-            $type = 'list';
-        } else {
-            $type = $args[0];
-        }
-        if (!isset($args[1])) {
-            $pages = 0;
-        } else {
-            $pages = intval($args[1]);
-        }
-        
-        
         if (filter_input(INPUT_GET, 'postid', FILTER_SANITIZE_NUMBER_INT) !== null) {
             $id = filter_input(INPUT_GET, 'postid', FILTER_SANITIZE_NUMBER_INT);
         } else {
-            header("Location: ".BASE_HREF.'/admin/');
+            header("Location: ".BASE_HREF.'admin/');
         }
         
         try {
@@ -138,7 +265,6 @@ class PageAdmin extends Page {
         if (isset($_POST['loginname']) && isset($_POST['loginpassword'])) {
             $sessionContent = 'Login OK!';
         }
-        
 
         $postCategory = $queryPostCategories->fetch();
         $categoriesList = $queryCategories->fetchAll(PDO::FETCH_ASSOC);
@@ -356,6 +482,102 @@ HTML;
         }
         exit;
     }
+
+    public function add($args) {
+        $inputFields = [
+            'postid' => FILTER_SANITIZE_NUMBER_INT,
+            'post-title' => FILTER_SANITIZE_STRING,
+            'post-content' => FILTER_SANITIZE_STRING,
+            'post-imagetitle' => FILTER_SANITIZE_STRING
+        ];
+
+        if ($this->checkFilters($inputFields)) {
+            $postId = filter_input(INPUT_POST, 'postid', FILTER_SANITIZE_NUMBER_INT);
+            $postTitle = filter_input(INPUT_POST, 'post-title', FILTER_SANITIZE_STRING);
+            $postContent = filter_input(INPUT_POST, 'post-content', FILTER_SANITIZE_STRING);
+            $postImageTitle = filter_input(INPUT_POST, 'post-imagetitle', FILTER_SANITIZE_STRING);
+
+            $postCategory = $_POST['category'][0];
+            $postTags = $_POST['tags'];
+
+            //var_dump($_POST);
+            //var_dump($_FILES);            
+            //exit;
+
+            // TODO przerobić zeby nie trzeba było ciągle pisać tego samego kodu.
+            try {
+                $dbConnection = \Core\DBConnection::getInstance();
+            } catch (\Core\FrameworkException $fex) {
+                $fex->showError();
+            }
+            $this->db = $dbConnection->getDB();
+            $this->error = $dbConnection->isError();
+            $this->errorMsg = $dbConnection->getErrorMsg();
+            //
+
+            $fileManager = new \Core\FileManager($this->db);
+            $fileManager->checkFileToUpload($_FILES['post-file'], $postId);
+            
+            //var_dump($_FILES);
+            //exit;
+
+            // TODO przenieść do oddzielnej metody
+            // $sessionContent = "";
+            // $isSession = \Core\Session::check($this->db);  
+            // if ($isSession) {
+            //     $sessionContent = "Użytkownik zalogowany";
+            // } else {
+            //     $sessionContent = "Użytkownik niezalogowany!";    
+            // }
+            //
+            
+            /**
+             * Update post url
+             */
+            $newUrl = $this->cleanUrl($postTitle);
+
+            $this->error = true;
+            try {
+                // UPDATE POST
+                echo 'INSERT ZAMIAST UPADTE';
+                exit;
+
+                $query = $this->db->prepare("UPDATE `posts` SET `title`=:title, `content`=:content, `url`=:newurl, `image_description`=:postimagetitle, `update_date`=NOW() WHERE `id`=:postid");
+                $query->bindValue(':title', $postTitle, PDO::PARAM_STR);
+                $query->bindValue(':content', $postContent, PDO::PARAM_STR);
+                $query->bindValue(':postimagetitle', $postImageTitle, PDO::PARAM_STR);
+                $query->bindValue(':newurl', $newUrl, PDO::PARAM_STR);
+                $query->bindValue(':postid', $postId, PDO::PARAM_INT);
+                $query->execute();
+
+                // UPDATE POST CATEGORY
+                $queryTags = $this->db->prepare('UPDATE `post_categories` SET `categoryid`=:catid WHERE `id`=:id');
+                $queryTags->bindValue(':id', $postId, PDO::PARAM_INT);
+                $queryTags->bindValue(':catid', $postCategory, PDO::PARAM_INT);
+                $queryTags->execute();
+
+                // ADD NEW DATA ABOUT POST TAGS
+                $insTagRelStmt = "INSERT INTO post_tags (tagid, postid) VALUES ";
+                for ($i = 0; $i < count($postTags); $i++) {
+                        $insTagRelStmt = $insTagRelStmt.'('.$postTags[$i].', '.$postId.')';
+                        if ($i < (count($postTags))-1) {
+                            $insTagRelStmt = $insTagRelStmt.', ';
+                        }
+                }
+                $insTagRelStmt = $insTagRelStmt.';';
+                $queryUpdateTags = $this->db->prepare($insTagRelStmt);
+                $queryUpdateTags->execute();
+
+                $this->error = false;
+                echo ' Post dodany.';
+            }
+            catch (FrameworkException $exc) {
+               $this->error = true;
+               $this->errorMsg = $exc->getMessage();
+            }
+        }
+        exit;
+    }
     
     public function delete($args) {
         
@@ -423,8 +645,6 @@ HTML;
             $pages = intval($args[1]);
         }
 
-        \Core\PDFCreator::make();
-
         try {
             $dbConnection = \Core\DBConnection::getInstance();
         } catch (\Core\FrameworkException $fex) {
@@ -485,7 +705,7 @@ HTML;
 
             <div class="admin-panel">
                 <div class="add-post-panel">
-                    <button class="button">Dodaj post</button>
+                    <a href="admin/new" class="button">Dodaj post</a>
                 </div>
                 <table class="posts-table">
                     <thead>

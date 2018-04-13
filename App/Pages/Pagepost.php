@@ -26,6 +26,7 @@ class Pagepost extends Page {
     }
     
     public function defaultmethod($args) {
+
         if (!isset($args[0])) {
            $input = '';
         }
@@ -107,6 +108,9 @@ class Pagepost extends Page {
                         <div class="post-tags">
                             <p><strong><i class="fas fa-tags"></i></strong>: '.$taglist.'</p>
                         </div>
+                        <div class="pdf-container">
+                            <a href="post/'.strtolower($content['url']).'/pdf" title="Pobierz ten artykuł jako plik PDF">Pobierz <i class="far fa-file-pdf"></i></a>
+                        </div>
                     </div>
                     <div class="disqus-container">
                         <div id="disqus_thread"></div>
@@ -129,7 +133,12 @@ class Pagepost extends Page {
                         </script>
                         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
                     </div>
-                </section>';  
+                </section>';
+                if (isset($args[1])) {
+                    if ($args[1] === 'pdf') {
+                        \Core\PDFCreator::make('<img src="'.$imageFile.'" alt="'.$content['image_description'].'" />'.$postContent, $content['title']);
+                    }
+                }         
         } else {
             $pageContent = '<section class="post-content">
                 <div class="post-not-found">

@@ -119,6 +119,41 @@ var tableOfPosts = {
     }
 })();
 
+function addPost() {
+    var form = $('#addpostform')[0];
+    var data = new FormData(form);
+    $("#addbutton").prop("disabled", true);
+
+    $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: "Admin/add",
+        data: data,
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
+        timeout: 600000,
+        success: function (data) {
+            showNotification(data);
+            console.log(data);
+            $("#addbutton").prop("disabled", false);
+        },
+        error: function (e) {
+            console.log("Błąd : ", e);
+            showNotification("Błąd: "+e.responseText);
+            $("#addbutton").prop("disabled", false);
+        }
+    });
+}
+
+(function addPostSetup() {
+    $("#addbutton").click(function (event) {
+        event.preventDefault();
+        addPost();
+    });
+})();
+
 function savePost() {
     var form = $('#editpostform')[0];
     var data = new FormData(form);

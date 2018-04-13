@@ -78,7 +78,7 @@ class AppCore {
                 unset($url[1]);
             }
         }
-
+        
         $params = $url ? array_values($url) : [];
         call_user_func_array([$page, $method], array($params));
         

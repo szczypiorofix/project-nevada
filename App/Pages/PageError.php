@@ -28,26 +28,11 @@ class PageError extends Page {
     }
 
     public function defaultmethod($args) {
-        
-        if (!isset($args[0])) {
-            $type = 'list';
-        }
-        else {
-            $type = $args[0];
-        }
-        if (!isset($args[1])) {
-            $pages = 0;
-        }
-        else {
-            $pages = intval($args[1]);
-        }
-
         try {
             $dbConnection = \Core\DBConnection::getInstance();
         } catch (\Core\FrameworkException $fex) {
             $fex->showError();
         }
-        
         $this->db = $dbConnection->getDB();
         $this->error = $dbConnection->isError();
         $this->errorMsg = $dbConnection->getErrorMsg();

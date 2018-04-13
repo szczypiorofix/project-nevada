@@ -11,11 +11,6 @@
 
 @import "color-palette.less";
 
-* {
-    box-sizing: border-box;
-}
-
-
 @font-face {
     font-family: LatoRegular;
     src: url(../webfonts/Lato-Regular.ttf);
@@ -24,6 +19,11 @@
 @font-face {
     font-family: RalewayLight;
     src: url(../webfonts/Raleway-Light.ttf);
+}
+
+* {
+    box-sizing: border-box;
+    font-family: "LatoRegular";
 }
 
 
@@ -35,6 +35,9 @@
     font-family: 'RalewayLight', sans-serif;
 }
 
+html, body {
+    .latoRegularFont();
+}
 
 @widthMediaBreakPointMobileToTablet: 650px;
 @widthMediaBreakPointTabletToPC: 950px;
@@ -843,7 +846,7 @@ main.content-maindiv {
             margin: 30px 0;
             .add-post-panel {
                 margin: 15px 5px;
-                button.button {
+                a.button {
                     border-radius: 2px;
                     outline: none;
                     background-color: @secondary1Color;
@@ -1095,6 +1098,12 @@ main.post-card {
             }
             .post-tags {
                 margin-left: 8px;
+            }
+            .pdf-container {
+                margin: auto 15px;
+                i {
+                    margin-left: 5px;
+                }
             }
         }
         .disqus-container {
