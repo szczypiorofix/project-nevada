@@ -423,6 +423,8 @@ HTML;
             $pages = intval($args[1]);
         }
 
+        \Core\PDFCreator::make();
+
         try {
             $dbConnection = \Core\DBConnection::getInstance();
         } catch (\Core\FrameworkException $fex) {
