@@ -112,6 +112,9 @@ class Pagepost extends Page {
                             <a href="post/'.strtolower($content['url']).'/pdf" title="Pobierz ten artykuł jako plik PDF">Pobierz <i class="far fa-file-pdf"></i></a>
                         </div>
                     </div>
+                    <div class="add-this-container">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
                     <div class="disqus-container">
                         <div id="disqus_thread"></div>
                         <script>
@@ -147,15 +150,13 @@ class Pagepost extends Page {
                 </div>
             </section>';
         }
-             
-        
-        //$pageContent .= "</div>";
         
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
         $this->addJSFile(['name' => 'Google Translate Script', 'path' => 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit', 'versioning' => false, 'async' => false]);
         $this->addJSFile(['name' => 'Google Translate Script Starter', 'path' => 'js/translate.js', 'versioning' => true]);
+        $this->addJSFile(['name' => 'AddThis Script', 'path' => '//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ad1f6633ca8b854"']);
 
         //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
 
