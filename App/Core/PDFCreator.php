@@ -21,9 +21,6 @@ class PDFCreator {
         $dompdf->setPaper('A4', 'landscape');
         $dompdf->render();
         
-        //$filePath = 'pdf/'.$fileName;
-        //file_put_contents($filePath, $dompdf->output());
-
         $fileName = 'article-'.$title.'.pdf';
         $pdf = $dompdf->output();
         
@@ -35,7 +32,6 @@ class PDFCreator {
         header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
         header('Pragma: public');
         header('Content-Length: '.strlen($pdf));
-        //readfile($fileName);
         echo $pdf;
         exit;
     }

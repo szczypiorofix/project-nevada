@@ -53,7 +53,7 @@ var tableOfPosts = {
                     xhttp.onreadystatechange = function() {
                         if (this.readyState === 4 && this.status === 200) {
                             console.log(this.response);
-                            console.log('OK!');
+                            showNotification('Post usunięty');
                         }
                     };
                     xhttp.send("postid="+item.id);
@@ -78,43 +78,11 @@ var tableOfPosts = {
     }
 };
 
-//(function setSubmitMessageForm() {
-//    var request;
-//    $("#editpostform").submit(function(event) {
-//        event.preventDefault();
-//        if (request) {
-//            request.abort();
-//        }
-//        var $form = $(this);
-//        var $inputs = $form.find("input, button, textarea");
-//        var serializedData = $form.serialize();
-//        $inputs.prop("disabled", true);
-//        request = $.ajax({
-//            url: "Admin/save",
-//            type: "post",
-//            data: serializedData
-//        });
-//        request.done(function (response, textStatus, jqXHR){
-//            console.log(response);
-//            showNotification(response);
-//            //$('input[type="text"],input[type="email"],textarea').val('');
-//        });
-//        request.fail(function (jqXHR, textStatus, errorThrown){
-//            console.error(
-//                "The following error occurred: "+textStatus, errorThrown
-//            );
-//        });
-//        request.always(function () {
-//            $inputs.prop("disabled", false);
-//        });
-//    });
-//})();
-
 (function setupFileUploader() {
     var fileFields = document.getElementById('post-file');
     if (fileFields) {
         fileFields.addEventListener('change', function(e) {
-            document.getElementById('post-file-label').innerHTML = '<i class="fas fa-upload"></i> '+e.target.files[0].name;
+            if (e.target.files) document.getElementById('post-file-label').innerHTML = '<i class="fas fa-upload"></i> '+e.target.files[0].name;
         });
     }
 })();

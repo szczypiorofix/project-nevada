@@ -29,6 +29,7 @@ class FileManager {
     }
 
     public function checkFileToUpload($file, $id) {
+        $data = ["error" => false, "msg"=> $this->errorMsg, "filename"=> 'default.jpg'];
         if ($file['name'] !== '') {
             $this->file = $file;
             $this->targetFile = DIR_UPLOADS_IMAGES.$this->file['name'];
@@ -40,15 +41,17 @@ class FileManager {
                 if ($this->file["size"] <= 1500000) {
                     if (move_uploaded_file($file['tmp_name'], $this->targetFile)) {
                         $this->filename = basename($this->file['name']);
-                        try {
-                            $queryTags = $this->db->prepare('UPDATE `posts` SET `image`=:image WHERE `id`=:id');
-                            $queryTags->bindValue(':id', $id, PDO::PARAM_INT);
-                            $queryTags->bindValue(':image', $this->filename, PDO::PARAM_STR);
-                            $queryTags->execute();
-                        } catch (FrameworkException $exc) {
-                            $this->errorMsg = $exc->getMessage();
+                        if (!is_null($id)) {
+                            try {
+                                $queryTags = $this->db->prepare('UPDATE `posts` SET `image`=:image WHERE `id`=:id');
+                                $queryTags->bindValue(':id', $id, PDO::PARAM_INT);
+                                $queryTags->bindValue(':image', $this->filename, PDO::PARAM_STR);
+                                $queryTags->execute();
+                            } catch (FrameworkException $exc) {
+                                $this->errorMsg = $exc->getMessage();
+                            }
+                            $this->error = false;
                         }
-                        $this->error = false;
                     }
                 } else {
                     $this->errorMsg = 'Podany plik jest zbyt duży (> 5MB)!';
@@ -56,7 +59,8 @@ class FileManager {
             } else {
                 $this->errorMsg = 'Podany plik nie jest obrazem!';
             }
-            echo $this->errorMsg;
+            $data = ["error" => $this->error, "msg"=> $this->errorMsg, "filename"=> $this->filename];
         }
+        return $data;
     }
 }

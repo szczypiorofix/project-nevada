@@ -69,7 +69,6 @@ class PageAdmin extends Page {
     }
 
     public function new($args) {
-        
         try {
             $dbConnection = \Core\DBConnection::getInstance();
         } catch (\Core\FrameworkException $fex) {
@@ -80,23 +79,12 @@ class PageAdmin extends Page {
         $this->error = $dbConnection->isError();
         $this->errorMsg = $dbConnection->getErrorMsg();
 
-        $sessionContent = "";
-        $isSession = \Core\Session::check($this->db);  
-        if ($isSession) {
-            $sessionContent = "Użytkownik zalogowany";
-        } else {
-            $sessionContent = "Użytkownik niezalogowany!";    
-        }
-
         $this->error = true;
         try {
-
             $queryCategories = $this->db->prepare("SELECT * FROM `categories`");
             $queryCategories->execute();
-
             $queryTags = $this->db->prepare("SELECT * FROM `tags`");
             $queryTags->execute();
-
             $this->error = false;
         }
         catch (FrameworkException $exc) {
@@ -124,24 +112,21 @@ class PageAdmin extends Page {
         //$this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js']);
         $this->addJSFile(['name' => 'Admin scripts', 'path' => 'js/admin.js']);
         
-        
         //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
         
         $pageContent =
 <<<HTML
     <main class="content-maindiv">
-        <section class="admin-container">
-            
+        <section class="admin-container">  
             <h3>NOWY POST</h3>
-
             <form id="addpostform" class="edit-panel" method="POST" enctype="multipart/form-data">
                 <div class="input-group">
                     <label><strong>Tytuł:</strong></label>
-                    <input type="text" name="post-title" />
+                    <input type="text" name="post-title" required/>
                 </div>
                 <div class="input-group">
                     <label><strong>Treść:</strong></label>
-                    <textarea class="tmce" name="post-content" rows="15" cols="50"></textarea>
+                    <textarea class="tmce" name="post-content" rows="15" cols="50" required></textarea>
                 </div>
                 <div class="input-group">
                     <label><strong>Kategoria:</strong></label>
@@ -158,33 +143,26 @@ class PageAdmin extends Page {
                 </div>
                 <div class="input-group">
                     <label><strong>Opis obrazka:</strong></label>
-                    <input type="text" name="post-imagetitle" />
+                    <input type="text" name="post-imagetitle" required/>
                 </div>
                 <div class="input-group">
                     <button class="submit" id="addbutton">Dodaj</button>
                     <a class="preview" href="#" target="_blank">Podgląd</a>
                 </div>
             </form>
-
         </section>
     </main>
 HTML;
 
         $metaData = new \Widgets\MetaData();
         $head = $metaData->getBody();
-        
         $this->setHead($head);
-
         $logo = new \Widgets\Logo();
         $navbar = new \Widgets\Nav();
-
         $header = new \Widgets\Header();
         $header->addBody($navbar->getBody().$logo->getBody());
-
         $footer = new \Widgets\Footer();
-
         $sideBar = new \Widgets\Aside($dbConnection);
-
         $ctaButton = new \Widgets\CTAButton();
         
         $body =
@@ -298,7 +276,6 @@ HTML;
         //$this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js']);
         $this->addJSFile(['name' => 'Admin scripts', 'path' => 'js/admin.js']);
         
-        
         //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
         
         $content = $query->fetch();
@@ -307,9 +284,7 @@ HTML;
 <<<HTML
     <main class="content-maindiv">
         <section class="admin-container">
-            
             <h3>EDYCJA POSTU</h3>
-            
             <form id="editpostform" class="edit-panel" method="POST" enctype="multipart/form-data">
                 <div class="input-group">
                     <label><strong>Tytuł:</strong></label>
@@ -342,26 +317,19 @@ HTML;
                     <a class="preview" href="#" target="_blank">Podgląd</a>
                 </div>
             </form>
-
         </section>
     </main>
 HTML;
 
         $metaData = new \Widgets\MetaData();
         $head = $metaData->getBody();
-        
         $this->setHead($head);
-
         $logo = new \Widgets\Logo();
         $navbar = new \Widgets\Nav();
-
         $header = new \Widgets\Header();
         $header->addBody($navbar->getBody().$logo->getBody());
-
         $footer = new \Widgets\Footer();
-
         $sideBar = new \Widgets\Aside($dbConnection);
-
         $ctaButton = new \Widgets\CTAButton();
         
         $body =
@@ -402,11 +370,6 @@ HTML;
             $postCategory = $_POST['category'][0];
             $postTags = $_POST['tags'];
 
-            //var_dump($_POST);
-            //var_dump($_FILES);            
-            //exit;
-
-            // TODO przerobić zeby nie trzeba było ciągle pisać tego samego kodu.
             try {
                 $dbConnection = \Core\DBConnection::getInstance();
             } catch (\Core\FrameworkException $fex) {
@@ -415,23 +378,9 @@ HTML;
             $this->db = $dbConnection->getDB();
             $this->error = $dbConnection->isError();
             $this->errorMsg = $dbConnection->getErrorMsg();
-            //
 
             $fileManager = new \Core\FileManager($this->db);
             $fileManager->checkFileToUpload($_FILES['post-file'], $postId);
-            
-            //var_dump($_FILES);
-            //exit;
-
-            // TODO przenieść do oddzielnej metody
-            // $sessionContent = "";
-            // $isSession = \Core\Session::check($this->db);  
-            // if ($isSession) {
-            //     $sessionContent = "Użytkownik zalogowany";
-            // } else {
-            //     $sessionContent = "Użytkownik niezalogowany!";    
-            // }
-            //
             
             /**
              * Update post url
@@ -484,15 +433,19 @@ HTML;
     }
 
     public function add($args) {
+
         $inputFields = [
-            'postid' => FILTER_SANITIZE_NUMBER_INT,
             'post-title' => FILTER_SANITIZE_STRING,
             'post-content' => FILTER_SANITIZE_STRING,
             'post-imagetitle' => FILTER_SANITIZE_STRING
         ];
 
+        // echo 'OK!';
+        // var_dump($_POST);
+        // var_dump($_FILES);            
+        // exit;
+
         if ($this->checkFilters($inputFields)) {
-            $postId = filter_input(INPUT_POST, 'postid', FILTER_SANITIZE_NUMBER_INT);
             $postTitle = filter_input(INPUT_POST, 'post-title', FILTER_SANITIZE_STRING);
             $postContent = filter_input(INPUT_POST, 'post-content', FILTER_SANITIZE_STRING);
             $postImageTitle = filter_input(INPUT_POST, 'post-imagetitle', FILTER_SANITIZE_STRING);
@@ -500,11 +453,6 @@ HTML;
             $postCategory = $_POST['category'][0];
             $postTags = $_POST['tags'];
 
-            //var_dump($_POST);
-            //var_dump($_FILES);            
-            //exit;
-
-            // TODO przerobić zeby nie trzeba było ciągle pisać tego samego kodu.
             try {
                 $dbConnection = \Core\DBConnection::getInstance();
             } catch (\Core\FrameworkException $fex) {
@@ -513,14 +461,11 @@ HTML;
             $this->db = $dbConnection->getDB();
             $this->error = $dbConnection->isError();
             $this->errorMsg = $dbConnection->getErrorMsg();
-            //
 
             $fileManager = new \Core\FileManager($this->db);
-            $fileManager->checkFileToUpload($_FILES['post-file'], $postId);
+            $fileManagerMsg = $fileManager->checkFileToUpload($_FILES['post-file'], null);
+            $imageFileName = $fileManagerMsg['filename'];
             
-            //var_dump($_FILES);
-            //exit;
-
             // TODO przenieść do oddzielnej metody
             // $sessionContent = "";
             // $isSession = \Core\Session::check($this->db);  
@@ -535,24 +480,25 @@ HTML;
              * Update post url
              */
             $newUrl = $this->cleanUrl($postTitle);
-
+            
             $this->error = true;
             try {
-                // UPDATE POST
-                echo 'INSERT ZAMIAST UPADTE';
-                exit;
-
-                $query = $this->db->prepare("UPDATE `posts` SET `title`=:title, `content`=:content, `url`=:newurl, `image_description`=:postimagetitle, `update_date`=NOW() WHERE `id`=:postid");
+                // ADD POST
+                $query = $this->db->prepare("INSERT INTO `posts` 
+                (`title`, `content`, `url`, `image`, `image_description`, `insert_date`, `update_date`) 
+                VALUES (:title, :content, :newurl, :image, :postimagetitle, NOW(), NOW() )");
                 $query->bindValue(':title', $postTitle, PDO::PARAM_STR);
                 $query->bindValue(':content', $postContent, PDO::PARAM_STR);
-                $query->bindValue(':postimagetitle', $postImageTitle, PDO::PARAM_STR);
                 $query->bindValue(':newurl', $newUrl, PDO::PARAM_STR);
-                $query->bindValue(':postid', $postId, PDO::PARAM_INT);
+                $query->bindValue(':image', $imageFileName, PDO::PARAM_STR);
+                $query->bindValue(':postimagetitle', $postImageTitle, PDO::PARAM_STR);
                 $query->execute();
 
-                // UPDATE POST CATEGORY
-                $queryTags = $this->db->prepare('UPDATE `post_categories` SET `categoryid`=:catid WHERE `id`=:id');
-                $queryTags->bindValue(':id', $postId, PDO::PARAM_INT);
+                $postId = $this->db->lastInsertId();
+                
+                // ADD POST CATEGORY
+                $queryTags = $this->db->prepare('INSERT INTO `post_categories` (`categoryid`, `postid`) VALUES (:catid, :postid);');
+                $queryTags->bindValue(':postid', $postId, PDO::PARAM_INT);
                 $queryTags->bindValue(':catid', $postCategory, PDO::PARAM_INT);
                 $queryTags->execute();
 
