@@ -19,7 +19,7 @@ use Models\PostModel;
 class Pagepost extends Page {
     
     
-    public function __construct($data) {}
+    public function __construct($data = []) {}
     
     public function __toString() {
         return get_class($this);

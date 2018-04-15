@@ -24,7 +24,12 @@ var tableOfPosts = {
             let newTr = document.createElement('tr');
             
             newTr.appendChild(self.addData('td', item.id));
-            newTr.appendChild(self.addData('td', item.title));
+            let titleTd = document.createElement('td');
+            let titleA = self.addData('a', item.title);
+            titleA.href = 'post/'+item.url;
+            titleA.target = '_blank';
+            titleTd.appendChild(titleA);
+            newTr.appendChild(titleTd);
             newTr.appendChild(self.addData('td', item.insert_date));
             newTr.appendChild(self.addData('td', item.update_date));
             
