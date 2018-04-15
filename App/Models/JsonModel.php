@@ -1,5 +1,4 @@
 <?php
-
 /*
  * The MIT License
  *
@@ -19,7 +18,6 @@ use Core\ModelClasses\DataModel;
 class JsonModel extends DataModel {
     
     public function __construct() {
-        
         $this->content = \Core\Registry::returnList();
     }
     

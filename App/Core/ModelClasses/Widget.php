@@ -1,5 +1,4 @@
 <?php
-
 /*
  * MIT License
  * 
@@ -31,7 +30,6 @@ abstract class Widget {
         return get_class($this);
     }
     
-
     /*  CSS FILES  */
     public function addCSSFile($cssFile) {
         if (($cssFile !== '' || !is_null($cssFile)) && is_array($cssFile) ) {
@@ -64,9 +62,6 @@ abstract class Widget {
     public function addCss($css) {
         $this->css .= $css;
     }
-
-    
-    
 
     /*  JS FILES  */
     public function addJSFile($jsFile) {
@@ -125,9 +120,6 @@ abstract class Widget {
         $this->jsHead = $jsHead;
     }    
     
-    
-    
-    
     /* OTHER */
     public function getBody() {
         return $this->body;
@@ -139,6 +131,5 @@ abstract class Widget {
 
     public function addBody($body) {
         $this->body .= $body;
-    }
-    
+    }    
 }

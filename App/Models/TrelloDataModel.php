@@ -1,5 +1,4 @@
 <?php
-
 /*
  * The MIT License
  *
@@ -17,7 +16,6 @@ use Core\ModelClasses\DataModel;
  * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
 class TrelloDataModel extends DataModel {
-    
     
     private $trelloApiKey = "";
     private $trelloApiToken = "";
@@ -83,10 +81,8 @@ class TrelloDataModel extends DataModel {
                 }
             }
         $content .= '</div>';
-        
         return $content;
     }
-   
     
     private function getCheckLists($idCheckList, $args = false) {
         if (!$args) {

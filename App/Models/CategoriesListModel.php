@@ -1,5 +1,4 @@
 <?php
-
 /*
  * The MIT License
  *
@@ -17,7 +16,6 @@ use Core\ModelClasses\DataModel, Core\FrameworkException, PDO, PDOException;
 * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
 class CategoriesListModel extends DataModel {
-    
     
         const GET_CATEGORIES = "
 SELECT

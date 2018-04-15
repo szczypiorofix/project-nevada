@@ -1,5 +1,4 @@
 <?php
-
 /*
  * MIT License
  * 
@@ -26,13 +25,10 @@ abstract class Page {
     protected $body = "";
     protected $footer = "";
     const HOME_PAGE_VIEW_FILE = "index.html";
-    
-    
+
 
     /* ABSTRACT DEFAULT METHOD */
     abstract public function defaultmethod($args);
-    
-
     
     public function show() {
         include_once DIR_VIEWS.self::HOME_PAGE_VIEW_FILE;
@@ -123,9 +119,6 @@ abstract class Page {
         }
         return $cssF;
     }
-
-
-
     
     /*  JS FILES  */
     public function addJSFile($jsFile) {
@@ -203,8 +196,6 @@ abstract class Page {
     public function addJSHead($jsHead) {
         $this->jsHead .= $jsHead;
     }
-    
-
 
     /* OTHER */
     public function getHead() {
@@ -230,5 +221,4 @@ abstract class Page {
     public function setFooter($footer) {
         $this->footer = $footer;
     }
-    
 }

@@ -1,5 +1,4 @@
 <?php
-
 /*
  * MIT License
  * 
@@ -19,7 +18,7 @@ use Core\ModelClasses\Page, Models\PostModel;
 class Pagepost extends Page {
     
     
-    public function __construct($data = []) {}
+    public function __construct($data) {}
     
     public function __toString() {
         return get_class($this);
@@ -160,6 +159,7 @@ class Pagepost extends Page {
 
         //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
 
+        // image modal script
         $this->addJS('
         var modal = document.getElementById("imageModalDiv");
         var img = document.getElementById("imageModalSrc");
@@ -180,22 +180,15 @@ class Pagepost extends Page {
         }
         ');
 
-
         $metaData = new \Widgets\MetaData();
         $head = $metaData->getBody();
-        
         $this->setHead($head);
-
         $logo = new \Widgets\Logo();
         $navbar = new \Widgets\Nav();
-
         $header = new \Widgets\Header();
         $header->addBody($navbar->getBody().$logo->getBody());
-
         $footer = new \Widgets\Footer();
-
         $sideBar = new \Widgets\Aside($dbConnection);
-
         $ctaButton = new \Widgets\CTAButton();
         
         $body =
