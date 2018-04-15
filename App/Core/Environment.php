@@ -9,22 +9,24 @@
 
 namespace Core;
 
-use \Core\Config;
-use \Core\FrameworkException;
+use Core\Config;
+use Core\FrameworkException;
 
 /**
  * This is class where all constants are defined.
  *
  * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
-
 class Environment {
 
     private function __construct() {}
     private function __clone() {}
-    
+
+    /**
+     * Set all necessary constants.
+     */
     public static function set() {
-        /* DIRECTORIES */
+        /* FOLDERS STRUCTURE */
         define("DS", DIRECTORY_SEPARATOR);
         define("DIR_ROOT", "..".DS);
         define("DIR_APP", DIR_ROOT . 'App' . DS);
@@ -35,13 +37,13 @@ class Environment {
         define('DIR_UPLOADS_IMAGES', 'uploads'.DS.'images'.DS);
 
         /* OTHERS */
-        define("PAGE_VERSION", "1.00.005");
+        define("PAGE_VERSION", "1.00.006");
         define("CONFIG_FILE", DIR_ROOT.'.config');
         
         try {
             Config::configFileExists();
-        } catch (FrameworkException $ex) {
-            //$ex->showError();
+        } catch (FrameworkException $ex) { 
+            $ex->showError();
         }
         
         /* MYSQL SETTINGS */

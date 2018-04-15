@@ -77,8 +77,7 @@ class Aside extends Widget {
         </aside>
         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 HTML;
-            ;
+
     }
-    
     
 }

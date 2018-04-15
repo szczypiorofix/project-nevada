@@ -10,7 +10,6 @@
 namespace Pages;
 
 use Models\PostListModel;
-use Core\Registry;
 
 /**
  * Page that returns JSON data

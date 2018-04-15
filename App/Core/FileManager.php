@@ -38,7 +38,7 @@ class FileManager {
             $this->error = true;
 
             if ($isImage && ($imageFileType === "jpg" || $imageFileType === "png" || $imageFileType === "jpeg" || $imageFileType === "gif")) {
-                if ($this->file["size"] <= 1500000) {
+                if ($this->file["size"] <= 5000000) {
                     if (move_uploaded_file($file['tmp_name'], $this->targetFile)) {
                         $this->filename = basename($this->file['name']);
                         if (!is_null($id)) {

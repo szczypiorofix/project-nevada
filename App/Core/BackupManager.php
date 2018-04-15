@@ -21,7 +21,7 @@ use RecursiveIteratorIterator;
 class BackupManager {
     
     
-    public function __construct() {}
+    private function __construct() {}
     private function __clone() {}    
     
     private static function zipData($source, $destination) {
