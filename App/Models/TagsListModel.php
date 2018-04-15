@@ -8,7 +8,9 @@
 
 namespace Models;
 
-use Core\ModelClasses\DataModel, Core\FrameworkException, PDO, PDOException;
+use Core\ModelClasses\DataModel;
+use Core\FrameworkException;
+
 
 /**
  * Description of PostModel

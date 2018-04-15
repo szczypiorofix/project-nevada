@@ -1,6 +1,9 @@
 <?php
+
 namespace core;
+
 class Session {
+    
     public static $session = false;
     public static $useremail = '';
     public static $error = false;
@@ -36,12 +39,15 @@ class Session {
         }
         return self::$session;
     }
+    
     public static function getUserEmail() {
             return self::$useremail;
     }
+    
     public static function isError() {
             return self::$errorMsg;
     }
+    
     public static function getErrorMsg() {
             return self::$errorMsg;
     }

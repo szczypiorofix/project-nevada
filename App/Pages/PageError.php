@@ -9,7 +9,8 @@
 
 namespace Pages;
 
-use Core\ModelClasses\Page, Core\Config;
+use Core\ModelClasses\Page;
+use Core\Config;
 
 /**
  * This is error 404 Page

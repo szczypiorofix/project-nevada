@@ -6,7 +6,10 @@
  *
  */
 namespace Pages;
-use Core\ModelClasses\Page, Core\Config, Models\PostListModel;
+
+use Core\ModelClasses\Page;
+use Core\Config;
+use Models\PostListModel;
 /**
  * This is showcase of Page
  *
@@ -313,7 +316,6 @@ HTML;
         
         $metaData = new \Widgets\MetaData();
         $head = $metaData->getBody();
-        
         $this->setHead($head);
         
         
@@ -322,7 +324,6 @@ HTML;
          * http://rajibweb.com/html/collis/index-one.html
          * 
          */
-        
         
         $logo = new \Widgets\Logo();
         $navbar = new \Widgets\Nav();

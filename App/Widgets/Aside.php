@@ -9,7 +9,10 @@
 
 namespace Widgets;
 
-use \Core\ModelClasses\Widget, Core\Registry, Models\CategoriesListModel, Models\TagsListModel;
+use Core\ModelClasses\Widget;
+use Core\Registry;
+use Models\CategoriesListModel;
+use Models\TagsListModel;
 
 /**
  * This is class for aside-type widgets.

@@ -8,7 +8,8 @@
 
 namespace Pages;
 
-use Core\ModelClasses\Page, Models\PostModel;
+use Core\ModelClasses\Page;
+use Models\PostModel;
 
 /**
  * This is a controller class for single post.

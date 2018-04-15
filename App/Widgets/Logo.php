@@ -10,7 +10,8 @@
 
 namespace Widgets;
 
-use \Core\ModelClasses\Widget, Core\Registry;
+use Core\ModelClasses\Widget;
+use Core\Registry;
 
 /**
  * This is class for logo-type widgets.

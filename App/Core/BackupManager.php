@@ -1,9 +1,23 @@
 <?php
+/*
+ * MIT License
+ * 
+ * Copyright (c) 2018 Piotr Wróblewski
+ * 
+ */
 
 namespace Core;
 
-use ZipArchive, RecursiveDirectoryIterator, RecursiveIteratorIterator;
+use ZipArchive;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 
+
+/**
+ * This is a class for backing up files on the server.
+ *
+* @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
+ */
 class BackupManager {
     
     

@@ -29,7 +29,24 @@ abstract class Widget {
     public function __toString() {
         return get_class($this);
     }
+
     
+    /* OTHER */
+    public function getBody() {
+        return $this->body;
+    }
+
+    public function setBody($body) {
+        $this->body = $body;
+    }
+
+    public function addBody($body) {
+        $this->body .= $body;
+    }
+
+    
+
+
     /*  CSS FILES  */
     public function addCSSFile($cssFile) {
         if (($cssFile !== '' || !is_null($cssFile)) && is_array($cssFile) ) {
@@ -50,6 +67,10 @@ abstract class Widget {
         }
         return $cssF;
     }
+
+
+
+
     
     public function getCss() {
         return $this->css;
@@ -62,6 +83,10 @@ abstract class Widget {
     public function addCss($css) {
         $this->css .= $css;
     }
+
+
+
+
 
     /*  JS FILES  */
     public function addJSFile($jsFile) {
@@ -80,10 +105,25 @@ abstract class Widget {
         return $this->jsFiles;
     }
     
+
+
+
+    public function addJSHead($jsHead) {
+        $this->jsHead .= $jsHead;
+    }
+
+    public function setJsHead($jsHead) {
+        $this->jsHead = $jsHead;
+    }
+
     public function getJSHead() {
         return $this->jsHead;
     }
     
+
+
+
+
     public function getJS() {
         return $this->js;
     }
@@ -95,6 +135,10 @@ abstract class Widget {
     public function addJS($js) {
         $this->js .= $js;
     }
+
+
+
+
 
     public function addJSHeadFile($jsHeaderFile) {
         if (($jsHeaderFile !== '' || !is_null($jsHeaderFile)) && is_array($jsHeaderFile) ) {
@@ -111,25 +155,5 @@ abstract class Widget {
     public function getJSHeadFiles() {
         return $this->jsHeadFiles;
     }
-    
-    public function addJSHead($jsHead) {
-        $this->jsHead .= $jsHead;
-    }
 
-    public function setJsHead($jsHead) {
-        $this->jsHead = $jsHead;
-    }    
-    
-    /* OTHER */
-    public function getBody() {
-        return $this->body;
-    }
-
-    public function setBody($body) {
-        $this->body = $body;
-    }
-
-    public function addBody($body) {
-        $this->body .= $body;
-    }    
 }

@@ -9,7 +9,7 @@
 
 namespace Widgets;
 
-use \Core\ModelClasses\Widget;
+use Core\ModelClasses\Widget;
 
 /**
  * This is class for main-type widgets.

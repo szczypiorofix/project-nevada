@@ -9,7 +9,8 @@
 
 namespace Pages;
 
-use Core\ModelClasses\Page, Models\TrelloDataModel;
+use Core\ModelClasses\Page;
+use Models\TrelloDataModel;
 
 /**
  * PageTrelloContent - returns data for AJAX requests (Show data from Trello board)

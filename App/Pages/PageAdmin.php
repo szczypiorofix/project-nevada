@@ -9,7 +9,9 @@
 
 namespace Pages;
 
-use Core\ModelClasses\Page, Core\Config, Models\PostListModel, PDO;
+use Core\ModelClasses\Page;
+use Models\PostListModel;
+use PDO;
 
 /**
  * This is admin panel page.
@@ -68,7 +70,7 @@ class PageAdmin extends Page {
         return get_class($this);
     }
 
-    public function new($args) {
+    public function newpost($args) {
         try {
             $dbConnection = \Core\DBConnection::getInstance();
         } catch (\Core\FrameworkException $fex) {
@@ -651,7 +653,7 @@ HTML;
 
             <div class="admin-panel">
                 <div class="add-post-panel">
-                    <a href="admin/new" class="button">Dodaj post</a>
+                    <a href="admin/newpost" class="button">Dodaj post</a>
                 </div>
                 <table class="posts-table">
                     <thead>

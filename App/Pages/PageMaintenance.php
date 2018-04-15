@@ -10,7 +10,8 @@
 namespace Pages;
 
 
-use Core\ModelClasses\Page, Models\MaintenanceModel;
+use Core\ModelClasses\Page;
+use Models\MaintenanceModel;
 
 /**
  * This is a controller class for maintenance page.

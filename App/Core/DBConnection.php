@@ -10,7 +10,8 @@
 
 namespace Core;
 
-use PDO, \Core\FrameworkException;
+use PDO;
+use \Core\FrameworkException;
 
 /**
  * This is class for establishing connection with MySQL database.

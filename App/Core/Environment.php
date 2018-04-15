@@ -9,7 +9,8 @@
 
 namespace Core;
 
-use \Core\Config, \Core\FrameworkException;
+use \Core\Config;
+use \Core\FrameworkException;
 
 /**
  * This is class where all constants are defined.
