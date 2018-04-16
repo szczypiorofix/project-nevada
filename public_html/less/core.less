@@ -869,14 +869,15 @@ main.content-maindiv {
                     padding: 8px;
                 }
                 th {
-                    min-width: 100px;
+                    min-width: 80px;
+                    max-width: 300px;
                 }
                 th button.sort-button {
                     border: none;
                     background-color: @textColorDark;
                     color: @textColor;
                     padding: 6px 16px;
-                    margin: 2px;
+                    min-width: 80px;
                     .boxShadow(1px, 1px, 6px, 0, rgba(80, 80, 80, 0.3));
                     &:hover {
                         background-color: darken(@textColorDark, 10%);

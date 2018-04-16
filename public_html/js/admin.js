@@ -71,25 +71,20 @@ var tableOfPosts = {
         this.th.appendChild(hTr);
     },
     compare: function(key, order='asc') {
-
         return function(a, b) {
             if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
                 return 0;
             }
             const varA = (typeof a[key] === 'string') ? a[key].toUpperCase() : a[key];
             const varB = (typeof b[key] === 'string') ? b[key].toUpperCase() : b[key];
-
             let comparison = 0;
             if (varA > varB) comparison = 1;
             else if (varA < varB) comparison = -1;
-
             return (order == 'desc') ? (comparison * -1) : comparison;
         }
     },
     refreshBody: function() {
-
         this.tb.innerHTML = '';
-
         switch (this.sorting) {
             case 1: {
                 this.data.posts.sort(this.compare('id', 'asc'));
@@ -124,9 +119,6 @@ var tableOfPosts = {
                 break;
             }
         }
-        
-
-        //console.log(this.data.posts);
 
         let self = this;
         this.data.posts.forEach(function(item, index, t) {
@@ -178,7 +170,6 @@ var tableOfPosts = {
             nb.appendChild(bi);
             newTd.appendChild(nb);
             bTr.appendChild(newTd);
-            
             self.tb.appendChild(bTr);
         });
     },
