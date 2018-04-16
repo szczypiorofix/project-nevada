@@ -868,7 +868,25 @@ main.content-maindiv {
                     text-align: left;
                     padding: 8px;
                 }
-                
+                th {
+                    min-width: 100px;
+                }
+                th button.sort-button {
+                    border: none;
+                    background-color: @textColorDark;
+                    color: @textColor;
+                    padding: 6px 16px;
+                    margin: 2px;
+                    .boxShadow(1px, 1px, 6px, 0, rgba(80, 80, 80, 0.3));
+                    &:hover {
+                        background-color: darken(@textColorDark, 10%);
+                        cursor: pointer;
+                        .boxShadow(1px, 1px, 10px, 0, rgba(80, 80, 80, 0.3));
+                    }
+                    i {
+                        margin-right: 5px;
+                    }
+                }
                 td button.admin-button {
                     border: none;
                     background-color: @secondary2Color;

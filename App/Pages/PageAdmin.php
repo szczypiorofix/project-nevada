@@ -615,14 +615,7 @@ HTML;
                     <a href="admin/newpost" class="button">Dodaj post</a>
                 </div>
                 <table class="posts-table">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Tytuł</th> 
-                            <th>Data publikacji</th>
-                            <th>Data aktualizacji</th>
-                            <th>Opcje</th>
-                        </tr>
+                    <thead id="tablePostsHead"></thead>
                     </thead>
                     <tbody id="tablePostsBody"></tbody>
                 </table>
