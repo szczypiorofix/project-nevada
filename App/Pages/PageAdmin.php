@@ -554,10 +554,10 @@ HTML;
 
         if (filter_input(INPUT_POST, 'loginname', FILTER_SANITIZE_STRING) != null && filter_input(INPUT_POST, 'loginpassword', FILTER_SANITIZE_STRING)) {
             $this->error = true;
-            $sessionId = 'dupa';
             $loginname = filter_input(INPUT_POST, 'loginname', FILTER_SANITIZE_STRING);
             $loginpassword = filter_input(INPUT_POST, 'loginpassword', FILTER_SANITIZE_STRING);
             $loginpassword = \Core\Session::encryptIt($loginpassword);
+            $sessionId = md5($loginname);
             
             try {
                 $queryRegister = $this->db->prepare(
@@ -645,6 +645,11 @@ HTML;
         $this->setBody($body);
     }
 
+    public function logout($args) {
+        setcookie("session_id", "", time() - 3600, "/");
+        header("Location: ".BASE_HREF."admin/");
+    }
+
     public function defaultmethod($args) {
         
         if (!isset($args[0])) {
@@ -676,29 +681,32 @@ HTML;
         }
 
         $sessionContent = "";
-        $isSession = \Core\Session::check($this->db);  
-        if ($isSession) {
-            echo 'Sesja';
-            exit;
-        }
+        //$isSession = \Core\Session::check($this->db);  
+        //if ($isSession) {
+         //   echo 'Sesja';
+         //   exit;
+        //}
 
+
+        // SPRAWDZANIE HASŁA
         if (filter_input(INPUT_POST, 'loginname', FILTER_SANITIZE_STRING) !== null
             && filter_input(INPUT_POST, 'loginpassword', FILTER_SANITIZE_STRING) !== null) {
 
             $userlogin = filter_input(INPUT_POST, 'loginname', FILTER_SANITIZE_STRING);
             $userpass = filter_input(INPUT_POST, 'loginpassword', FILTER_SANITIZE_STRING);
             
-            if (\core\Session::checkPassword($userlogin, 'szczypiorofix@o2.pl')) {
+            // INICJOWANIE CIASTECZKA
+            if (\core\Session::checkPassword($this->db, $userlogin, $userpass)) {
+                //echo 'ciastko OK';
                 setcookie('session_id', md5($userlogin), time() + (86400), "/");    
             }
-            
-            // INICJOWANIE CIASTECZKA
         }
         
         // SPRAWDZANIE CIASTECZKA
         if (\core\Session::check($this->db)) {    
             $sessionContent = '<div class="admin-panel">
-                <h3>'.$userlogin.'</h3>
+                <h3>'.\core\Session::$useremail.'</h3>
+                <a href="admin/logout">Wyloguj</a>
                 <div class="add-post-panel">
                     <a href="admin/newpost" class="button">Dodaj post</a>
                 </div>

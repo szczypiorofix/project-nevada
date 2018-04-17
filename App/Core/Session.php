@@ -2,7 +2,7 @@
 
 namespace core;
 
-use Config;
+use Config, PDO;
 
 class Session {
     
@@ -34,8 +34,9 @@ class Session {
     }
 
     public static function check($db) {
+        
         if (isset($_COOKIE['session_id'])) {
-            $sessionid = md5($_COOKIE['session_id']);
+            $sessionid = $_COOKIE['session_id'];
             try {
                 $query = $db->prepare("SELECT * FROM users WHERE session_code=:sessionid");
                 $query->bindParam(':sessionid', $sessionid);
@@ -88,8 +89,30 @@ class Session {
         return password_hash($p, PASSWORD_ARGON2I, $options);
     }
 	
-    public static function checkPassword($p, $h) {
+    public static function checkPassword($db, $u, $p) {
         //return password_verify($p, $h);
-        return $p === $h;
+        //$pass = self::encryptIt($p);
+        try {
+            $query = $db->prepare("SELECT `users`.password FROM `users` WHERE email=:useremail");
+            $query->bindParam(':useremail', $u, PDO::PARAM_STR);
+            //$query->bindParam(':userpass', $pass, PDO::PARAM_STR);
+            $query->execute();
+            $result = $query->fetch();
+            var_dump($p);
+            var_dump($result['password']);
+            return password_verify($p, $result['password']);
+            //if ($query->rowCount() == 1) {
+                //echo 'OK!';
+            //    return true;
+            //}
+            //else {
+            //    return false;
+            //}
+        } catch (PDOException $exc) {
+            self::$errorMsg = \FrameworkException::getMessage($exc->getMessage(), $exc->getFile(), $exc->getLine());
+            self::$session = false;
+            self::$error = true;
+            return false;
+        }
     }
 }
