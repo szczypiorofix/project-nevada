@@ -176,10 +176,13 @@ var tableOfPosts = {
     init: function(data) {
         this.tb = document.getElementById("tablePostsBody");
         this.th = document.getElementById("tablePostsHead");
-        this.data = data;
-        this.sorting = 1;
-        this.refreshHead();
-        this.refreshBody();
+        if (this.tb !== null && this.th !== null) {
+            this.data = data;
+            this.sorting = 1;
+            this.refreshHead();
+            this.refreshBody();
+        }
+        
     },
     show: function() {
         //console.log(this.data);
@@ -262,6 +265,20 @@ function savePost() {
     $("#submitbutton").click(function (event) {
         event.preventDefault();
         savePost();
+    });
+})();
+
+(function registerAdmin() {
+    $("#registerAdminButton").click(function (event) {
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                showNotification(this.response);
+                console.log(this.response);
+            }
+        };
+        xhttp.open("POST", "Admin/register", true);
+        xhttp.send();
     });
 })();
 
