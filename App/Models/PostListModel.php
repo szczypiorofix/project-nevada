@@ -23,6 +23,7 @@ class PostListModel extends DataModel {
     const TYPE_ID_SORT = 1;
     const TYPE_CATEGORY_SORT = 2;
     const TYPE_TAGS_SORT = 3;
+    const TYPE_SEARCH_SORT = 4;
     private $input = null;
     private $inputPage = null;
     
@@ -135,6 +136,32 @@ LIMIT
    :postsonsite
 OFFSET
    :offset";
+
+   const GET_SEARCH_PAGE = '
+   SELECT
+   `posts`.*, `categories`.*, `post_categories`.*, GROUP_CONCAT(`categories`.`name`) AS `kategorie`
+FROM
+   `posts`
+LEFT JOIN
+   `post_categories`
+ON
+   `posts`.id = `post_categories`.postid	
+LEFT JOIN
+   `categories`
+ON
+   `post_categories`.categoryid = `categories`.id
+WHERE
+   MATCH (`title`, `content`)
+AGAINST
+   (:searchname IN BOOLEAN MODE)
+GROUP BY
+   `posts`.id
+ORDER BY
+   `posts`.id
+DESC
+LIMIT
+    :postsonsite
+   ';
     
     function __construct($type, $dbConnection, $input, $inputPage, $postsToDisplay = 6) {
         $maxrecords = -1;
@@ -156,19 +183,29 @@ OFFSET
         $this->type = $type;
         $db = $dbConnection->getDB();
         $this->error = true;
-        $offset = ($this->inputPage) * $postsOnSite;
+        
+        if ($this->type !== self::TYPE_SEARCH_SORT) {
+            $offset = ($this->inputPage) * $postsOnSite;
+        }
+
+        try {
+            $getNumberQuery = $db->prepare(self::GET_POSTS_PAGE_COUNTER);
+            $getNumberQuery->execute();
+            $results = $getNumberQuery->fetch();
+            $maxrecords = $results['counter'];
+            
+            if ($postsOnSite === -1) {
+                $postsOnSite = $maxrecords;
+            }
+        }
+        catch (FrameworkException $exc) {
+            $this->error = true;
+            $this->errorMsg = $exc->getMessage();
+        }
         
         // ############## POST ID SORT ####################### ///
         if ($this->type === self::TYPE_ID_SORT) {
              try {
-                $getNumberQuery = $db->prepare(self::GET_POSTS_PAGE_COUNTER);
-                $getNumberQuery->execute();
-                $results = $getNumberQuery->fetch();
-                $maxrecords = $results['counter'];
-                
-                if ($postsOnSite === -1) {
-                    $postsOnSite = $maxrecords;
-                }
                 $query = $db->prepare(self::GET_POSTS_PAGE);
                 $query->bindValue(':postsonsite', $postsOnSite, PDO::PARAM_INT);
                 $query->bindValue(':offset', $offset, PDO::PARAM_INT);
@@ -186,14 +223,6 @@ OFFSET
         // ############## POST CATEGORY SORT ####################### ///
         if ($this->type === self::TYPE_CATEGORY_SORT) {
              try {
-                $getNumberQuery = $db->prepare(self::GET_POSTS_PAGE_COUNTER);
-                $getNumberQuery->execute();
-                $results = $getNumberQuery->fetch();
-                $maxrecords = $results['counter'];
-                
-                if ($postsOnSite === -1) {
-                    $postsOnSite = $maxrecords;
-                }
                 $query = $db->prepare(self::GET_CATEGORIES_PAGE);
                 $query->bindValue(':catname', $input, PDO::PARAM_STR);
                 $query->bindValue(':postsonsite', $postsOnSite, PDO::PARAM_INT);
@@ -211,28 +240,37 @@ OFFSET
         
         // ############## POST TAGS SORT ####################### ///
         if ($this->type === self::TYPE_TAGS_SORT) {
-             try {
-                $getNumberQuery = $db->prepare(self::GET_POSTS_PAGE_COUNTER);
-                $getNumberQuery->execute();
-                $results = $getNumberQuery->fetch();
-                $maxrecords = $results['counter'];
-                
-                if ($postsOnSite === -1) {
-                    $postsOnSite = $maxrecords;
-                }
+            try {
                 $query = $db->prepare(self::GET_TAG_PAGE);
                 $query->bindValue(':tagname', '%'.$input.'%', PDO::PARAM_STR);
                 $query->bindValue(':postsonsite', $postsOnSite, PDO::PARAM_INT);
                 $query->bindValue(':offset', $offset, PDO::PARAM_INT);
                 $query->execute();
-             }
-             catch (FrameworkException $exc) {
+            }
+            catch (FrameworkException $exc) {
                 $this->error = true;
                 $this->errorMsg = $exc->getMessage();
-             }
-             if ($query->rowCount() > 0) {
+            }
+            if ($query->rowCount() > 0) {
                 $this->error = false;
-             }
+            }
+        }
+
+        // ############## POST SEARCH SORT ####################### ///
+        if ($this->type === self::TYPE_SEARCH_SORT) {
+            try {
+                $query = $db->prepare(self::GET_SEARCH_PAGE);
+                $query->bindValue(':searchname', '%'.$input.'%', PDO::PARAM_STR);
+                $query->bindValue(':postsonsite', $postsOnSite, PDO::PARAM_INT);
+                $query->execute();
+            }
+            catch (FrameworkException $exc) {
+                $this->error = true;
+                $this->errorMsg = $exc->getMessage();
+            }
+            if ($query->rowCount() > 0) {
+                $this->error = false;
+            }
         }
     
         // RETURN RESULTS

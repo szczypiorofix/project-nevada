@@ -53,7 +53,7 @@ class PageShowcase extends Page {
         //var_dump($content);
         
         if (is_null($content)) {
-            $content = [];
+            $content = ['posts' => []];
         }
  
         /**

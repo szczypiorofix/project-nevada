@@ -71,7 +71,7 @@ class PageAdmin extends Page {
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
         //$this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js']);
-        $this->addJSFile(['name' => 'Admin scripts', 'path' => 'js/admin.js']);
+        $this->addJSFile(['name' => 'Admin scripts', 'path' => 'js/admin.js', 'async' => true]);
         
         //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
         
@@ -129,11 +129,13 @@ HTML;
         $body =
 <<<HTML
     <div class="full-page-container" id="mainDiv">
-        <div class="nav-and-logo">
+        <header class="nav-and-logo">
             {$header->getBody()}
-        </div>
+        </header>
         <main class="post-card">
-            {$pageContent}
+            <article>
+                {$pageContent}
+            </article>
             {$sideBar->getBody()}
         </main>
         {$ctaButton->getBody()}
@@ -302,11 +304,13 @@ HTML;
         $body =
 <<<HTML
     <div class="full-page-container" id="mainDiv">
-        <div class="nav-and-logo">
+        <header class="nav-and-logo">
             {$header->getBody()}
-        </div>
+        </header>
         <main class="post-card">
-            {$pageContent}
+            <article>
+                {$pageContent}
+            </article>
             {$sideBar->getBody()}
         </main>
         {$ctaButton->getBody()}
@@ -316,7 +320,6 @@ HTML;
         </div>
     </div>
 HTML;
-        
         $this->setBody($body);
     }
     
@@ -654,7 +657,6 @@ HTML;
         </div>
     </div>
 HTML;
-        
         $this->setBody($body);
     }
 
@@ -795,7 +797,6 @@ HTML;
         </div>
     </div>
 HTML;
-        
         $this->setBody($body);
     }
 

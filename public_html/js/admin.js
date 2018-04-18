@@ -176,7 +176,7 @@ var tableOfPosts = {
     init: function(data) {
         this.tb = document.getElementById("tablePostsBody");
         this.th = document.getElementById("tablePostsHead");
-        if (this.tb !== null && this.th !== null) {
+        if (this.tb !== null && this.th !== null && data !== null) {
             this.data = data;
             this.sorting = 1;
             this.refreshHead();

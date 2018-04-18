@@ -27,41 +27,47 @@ class Aside extends Widget {
         
         $categoriesListModel = new CategoriesListModel($dbConnection);
         $categoriesListContent = "";
-        foreach($categoriesListModel->getContent() as $row) {
-            $categoriesListContent .= '<li><a href="kategoria/'.strtolower($row['name']).'"><span class="title">'.$row['name'].'</span><span class="post-count">'.$row['post_count'].'</span></a></li>';
+        $categoriesResults = $categoriesListModel->getContent();
+        if (!is_null($categoriesResults)) {
+            foreach($categoriesResults as $row) {
+                $categoriesListContent .= '<li><a href="lista/kategoria/'.strtolower($row['name']).'"><span class="title">'.$row['name'].'</span><span class="post-count">'.$row['post_count'].'</span></a></li>';
+            }
         }
 
         $tagsListModel = new TagsListModel($dbConnection);
         $tagsListContent = "";
         $tagsContent = $tagsListModel->getContent();
-        $maxTags = 0;
-        for ($i = 0; $i < count($tagsContent); $i++) {
-            $maxTags = max($maxTags, $tagsContent[$i]['post_count']);
+        if (!is_null($tagsContent)) {
+            $maxTags = 0;
+            for ($i = 0; $i < count($tagsContent); $i++) {
+                $maxTags = max($maxTags, $tagsContent[$i]['post_count']);
+            }
+            
+            foreach($tagsContent as $row) {
+                $c = '';
+                if ($row['post_count'] <= $maxTags) {
+                    $c = 'biggest';
+                }
+                if ($row['post_count'] <= ($maxTags * 0.75)) {
+                    $c = 'big';
+                }
+                if ($row['post_count'] <= ($maxTags * 0.5)) {
+                    $c = 'medium';
+                }
+                if ($row['post_count'] <= ($maxTags * 0.25)) {
+                    $c = 'small';
+                }
+                $tagsListContent .= '<a class="cloudtag '. $c .'" href="lista/tag/'.strtolower($row['name']).'"><span class="title">'.$row['name'].'</span><span class="post-count">'.$row['post_count'].'</span></a>';
+            }
         }
         
-        foreach($tagsContent as $row) {
-            $c = '';
-            if ($row['post_count'] <= $maxTags) {
-                $c = 'biggest';
-            }
-            if ($row['post_count'] <= ($maxTags * 0.75)) {
-                $c = 'big';
-            }
-            if ($row['post_count'] <= ($maxTags * 0.5)) {
-                $c = 'medium';
-            }
-            if ($row['post_count'] <= ($maxTags * 0.25)) {
-                $c = 'small';
-            }
-            $tagsListContent .= '<a class="cloudtag '. $c .'" href="tag/'.strtolower($row['name']).'"><span class="title">'.$row['name'].'</span><span class="post-count">'.$row['post_count'].'</span></a>';
-        }
         
         $this->body = 
 <<<HTML
         <aside class="sidebar">
             <div class="search-form-container">
-                <form method="GET" class="search-form">
-                    <input class="search-input" type="text" name="search-input" id="search-input">
+                <form method="GET" class="search-form" action="lista/szukaj">
+                    <input class="search-input" type="text" name="q" id="search-input">
                     <button class="search-submit-button"><i class="fas fa-search"></i></button>
                 </form>
             </div>
@@ -77,7 +83,5 @@ class Aside extends Widget {
         </aside>
         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 HTML;
-
     }
-    
 }

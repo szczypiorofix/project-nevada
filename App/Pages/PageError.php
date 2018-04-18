@@ -101,11 +101,13 @@ HTML;
         $body =
 <<<HTML
     <div class="full-page-container" id="mainDiv">
-        <div class="nav-and-logo">
+        <header class="nav-and-logo">
             {$header->getBody()}
-        </div>
+        </header>
         <main class="post-card">
-            {$pageContent}
+            <article>
+                {$pageContent}
+            </article>
             {$sideBar->getBody()}
         </main>
         {$ctaButton->getBody()}

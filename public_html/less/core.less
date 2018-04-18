@@ -159,7 +159,7 @@ img {
     width: 100%;
 }
 
-.nav-and-logo {
+header.nav-and-logo {
     background: url(../images/bg-main3.jpeg);
     background-attachment: fixed;
     background-size: cover;
@@ -195,7 +195,6 @@ footer {
 
 
 div.navbar-container {
-    //background-color: @primaryColor;
     color: @textColor;
     height: 100%;
     
@@ -1052,6 +1051,7 @@ main.post-card {
     article {
         a.edit-post-button {
             outline: none;
+            display: inline-block;
             background-color: @secondary1Color;
             color: @textColor;
             border: none;
@@ -1170,7 +1170,7 @@ main.post-card {
         padding: 10px;
         max-width: 350px;
         width: 100%;
-        margin: 10px auto;
+        margin: 0 auto;
         .boxShadow(1px, 1px, 6px, 0, rgba(80, 80, 80, 0.3));
         .search-form-container {
             margin-bottom: 20px;
@@ -1483,34 +1483,39 @@ main.post-card {
         //width: 100%;
         .flexBox();
         flex-direction: row;
-        section.post-content {
-            .post-title {
-            }
-            .post-date {
-
-            }
-            .post-image {
-                //text-align: center;
-                img {
-                    //width: 100%;
-                    //max-width: 500px;
+        article {
+            .boxShadow(1px, 1px, 6px, 0, rgba(80, 80, 80, 0.3));
+            width: 100%;
+            section.post-content {
+                .post-title {
                 }
-                
-            }
-            .post-content {
-                
-            }
-            .additional {
-                //.flexBox();
-                //flex-direction: row;
-                .post-categories {
-                    //margin-right: 5px;
+                .post-date {
+    
                 }
-                .post-tags {
-                    //margin-left: 5px;
+                .post-image {
+                    //text-align: center;
+                    img {
+                        //width: 100%;
+                        //max-width: 500px;
+                    }
+                    
+                }
+                .post-content {
+                    
+                }
+                .additional {
+                    //.flexBox();
+                    //flex-direction: row;
+                    .post-categories {
+                        //margin-right: 5px;
+                    }
+                    .post-tags {
+                        //margin-left: 5px;
+                    }
                 }
             }
         }
+
         aside.sidebar {
             max-width: 350px;
         }

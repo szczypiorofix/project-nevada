@@ -32,7 +32,6 @@ class Session {
     public static function check($db) {
         if (filter_input(INPUT_COOKIE, 'session_id') != null) {
             $sessionid = filter_input(INPUT_COOKIE, 'session_id');
-            
             try {
                 $query = $db->prepare("SELECT * FROM `users` WHERE `session_code`=:sessionid");
                 $query->bindParam(':sessionid', $sessionid);
