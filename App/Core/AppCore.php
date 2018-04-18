@@ -29,10 +29,12 @@ class AppCore {
         $calledDefaultClass = false;
        
         $url = self::parseUrl();
-
+        
+        //var_dump($url);
+        
         if (!$maintenance) {
-            if (file_exists(DIR_PAGES.self::PAGES_NAME_PREFIX.$url[0].'.php')) {
-                $class = $url[0];
+            if (file_exists(DIR_PAGES.self::PAGES_NAME_PREFIX.ucfirst($url[0]).'.php')) {
+                $class = ucfirst($url[0]);
                 unset($url[0]);
             }
             else {
@@ -60,8 +62,6 @@ class AppCore {
                 }
             }
         }
-
-        //var_dump($url);
         
         $className = "\Pages\\".self::PAGES_NAME_PREFIX.$class;
         $page = new $className();

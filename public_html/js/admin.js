@@ -273,7 +273,7 @@ function savePost() {
         xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
-                showNotification(this.response);
+                //showNotification(this.response);
                 console.log(this.response);
             }
         };

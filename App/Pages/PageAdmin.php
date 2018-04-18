@@ -680,13 +680,7 @@ HTML;
             header("Location: ".BASE_HREF."admin/register/");
         }
 
-        $sessionContent = "";
-        //$isSession = \Core\Session::check($this->db);  
-        //if ($isSession) {
-         //   echo 'Sesja';
-         //   exit;
-        //}
-
+        $sessionContent = '';
 
         // SPRAWDZANIE HASŁA
         if (filter_input(INPUT_POST, 'loginname', FILTER_SANITIZE_STRING) !== null
@@ -698,15 +692,19 @@ HTML;
             // INICJOWANIE CIASTECZKA
             if (\core\Session::checkPassword($this->db, $userlogin, $userpass)) {
                 //echo 'ciastko OK';
-                setcookie('session_id', md5($userlogin), time() + (86400), "/");    
+                setcookie('session_id', md5($userlogin), time() + (86400), "/");
+                header("Location: ".BASE_HREF."admin/");
             }
         }
         
         // SPRAWDZANIE CIASTECZKA
-        if (\core\Session::check($this->db)) {    
+        if (\core\Session::check($this->db)) {
             $sessionContent = '<div class="admin-panel">
-                <h3>'.\core\Session::$useremail.'</h3>
-                <a href="admin/logout">Wyloguj</a>
+                <div class="session">
+                    <h3 class="session-login">'.\Core\Session::$useremail.'</h3>
+                    <a href="admin/logout" class="button-logout">Wyloguj</a>
+                </div>
+                <br /><br />
                 <div class="add-post-panel">
                     <a href="admin/newpost" class="button">Dodaj post</a>
                 </div>
@@ -745,18 +743,11 @@ HTML;
         $this->addJS('tableOfPosts.init('.json_encode($content).'); tableOfPosts.show();');
         
         //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
-        
+
         $pageContent =
 <<<HTML
     <main class="content-maindiv">
         <section class="admin-container">
-            <h1>ADMIN PAGES</h1>
-            <p>TODOs:</p>
-            <ul>
-                <li>tutaj będzie zarządzanie całym contentem strony</li>
-                <li>Sprawdzanie zalogowania przez sesje (ciasteczka?). Jesli nie zalogowany to przerzuca na stronę logowania</li>
-                <li>Strony: logowanie, strona panelu admina (odnośniki do: dodaj, edytuj, usuń posty)</li>            
-            </ul>
             {$sessionContent}
         </section>
     </main>
