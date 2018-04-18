@@ -1049,107 +1049,122 @@ main.content-maindiv {
 main.post-card {
     width: 100%;
     padding: 20px 10px 10px 10px;
-    section.post-content {
-        padding: 20px;
-        width: 100%;
-        .post-title {
-            letter-spacing: 0.1em;
-        }
-        .post-not-found {
-            text-align: center;
-        }
-        .post-image {
-            text-align: center;
-            img {
-                width: 100%;
-                max-width: 500px;
-                transition: opacity 0.2s ease-in-out;
-                &:hover {
-                    opacity: 0.8;
-                    cursor: pointer;
-                }
+    article {
+        a.edit-post-button {
+            outline: none;
+            background-color: @secondary1Color;
+            color: @textColor;
+            border: none;
+            .borderRadius(2px);
+            padding: 6px 12px;
+            &:hover {
+                background-color: darken(@secondary1Color, 5%);
+                cursor: pointer;
             }
-            
-            .modal {
-                display: none;
-                position: fixed;
-                z-index: 2;
-                padding-top: 100px;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                overflow: auto;
-                background-color: rgb(0,0,0);
-                background-color: rgba(0,0,0,0.9);
-                .modal-content {
-                    margin: auto;
-                    display: block;
-                    width: 98%;
-                    max-width: 700px;
-                }
-                .close {
-                    position: absolute;
-                    top: 15px;
-                    right: 35px;
-                    color: @secondary2Color;
-                    font-size: 40px;
-                    font-weight: bold;
-                    transition: 0.3s;
-                    &:hover, &:focus {
-                        color: @secondary1Color;
-                        text-decoration: none;
+       }
+       section.post-content {
+            padding: 20px;
+            width: 100%;
+            .post-title {
+                letter-spacing: 0.1em;
+            }
+            .post-not-found {
+                text-align: center;
+            }
+            .post-image {
+                text-align: center;
+                img {
+                    width: 100%;
+                    max-width: 500px;
+                    transition: opacity 0.2s ease-in-out;
+                    &:hover {
+                        opacity: 0.8;
                         cursor: pointer;
                     }
                 }
-                #imageModalCaption {
-                    margin: auto;
-                    display: block;
-                    width: 80%;
-                    max-width: 700px;
-                    text-align: center;
-                    color: #ccc;
-                    padding: 10px 0;
-                    height: 150px;
+
+                .modal {
+                    display: none;
+                    position: fixed;
+                    z-index: 2;
+                    padding-top: 100px;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    overflow: auto;
+                    background-color: rgb(0,0,0);
+                    background-color: rgba(0,0,0,0.9);
+                    .modal-content {
+                        margin: auto;
+                        display: block;
+                        width: 98%;
+                        max-width: 700px;
+                    }
+                    .close {
+                        position: absolute;
+                        top: 15px;
+                        right: 35px;
+                        color: @secondary2Color;
+                        font-size: 40px;
+                        font-weight: bold;
+                        transition: 0.3s;
+                        &:hover, &:focus {
+                            color: @secondary1Color;
+                            text-decoration: none;
+                            cursor: pointer;
+                        }
+                    }
+                    #imageModalCaption {
+                        margin: auto;
+                        display: block;
+                        width: 80%;
+                        max-width: 700px;
+                        text-align: center;
+                        color: #ccc;
+                        padding: 10px 0;
+                        height: 150px;
+                    }
+                    .modal-content, #imageModalCaption {    
+                        -webkit-animation-name: zoom;
+                        -webkit-animation-duration: 0.6s;
+                        animation-name: zoom;
+                        animation-duration: 0.6s;
+                    }
                 }
-                .modal-content, #imageModalCaption {    
-                    -webkit-animation-name: zoom;
-                    -webkit-animation-duration: 0.6s;
-                    animation-name: zoom;
-                    animation-duration: 0.6s;
+            }
+            .post-content {
+                padding-top: 20px;
+                text-align: justify;
+                text-indent: 1.5em;
+                line-height: 1.4em;
+            }
+            .additional {
+                .flexBox();
+                flex-direction: row;
+                .post-categories {
+                    margin-right: 8px;
+                }
+                .post-tags {
+                    margin-left: 8px;
+                }
+                .pdf-container {
+                    margin: auto 15px;
+                    i {
+                        margin-left: 5px;
+                    }
                 }
             }
-        }
-        .post-content {
-            padding-top: 20px;
-            text-align: justify;
-            text-indent: 1.5em;
-            line-height: 1.4em;
-        }
-        .additional {
-            .flexBox();
-            flex-direction: row;
-            .post-categories {
-                margin-right: 8px;
+            .add-this-container {
+                display: block;
+                margin: 5px 0;
             }
-            .post-tags {
-                margin-left: 8px;
+            .disqus-container {
+                margin-top: 20px;
             }
-            .pdf-container {
-                margin: auto 15px;
-                i {
-                    margin-left: 5px;
-                }
-            }
-        }
-        .add-this-container {
-            display: block;
-            margin: 5px 0;
-        }
-        .disqus-container {
-            margin-top: 20px;
         }
     }
+    
     aside.sidebar {
         background-color: @textColor;
         padding: 10px;

@@ -180,8 +180,24 @@ class Pagepost extends Page {
             }
         }
         ');
+        
+        $imageFullPath = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]".DS.$imageFile;
 
-        $metaData = new \Widgets\MetaData();
+        $metaData = new \Widgets\MetaData([
+            'title' => $content['title'],
+            'description' => mb_substr(str_replace(["\n", "\r", "\n\r", "  "], " ", strip_tags($postContent)), 0, 250).'...',
+            'author' => 'Wróblewski Piotr',
+            'keywords' => $content['tagi'],
+            'url' => $actual_link,
+            'content' => 'website',
+            'twitter-meta-field-left' => $content['title'],
+            'twitter-meta-field-left-below' => $dateString,
+            'twitter-meta-field-right' => 'Wróblewski Piotr',
+            'twitter-meta-field-right-below' => $actual_link,
+            'image' => $imageFullPath,
+            'domain' => 'https://www.wroblewskipiotr.pl/',
+            'accent-color' => '#333333',
+        ]);
         $head = $metaData->getBody();
         $this->setHead($head);
         $logo = new \Widgets\Logo();
@@ -191,15 +207,23 @@ class Pagepost extends Page {
         $footer = new \Widgets\Footer();
         $sideBar = new \Widgets\Aside($dbConnection);
         $ctaButton = new \Widgets\CTAButton();
+
+        $sessionContent = "";
+        if (\core\Session::check($this->db)) {
+            $sessionContent = '<a href="admin/edit?&postid='.$content['id'].'" class="edit-post-button">EDYTUJ</a>';
+        }
         
         $body =
 <<<HTML
     <div class="full-page-container" id="mainDiv">
-        <div class="nav-and-logo">
+        <header class="nav-and-logo">
             {$header->getBody()}
-        </div>
+        </header>
         <main class="post-card">
-            {$pageContent}
+            <article>
+                {$sessionContent}
+                {$pageContent}
+            </article>
             {$sideBar->getBody()}
         </main>
         {$ctaButton->getBody()}

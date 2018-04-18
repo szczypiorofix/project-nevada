@@ -8,7 +8,6 @@
 namespace Pages;
 
 use Core\ModelClasses\Page;
-use Core\Config;
 use Models\PostListModel;
 /**
  * This is showcase of Page
@@ -16,12 +15,11 @@ use Models\PostListModel;
  * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
 class PageShowcase extends Page {
-    private $db = null;
-    private $error = false;
-    private $errorMsg = null;
+        
     public function __toString() {
         return get_class($this);
     }
+    
     public function defaultmethod($args) {
         
         if (!isset($args[0])) {
@@ -314,7 +312,7 @@ HTML;
         $this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
         $this->addJSFile(['name' => 'Google Translate Script', 'path' => 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit', 'versioning' => false, 'async' => false]);
         $this->addJSFile(['name' => 'Google Translate Script Starter', 'path' => 'js/translate.js', 'versioning' => true]);
-        $this->addJSFile(['name' => 'Google Maps API', 'path' => 'https://maps.googleapis.com/maps/api/js?key='.Config::get("GOOGLE_MAPS_API_KEY").'&callback=showGoogleMaps']);
+        //$this->addJSFile(['name' => 'Google Maps API', 'path' => 'https://maps.googleapis.com/maps/api/js?key='.Config::get("GOOGLE_MAPS_API_KEY").'&callback=showGoogleMaps']);
         $this->addJSFile(['name' => 'AddThis Follow buttons', 'path' => '//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ad1f6633ca8b854']);
 
         $metaData = new \Widgets\MetaData();
@@ -338,10 +336,9 @@ HTML;
         $body =
 <<<HTML
     <div class="full-page-container" id="mainDiv">
-        <!-- <div class="fullscreenbackground"></div> -->
-        <div class="nav-and-logo">
+        <header class="nav-and-logo">
             {$header->getBody()}
-        </div>
+        </header>
         {$pageContent}
         {$ctaButton->getBody()}
         {$footer->getBody()}

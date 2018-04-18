@@ -1,15 +1,15 @@
 <?php
 
-namespace core;
+namespace Core;
 
-use Config, PDO;
+use PDO;
 
 class Session {
     
-    public static $session = false;
-    public static $useremail = '';
-    public static $error = false;
-    public static $errorMsg = '';
+    private static $session = false;
+    private static $useremail = null;
+    private static $error = false;
+    private static $errorMsg = '';
 
     private function __construct() {}
     private function __clone() {}
@@ -21,10 +21,6 @@ class Session {
             if ($query->rowCount() > 0) {
                 return true;
             }
-            else {
-                self::$session = false;
-                self::$error = true;
-            }
         } catch (PDOException $exc) {
             self::$errorMsg = \FrameworkException::getMessage($exc->getMessage(), $exc->getFile(), $exc->getLine());
             self::$session = false;
@@ -34,11 +30,11 @@ class Session {
     }
 
     public static function check($db) {
-        
-        if (isset($_COOKIE['session_id'])) {
-            $sessionid = $_COOKIE['session_id'];
+        if (filter_input(INPUT_COOKIE, 'session_id') != null) {
+            $sessionid = filter_input(INPUT_COOKIE, 'session_id');
+            
             try {
-                $query = $db->prepare("SELECT * FROM users WHERE session_code=:sessionid");
+                $query = $db->prepare("SELECT * FROM `users` WHERE `session_code`=:sessionid");
                 $query->bindParam(':sessionid', $sessionid);
                 $query->execute();
                 if ($query->rowCount() == 1) {
@@ -81,33 +77,31 @@ class Session {
     }
 
     public static function encryptIt($p) {
+        /**
+         * ARGONIANIN MUSI CZEKAĆ ...
+         */
+        /*
         $options = [
             'memory_cost' => 2048,
             'time_cost' => 4,
             'threads' => 3
         ];
         return password_hash($p, PASSWORD_ARGON2I, $options);
+        */
+        $options = [
+            'cost' => 11
+        ];
+        return password_hash($p, PASSWORD_BCRYPT, $options);
     }
 	
     public static function checkPassword($db, $u, $p) {
-        //return password_verify($p, $h);
-        //$pass = self::encryptIt($p);
+        sleep(2);
         try {
             $query = $db->prepare("SELECT `users`.password FROM `users` WHERE email=:useremail");
             $query->bindParam(':useremail', $u, PDO::PARAM_STR);
-            //$query->bindParam(':userpass', $pass, PDO::PARAM_STR);
             $query->execute();
             $result = $query->fetch();
-            var_dump($p);
-            var_dump($result['password']);
             return password_verify($p, $result['password']);
-            //if ($query->rowCount() == 1) {
-                //echo 'OK!';
-            //    return true;
-            //}
-            //else {
-            //    return false;
-            //}
         } catch (PDOException $exc) {
             self::$errorMsg = \FrameworkException::getMessage($exc->getMessage(), $exc->getFile(), $exc->getLine());
             self::$session = false;

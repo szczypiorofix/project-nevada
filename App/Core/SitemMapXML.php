@@ -61,6 +61,31 @@ class SitemMapXML {
         
         $urlset = $doc->appendChild($urlset);
 
+        // FIRST: MAIN PAGE
+        $url = $doc->createElement('url');
+        $url = $urlset->appendChild($url);
+
+        $loc = $doc->createElement("loc");
+        $loc = $url->appendChild($loc);
+        $urlText = $doc->createTextNode(BASE_HREF);
+        $urlText = $loc->appendChild($urlText);
+
+        $lastmod = $doc->createElement("lastmod");
+        $lastmod = $url->appendChild($lastmod);
+        $lastmodText = $doc->createTextNode(date("Y-m-d H:m:s"));
+        $lastmodText = $lastmod->appendChild($lastmodText);
+
+        $changefreq = $doc->createElement("changefreq");
+        $changefreq = $url->appendChild($changefreq);
+        $changefreqText = $doc->createTextNode("weekly");
+        $changefreqText = $changefreq->appendChild($changefreqText);
+
+        $priority = $doc->createElement("priority");
+        $priority = $url->appendChild($priority);
+        $priorityText = $doc->createTextNode("1.0");
+        $priorityText = $priority->appendChild($priorityText);
+        
+        // 2ND: POST PAGES
         for ($i = 0; $i < count($results); $i++) {
             $url = $doc->createElement('url');
             $url = $urlset->appendChild($url);

@@ -21,6 +21,8 @@ class PostListModel extends DataModel {
     
     const GET_ALL_POSTS = -1;
     const TYPE_ID_SORT = 1;
+    const TYPE_CATEGORY_SORT = 2;
+    const TYPE_TAGS_SORT = 3;
     private $input = null;
     private $inputPage = null;
     
@@ -60,6 +62,80 @@ LIMIT
 OFFSET
    :offset";
     
+    const GET_CATEGORIES_PAGE = "SELECT
+   `posts`.*, `categories`.name AS 'kategorie', GROUP_CONCAT(`tags`.name) AS 'tagi'
+FROM
+   `posts`
+LEFT JOIN
+	`post_categories`
+ON
+	`post_categories`.postid = `posts`.id
+LEFT JOIN
+	`categories`
+ON
+	`categories`.id = `post_categories`.categoryid
+LEFT JOIN
+	`post_tags`
+ON
+	`post_tags`.postid = `posts`.id
+LEFT JOIN
+	`tags`
+ON
+	`tags`.id = `post_tags`.tagid
+WHERE
+	`categories`.name = :catname
+GROUP BY
+	`posts`.id
+ORDER BY
+   `posts`.id
+DESC
+LIMIT
+   :postsonsite
+OFFSET
+   :offset";
+    
+    const GET_TAG_PAGE = "SELECT
+   `subquery`.*
+FROM
+   (
+      SELECT
+      `posts`.*, `categories`.name AS 'kategorie', GROUP_CONCAT(`tags`.name) AS 'tagi'
+   FROM
+      `posts`
+   LEFT JOIN
+           `post_categories`
+   ON
+           `post_categories`.postid = `posts`.id
+   LEFT JOIN
+           `categories`
+   ON
+           `categories`.id = `post_categories`.categoryid
+   LEFT JOIN
+           `post_tags`
+   ON
+           `post_tags`.postid = `posts`.id
+   LEFT JOIN
+           `tags`
+   ON
+           `tags`.id = `post_tags`.tagid
+   GROUP BY
+           `posts`.id
+   ORDER BY
+      `posts`.id
+   DESC
+   ) AS subquery
+WHERE
+   `subquery`.tagi LIKE :tagname
+GROUP BY
+   `subquery`.id
+ORDER BY
+   `subquery`.id
+DESC
+LIMIT
+   :postsonsite
+OFFSET
+   :offset";
+    
     function __construct($type, $dbConnection, $input, $inputPage, $postsToDisplay = 6) {
         $maxrecords = -1;
         $postsOnSite = $postsToDisplay;
@@ -76,14 +152,14 @@ OFFSET
         }
         
         //echo $this->input.' '.$this->inputPage;
-
+        
         $this->type = $type;
         $db = $dbConnection->getDB();
         $this->error = true;
         $offset = ($this->inputPage) * $postsOnSite;
         
         // ############## POST ID SORT ####################### ///
-        if ($this->type == self::TYPE_ID_SORT) {
+        if ($this->type === self::TYPE_ID_SORT) {
              try {
                 $getNumberQuery = $db->prepare(self::GET_POSTS_PAGE_COUNTER);
                 $getNumberQuery->execute();
@@ -106,7 +182,60 @@ OFFSET
                 $this->error = false;
              }
         }
+        
+        // ############## POST CATEGORY SORT ####################### ///
+        if ($this->type === self::TYPE_CATEGORY_SORT) {
+             try {
+                $getNumberQuery = $db->prepare(self::GET_POSTS_PAGE_COUNTER);
+                $getNumberQuery->execute();
+                $results = $getNumberQuery->fetch();
+                $maxrecords = $results['counter'];
+                
+                if ($postsOnSite === -1) {
+                    $postsOnSite = $maxrecords;
+                }
+                $query = $db->prepare(self::GET_CATEGORIES_PAGE);
+                $query->bindValue(':catname', $input, PDO::PARAM_STR);
+                $query->bindValue(':postsonsite', $postsOnSite, PDO::PARAM_INT);
+                $query->bindValue(':offset', $offset, PDO::PARAM_INT);
+                $query->execute();
+             }
+             catch (FrameworkException $exc) {
+                $this->error = true;
+                $this->errorMsg = $exc->getMessage();
+             }
+             if ($query->rowCount() > 0) {
+                $this->error = false;
+             }
+        }
+        
+        // ############## POST TAGS SORT ####################### ///
+        if ($this->type === self::TYPE_TAGS_SORT) {
+             try {
+                $getNumberQuery = $db->prepare(self::GET_POSTS_PAGE_COUNTER);
+                $getNumberQuery->execute();
+                $results = $getNumberQuery->fetch();
+                $maxrecords = $results['counter'];
+                
+                if ($postsOnSite === -1) {
+                    $postsOnSite = $maxrecords;
+                }
+                $query = $db->prepare(self::GET_TAG_PAGE);
+                $query->bindValue(':tagname', '%'.$input.'%', PDO::PARAM_STR);
+                $query->bindValue(':postsonsite', $postsOnSite, PDO::PARAM_INT);
+                $query->bindValue(':offset', $offset, PDO::PARAM_INT);
+                $query->execute();
+             }
+             catch (FrameworkException $exc) {
+                $this->error = true;
+                $this->errorMsg = $exc->getMessage();
+             }
+             if ($query->rowCount() > 0) {
+                $this->error = false;
+             }
+        }
     
+        // RETURN RESULTS
         if (!$this->error) {
             $this->content['posts'] = $query->fetchAll();
             $this->content['maxrecords'] = $maxrecords;

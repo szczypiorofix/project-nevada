@@ -20,16 +20,12 @@ use PDO;
  */
 class PageAdmin extends Page {
 
-
-    private $db = null;
-    private $error = false;
-    private $errorMsg = null;
-
     public function __toString() {
         return get_class($this);
     }
 
     public function newpost($args) {
+        
         try {
             $dbConnection = \Core\DBConnection::getInstance();
         } catch (\Core\FrameworkException $fex) {
@@ -39,6 +35,10 @@ class PageAdmin extends Page {
         $this->db = $dbConnection->getDB();
         $this->error = $dbConnection->isError();
         $this->errorMsg = $dbConnection->getErrorMsg();
+        
+        if (!\Core\Session::check($this->db)) {
+            header("Location: ".BASE_HREF.'admin/');
+        }
 
         $this->error = true;
         try {
@@ -147,6 +147,7 @@ HTML;
     }
 
     public function edit($args) {
+        
         if (filter_input(INPUT_GET, 'postid', FILTER_SANITIZE_NUMBER_INT) !== null) {
             $id = filter_input(INPUT_GET, 'postid', FILTER_SANITIZE_NUMBER_INT);
         } else {
@@ -162,6 +163,10 @@ HTML;
         $this->db = $dbConnection->getDB();
         $this->error = $dbConnection->isError();
         $this->errorMsg = $dbConnection->getErrorMsg();
+        
+        if (!\Core\Session::check($this->db)) {
+            header("Location: ".BASE_HREF.'admin/');
+        }
 
         $sessionContent = "";
         $isSession = \Core\Session::check($this->db);
@@ -316,6 +321,7 @@ HTML;
     }
     
     public function save($args) {
+        
         $inputFields = [
             'postid' => FILTER_SANITIZE_NUMBER_INT,
             'post-title' => FILTER_SANITIZE_STRING,
@@ -340,6 +346,10 @@ HTML;
             $this->db = $dbConnection->getDB();
             $this->error = $dbConnection->isError();
             $this->errorMsg = $dbConnection->getErrorMsg();
+            
+            if (!\core\Session::check($this->db)) {
+                header("Location: ".BASE_HREF.'admin/');
+            }
 
             $fileManager = new \Core\FileManager($this->db);
             $fileManager->checkFileToUpload($_FILES['post-file'], $postId);
@@ -391,21 +401,17 @@ HTML;
                $this->errorMsg = $exc->getMessage();
             }
         }
+        \Core\SitemMapXML::create($this->db);
         exit;
     }
 
     public function add($args) {
-
+        
         $inputFields = [
             'post-title' => FILTER_SANITIZE_STRING,
             'post-content' => FILTER_SANITIZE_STRING,
             'post-imagetitle' => FILTER_SANITIZE_STRING
         ];
-
-        // echo 'OK!';
-        // var_dump($_POST);
-        // var_dump($_FILES);            
-        // exit;
 
         if ($this->checkFilters($inputFields)) {
             $postTitle = filter_input(INPUT_POST, 'post-title', FILTER_SANITIZE_STRING);
@@ -424,19 +430,14 @@ HTML;
             $this->error = $dbConnection->isError();
             $this->errorMsg = $dbConnection->getErrorMsg();
 
+            if (!\core\Session::check($this->db)) {
+                header("Location: ".BASE_HREF.'admin/');
+            }
+            
             $fileManager = new \Core\FileManager($this->db);
             $fileManagerMsg = $fileManager->checkFileToUpload($_FILES['post-file'], null);
             $imageFileName = $fileManagerMsg['filename'];
-            
-            // TODO przenieść do oddzielnej metody
-            // $sessionContent = "";
-            // $isSession = \Core\Session::check($this->db);  
-            // if ($isSession) {
-            //     $sessionContent = "Użytkownik zalogowany";
-            // } else {
-            //     $sessionContent = "Użytkownik niezalogowany!";    
-            // }
-            //
+
             
             /**
              * Update post url
@@ -484,6 +485,7 @@ HTML;
                $this->errorMsg = $exc->getMessage();
             }
         }
+        \Core\SitemMapXML::create($this->db);
         exit;
     }
     
@@ -504,6 +506,10 @@ HTML;
             $this->db = $dbConnection->getDB();
             $this->error = $dbConnection->isError();
             $this->errorMsg = $dbConnection->getErrorMsg();
+            
+            if (!\core\Session::check($this->db)) {
+                header("Location: ".BASE_HREF.'admin/');
+            }
             
             $db = $dbConnection->getDB();
             $this->error = true;
@@ -530,13 +536,24 @@ HTML;
                $this->errorMsg = $exc->getMessage();
             }
             echo $this->errorMsg;
-            
-            //var_dump($_POST);
         }
+        \Core\SitemMapXML::create($this->db);
         exit;
     }
 
     public function backup($args) {
+        try {
+            $dbConnection = \Core\DBConnection::getInstance();
+        } catch (\Core\FrameworkException $fex) {
+            $fex->showError();
+        }
+        $this->db = $dbConnection->getDB();
+        $this->error = $dbConnection->isError();
+        $this->errorMsg = $dbConnection->getErrorMsg();
+
+        if (!\core\Session::check($this->db)) {
+            header("Location: ".BASE_HREF.'admin/');
+        }
         \Core\BackupManager::makeBackup();
     }
 
@@ -555,8 +572,7 @@ HTML;
         if (filter_input(INPUT_POST, 'loginname', FILTER_SANITIZE_STRING) != null && filter_input(INPUT_POST, 'loginpassword', FILTER_SANITIZE_STRING)) {
             $this->error = true;
             $loginname = filter_input(INPUT_POST, 'loginname', FILTER_SANITIZE_STRING);
-            $loginpassword = filter_input(INPUT_POST, 'loginpassword', FILTER_SANITIZE_STRING);
-            $loginpassword = \Core\Session::encryptIt($loginpassword);
+            $loginpassword = \Core\Session::encryptIt(filter_input(INPUT_POST, 'loginpassword', FILTER_SANITIZE_STRING));
             $sessionId = md5($loginname);
             
             try {
@@ -579,18 +595,13 @@ HTML;
 
         if (\Core\Session::isAnyUserRegistered($this->db)) {
             header("Location: ".BASE_HREF."admin");
-        } else {
-            // BRAK ADMINÓW
         }
         
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
         $this->addJSFile(['name' => 'Admin scripts', 'path' => 'js/admin.js']);
-        //$this->addJS('tableOfPosts.init('.json_encode($content).'); tableOfPosts.show();');
-        
-        //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
-        
+                
         $pageContent =
 <<<HTML
     <main class="content-maindiv">
@@ -627,11 +638,13 @@ HTML;
         $body =
 <<<HTML
     <div class="full-page-container" id="mainDiv">
-        <div class="nav-and-logo">
+        <header class="nav-and-logo">
             {$header->getBody()}
-        </div>
+        </header>
         <main class="post-card">
-            {$pageContent}
+            <article>
+                {$pageContent}
+            </article>
             {$sideBar->getBody()}
         </main>
         {$ctaButton->getBody()}
@@ -674,24 +687,21 @@ HTML;
         $this->errorMsg = $dbConnection->getErrorMsg();
 
 
-        if (\Core\Session::isAnyUserRegistered($this->db)) {
-            //echo 'OK';
-        } else {
+        if (!\Core\Session::isAnyUserRegistered($this->db)) {
             header("Location: ".BASE_HREF."admin/register/");
         }
 
         $sessionContent = '';
 
         // SPRAWDZANIE HASŁA
-        if (filter_input(INPUT_POST, 'loginname', FILTER_SANITIZE_STRING) !== null
+        if (filter_input(INPUT_POST, 'loginname', FILTER_SANITIZE_EMAIL) !== null
             && filter_input(INPUT_POST, 'loginpassword', FILTER_SANITIZE_STRING) !== null) {
 
-            $userlogin = filter_input(INPUT_POST, 'loginname', FILTER_SANITIZE_STRING);
+            $userlogin = filter_input(INPUT_POST, 'loginname', FILTER_SANITIZE_EMAIL);
             $userpass = filter_input(INPUT_POST, 'loginpassword', FILTER_SANITIZE_STRING);
             
             // INICJOWANIE CIASTECZKA
             if (\core\Session::checkPassword($this->db, $userlogin, $userpass)) {
-                //echo 'ciastko OK';
                 setcookie('session_id', md5($userlogin), time() + (86400), "/");
                 header("Location: ".BASE_HREF."admin/");
             }
@@ -701,10 +711,10 @@ HTML;
         if (\core\Session::check($this->db)) {
             $sessionContent = '<div class="admin-panel">
                 <div class="session">
-                    <h3 class="session-login">'.\Core\Session::$useremail.'</h3>
+                    <h3 class="session-login">'.\Core\Session::getUserEmail().'</h3>
                     <a href="admin/logout" class="button-logout">Wyloguj</a>
                 </div>
-                <br /><br />
+                <div style="padding: 15px 0;"></div>
                 <div class="add-post-panel">
                     <a href="admin/newpost" class="button">Dodaj post</a>
                 </div>
@@ -718,7 +728,9 @@ HTML;
                 </div>
             </div>';
         } else {
-            $sessionContent = '<form class="login-container" id="loginAdminForm" method="POST" enctype="multipart/form-data">
+            $sessionContent = '<div class="admin-panel">
+            <h3>Logowanie:</h3>
+            <form class="login-container" id="loginAdminForm" method="POST" enctype="multipart/form-data">
                 <div class="input-group">
                     <input type="text" placeholder="login" name="loginname" required/>
                 </div>
@@ -729,7 +741,7 @@ HTML;
                     <input type="submit" value="Zaloguj" />
                 </div>
             </form>
-
+            </div>
             ';
         }
         
@@ -767,11 +779,13 @@ HTML;
         $body =
 <<<HTML
     <div class="full-page-container" id="mainDiv">
-        <div class="nav-and-logo">
+        <header class="nav-and-logo">
             {$header->getBody()}
-        </div>
+        </header>
         <main class="post-card">
-            {$pageContent}
+            <article>
+                {$pageContent}
+            </article>
             {$sideBar->getBody()}
         </main>
         {$ctaButton->getBody()}

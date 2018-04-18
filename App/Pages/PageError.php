@@ -19,11 +19,6 @@ use Core\Config;
  */
 class PageError extends Page {
 
-
-    private $db = null;
-    private $error = false;
-    private $errorMsg = null;
-
     public function __toString() {
         return get_class($this);
     }

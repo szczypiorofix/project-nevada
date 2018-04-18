@@ -14,7 +14,11 @@ namespace Core\ModelClasses;
  * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
 abstract class Page {
-
+    
+    protected $db = null;
+    protected $error = false;
+    protected $errorMsg = null;
+    
     protected $head = "";
     protected $cssFiles = [];
     protected $css = "";
