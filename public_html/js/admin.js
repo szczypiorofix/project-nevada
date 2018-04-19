@@ -273,7 +273,6 @@ function savePost() {
         xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
-                //showNotification(this.response);
                 console.log(this.response);
             }
         };
@@ -299,20 +298,6 @@ function savePost() {
         return true;
     }); 
 })();
-
-
-
-(function makeMarkdown() {
-    var converter = new showdown.Converter({simpleLineBreaks: true});
-    var parseSource = document.getElementById('parseSource');
-    var parseResults = document.getElementById('parseResults');
-    document.getElementById('parseResults').innerHTML = converter.makeHtml(parseSource.value);
-    parseSource.addEventListener('input', function(event) {
-        document.getElementById('parseResults').innerHTML = converter.makeHtml(this.value);
-    }, true);
-})();
-
-
 
 function makeBackup(b) {
     b.disabled = true;

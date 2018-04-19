@@ -159,7 +159,7 @@ class Pagepost extends Page {
         $this->addJSFile(['name' => 'AddThis Script', 'path' => '//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ad1f6633ca8b854"']);
         
         // http://ashleighy.github.io/emoji.js/
-        $this->addJSFile(['name' => 'Emojii', 'path' => 'js/emoji/emoji.js.js']);
+        //$this->addJSFile(['name' => 'Emojii', 'path' => 'js/emoji/emoji.js.js']);
 
         // image modal script
         $this->addJS('

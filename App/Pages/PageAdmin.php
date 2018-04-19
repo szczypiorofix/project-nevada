@@ -69,10 +69,17 @@ class PageAdmin extends Page {
         
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
-        $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
-        //$this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js']);
-        $this->addJSFile(['name' => 'Admin scripts', 'path' => 'js/admin.js', 'async' => true]);
+        $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'js/jquery/jquery-1.12.4.min.js']);
         
+        // https://github.com/showdownjs/showdown
+        $this->addJSFile(['name' => 'Showdown markdown parser JS', 'path' => 'js/showdown/showdown.js']);
+        $this->addJSFile(['name' => 'Markdown in real time script', 'path' => 'js/markdown.js']);
+
+        // http://ashleighy.github.io/emoji.js/
+        //$this->addJSFile(['name' => 'Emojii', 'path' => 'js/emoji/emoji.js.js']);
+        
+        $this->addJSFile(['name' => 'Admin scripts', 'path' => 'js/admin.js']);
+
         //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
         
         $pageContent =
@@ -86,8 +93,10 @@ class PageAdmin extends Page {
                     <input type="text" name="post-title" required/>
                 </div>
                 <div class="input-group">
+                <label><strong>Podgląd:</strong></label>
+                    <div id="parseResults"></div>
                     <label><strong>Treść:</strong></label>
-                    <textarea class="tmce" name="post-content" rows="15" cols="50" required></textarea>
+                    <textarea class="tmce" name="post-content" rows="15" cols="40" id="parseSource"></textarea>
                 </div>
                 <div class="input-group">
                     <label><strong>Kategoria:</strong></label>
@@ -170,15 +179,6 @@ HTML;
             header("Location: ".BASE_HREF.'admin/');
         }
 
-        $sessionContent = "";
-        $isSession = \Core\Session::check($this->db);
-
-        if ($isSession) {
-            $sessionContent = "Użytkownik zalogowany";
-        } else {
-            $sessionContent = "Użytkownik niezalogowany!";    
-        }
-
         $this->error = true;
         try {
             $query = $this->db->prepare("SELECT * FROM `posts` WHERE `id`=:postid");
@@ -207,10 +207,6 @@ HTML;
         }
         if ($query->rowCount() > 0) {
            $this->error = false;
-        }
-             
-        if (isset($_POST['loginname']) && isset($_POST['loginpassword'])) {
-            $sessionContent = 'Login OK!';
         }
 
         $postCategory = $queryPostCategories->fetch();
@@ -245,9 +241,10 @@ HTML;
         
         // https://github.com/showdownjs/showdown
         $this->addJSFile(['name' => 'Showdown markdown parser JS', 'path' => 'js/showdown/showdown.js']);
-        
+        $this->addJSFile(['name' => 'Markdown in real time script', 'path' => 'js/markdown.js']);
+
         // http://ashleighy.github.io/emoji.js/
-        $this->addJSFile(['name' => 'Emojii', 'path' => 'js/emoji/emoji.js.js']);
+        //$this->addJSFile(['name' => 'Emojii', 'path' => 'js/emoji/emoji.js.js']);
         
         $this->addJSFile(['name' => 'Admin scripts', 'path' => 'js/admin.js']);
         
@@ -268,7 +265,7 @@ HTML;
                 </div>
                 <div class="input-group">
                     <label><strong>Podgląd:</strong></label>
-                    <div id="parseResults">Blah blah blag</div>
+                    <div id="parseResults"></div>
                     <label><strong>Treść:</strong></label>
                     <textarea class="tmce" name="post-content" rows="15" cols="40" id="parseSource">{$content['content']}</textarea>
                 </div>
@@ -611,7 +608,7 @@ HTML;
         
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
-        $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
+        $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'js/jquery/jquery-1.12.4.min.js']);
         $this->addJSFile(['name' => 'Admin scripts', 'path' => 'js/admin.js']);
                 
         $pageContent =
@@ -761,7 +758,7 @@ HTML;
         
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
-        $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
+        $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'js/jquery/jquery-1.12.4.min.js']);
         $this->addJSFile(['name' => 'Admin scripts', 'path' => 'js/admin.js']);
         $this->addJS('tableOfPosts.init('.json_encode($content).'); tableOfPosts.show();');
         

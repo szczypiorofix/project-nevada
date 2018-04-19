@@ -274,6 +274,9 @@ class PageShowcase extends Page {
                 <div class="news-container">
                     {$pageDynamicContent}
                 </div>
+                <div class="all-posts">
+                    <a href="lista">Zobacz wszystkie posty...</a>
+                </div>
             </div>
         </section>
         <section class="contact" id="contact">

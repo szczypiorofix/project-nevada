@@ -21,10 +21,16 @@ class Pagination extends Widget {
 
         $curLeft = intval($data['current'])-1;
         $curRight = intval($data['current'])+1;
+
+        $type = $data['linkPrefix'].'/';
         
-        $leftLink = '"lista/'.$data['linkPrefix'].'/'.$data['type'].'/'.$curLeft.'"';
-        $rightLink = '"lista/'.$data['linkPrefix'].'/'.$data['type'].'/'.$curRight.'"';
-        
+        if (!$data['linkPrefix']) {
+            $type = '';
+        }
+
+        $leftLink = '"lista/'.$type.$data['type'].'/'.$curLeft.'"';
+        $rightLink = '"lista/'.$type.$data['type'].'/'.$curRight.'"';
+
         if ($curLeft < 0) {
             $leftLink ='"javascript:void(0)" class="disabled"';
         }
