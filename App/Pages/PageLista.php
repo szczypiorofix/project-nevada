@@ -97,7 +97,7 @@ HTML;
         
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
-        $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
+        $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'js/jquery/jquery-1.12.4.min.js']);
         
         //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
         $this->addJSFile(['name' => 'Google Translate Script', 'path' => 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit', 'versioning' => false, 'async' => false]);
@@ -170,7 +170,7 @@ HTML;
         //exit;
         
         if (is_null($content)) {
-            $content = [];
+            $content = ['posts' => [], 'postsonsite' => 6, 'maxresults' => -1];
         }
  
         /**
@@ -227,6 +227,7 @@ HTML;
         //$this->addJSFile(['name' => 'Google Maps API', 'path' => 'https://maps.googleapis.com/maps/api/js?key='.Config::get("GOOGLE_MAPS_API_KEY").'&callback=showGoogleMaps']);
         $this->addJSFile(['name' => 'AddThis Follow buttons', 'path' => '//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ad1f6633ca8b854']);
 
+
         $metaData = new \Widgets\MetaData();
         $head = $metaData->getBody();
         $this->setHead($head);
@@ -237,6 +238,22 @@ HTML;
         $footer = new \Widgets\Footer();
         $sideBar = new \Widgets\Aside($dbConnection);
         $ctaButton = new \Widgets\CTAButton();
+
+        // ŁĄCZNA LICZBA POSTÓW DANEJ KATEGORII
+        $maxCountOfCategory = 0;
+        foreach($sideBar->getCategoriesResults() as $r) {
+            if ($r['name'] === $type) {
+                $maxCountOfCategory = $r['post_count'];
+            }
+        }
+
+        $pagination = new \Widgets\Pagination(
+            ['current' => $pages,
+            'linkPrefix' => 'kategoria',
+            'type' => $type,
+            'max' => $maxCountOfCategory,
+            'postsonsite' => $content['postsonsite']]
+        );
         
         $body =
 <<<HTML
@@ -247,6 +264,7 @@ HTML;
         <main class="post-card">
             <article>
                 {$pageContent}
+                {$pagination->getBody()}
             </article>
             {$sideBar->getBody()}
         </main>
@@ -364,6 +382,23 @@ HTML;
         $sideBar = new \Widgets\Aside($dbConnection);
         $ctaButton = new \Widgets\CTAButton();
         
+        // ŁĄCZNA LICZBA POSTÓW DANEJGO TAGA:
+        $maxCountOfTag = 0;
+        
+        foreach($sideBar->getTagsResults() as $r) {
+            if (strtolower($r['name']) === $type) {
+                $maxCountOfTag = $r['post_count'];
+            }
+        }
+
+        $pagination = new \Widgets\Pagination(
+            ['current' => $pages,
+            'linkPrefix' => 'tag',
+            'type' => $type,
+            'max' => $maxCountOfTag,
+            'postsonsite' => $content['postsonsite']]
+        );
+
         $body =
 <<<HTML
     <div class="full-page-container" id="mainDiv">
@@ -373,6 +408,7 @@ HTML;
         <main class="post-card">
             <article>
                 {$pageContent}
+                {$pagination->getBody()}
             </article>
             {$sideBar->getBody()}
         </main>

@@ -68,7 +68,7 @@ class Pagepost extends Page {
             $tagsOfPost = explode(',', $content['tagi']);
             $taglist = '';
             foreach($tagsOfPost as $tags) {
-                $taglist .= '<a href="tag/'.$tags.'">'.$tags.'</a>, ';
+                $taglist .= '<a href="lista/tag/'.$tags.'">'.$tags.'</a>, ';
             }
             // USUNIĘCIE OSATNIEGO PRZECINKA Z LISTY TAGÓW
             $taglist = rtrim($taglist,", ");
@@ -103,7 +103,7 @@ class Pagepost extends Page {
                     </div>
                     <div class="additional">
                         <div class="post-categories">
-                            <p><strong><i class="fas fa-folder-open"></i></strong>: <a href="kategoria/'.$content['kategorie'].'">'.$content['kategorie'].'</a></p>
+                            <p><strong><i class="fas fa-folder-open"></i></strong>: <a href="lista/kategoria/'.$content['kategorie'].'">'.$content['kategorie'].'</a></p>
                         </div>
                         <div class="post-tags">
                             <p><strong><i class="fas fa-tags"></i></strong>: '.$taglist.'</p>
@@ -153,12 +153,13 @@ class Pagepost extends Page {
         
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
-        $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
+        $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'js/jquery/jquery-1.12.4.min.js']);
         $this->addJSFile(['name' => 'Google Translate Script', 'path' => 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit', 'versioning' => false, 'async' => false]);
         $this->addJSFile(['name' => 'Google Translate Script Starter', 'path' => 'js/translate.js', 'versioning' => true]);
         $this->addJSFile(['name' => 'AddThis Script', 'path' => '//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ad1f6633ca8b854"']);
-
-        //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
+        
+        // http://ashleighy.github.io/emoji.js/
+        $this->addJSFile(['name' => 'Emojii', 'path' => 'js/emoji/emoji.js.js']);
 
         // image modal script
         $this->addJS('

@@ -63,7 +63,8 @@ LIMIT
 OFFSET
    :offset";
     
-    const GET_CATEGORIES_PAGE = "SELECT
+    const GET_CATEGORIES_PAGE = "
+SELECT
    `posts`.*, `categories`.name AS 'kategorie', GROUP_CONCAT(`tags`.name) AS 'tagi'
 FROM
    `posts`
@@ -95,7 +96,8 @@ LIMIT
 OFFSET
    :offset";
     
-    const GET_TAG_PAGE = "SELECT
+    const GET_TAG_PAGE = "
+SELECT
    `subquery`.*
 FROM
    (
@@ -138,7 +140,7 @@ OFFSET
    :offset";
 
    const GET_SEARCH_PAGE = '
-   SELECT
+SELECT
    `posts`.*, `categories`.*, `post_categories`.*, GROUP_CONCAT(`categories`.`name`) AS `kategorie`
 FROM
    `posts`

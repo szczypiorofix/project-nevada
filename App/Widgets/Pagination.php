@@ -1,5 +1,4 @@
 <?php
-
 /*
  * The MIT License
  *
@@ -19,16 +18,21 @@ use Core\ModelClasses\Widget;
 class Pagination extends Widget {
     
     public function __construct($data) {
+
         $curLeft = intval($data['current'])-1;
         $curRight = intval($data['current'])+1;
         
-        $leftLink = '"'.$data['linkPrefix'].'/'.$curLeft.'"';
-        $rightLink = '"'.$data['linkPrefix'].'/'.$curRight.'"';
+        $leftLink = '"lista/'.$data['linkPrefix'].'/'.$data['type'].'/'.$curLeft.'"';
+        $rightLink = '"lista/'.$data['linkPrefix'].'/'.$data['type'].'/'.$curRight.'"';
         
         if ($curLeft < 0) {
-            $leftLink .=' style="pointer-events:none;"';
+            $leftLink ='"javascript:void(0)" class="disabled"';
         }
-        
+
+        if ($curRight >= ceil($data['max'] / $data['postsonsite'])) {
+            $rightLink ='"javascript:void(0)" class="disabled"';
+        }
+        $f = floor($data['max'] / $data['postsonsite']);
         $this->body = 
 <<<HTML
     <div class="pagination-div">

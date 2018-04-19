@@ -21,29 +21,33 @@ use Models\TagsListModel;
  */
 class Aside extends Widget {
     
+    private $categoriesResults = null;
+    private $tagsResults = null;
+
     public function __construct($dbConnection) {
         
         Registry::add($this);
         
         $categoriesListModel = new CategoriesListModel($dbConnection);
         $categoriesListContent = "";
-        $categoriesResults = $categoriesListModel->getContent();
-        if (!is_null($categoriesResults)) {
-            foreach($categoriesResults as $row) {
+        $this->categoriesResults = $categoriesListModel->getContent();
+        
+        if (!is_null($this->categoriesResults)) {
+            foreach($this->categoriesResults as $row) {
                 $categoriesListContent .= '<li><a href="lista/kategoria/'.strtolower($row['name']).'"><span class="title">'.$row['name'].'</span><span class="post-count">'.$row['post_count'].'</span></a></li>';
             }
         }
 
         $tagsListModel = new TagsListModel($dbConnection);
         $tagsListContent = "";
-        $tagsContent = $tagsListModel->getContent();
-        if (!is_null($tagsContent)) {
+        $this->tagsResults = $tagsListModel->getContent();
+        if (!is_null($this->tagsResults)) {
             $maxTags = 0;
-            for ($i = 0; $i < count($tagsContent); $i++) {
-                $maxTags = max($maxTags, $tagsContent[$i]['post_count']);
+            for ($i = 0; $i < count($this->tagsResults); $i++) {
+                $maxTags = max($maxTags, $this->tagsResults[$i]['post_count']);
             }
             
-            foreach($tagsContent as $row) {
+            foreach($this->tagsResults as $row) {
                 $c = '';
                 if ($row['post_count'] <= $maxTags) {
                     $c = 'biggest';
@@ -83,5 +87,13 @@ class Aside extends Widget {
         </aside>
         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 HTML;
+    }
+
+    public function getCategoriesResults() {
+        return $this->categoriesResults;
+    }
+
+    public function getTagsResults() {
+        return $this->tagsResults;
     }
 }

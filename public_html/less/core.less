@@ -194,6 +194,15 @@ footer {
 }
 
 
+// EMOJI
+.emoji {
+    height: 1.5em;
+    margin: 0 .05em 0 .1em;
+    vertical-align: -0.1em;
+ }
+
+
+//
 div.navbar-container {
     color: @textColor;
     height: 100%;
@@ -931,6 +940,13 @@ main.content-maindiv {
                 margin: 20px 0;
                 .flexBox();
                 flex-direction: column;
+                #parseResults, textarea {
+                    min-height: 200px;
+                    width: 100%;
+                    border: 1px solid @secondary2Color;
+                    padding: 5px;
+                    .borderRadius(2px);
+                }
                 input[type=text], input[type=email] {
                     width: 100%;
                     padding: 5px;
@@ -1163,12 +1179,37 @@ main.post-card {
                 margin-top: 20px;
             }
         }
+        .pagination-div {
+            padding: 15px 5px;
+            .flexBox();
+            flex-direction: row;
+            justify-content: space-between;
+            a {
+                outline: none;
+                display: inline-block;
+                background-color: @secondary1Color;
+                color: @textColor;
+                border: none;
+                .borderRadius(2px);
+                padding: 6px 12px;
+                &.disabled {
+                    background-color: @secondary2Color;
+                    cursor: not-allowed;
+                    //pointer-events: none;
+                }
+                &:not(.disabled):hover {
+                    background-color: darken(@secondary1Color, 5%);
+                    cursor: pointer;
+                }
+            }
+        }
     }
     
     aside.sidebar {
         background-color: @textColor;
         padding: 10px;
-        max-width: 350px;
+        //max-width: 350px;
+        max-width: 100%;
         width: 100%;
         margin: 0 auto;
         .boxShadow(1px, 1px, 6px, 0, rgba(80, 80, 80, 0.3));

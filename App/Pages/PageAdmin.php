@@ -241,9 +241,16 @@ HTML;
         
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
-        $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
-        //$this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js']);
+        $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'js/jquery/jquery-1.12.4.min.js']);
+        
+        // https://github.com/showdownjs/showdown
+        $this->addJSFile(['name' => 'Showdown markdown parser JS', 'path' => 'js/showdown/showdown.js']);
+        
+        // http://ashleighy.github.io/emoji.js/
+        $this->addJSFile(['name' => 'Emojii', 'path' => 'js/emoji/emoji.js.js']);
+        
         $this->addJSFile(['name' => 'Admin scripts', 'path' => 'js/admin.js']);
+        
         
         //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
         
@@ -260,8 +267,10 @@ HTML;
                     <input type="text" value="{$content['title']}" name="post-title" />
                 </div>
                 <div class="input-group">
+                    <label><strong>Podgląd:</strong></label>
+                    <div id="parseResults">Blah blah blag</div>
                     <label><strong>Treść:</strong></label>
-                    <textarea class="tmce" name="post-content" rows="15" cols="50">{$content['content']}</textarea>
+                    <textarea class="tmce" name="post-content" rows="15" cols="40" id="parseSource">{$content['content']}</textarea>
                 </div>
                 <div class="input-group">
                     <label><strong>Kategoria:</strong></label>
