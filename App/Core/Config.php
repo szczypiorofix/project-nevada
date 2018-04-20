@@ -37,6 +37,11 @@ class Config {
         }
     }
 
+    /**
+     * Get value from ini config file
+     * @param string $key - key
+     * @return string - returns value of the key
+     */
     public static function get($key) {
         if (!self::configFileExists()) {
             return null;
@@ -50,5 +55,33 @@ class Config {
            return self::$configData[$key];
         }
         return NULL;
+    }
+    
+    
+    public static function set($key, $value) {
+        if (!self::configFileExists()) {
+            return null;
+        }
+        if (self::$firstLoad) {
+            self::$firstLoad = false;
+            self::$configData = parse_ini_file(CONFIG_FILE);
+        }
+        
+        if (!is_null(self::get($key))) {
+            if (!$handle = fopen(CONFIG_FILE, 'w')) { 
+                return false; 
+            }
+
+            $content = '';
+            foreach(self::$configData as $k=>$v){
+                if ($k === $key) {
+                    $v = $value;
+                }
+                $content .= $k."=".$v."\n"; 
+            }
+            fwrite($handle, $content);
+            fclose($handle);
+            return true;
+        }
     }
 }

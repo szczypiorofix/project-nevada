@@ -20,9 +20,9 @@ use \Core\FrameworkException;
  */
 class DBConnection {
     
-    private $errorMsg = '';
-    private $db;
-    private $error = false;
+    private static $errorMsg = '';
+    private static $db;
+    private static $error = false;
     private static $instance = null;
     
     
@@ -38,30 +38,24 @@ class DBConnection {
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                 PDO::ATTR_EMULATE_PREPARES => false
             ];
-            $this->db = new \PDO($dsn, $db_user, $db_pass, $opt);
+            self::$db = new \PDO($dsn, $db_user, $db_pass, $opt);
         } catch (\PDOException $exc) {
-            $this->error = true;
-            throw new FrameworkException("Błąd PDO!!!", $exc->getMessage());
+            self::$error = true;
+            $fe = new FrameworkException("Błąd PDO podczas inicjowania połączenia z bazą danych !!!", $exc->getMessage());
+            $fe->showError();
+            self::$errorMsg = $fe->getErrorMsg();
         }
-    }
-    
-    public function getErrorMsg() {
-        return $this->errorMsg;
-    }
-    
-    public function isError() {
-        return $this->error;
     }
     
     public static function getInstance() {
         if (self::$instance === null) {
             self::$instance = new DBConnection();
         }
-        return self::$instance;
-    }
-    
-    public function getDB() {
-        return $this->db;
+        return array(
+            'db' => self::$db,
+            'error' => self::$error,
+            'errorMsg' => self::$errorMsg
+        );
     }
     
 }

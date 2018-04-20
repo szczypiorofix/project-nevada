@@ -192,19 +192,17 @@ OFFSET
         else {
             $this->inputPage = $inputPage;
         }
-        
-        //echo $this->input.' '.$this->inputPage;
-        
+                
         $this->type = $type;
-        $db = $dbConnection->getDB();
-        $this->error = true;
         
         //if ($this->type !== self::TYPE_SEARCH_SORT) {
             $offset = ($this->inputPage) * $postsOnSite;
         //}
+            
+        $dbConnection['error'] = true;
         
         try {
-            $getNumberQuery = $db->prepare(self::GET_POSTS_PAGE_COUNTER);
+            $getNumberQuery = $dbConnection['db']->prepare(self::GET_POSTS_PAGE_COUNTER);
             $getNumberQuery->execute();
             $results = $getNumberQuery->fetch();
             $maxrecords = $results['counter'];
@@ -214,88 +212,88 @@ OFFSET
             }
         }
         catch (FrameworkException $exc) {
-            $this->error = true;
-            $this->errorMsg = $exc->getMessage();
+            $dbConnection['error'] = true;
+            $dbConnection['errorMsg'] = $exc->getMessage();
         }
         
         // ############## POST ID SORT ####################### ///
         if ($this->type === self::TYPE_ID_SORT) {
              try {
-                $query = $db->prepare(self::GET_POSTS_PAGE);
+                $query = $dbConnection['db']->prepare(self::GET_POSTS_PAGE);
                 $query->bindValue(':postsonsite', $postsOnSite, PDO::PARAM_INT);
                 $query->bindValue(':offset', $offset, PDO::PARAM_INT);
                 $query->execute();
              }
              catch (FrameworkException $exc) {
-                $this->error = true;
-                $this->errorMsg = $exc->getMessage();
+                $dbConnection['error'] = true;
+                $dbConnection['errorMsg'] = $exc->getMessage();
              }
              if ($query->rowCount() > 0) {
-                $this->error = false;
+                $dbConnection['error'] = false;
              }
         }
         
         // ############## POST CATEGORY SORT ####################### ///
         if ($this->type === self::TYPE_CATEGORY_SORT) {
              try {
-                $query = $db->prepare(self::GET_CATEGORIES_PAGE);
+                $query = $dbConnection['db']->prepare(self::GET_CATEGORIES_PAGE);
                 $query->bindValue(':catname', $input, PDO::PARAM_STR);
                 $query->bindValue(':postsonsite', $postsOnSite, PDO::PARAM_INT);
                 $query->bindValue(':offset', $offset, PDO::PARAM_INT);
                 $query->execute();
              }
              catch (FrameworkException $exc) {
-                $this->error = true;
-                $this->errorMsg = $exc->getMessage();
+                $dbConnection['error'] = true;
+                $dbConnection['errorMsg'] = $exc->getMessage();
              }
              if ($query->rowCount() > 0) {
-                $this->error = false;
+                $dbConnection['error'] = false;
              }
         }
         
         // ############## POST TAGS SORT ####################### ///
         if ($this->type === self::TYPE_TAGS_SORT) {
             try {
-                $query = $db->prepare(self::GET_TAG_PAGE);
+                $query = $dbConnection['db']->prepare(self::GET_TAG_PAGE);
                 $query->bindValue(':tagname', '%'.$input.'%', PDO::PARAM_STR);
                 $query->bindValue(':postsonsite', $postsOnSite, PDO::PARAM_INT);
                 $query->bindValue(':offset', $offset, PDO::PARAM_INT);
                 $query->execute();
             }
             catch (FrameworkException $exc) {
-                $this->error = true;
-                $this->errorMsg = $exc->getMessage();
+                $dbConnection['error'] = true;
+                $dbConnection['errorMsg'] = $exc->getMessage();
             }
             if ($query->rowCount() > 0) {
-                $this->error = false;
+                $dbConnection['error'] = false;
             }
         }
 
         // ############## POST SEARCH SORT ####################### ///
         if ($this->type === self::TYPE_SEARCH_SORT) {
             try {
-                $query = $db->prepare(self::GET_SEARCH_PAGE);
+                $query = $dbConnection['db']->prepare(self::GET_SEARCH_PAGE);
                 $query->bindValue(':searchname', '%'.$input.'%', PDO::PARAM_STR);
                 $query->bindValue(':postsonsite', $postsOnSite, PDO::PARAM_INT);
                 $query->bindValue(':offset', $offset, PDO::PARAM_INT);
                 $query->execute();
 
-                $querySearchAll = $db->prepare(self::GET_SEARCH_PAGE_COUNTER);
+                $querySearchAll = $dbConnection['db']->prepare(self::GET_SEARCH_PAGE_COUNTER);
                 $querySearchAll->bindValue(':searchname', '%'.$input.'%', PDO::PARAM_STR);
                 $querySearchAll->execute();
                 $maxrecords = $querySearchAll->fetch()['counter'];
             }
             catch (FrameworkException $exc) {
-                $this->error = true;
-                $this->errorMsg = $exc->getMessage();
+                $dbConnection['error'] = true;
+                $dbConnection['errorMsg'] = $exc->getMessage();
             }
             if ($query->rowCount() > 0) {
-                $this->error = false;
+                $dbConnection['error'] = false;
             }
         }
     
         // RETURN RESULTS
-        if (!$this->error) {
+        if (!$dbConnection['error']) {
             $this->content['posts'] = $query->fetchAll();
             $this->content['maxrecords'] = $maxrecords;
             $this->content['postsonsite'] = $postsOnSite;

@@ -24,10 +24,10 @@ class SitemMapXML {
     
     private function __construct() {}
     
-    public static function create($db) {
+    public static function create($dbConnection) {
         
         try {
-           $query = $db->prepare(self::GET_URLS);
+           $query = $dbConnection['db']->prepare(self::GET_URLS);
            $query->execute();
         }
         catch (FrameworkException $exc) {

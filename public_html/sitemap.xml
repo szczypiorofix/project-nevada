@@ -2,55 +2,157 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>http://localhost/project-nevada/</loc>
-    <lastmod>2018-04-19 23:04:17</lastmod>
+    <lastmod>2018-04-20 14:04:48</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>http://localhost/project-nevada/pierwszy-post</loc>
-    <lastmod>2018-04-19 23:18:18</lastmod>
+    <loc>http://localhost/project-nevada/reaktywacja-mojej-strony</loc>
+    <lastmod>2018-04-20 13:53:07</lastmod>
     <changefreq>montly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://localhost/project-nevada/drugi-post</loc>
-    <lastmod>2018-04-18 21:34:05</lastmod>
+    <loc>http://localhost/project-nevada/tequila-platformer---game-development</loc>
+    <lastmod>2018-04-20 10:31:58</lastmod>
     <changefreq>montly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://localhost/project-nevada/trzeci-post</loc>
-    <lastmod>2018-04-18 21:35:35</lastmod>
+    <loc>http://localhost/project-nevada/new-project---cave-generator</loc>
+    <lastmod>2018-04-20 10:33:23</lastmod>
     <changefreq>montly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://localhost/project-nevada/czwarty-post</loc>
-    <lastmod>2018-04-19 23:29:16</lastmod>
+    <loc>http://localhost/project-nevada/making-your-own-game-experience---commonwealth-rebuild-fallout-twine-story</loc>
+    <lastmod>2018-04-20 10:35:00</lastmod>
     <changefreq>montly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://localhost/project-nevada/piaty-post</loc>
-    <lastmod>2018-04-18 21:39:34</lastmod>
+    <loc>http://localhost/project-nevada/commonwealth-rebuild---update</loc>
+    <lastmod>2018-04-20 10:35:56</lastmod>
     <changefreq>montly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://localhost/project-nevada/szosty-post</loc>
-    <lastmod>2018-04-18 21:42:14</lastmod>
+    <loc>http://localhost/project-nevada/fury-road---my-first-javascript-game</loc>
+    <lastmod>2018-04-20 11:28:18</lastmod>
     <changefreq>montly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://localhost/project-nevada/siodmy-post</loc>
-    <lastmod>2018-04-18 21:46:43</lastmod>
+    <loc>http://localhost/project-nevada/fury-road---update</loc>
+    <lastmod>2018-04-20 11:25:44</lastmod>
     <changefreq>montly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://localhost/project-nevada/osmy-post</loc>
-    <lastmod>2018-04-18 21:49:35</lastmod>
+    <loc>http://localhost/project-nevada/space-invaders---new-game-made-in-js</loc>
+    <lastmod>2018-04-20 11:21:46</lastmod>
+    <changefreq>montly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/project-nevada/space-invaders---update</loc>
+    <lastmod>2018-04-20 11:20:47</lastmod>
+    <changefreq>montly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/project-nevada/space-invaders---update-2</loc>
+    <lastmod>2018-04-20 11:19:56</lastmod>
+    <changefreq>montly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/project-nevada/space-invaders---update-3</loc>
+    <lastmod>2018-04-20 11:13:34</lastmod>
+    <changefreq>montly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/project-nevada/new-project---blackboard</loc>
+    <lastmod>2018-04-20 10:55:02</lastmod>
+    <changefreq>montly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/project-nevada/my-own-version-of-typedjs-library</loc>
+    <lastmod>2018-04-20 10:50:56</lastmod>
+    <changefreq>montly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/project-nevada/using-trello-api-as-a-change-log-for-one-of-my-projects</loc>
+    <lastmod>2018-04-20 14:59:48</lastmod>
+    <changefreq>montly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/project-nevada/a-week-with-api---1-gog-api</loc>
+    <lastmod>2018-04-20 10:47:27</lastmod>
+    <changefreq>montly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/project-nevada/a-week-with-api---2-steamweb-api</loc>
+    <lastmod>2018-04-20 10:45:53</lastmod>
+    <changefreq>montly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/project-nevada/nowy-tytul</loc>
+    <lastmod>2018-04-20 10:45:20</lastmod>
+    <changefreq>montly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/project-nevada/simple-js-routing-system</loc>
+    <lastmod>2018-04-20 10:44:50</lastmod>
+    <changefreq>montly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/project-nevada/demo-template</loc>
+    <lastmod>2018-04-20 10:43:40</lastmod>
+    <changefreq>montly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/project-nevada/unique-code-generator</loc>
+    <lastmod>2018-04-20 10:41:11</lastmod>
+    <changefreq>montly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/project-nevada/kanciarz---currency-converter</loc>
+    <lastmod>2018-04-20 11:29:39</lastmod>
+    <changefreq>montly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/project-nevada/real-time-chat-made-in-nodejs-and-socketio</loc>
+    <lastmod>2018-04-20 10:37:59</lastmod>
+    <changefreq>montly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/project-nevada/kanciarz---currency-converter-update</loc>
+    <lastmod>2018-04-20 10:37:33</lastmod>
+    <changefreq>montly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/project-nevada/prognoza-pogody</loc>
+    <lastmod>2018-04-18 14:20:56</lastmod>
+    <changefreq>montly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/project-nevada/to-jest-zupelnie-nowy-post</loc>
+    <lastmod>2018-04-20 13:54:04</lastmod>
     <changefreq>montly</changefreq>
     <priority>0.8</priority>
   </url>

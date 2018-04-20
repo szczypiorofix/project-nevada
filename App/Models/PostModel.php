@@ -35,23 +35,21 @@ GROUP BY
     
     function __construct($dbConnection, $input) {
         
-        $db = $dbConnection->getDB();
-        $this->error = true;
         
         try {
-           $query = $db->prepare(self::GET_POSTS);
+           $query = $dbConnection['db']->prepare(self::GET_POSTS);
            $query->bindValue(':url', $input, PDO::PARAM_STR);
            $query->execute();
         }
         catch (FrameworkException $exc) {
-           $this->error = true;
-           $this->errorMsg = $exc->getMessage();
+           $dbConnection['error'] = true;
+           $dbConnection['errorMsg'] = $exc->getMessage();
         }
-        if ($query->rowCount() > 0) {
-           $this->error = false;
+        if ($query->rowCount() <= 0) {
+           $dbConnection['error'] = true;
         }
 
-        if (!$this->error) {
+        if (!$dbConnection['error']) {
             $this->content = $query->fetch();
         }
     }

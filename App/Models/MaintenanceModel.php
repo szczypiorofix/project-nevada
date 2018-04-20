@@ -66,7 +66,11 @@ class MaintenanceModel extends DataModel {
                     </div>
                 </div>
                 <div id="counter-end">
-                    <p>WYSTARTOWAŁ !!!</p>
+                    <div class="bg"></div>
+                    <div class="launch-info">
+                        <p>Odliczanie dobiegło końca!!!</p>
+                        <p>Odśwież stronę</p>
+                    </div>
                 </div>
             </div>
             <div class="right-side">

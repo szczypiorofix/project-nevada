@@ -43,7 +43,7 @@ class FileManager {
                         $this->filename = basename($this->file['name']);
                         if (!is_null($id)) {
                             try {
-                                $queryTags = $this->db->prepare('UPDATE `posts` SET `image`=:image WHERE `id`=:id');
+                                $queryTags = $this->db['db']->prepare('UPDATE `posts` SET `image`=:image WHERE `id`=:id');
                                 $queryTags->bindValue(':id', $id, PDO::PARAM_INT);
                                 $queryTags->bindValue(':image', $this->filename, PDO::PARAM_STR);
                                 $queryTags->execute();

@@ -20,8 +20,8 @@ use Core\Registry;
 class MetaData extends Widget {
     
     private $defaultMetaData = [
-        'title' => 'This is my new homepage! Hell yeah!',
-        'description' => 'This is my new homepage. It\'s build in my own home-made CMS :)',
+        'title' => 'Wróblewski Piotr - strona domowa',
+        'description' => 'To moja strona internetowa.',
         'author' => 'Wróblewski Piotr',
         'keywords' => 'JavaScript',
         'url' => 'https://www.wroblewskipiotr.pl/',

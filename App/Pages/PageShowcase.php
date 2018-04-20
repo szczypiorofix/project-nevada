@@ -37,15 +37,7 @@ class PageShowcase extends Page {
         
         $type = 'list';
         
-        try {
-            $dbConnection = \Core\DBConnection::getInstance();
-        } catch (\Core\FrameworkException $fex) {
-            $fex->showError();
-        }
-        
-        $this->db = $dbConnection->getDB();
-        $this->error = $dbConnection->isError();
-        $this->errorMsg = $dbConnection->getErrorMsg();
+        $dbConnection = \Core\DBConnection::getInstance();
         
         $postListModel = new PostListModel(PostListModel::TYPE_ID_SORT, $dbConnection, $type, $pages);
         $content = $postListModel->getContent();

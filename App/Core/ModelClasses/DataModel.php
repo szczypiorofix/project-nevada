@@ -17,19 +17,9 @@ namespace Core\ModelClasses;
 abstract class DataModel {
     
     protected $content = null;
-    protected $type;
-    protected $error;
-    protected $errorMsg;
     
     public function getContent() {
         return $this->content;
     }
     
-    public function isError() {
-        return $this->error;
-    }
-    
-    public function getErrorMsg() {
-        return $this->errorMsg;
-    }
 }

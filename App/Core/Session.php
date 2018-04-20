@@ -8,15 +8,13 @@ class Session {
     
     private static $session = false;
     private static $useremail = null;
-    private static $error = false;
-    private static $errorMsg = '';
 
     private function __construct() {}
     private function __clone() {}
 
-    public static function isAnyUserRegistered($db) {
+    public static function isAnyUserRegistered($dbConnection) {
         try {
-            $query = $db->prepare("SELECT * FROM users");
+            $query = $dbConnection['db']->prepare("SELECT * FROM users");
             $query->execute();
             if ($query->rowCount() > 0) {
                 return true;
@@ -24,16 +22,16 @@ class Session {
         } catch (PDOException $exc) {
             self::$errorMsg = \FrameworkException::getMessage($exc->getMessage(), $exc->getFile(), $exc->getLine());
             self::$session = false;
-            self::$error = true;
+            $dbConnection['error'] = true;
         }
         return false;
     }
 
-    public static function check($db) {
+    public static function check($dbConnection) {
         if (filter_input(INPUT_COOKIE, 'session_id') != null) {
             $sessionid = filter_input(INPUT_COOKIE, 'session_id');
             try {
-                $query = $db->prepare("SELECT * FROM `users` WHERE `session_code`=:sessionid");
+                $query = $dbConnection['db']->prepare("SELECT * FROM `users` WHERE `session_code`=:sessionid");
                 $query->bindParam(':sessionid', $sessionid);
                 $query->execute();
                 if ($query->rowCount() == 1) {
@@ -43,12 +41,10 @@ class Session {
                 }
                 else {
                     self::$session = false;
-                    self::$error = true;
                 }
             } catch (PDOException $exc) {
                 self::$errorMsg = \FrameworkException::getMessage($exc->getMessage(), $exc->getFile(), $exc->getLine());
                 self::$session = false;
-                self::$error = true;
             }
         }
         return self::$session;
@@ -56,14 +52,6 @@ class Session {
     
     public static function getUserEmail() {
             return self::$useremail;
-    }
-    
-    public static function isError() {
-            return self::$errorMsg;
-    }
-    
-    public static function getErrorMsg() {
-            return self::$errorMsg;
     }
     
     public function checkFilters($fields) {
@@ -93,10 +81,10 @@ class Session {
         return password_hash($p, PASSWORD_BCRYPT, $options);
     }
 	
-    public static function checkPassword($db, $u, $p) {
+    public static function checkPassword($dbConnection, $u, $p) {
         sleep(2);
         try {
-            $query = $db->prepare("SELECT `users`.password FROM `users` WHERE email=:useremail");
+            $query = $dbConnection['db']->prepare("SELECT `users`.password FROM `users` WHERE email=:useremail");
             $query->bindParam(':useremail', $u, PDO::PARAM_STR);
             $query->execute();
             $result = $query->fetch();

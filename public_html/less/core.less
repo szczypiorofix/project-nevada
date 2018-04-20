@@ -678,8 +678,10 @@ main.content-maindiv {
                         background: @textColorDark;
                         padding: 10px 5px;
                         color: @textColor;
-                        // width: 85%;
-                        // margin: 0 auto;
+                        font-size: 90%;
+                        .flexBox();
+                        flex-direction: column;
+                        flex-wrap: wrap;
                         text-align: center;
                         .post-date {
                             letter-spacing: 0.08em;
@@ -895,8 +897,8 @@ main.content-maindiv {
                     border: none;
                     background-color: @textColorDark;
                     color: @textColor;
-                    padding: 6px 16px;
-                    min-width: 80px;
+                    padding: 6px 10px;
+                    min-width: 60px;
                     .boxShadow(1px, 1px, 6px, 0, rgba(80, 80, 80, 0.3));
                     &:hover {
                         background-color: darken(@textColorDark, 10%);
@@ -911,8 +913,9 @@ main.content-maindiv {
                     border: none;
                     background-color: @secondary2Color;
                     color: @textColor;
-                    padding: 6px 16px;
+                    padding: 6px 11px;
                     margin: 2px;
+                    width: 40px;
                     &:hover {
                         background-color: darken(@secondary2Color, 10%);
                         cursor: pointer;
@@ -1204,7 +1207,7 @@ main.post-card {
                 color: @textColor;
                 border: none;
                 .borderRadius(2px);
-                padding: 6px 12px;
+                padding: 6px 16px;
                 &.disabled {
                     background-color: @secondary2Color;
                     cursor: not-allowed;

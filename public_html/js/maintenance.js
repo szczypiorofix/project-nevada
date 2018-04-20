@@ -57,6 +57,15 @@ var CountDownToDate = {
     stop: function() {
         clearInterval(this.counterInterval);
         this.counterEndElement.style.display = "block";
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                console.log(this.response);
+            }
+        };
+        xmlhttp.open("GET", "countdownend", true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send();
     }
 };
 
@@ -79,7 +88,7 @@ function getDataFromTreloAPI() {
 
 window.addEventListener("DOMContentLoaded", function() {
     CountDownToDate.start({
-        "date": "May 1, 2018 00:00:00",
+        "date": "April 29, 2018 00:00:00",
         "daysElement": "counter-days",
         "hoursElement": "counter-hours",
         "minutesElement": "counter-minutes",

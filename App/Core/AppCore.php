@@ -23,7 +23,7 @@ class AppCore {
     private function __construct() {}
     private function __clone() {}
 
-    public static function start($maintenance = false) {
+    public static function start() {
         $class = self::DEFAULT_CLASS;
         $method = self::DEFAULT_METHOD;
         $calledDefaultClass = false;
@@ -32,7 +32,16 @@ class AppCore {
         
         //var_dump($url);
         
-        if (!$maintenance) {
+        $maintenance = intval(\Core\Config::get('MAINTENANCE'));
+        
+//        if (\Core\Config::set("MAINTENANCE", "1")) {
+//            echo 'OK';
+//        } else {
+//            echo 'ERROR!';
+//        }
+//        exit;
+        
+        if ($maintenance === 0) {
             if (file_exists(DIR_PAGES.self::PAGES_NAME_PREFIX.ucfirst($url[0]).'.php')) {
                 $class = ucfirst($url[0]);
                 unset($url[0]);
@@ -60,9 +69,13 @@ class AppCore {
                     $class = "Admin";
                     break;
                 }
+                case 'countdownend' : {
+                    $class = "CountdownEnd";
+                    break;
+                }
             }
         }
-        
+              
         $className = "\Pages\\".self::PAGES_NAME_PREFIX.$class;
         $page = new $className();
         

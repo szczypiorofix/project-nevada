@@ -34,28 +34,19 @@ class Pagepost extends Page {
            $input = $args[0];
         }
         
-        try {
-            $dbConnection = \Core\DBConnection::getInstance();
-        } catch (\Core\FrameworkException $fex) {
-            $fex->showError();
-        }
-        
-        $this->db = $dbConnection->getDB();
-        $this->error = $dbConnection->isError();
-        $this->errorMsg = $dbConnection->getErrorMsg();
+        $dbConnection = \Core\DBConnection::getInstance();
         
         $postModel = new PostModel($dbConnection, $input);
         $content = $postModel->getContent();
           
         //var_dump($content);
-        
-        //\Core\SitemMapXML::create($this->db);
-        
+                
         //$pageContent = '<div class="maincontent-div">';
         $pageContent = '';
         $defaultImageFile = DIR_UPLOADS_IMAGES."default.jpg";
         $imageFile = $defaultImageFile;
-
+        $postContent = null;
+        
         if (is_array($content) || !is_null($content)) {
             if (file_exists(DIR_UPLOADS_IMAGES.$content['image']) && !is_dir(DIR_UPLOADS_IMAGES.$content['image'])) {
                 $imageFile = DIR_UPLOADS_IMAGES.$content['image'];
@@ -81,7 +72,7 @@ class Pagepost extends Page {
              */
             $Parsedown = new \Vendors\Parsedown\Parsedown();
             $postContent = $Parsedown->text($content['content']);
-            
+            //var_dump($postContent);
             $pageContent .= 
                 '<section class="post-content">
                     <div class="post-title">
@@ -184,7 +175,8 @@ class Pagepost extends Page {
         
         $imageFullPath = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]".DS.$imageFile;
 
-        $metaData = new \Widgets\MetaData([
+        $metaData = new \Widgets\MetaData(
+        is_null($postContent) ? null : [
             'title' => $content['title'],
             'description' => mb_substr(str_replace(["\n", "\r", "\n\r", "  "], " ", strip_tags($postContent)), 0, 250).'...',
             'author' => 'Wróblewski Piotr',
@@ -199,6 +191,7 @@ class Pagepost extends Page {
             'domain' => 'https://www.wroblewskipiotr.pl/',
             'accent-color' => '#333333',
         ]);
+        
         $head = $metaData->getBody();
         $this->setHead($head);
         $logo = new \Widgets\Logo();
@@ -210,7 +203,7 @@ class Pagepost extends Page {
         $ctaButton = new \Widgets\CTAButton();
 
         $sessionContent = "";
-        if (\core\Session::check($this->db)) {
+        if (\core\Session::check($dbConnection)) {
             $sessionContent = '<a href="admin/edit?&postid='.$content['id'].'" class="edit-post-button">EDYTUJ</a>';
         }
         

@@ -165,9 +165,26 @@ html, body {
                 }
             }
             #counter-end {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
                 display: none;
                 font-family: @ralewayLight;
                 font-size: 32px;
+                .bg {
+                    opacity: 0.9;
+                    background-color: #111;
+                }
+                .launch-info {
+                    position: absolute;
+                    font-weight: 800;
+                    top: 40%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    color: @mainLightColor;
+                }
             }
         }
 

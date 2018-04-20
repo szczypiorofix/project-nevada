@@ -42,8 +42,8 @@ class Pagination extends Widget {
         $this->body = 
 <<<HTML
     <div class="pagination-div">
-         <a href={$leftLink}>NOWSZE</a>
-         <a href={$rightLink}>STARSZE</a>
+         <a href={$leftLink}><i class="fas fa-chevron-left"></i></a>
+         <a href={$rightLink}><i class="fas fa-chevron-right"></i></a>
     </div>
 HTML;
     }

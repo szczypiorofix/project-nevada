@@ -10,7 +10,6 @@
 namespace Pages;
 
 use Core\ModelClasses\Page;
-use Core\Config;
 
 /**
  * This is error 404 Page
@@ -24,14 +23,7 @@ class PageError extends Page {
     }
 
     public function defaultmethod($args) {
-        try {
-            $dbConnection = \Core\DBConnection::getInstance();
-        } catch (\Core\FrameworkException $fex) {
-            $fex->showError();
-        }
-        $this->db = $dbConnection->getDB();
-        $this->error = $dbConnection->isError();
-        $this->errorMsg = $dbConnection->getErrorMsg();
+        $dbConnection = \Core\DBConnection::getInstance();
         $baseHref = BASE_HREF;
         $pageContent =
 <<<HTML
@@ -62,24 +54,7 @@ HTML;
         
         $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
-        $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'js/jquery/jquery-1.12.4.min.js']);
-        
-        //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
-        //$this->addJSFile(['name' => 'Google Maps API', 'path' => 'https://maps.googleapis.com/maps/api/js?key='.Config::get("GOOGLE_MAPS_API_KEY").'&callback=showGoogleMaps']);
-        
-
-        $metaData = new \Widgets\MetaData();
-        $head = $metaData->getBody();
-        
-        $this->setHead($head);
-        
-        
-        /**
-         * 
-         * http://rajibweb.com/html/collis/index-one.html
-         * 
-         */
-        
+        $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'js/jquery/jquery-1.12.4.min.js']);        
         
         $metaData = new \Widgets\MetaData();
         $head = $metaData->getBody();
@@ -120,5 +95,4 @@ HTML;
         
         $this->setBody($body);
     }
-
 }

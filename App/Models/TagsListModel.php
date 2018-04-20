@@ -36,22 +36,19 @@ ORDER BY
     
     function __construct($dbConnection) {
         
-        $db = $dbConnection->getDB();
-        $this->error = true;
-        
         try {
-           $query = $db->prepare(self::GET_TAGS);
+           $query = $dbConnection['db']->prepare(self::GET_TAGS);
            $query->execute();
         }
         catch (FrameworkException $exc) {
-           $this->error = true;
-           $this->errorMsg = $exc->getMessage();
+           $dbConnection['error'] = true;
+           $dbConnection['errorMsg'] = $exc->getMessage();
         }
         if ($query->rowCount() > 0) {
-           $this->error = false;
+           $dbConnection['error'] = false;
         }
 
-        if (!$this->error) {
+        if (!$dbConnection['error']) {
             $this->content = $query->fetchAll();
         }
     }

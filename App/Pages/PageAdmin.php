@@ -12,6 +12,9 @@ namespace Pages;
 use Core\ModelClasses\Page;
 use Models\PostListModel;
 use PDO;
+use Core\Session;
+use Core\DBConnection;
+use Core\FrameworkException;
 
 /**
  * This is admin panel page.
@@ -26,25 +29,17 @@ class PageAdmin extends Page {
 
     public function newpost($args) {
         
-        try {
-            $dbConnection = \Core\DBConnection::getInstance();
-        } catch (\Core\FrameworkException $fex) {
-            $fex->showError();
-        }
+        $dbConnection = DBConnection::getInstance();
         
-        $this->db = $dbConnection->getDB();
-        $this->error = $dbConnection->isError();
-        $this->errorMsg = $dbConnection->getErrorMsg();
-        
-        if (!\Core\Session::check($this->db)) {
+        if (!Session::check($dbConnection)) {
             header("Location: ".BASE_HREF.'admin/');
         }
 
         $this->error = true;
         try {
-            $queryCategories = $this->db->prepare("SELECT * FROM `categories`");
+            $queryCategories = $dbConnection['db']->prepare("SELECT * FROM `categories`");
             $queryCategories->execute();
-            $queryTags = $this->db->prepare("SELECT * FROM `tags`");
+            $queryTags = $dbConnection['db']->prepare("SELECT * FROM `tags`");
             $queryTags->execute();
             $this->error = false;
         }
@@ -165,38 +160,30 @@ HTML;
             header("Location: ".BASE_HREF.'admin/');
         }
         
-        try {
-            $dbConnection = \Core\DBConnection::getInstance();
-        } catch (\Core\FrameworkException $fex) {
-            $fex->showError();
-        }
+        $dbConnection = DBConnection::getInstance();
         
-        $this->db = $dbConnection->getDB();
-        $this->error = $dbConnection->isError();
-        $this->errorMsg = $dbConnection->getErrorMsg();
-        
-        if (!\Core\Session::check($this->db)) {
+        if (!Session::check($dbConnection)) {
             header("Location: ".BASE_HREF.'admin/');
         }
 
         $this->error = true;
         try {
-            $query = $this->db->prepare("SELECT * FROM `posts` WHERE `id`=:postid");
+            $query = $dbConnection['db']->prepare("SELECT * FROM `posts` WHERE `id`=:postid");
             $query->bindValue(':postid', $id, PDO::PARAM_INT);
             $query->execute();
 
-            $queryPostCategories = $this->db->prepare("SELECT `post_categories`.categoryid FROM `post_categories` WHERE `postid`=:postid");
+            $queryPostCategories = $dbConnection['db']->prepare("SELECT `post_categories`.categoryid FROM `post_categories` WHERE `postid`=:postid");
             $queryPostCategories->bindValue(':postid', $id, PDO::PARAM_INT);
             $queryPostCategories->execute();
 
-            $queryCategories = $this->db->prepare("SELECT * FROM `categories`");
+            $queryCategories = $dbConnection['db']->prepare("SELECT * FROM `categories`");
             $queryCategories->execute();
 
-            $queryPostTags = $this->db->prepare("SELECT `post_tags`.tagid FROM `post_tags` WHERE `postid`=:postid");
+            $queryPostTags = $dbConnection['db']->prepare("SELECT `post_tags`.tagid FROM `post_tags` WHERE `postid`=:postid");
             $queryPostTags->bindValue(':postid', $id, PDO::PARAM_INT);
             $queryPostTags->execute();
 
-            $queryTags = $this->db->prepare("SELECT * FROM `tags`");
+            $queryTags = $dbConnection['db']->prepare("SELECT * FROM `tags`");
             $queryTags->execute();
 
             $this->error = false;
@@ -334,33 +321,29 @@ HTML;
         $inputFields = [
             'postid' => FILTER_SANITIZE_NUMBER_INT,
             'post-title' => FILTER_SANITIZE_STRING,
-            'post-content' => FILTER_SANITIZE_STRING,
-            'post-imagetitle' => FILTER_SANITIZE_STRING
+            'post-content' => FILTER_SANITIZE_STRING
         ];
 
         if ($this->checkFilters($inputFields)) {
             $postId = filter_input(INPUT_POST, 'postid', FILTER_SANITIZE_NUMBER_INT);
             $postTitle = filter_input(INPUT_POST, 'post-title', FILTER_SANITIZE_STRING);
             $postContent = filter_input(INPUT_POST, 'post-content', FILTER_SANITIZE_STRING);
-            $postImageTitle = filter_input(INPUT_POST, 'post-imagetitle', FILTER_SANITIZE_STRING);
+            
+            $postImageTitle = '';
+            if (filter_input(INPUT_POST, 'post-imagetitle', FILTER_SANITIZE_STRING) !== null) {
+                $postImageTitle = filter_input(INPUT_POST, 'post-imagetitle', FILTER_SANITIZE_STRING);
+            }
 
             $postCategory = $_POST['category'][0];
             $postTags = $_POST['tags'];
 
-            try {
-                $dbConnection = \Core\DBConnection::getInstance();
-            } catch (\Core\FrameworkException $fex) {
-                $fex->showError();
-            }
-            $this->db = $dbConnection->getDB();
-            $this->error = $dbConnection->isError();
-            $this->errorMsg = $dbConnection->getErrorMsg();
+            $dbConnection = DBConnection::getInstance();
             
-            if (!\core\Session::check($this->db)) {
+            if (!Session::check($dbConnection)) {
                 header("Location: ".BASE_HREF.'admin/');
             }
 
-            $fileManager = new \Core\FileManager($this->db);
+            $fileManager = new \Core\FileManager($dbConnection['db']);
             $fileManager->checkFileToUpload($_FILES['post-file'], $postId);
             
             /**
@@ -371,7 +354,7 @@ HTML;
             $this->error = true;
             try {
                 // UPDATE POST
-                $query = $this->db->prepare("UPDATE `posts` SET `title`=:title, `content`=:content, `url`=:newurl, `image_description`=:postimagetitle, `update_date`=NOW() WHERE `id`=:postid");
+                $query = $dbConnection['db']->prepare("UPDATE `posts` SET `title`=:title, `content`=:content, `url`=:newurl, `image_description`=:postimagetitle, `update_date`=NOW() WHERE `id`=:postid");
                 $query->bindValue(':title', $postTitle, PDO::PARAM_STR);
                 $query->bindValue(':content', $postContent, PDO::PARAM_STR);
                 $query->bindValue(':postimagetitle', $postImageTitle, PDO::PARAM_STR);
@@ -380,13 +363,13 @@ HTML;
                 $query->execute();
 
                 // UPDATE POST CATEGORY
-                $queryTags = $this->db->prepare('UPDATE `post_categories` SET `categoryid`=:catid WHERE `id`=:id');
+                $queryTags = $dbConnection['db']->prepare('UPDATE `post_categories` SET `categoryid`=:catid WHERE `id`=:id');
                 $queryTags->bindValue(':id', $postId, PDO::PARAM_INT);
                 $queryTags->bindValue(':catid', $postCategory, PDO::PARAM_INT);
                 $queryTags->execute();
 
                 // DELETE PREVIOUS DATA ABOUT POST TAGS
-                $queryDelTag = $this->db->prepare("DELETE FROM `post_tags` WHERE `postid` =:postid");
+                $queryDelTag = $dbConnection['db']->prepare("DELETE FROM `post_tags` WHERE `postid` =:postid");
                 $queryDelTag->bindParam(':postid', $postId, PDO::PARAM_INT);
                 $queryDelTag->execute();
 
@@ -399,7 +382,7 @@ HTML;
                         }
                 }
                 $insTagRelStmt = $insTagRelStmt.';';
-                $queryUpdateTags = $this->db->prepare($insTagRelStmt);
+                $queryUpdateTags = $dbConnection['db']->prepare($insTagRelStmt);
                 $queryUpdateTags->execute();
 
                 $this->error = false;
@@ -410,7 +393,7 @@ HTML;
                $this->errorMsg = $exc->getMessage();
             }
         }
-        \Core\SitemMapXML::create($this->db);
+        \Core\SitemMapXML::create($dbConnection);
         exit;
     }
 
@@ -418,32 +401,28 @@ HTML;
         
         $inputFields = [
             'post-title' => FILTER_SANITIZE_STRING,
-            'post-content' => FILTER_SANITIZE_STRING,
-            'post-imagetitle' => FILTER_SANITIZE_STRING
+            'post-content' => FILTER_SANITIZE_STRING
         ];
 
         if ($this->checkFilters($inputFields)) {
             $postTitle = filter_input(INPUT_POST, 'post-title', FILTER_SANITIZE_STRING);
             $postContent = filter_input(INPUT_POST, 'post-content', FILTER_SANITIZE_STRING);
-            $postImageTitle = filter_input(INPUT_POST, 'post-imagetitle', FILTER_SANITIZE_STRING);
+            
+            $postImageTitle = '';
+            if (filter_input(INPUT_POST, 'post-imagetitle', FILTER_SANITIZE_STRING) !== null) {
+                $postImageTitle = filter_input(INPUT_POST, 'post-imagetitle', FILTER_SANITIZE_STRING);
+            }
 
             $postCategory = $_POST['category'][0];
             $postTags = $_POST['tags'];
 
-            try {
-                $dbConnection = \Core\DBConnection::getInstance();
-            } catch (\Core\FrameworkException $fex) {
-                $fex->showError();
-            }
-            $this->db = $dbConnection->getDB();
-            $this->error = $dbConnection->isError();
-            $this->errorMsg = $dbConnection->getErrorMsg();
+            $dbConnection = DBConnection::getInstance();
 
-            if (!\core\Session::check($this->db)) {
+            if (!Session::check($dbConnection)) {
                 header("Location: ".BASE_HREF.'admin/');
             }
             
-            $fileManager = new \Core\FileManager($this->db);
+            $fileManager = new \Core\FileManager($dbConnection['db']);
             $fileManagerMsg = $fileManager->checkFileToUpload($_FILES['post-file'], null);
             $imageFileName = $fileManagerMsg['filename'];
 
@@ -456,7 +435,7 @@ HTML;
             $this->error = true;
             try {
                 // ADD POST
-                $query = $this->db->prepare("INSERT INTO `posts` 
+                $query = $dbConnection['db']->prepare("INSERT INTO `posts` 
                 (`title`, `content`, `url`, `image`, `image_description`, `insert_date`, `update_date`) 
                 VALUES (:title, :content, :newurl, :image, :postimagetitle, NOW(), NOW() )");
                 $query->bindValue(':title', $postTitle, PDO::PARAM_STR);
@@ -466,10 +445,10 @@ HTML;
                 $query->bindValue(':postimagetitle', $postImageTitle, PDO::PARAM_STR);
                 $query->execute();
 
-                $postId = $this->db->lastInsertId();
+                $postId = $dbConnection['db']->lastInsertId();
                 
                 // ADD POST CATEGORY
-                $queryTags = $this->db->prepare('INSERT INTO `post_categories` (`categoryid`, `postid`) VALUES (:catid, :postid);');
+                $queryTags = $dbConnection['db']->prepare('INSERT INTO `post_categories` (`categoryid`, `postid`) VALUES (:catid, :postid);');
                 $queryTags->bindValue(':postid', $postId, PDO::PARAM_INT);
                 $queryTags->bindValue(':catid', $postCategory, PDO::PARAM_INT);
                 $queryTags->execute();
@@ -483,7 +462,7 @@ HTML;
                         }
                 }
                 $insTagRelStmt = $insTagRelStmt.';';
-                $queryUpdateTags = $this->db->prepare($insTagRelStmt);
+                $queryUpdateTags = $dbConnection['db']->prepare($insTagRelStmt);
                 $queryUpdateTags->execute();
 
                 $this->error = false;
@@ -494,7 +473,7 @@ HTML;
                $this->errorMsg = $exc->getMessage();
             }
         }
-        \Core\SitemMapXML::create($this->db);
+        \Core\SitemMapXML::create($dbConnection);
         exit;
     }
     
@@ -506,33 +485,25 @@ HTML;
         if ($this->checkFilters($inputFields)) {
             
             $id = filter_input(INPUT_POST, 'postid', FILTER_SANITIZE_NUMBER_INT);
+
+            $dbConnection = DBConnection::getInstance();
             
-            try {
-                $dbConnection = \Core\DBConnection::getInstance();
-            } catch (\Core\FrameworkException $fex) {
-                $fex->showError();
-            }
-            $this->db = $dbConnection->getDB();
-            $this->error = $dbConnection->isError();
-            $this->errorMsg = $dbConnection->getErrorMsg();
-            
-            if (!\core\Session::check($this->db)) {
+            if (!Session::check($dbConnection['db'])) {
                 header("Location: ".BASE_HREF.'admin/');
             }
             
-            $db = $dbConnection->getDB();
             $this->error = true;
 
             try {
-                $query = $db->prepare("DELETE FROM post_categories WHERE postid=:postid");
-                $query->bindParam(':postid', $id, PDO::PARAM_INT);
-                $query->execute();
+                $queryDelCat = $dbConnection['db']->prepare("DELETE FROM post_categories WHERE postid=:postid");
+                $queryDelCat->bindParam(':postid', $id, PDO::PARAM_INT);
+                $queryDelCat->execute();
                 
-                $query = $db->prepare("DELETE FROM post_tags WHERE postid=:postid");
-                $query->bindParam(':postid', $id, PDO::PARAM_INT);
-                $query->execute();
+                $queryDelTag = $dbConnection['db']->prepare("DELETE FROM post_tags WHERE postid=:postid");
+                $queryDelTag->bindParam(':postid', $id, PDO::PARAM_INT);
+                $queryDelTag->execute();
                 
-                $query = $db->prepare("DELETE FROM posts WHERE id=:postid");
+                $query = $dbConnection['db']->prepare("DELETE FROM posts WHERE id=:postid");
                 $query->bindParam(':postid', $id, PDO::PARAM_INT);
                 $query->execute();
                 
@@ -546,21 +517,13 @@ HTML;
             }
             echo $this->errorMsg;
         }
-        \Core\SitemMapXML::create($this->db);
+        \Core\SitemMapXML::create($dbConnection);
         exit;
     }
 
     public function backup($args) {
-        try {
-            $dbConnection = \Core\DBConnection::getInstance();
-        } catch (\Core\FrameworkException $fex) {
-            $fex->showError();
-        }
-        $this->db = $dbConnection->getDB();
-        $this->error = $dbConnection->isError();
-        $this->errorMsg = $dbConnection->getErrorMsg();
-
-        if (!\core\Session::check($this->db)) {
+        $dbConnection = DBConnection::getInstance();
+        if (!Session::check($dbConnection)) {
             header("Location: ".BASE_HREF.'admin/');
         }
         \Core\BackupManager::makeBackup();
@@ -568,24 +531,16 @@ HTML;
 
     public function register($args) {
 
-        try {
-            $dbConnection = \Core\DBConnection::getInstance();
-        } catch (\Core\FrameworkException $fex) {
-            $fex->showError();
-        }
-        
-        $this->db = $dbConnection->getDB();
-        $this->error = $dbConnection->isError();
-        $this->errorMsg = $dbConnection->getErrorMsg();
+        $dbConnection = DBConnection::getInstance();
 
         if (filter_input(INPUT_POST, 'loginname', FILTER_SANITIZE_STRING) != null && filter_input(INPUT_POST, 'loginpassword', FILTER_SANITIZE_STRING)) {
             $this->error = true;
             $loginname = filter_input(INPUT_POST, 'loginname', FILTER_SANITIZE_STRING);
-            $loginpassword = \Core\Session::encryptIt(filter_input(INPUT_POST, 'loginpassword', FILTER_SANITIZE_STRING));
+            $loginpassword = Session::encryptIt(filter_input(INPUT_POST, 'loginpassword', FILTER_SANITIZE_STRING));
             $sessionId = md5($loginname);
             
             try {
-                $queryRegister = $this->db->prepare(
+                $queryRegister = $dbConnection['db']->prepare(
                     "INSERT INTO `users` 
                     (`email`, `password`, `date_registered`, `session_code`) 
                     VALUES (:email, :password, NOW(), :sessionid);"
@@ -602,7 +557,7 @@ HTML;
             }
         }
 
-        if (\Core\Session::isAnyUserRegistered($this->db)) {
+        if (Session::isAnyUserRegistered($dbConnection)) {
             header("Location: ".BASE_HREF."admin");
         }
         
@@ -684,18 +639,9 @@ HTML;
             $pages = intval($args[1]);
         }
 
-        try {
-            $dbConnection = \Core\DBConnection::getInstance();
-        } catch (\Core\FrameworkException $fex) {
-            $fex->showError();
-        }
-        
-        $this->db = $dbConnection->getDB();
-        $this->error = $dbConnection->isError();
-        $this->errorMsg = $dbConnection->getErrorMsg();
+        $dbConnection = DBConnection::getInstance();
 
-
-        if (!\Core\Session::isAnyUserRegistered($this->db)) {
+        if (!Session::isAnyUserRegistered($dbConnection)) {
             header("Location: ".BASE_HREF."admin/register/");
         }
 
@@ -709,18 +655,21 @@ HTML;
             $userpass = filter_input(INPUT_POST, 'loginpassword', FILTER_SANITIZE_STRING);
             
             // INICJOWANIE CIASTECZKA
-            if (\core\Session::checkPassword($this->db, $userlogin, $userpass)) {
+            if (Session::checkPassword($dbConnection, $userlogin, $userpass)) {
                 setcookie('session_id', md5($userlogin), time() + (86400), "/");
                 header("Location: ".BASE_HREF."admin/");
             }
         }
         
         // SPRAWDZANIE CIASTECZKA
-        if (\core\Session::check($this->db)) {
+        if (Session::check($dbConnection)) {
             $sessionContent = '<div class="admin-panel">
                 <div class="session">
                     <h3 class="session-login">'.\Core\Session::getUserEmail().'</h3>
                     <a href="admin/logout" class="button-logout">Wyloguj</a>
+                </div>
+                <div class="backup-container">
+                    <button onclick="makeBackup(this)">Backup <i class="fas fa-spinner fa-spin" id="backupSpinner"></i></button>
                 </div>
                 <div style="padding: 15px 0;"></div>
                 <div class="add-post-panel">
@@ -731,9 +680,6 @@ HTML;
                     </thead>
                     <tbody id="tablePostsBody"></tbody>
                 </table>
-                <div class="backup-container">
-                    <button onclick="makeBackup(this)">Backup <i class="fas fa-spinner fa-spin" id="backupSpinner"></i></button>
-                </div>
             </div>';
         } else {
             $sessionContent = '<div class="admin-panel">

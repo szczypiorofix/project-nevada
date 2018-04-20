@@ -15,9 +15,11 @@ namespace Core\ModelClasses;
  */
 abstract class Page {
     
-    protected $db = null;
-    protected $error = false;
-    protected $errorMsg = null;
+    protected $dbConnection = [
+        'db' => null,
+        'error' => true,
+        'errorMsg' => 'Default error message'
+    ];
     
     protected $head = "";
     protected $cssFiles = [];
@@ -33,6 +35,16 @@ abstract class Page {
 
     /* ABSTRACT DEFAULT METHOD */
     abstract public function defaultmethod($args);
+
+    /* DBConnection getter */
+    public function getDBConnection() {
+        return $this->dbConnection;
+    }
+
+    /* DBConnection setter */
+    public function setDBConnection($dbConnection) {
+        $this->dbConnection = $dbConnection;
+    }
     
     public function show() {
         include_once DIR_VIEWS.self::HOME_PAGE_VIEW_FILE;

@@ -10,6 +10,7 @@ namespace Pages;
 
 use Core\ModelClasses\Page;
 use Models\PostListModel;
+
 /**
  * This is showcase of Page
  *
@@ -23,6 +24,14 @@ class PageLista extends Page {
         return get_class($this);
     }
     
+    private function postsFound($counter) {
+        if ($counter === 0) {
+            return '<h3>Nie znaleziono postów.</h3>';
+        } else {
+            return '<h3>Lista postów</h3>';
+        }
+    }
+    
     public function szukaj($args) {
 
         $type = '';
@@ -31,15 +40,7 @@ class PageLista extends Page {
             $type = $_GET['q'];
         }
                 
-        try {
-            $dbConnection = \Core\DBConnection::getInstance();
-        } catch (\Core\FrameworkException $fex) {
-            $fex->showError();
-        }
-        
-        $this->db = $dbConnection->getDB();
-        $this->error = $dbConnection->isError();
-        $this->errorMsg = $dbConnection->getErrorMsg();
+        $dbConnection = \Core\DBConnection::getInstance();
         
         $postListModel = new PostListModel(PostListModel::TYPE_SEARCH_SORT, $dbConnection, $type, $pages);
         $content = $postListModel->getContent();
@@ -48,7 +49,7 @@ class PageLista extends Page {
         //exit;
         
         if (is_null($content)) {
-            $content = [];
+            $content = ['posts' => [], 'postsonsite' => 6, 'maxrecords' => -1];
         }
  
         /**
@@ -78,14 +79,15 @@ class PageLista extends Page {
                                         </div>
                                     </div>';
         }
+
+        
         $pageContent =
 <<<HTML
     <main class="content-maindiv">
         <section class="news">
             <div class="container">
                 <div class="title">
-                    <h1>Najnowsze informacje</h1>
-                    <h3>czyli co w kodzie piszczy...</h3>
+                    {$this->postsFound(count($content['posts']))}
                 </div>
                 <div class="news-container">
                     {$pageDynamicContent}
@@ -161,18 +163,10 @@ HTML;
         else {
             $pages = intval($args[1]);
         }
-                
-        try {
-            $dbConnection = \Core\DBConnection::getInstance();
-        } catch (\Core\FrameworkException $fex) {
-            $fex->showError();
-        }
-        
-        $this->db = $dbConnection->getDB();
-        $this->error = $dbConnection->isError();
-        $this->errorMsg = $dbConnection->getErrorMsg();
-        
-        $postListModel = new PostListModel(PostListModel::TYPE_CATEGORY_SORT, $dbConnection, $type, $pages);
+
+        $this->dbConnection = \Core\DBConnection::getInstance();  
+
+        $postListModel = new PostListModel(PostListModel::TYPE_CATEGORY_SORT, $this->dbConnection, $type, $pages);
         $content = $postListModel->getContent();
         
         //var_dump($content);
@@ -209,14 +203,15 @@ HTML;
                                         </div>
                                     </div>';
         }
+        
+        
         $pageContent =
 <<<HTML
     <main class="content-maindiv">
         <section class="news">
             <div class="container">
                 <div class="title">
-                    <h1>Najnowsze informacje</h1>
-                    <h3>czyli co w kodzie piszczy...</h3>
+                    {$this->postsFound(count($content['posts']))}
                 </div>
                 <div class="news-container">
                     {$pageDynamicContent}
@@ -245,7 +240,7 @@ HTML;
         $header = new \Widgets\Header();
         $header->addBody($navbar->getBody().$logo->getBody());
         $footer = new \Widgets\Footer();
-        $sideBar = new \Widgets\Aside($dbConnection);
+        $sideBar = new \Widgets\Aside($this->dbConnection);
         $ctaButton = new \Widgets\CTAButton();
 
         // ŁĄCZNA LICZBA POSTÓW DANEJ KATEGORII
@@ -303,17 +298,7 @@ HTML;
             $pages = intval($args[1]);
         }
 
-        //var_dump($args);
-                
-        try {
-            $dbConnection = \Core\DBConnection::getInstance();
-        } catch (\Core\FrameworkException $fex) {
-            $fex->showError();
-        }
-        
-        $this->db = $dbConnection->getDB();
-        $this->error = $dbConnection->isError();
-        $this->errorMsg = $dbConnection->getErrorMsg();
+        $dbConnection = \Core\DBConnection::getInstance();
         
         $postListModel = new PostListModel(PostListModel::TYPE_TAGS_SORT, $dbConnection, $type, $pages);
         $content = $postListModel->getContent();
@@ -322,7 +307,7 @@ HTML;
         //exit;
         
         if (is_null($content)) {
-            $content = ['posts' => []];
+            $content = ['posts' => [], 'postsonsite' => 6, 'maxresults' => -1];
         }
  
         /**
@@ -359,8 +344,7 @@ HTML;
         <section class="news" id="news">
             <div class="container">
                 <div class="title">
-                    <h1>Najnowsze informacje</h1>
-                    <h3>czyli co w kodzie piszczy...</h3>
+                    {$this->postsFound(count($content['posts']))}
                 </div>
                 <div class="news-container">
                     {$pageDynamicContent}
@@ -447,15 +431,7 @@ HTML;
             $pages = intval($args[1]);
         }
                 
-        try {
-            $dbConnection = \Core\DBConnection::getInstance();
-        } catch (\Core\FrameworkException $fex) {
-            $fex->showError();
-        }
-        
-        $this->db = $dbConnection->getDB();
-        $this->error = $dbConnection->isError();
-        $this->errorMsg = $dbConnection->getErrorMsg();
+        $dbConnection = \Core\DBConnection::getInstance();
         
         $postListModel = new PostListModel(PostListModel::TYPE_ID_SORT, $dbConnection, $type, $pages);
         $content = $postListModel->getContent();
@@ -464,7 +440,7 @@ HTML;
         //exit;
         
         if (is_null($content)) {
-            $content = [];
+            $content = ['posts' => [], 'postsonsite' => 6, 'maxresults' => -1];
         }
  
         /**
@@ -500,8 +476,7 @@ HTML;
         <section class="news">
             <div class="container">
                 <div class="title">
-                    <h1>Najnowsze informacje</h1>
-                    <h3>czyli co w kodzie piszczy...</h3>
+                    {$this->postsFound(count($content['posts']))}
                 </div>
                 <div class="news-container">
                     {$pageDynamicContent}
