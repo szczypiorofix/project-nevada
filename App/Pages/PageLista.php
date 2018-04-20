@@ -116,6 +116,14 @@ HTML;
         $sideBar = new \Widgets\Aside($dbConnection);
         $ctaButton = new \Widgets\CTAButton();
         
+        $pagination = new \Widgets\Pagination(
+            ['current' => $pages,
+            'linkPrefix' => 'szukaj',
+            'type' => $type,
+            'max' => $content['maxrecords'],
+            'postsonsite' => $content['postsonsite']]
+        );
+
         $body =
 <<<HTML
     <div class="full-page-container" id="mainDiv">
@@ -125,6 +133,7 @@ HTML;
         <main class="post-card">
             <article>
                 {$pageContent}
+                {$pagination->getBody()}
             </article>
             {$sideBar->getBody()}
         </main>

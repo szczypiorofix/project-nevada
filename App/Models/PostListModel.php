@@ -139,6 +139,17 @@ LIMIT
 OFFSET
    :offset";
 
+   const GET_SEARCH_PAGE_COUNTER = '
+SELECT
+   COUNT(`posts`.id) AS "counter"
+FROM
+  `posts`
+WHERE
+  MATCH (`title`, `content`)
+AGAINST
+  (:searchname IN BOOLEAN MODE)
+';
+
    const GET_SEARCH_PAGE = '
 SELECT
    `posts`.*, `categories`.*, `post_categories`.*, GROUP_CONCAT(`categories`.`name`) AS `kategorie`
@@ -163,6 +174,8 @@ ORDER BY
 DESC
 LIMIT
     :postsonsite
+OFFSET
+    :offset
    ';
     
     function __construct($type, $dbConnection, $input, $inputPage, $postsToDisplay = 6) {
@@ -186,10 +199,10 @@ LIMIT
         $db = $dbConnection->getDB();
         $this->error = true;
         
-        if ($this->type !== self::TYPE_SEARCH_SORT) {
+        //if ($this->type !== self::TYPE_SEARCH_SORT) {
             $offset = ($this->inputPage) * $postsOnSite;
-        }
-
+        //}
+        
         try {
             $getNumberQuery = $db->prepare(self::GET_POSTS_PAGE_COUNTER);
             $getNumberQuery->execute();
@@ -264,7 +277,13 @@ LIMIT
                 $query = $db->prepare(self::GET_SEARCH_PAGE);
                 $query->bindValue(':searchname', '%'.$input.'%', PDO::PARAM_STR);
                 $query->bindValue(':postsonsite', $postsOnSite, PDO::PARAM_INT);
+                $query->bindValue(':offset', $offset, PDO::PARAM_INT);
                 $query->execute();
+
+                $querySearchAll = $db->prepare(self::GET_SEARCH_PAGE_COUNTER);
+                $querySearchAll->bindValue(':searchname', '%'.$input.'%', PDO::PARAM_STR);
+                $querySearchAll->execute();
+                $maxrecords = $querySearchAll->fetch()['counter'];
             }
             catch (FrameworkException $exc) {
                 $this->error = true;
