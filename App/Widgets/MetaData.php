@@ -32,7 +32,7 @@ class MetaData extends Widget {
         'twitter-meta-field-right-below' => '',
         'image' => 'https://www.wroblewskipiotr.pl/avatar.png',
         'domain' => 'https://www.wroblewskipiotr.pl/',
-        'accent-color' => '#333333',
+        'accent-color' => '#303F9F',
     ];
     
     public function __construct($data = null) {
