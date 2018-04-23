@@ -647,6 +647,7 @@ HTML;
 
         $sessionContent = '';
 
+        // ###################### LOGOWANIE ###################### //
         // SPRAWDZANIE HASŁA
         if (filter_input(INPUT_POST, 'loginname', FILTER_SANITIZE_EMAIL) !== null
             && filter_input(INPUT_POST, 'loginpassword', FILTER_SANITIZE_STRING) !== null) {
@@ -656,7 +657,22 @@ HTML;
             
             // INICJOWANIE CIASTECZKA
             if (Session::checkPassword($dbConnection, $userlogin, $userpass)) {
-                setcookie('session_id', md5($userlogin), time() + (86400), "/");
+                try {
+                    $queryLogin = $dbConnection['db']->prepare("UPDATE `users` SET `date_login`=NOW() WHERE `email`=:email");
+                    $queryLogin->bindValue(':email', $userlogin, PDO::PARAM_STR);
+                    $queryLogin->execute();
+                    $dbConnection['error'] = false;
+                }
+                catch (FrameworkException $exc) {
+                    $dbConnection['error'] = true;
+                    $dbConnection['errorMsg'] = $exc->getMessage();
+                }
+                if (!$dbConnection['error']) {
+                    setcookie('session_id', md5($userlogin), time() + (86400), "/");
+                } else {
+                    echo 'Błąd: '.$dbConnection['errorMsg'];
+                    exit;
+                }
                 header("Location: ".BASE_HREF."admin/");
             }
         }
@@ -683,17 +699,21 @@ HTML;
             </div>';
         } else {
             $sessionContent = '<div class="admin-panel">
-            <h3>Logowanie:</h3>
             <form class="login-container" id="loginAdminForm" method="POST" enctype="multipart/form-data">
-                <div class="input-group">
-                    <input type="text" placeholder="login" name="loginname" required/>
-                </div>
-                <div class="input-group">
-                    <input type="password" placeholder="hasło" name="loginpassword" required/>
-                </div>
-                <div class="input-group">
-                    <input type="submit" value="Zaloguj" />
-                </div>
+                
+                <fieldset>
+                    <legend>Logowanie</legend>
+                    
+                    <div class="input-group">
+                        <input type="text" placeholder="login" name="loginname" autocomplete="username" required/>
+                        </div>
+                    <div class="input-group">
+                        <input type="password" placeholder="hasło" name="loginpassword" autocomplete="current-password" required/>
+                    </div>
+                    <div class="input-group">
+                        <input type="submit" value="Zaloguj" />
+                    </div>
+                </fieldset>
             </form>
             </div>
             ';

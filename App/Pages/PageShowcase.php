@@ -280,8 +280,8 @@ class PageShowcase extends Page {
                     <div class="left-part">
                         <h3 class="title">Skontaktuj się ze mną</h3>
                         <form class="contact-us-form" id="submitMessageForm" method="POST">
-                            <input type="text" placeholder="Imię i nazwisko" name="contact-form-name" required>
-                            <input type="email" placeholder="E-mail" name="contact-form-email" required>
+                            <input type="text" placeholder="Imię i nazwisko" name="contact-form-name" autocomplete="name" required>
+                            <input type="email" placeholder="E-mail" name="contact-form-email" autocomplete="email" required>
                             <textarea rows="12" placeholder="Twoja wiadomość" name="contact-form-message" required></textarea>
                             <div class="contact-us-form-actions">
                                 <input type="submit" class="button" value="Wyślij"/>
