@@ -1,9 +1,20 @@
 <?php
+/*
+ * The MIT License
+ *
+ * Copyright 2018 Piotr Wróblewski.
+ *
+ */
 
 namespace Core;
 
 use Dompdf\Dompdf;
 
+/**
+ * This is pdf files creator class.
+ *
+ * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
+ */
 class PDFCreator {
 
     private function __construct() {}

@@ -12,7 +12,7 @@ namespace Core;
 use Core\FrameworkException;
 
 /**
- * Description of SitemMapXML
+ * Sitemap creator class.
  *
 * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
