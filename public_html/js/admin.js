@@ -217,6 +217,7 @@ function addPost() {
             showNotification(data);
             console.log(data);
             $("#addbutton").prop("disabled", false);
+            form.reset();
         },
         error: function (e) {
             console.log("Błąd : ", e);

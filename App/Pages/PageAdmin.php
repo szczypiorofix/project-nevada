@@ -35,17 +35,17 @@ class PageAdmin extends Page {
             header("Location: ".BASE_HREF.'admin/');
         }
 
-        $this->error = true;
+        $dbConnection['error'] = true;
         try {
             $queryCategories = $dbConnection['db']->prepare("SELECT * FROM `categories`");
             $queryCategories->execute();
             $queryTags = $dbConnection['db']->prepare("SELECT * FROM `tags`");
             $queryTags->execute();
-            $this->error = false;
+            $dbConnection['error'] = false;
         }
         catch (FrameworkException $exc) {
-           $this->error = true;
-           $this->errorMsg = $exc->getMessage();
+            $dbConnection['error'] = true;
+            $dbConnection['errorMsg'] = $exc->getMessage();
         }
 
         $categoriesList = $queryCategories->fetchAll(PDO::FETCH_ASSOC);
@@ -166,7 +166,7 @@ HTML;
             header("Location: ".BASE_HREF.'admin/');
         }
 
-        $this->error = true;
+        $dbConnection['error'] = true;
         try {
             $query = $dbConnection['db']->prepare("SELECT * FROM `posts` WHERE `id`=:postid");
             $query->bindValue(':postid', $id, PDO::PARAM_INT);
@@ -186,14 +186,14 @@ HTML;
             $queryTags = $dbConnection['db']->prepare("SELECT * FROM `tags`");
             $queryTags->execute();
 
-            $this->error = false;
+            $dbConnection['error'] = false;
         }
         catch (FrameworkException $exc) {
-           $this->error = true;
-           $this->errorMsg = $exc->getMessage();
+            $dbConnection['error'] = true;
+            $dbConnection['errorMsg'] = $exc->getMessage();
         }
         if ($query->rowCount() > 0) {
-           $this->error = false;
+            $dbConnection['error'] = false;
         }
 
         $postCategory = $queryPostCategories->fetch();
@@ -343,7 +343,7 @@ HTML;
                 header("Location: ".BASE_HREF.'admin/');
             }
 
-            $fileManager = new \Core\FileManager($dbConnection['db']);
+            $fileManager = new \Core\FileManager($dbConnection);
             $fileManager->checkFileToUpload($_FILES['post-file'], $postId);
             
             /**
@@ -351,7 +351,7 @@ HTML;
              */
             $newUrl = $this->cleanUrl($postTitle);
 
-            $this->error = true;
+            $dbConnection['error'] = true;
             try {
                 // UPDATE POST
                 $query = $dbConnection['db']->prepare("UPDATE `posts` SET `title`=:title, `content`=:content, `url`=:newurl, `image_description`=:postimagetitle, `update_date`=NOW() WHERE `id`=:postid");
@@ -385,12 +385,12 @@ HTML;
                 $queryUpdateTags = $dbConnection['db']->prepare($insTagRelStmt);
                 $queryUpdateTags->execute();
 
-                $this->error = false;
+                $dbConnection['error'] = false;
                 echo ' Post zapisany.';
             }
             catch (FrameworkException $exc) {
-               $this->error = true;
-               $this->errorMsg = $exc->getMessage();
+                $dbConnection['error'] = true;
+                $dbConnection['errorMsg'] = $exc->getMessage();
             }
         }
         \Core\SitemMapXML::create($dbConnection);
@@ -422,7 +422,7 @@ HTML;
                 header("Location: ".BASE_HREF.'admin/');
             }
             
-            $fileManager = new \Core\FileManager($dbConnection['db']);
+            $fileManager = new \Core\FileManager($dbConnection);
             $fileManagerMsg = $fileManager->checkFileToUpload($_FILES['post-file'], null);
             $imageFileName = $fileManagerMsg['filename'];
 
@@ -432,7 +432,7 @@ HTML;
              */
             $newUrl = $this->cleanUrl($postTitle);
             
-            $this->error = true;
+            $dbConnection['error'] = true;
             try {
                 // ADD POST
                 $query = $dbConnection['db']->prepare("INSERT INTO `posts` 
@@ -465,12 +465,12 @@ HTML;
                 $queryUpdateTags = $dbConnection['db']->prepare($insTagRelStmt);
                 $queryUpdateTags->execute();
 
-                $this->error = false;
+                $dbConnection['error'] = false;
                 echo ' Post dodany.';
             }
             catch (FrameworkException $exc) {
-               $this->error = true;
-               $this->errorMsg = $exc->getMessage();
+                $dbConnection['error'] = true;
+                $dbConnection['errorMsg'] = $exc->getMessage();
             }
         }
         \Core\SitemMapXML::create($dbConnection);
@@ -488,11 +488,11 @@ HTML;
 
             $dbConnection = DBConnection::getInstance();
             
-            if (!Session::check($dbConnection['db'])) {
+            if (!Session::check($dbConnection)) {
                 header("Location: ".BASE_HREF.'admin/');
             }
             
-            $this->error = true;
+            $dbConnection['error'] = true;
 
             try {
                 $queryDelCat = $dbConnection['db']->prepare("DELETE FROM post_categories WHERE postid=:postid");
@@ -508,14 +508,14 @@ HTML;
                 $query->execute();
                 
                 if ($query->rowCount() > 0) {
-                    $this->error = false;
+                    $dbConnection['error'];
                     echo 'Post został usunięty.';
                 }
             } catch (FrameworkException $exc) {
-               $this->error = true;
-               $this->errorMsg = $exc->getMessage();
+                $dbConnection['error'] = true;
+               $dbConnection['errorMsg'] = $exc->getMessage();
             }
-            echo $this->errorMsg;
+            echo $dbConnection['errorMsg'];
         }
         \Core\SitemMapXML::create($dbConnection);
         exit;
@@ -534,7 +534,7 @@ HTML;
         $dbConnection = DBConnection::getInstance();
 
         if (filter_input(INPUT_POST, 'loginname', FILTER_SANITIZE_STRING) != null && filter_input(INPUT_POST, 'loginpassword', FILTER_SANITIZE_STRING)) {
-            $this->error = true;
+            $dbConnection['error'] = true;
             $loginname = filter_input(INPUT_POST, 'loginname', FILTER_SANITIZE_STRING);
             $loginpassword = Session::encryptIt(filter_input(INPUT_POST, 'loginpassword', FILTER_SANITIZE_STRING));
             $sessionId = md5($loginname);
@@ -549,11 +549,11 @@ HTML;
                 $queryRegister->bindValue(':password', $loginpassword, PDO::PARAM_STR);
                 $queryRegister->bindValue(':sessionid', $sessionId, PDO::PARAM_STR);
                 $queryRegister->execute();
-                $this->error = false;
+                $dbConnection['error'] = false;
             }
             catch (FrameworkException $exc) {
-               $this->error = true;
-               $this->errorMsg = $exc->getMessage();
+                $dbConnection['error'] = true;
+                $dbConnection['errorMsg'] = $exc->getMessage();
             }
         }
 
