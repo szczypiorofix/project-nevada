@@ -636,84 +636,100 @@ main.content-maindiv {
             text-transform: uppercase;
         }
         .container {
-            
-            .news-container {
-                width: 100%;
-                .news-part {
-                    margin: 20px 0;
-                    padding: 5px;
-                    .gridBox();
-                    grid-template-columns: 1fr;
-                    grid-template-rows: 180px auto 40px;
-                    .image-div {
-                        width: 85%;
-                        margin: 0 auto;
-                        position: relative;
-                        overflow: hidden;
-                        a {
-                            display: block;
-                            transition: opacity 0.2s ease-in-out;
+            display: block;
+            .news-part {
+                .gridBox();
+                grid-template-rows: auto auto;
+                padding: 10px;
+                &.list {
+                    grid-template-rows: 1fr 1fr; 
+                    grid-template-columns: auto;
+                }
+                .image-div {
+                    height: auto;
+                    margin: 0 10px;
+                    position: relative;
+                    a {
+                        transition: opacity 0.25s;
+                        img {
+                            max-height: 250px;
+                            .borderRadius(2px);
+                            .boxShadow(0, 0, 6px, 1px, rgba(80, 80, 80, 0.3));
                             &:hover {
-                                opacity: 0.7;
+                                .boxShadow(1px, 1px, 8px, 0, rgba(80, 80, 80, 0.7));
                             }
                         }
-                        img {
-                            width: 100%;
-                            max-height: 250px;
-                            height: auto;
-                            width: auto;
-                            z-index: 0;
-                            .boxShadow(2px, 2px, 8px, 0, rgba(0,0,0,0.2));
-                        }  
                     }
-                    .main-content {
-                        text-align: left;
-                    }
-                    p {
-                        letter-spacing: 0.02em;
-                        line-height: 150%;
-                        text-align: justify;
-                    }
-                    .additional-info {
-                        background: @textColorDark;
-                        padding: 10px 5px;
-                        color: @textColor;
-                        font-size: 90%;
-                        .flexBox();
-                        flex-direction: column;
-                        flex-wrap: wrap;
-                        text-align: center;
-                        .post-date {
-                            letter-spacing: 0.08em;
-                            margin-right: 10px;
-                        }
-                        .post-comments {
-                            letter-spacing: 0.08em;
-                            margin-left: 10px;
-                        }
-                    }
-                    a:hover {
-                        color: darken(@secondary1Color, 10%);
-                    }
-                }
-            }
-            .all-posts {
-                margin-top: 20px;
-                text-align: center;
-                a {
-                    padding: 10px 25px;
-                    margin: 5px;
-                    background-color: @secondary1Color;
-                    color: @textColor;
-                    letter-spacing: 0.08em;
-                    transition: all 0.25s;
-                    .boxShadow(0, 4px, 12px, 1px, rgba(50, 50, 50, 0.3));
                     &:hover {
-                        background: darken(@secondary1Color, 10%);
-                        .boxShadow(0, 6px, 16px, 1px, rgba(50, 50, 50, 0.3));
+                        opacity: 0.8;
+                    }
+                    .image-caption {
+                        position: absolute;
+                        top: 5px;
+                        left: 5px;
+                        font-size: 90%;
+                        color: @textColor;
+                        background-color: @secondary1Color;
+                        padding: 3px 6px;
+                        .borderRadius(2px);
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+                }
+                .main-post-content {
+                    padding: 5px;
+                    .post-title {
+                        a:hover {
+                            color: @textColorDark;
+                        }
+                    }
+                    a {
+                        h3 {
+                            margin: 0;
+                        }
+                    }
+                    a.readmore {
+                        margin: 5px 0;
+                        display: block;
+                        outline: none;
+                        background-color: @secondary1Color;
+                        color: @textColor;
+                        border: none;
+                        max-width: 120px;
+                        .borderRadius(2px);
+                        .boxShadow(1px, 1px, 6px, 0px, rgba(80, 80, 80, 0.3));
+                        padding: 6px 12px;
+                        &:hover {
+                            background-color: darken(@secondary1Color, 5%);
+                            .boxShadow(1px, 1px, 8px, 0px, rgba(80, 80, 80, 0.7));
+                            cursor: pointer;
+                        }
                     }
                 }
             }
+        }
+        .all-posts {
+            margin: 0 15px;
+            border-top: 1px solid @secondary2Color;
+            a {
+                margin: 5px 0;
+                display: block;
+                outline: none;
+                background-color: @secondary1Color;
+                color: @textColor;
+                border: none;
+                max-width: 180px;
+                .borderRadius(2px);
+                .boxShadow(1px, 1px, 6px, 0px, rgba(80, 80, 80, 0.3));
+                padding: 6px 12px;
+                &:hover {
+                    background-color: darken(@secondary1Color, 5%);
+                    .boxShadow(1px, 1px, 8px, 0px, rgba(80, 80, 80, 0.7));
+                    cursor: pointer;
+                }
+            }
+            
         }
     }
 
@@ -1525,12 +1541,74 @@ main.post-card {
         section.news {
             padding: 20px 0;
             .container {
-                .news-container {
-                    grid-gap: 5px;
-                    grid-row-gap: 15px;
+                .news-part {
                     .gridBox();
-                    grid-template-columns: 1fr 1fr;
-                    .news-part {
+                    grid-template-columns: 300px auto;
+                    padding: 10px;
+                    &.list {
+                        grid-template-rows: 1fr 1fr; 
+                        grid-template-columns: auto;
+                    }
+                    .image-div {
+                        height: auto;
+                        margin: 0 10px;
+                        position: relative;
+                        a {
+                            transition: opacity 0.25s;
+                            img {
+                                .borderRadius(2px);
+                                .boxShadow(0, 0, 6px, 1px, rgba(80, 80, 80, 0.3));
+                                &:hover {
+                                    .boxShadow(1px, 1px, 8px, 0, rgba(80, 80, 80, 0.7));
+                                }
+                            }
+                        }
+                        &:hover {
+                            opacity: 0.8;
+                        }
+                        .image-caption {
+                            position: absolute;
+                            top: 5px;
+                            left: 5px;
+                            font-size: 90%;
+                            color: @textColor;
+                            background-color: @secondary1Color;
+                            padding: 3px 6px;
+                            .borderRadius(2px);
+                            &:hover {
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                    .main-post-content {
+                        padding: 5px;
+                        .post-title {
+                            a:hover {
+                                color: @textColorDark;
+                            }
+                        }
+                        a {
+                            h3 {
+                                margin: 0;
+                            }
+                        }
+                        a.readmore {
+                            margin: 5px 0;
+                            display: block;
+                            outline: none;
+                            background-color: @secondary1Color;
+                            color: @textColor;
+                            border: none;
+                            max-width: 120px;
+                            .borderRadius(2px);
+                            .boxShadow(1px, 1px, 6px, 0px, rgba(80, 80, 80, 0.3));
+                            padding: 6px 12px;
+                            &:hover {
+                                background-color: darken(@secondary1Color, 5%);
+                                .boxShadow(1px, 1px, 8px, 0px, rgba(80, 80, 80, 0.7));
+                                cursor: pointer;
+                            }
+                        }
                     }
                 }
             }
@@ -1633,12 +1711,10 @@ main.post-card {
         section.news {
             padding: 20px 0;
             .container {
-                .news-container {
-                    .gridBox();
-                    grid-gap: 5px;
-                    grid-row-gap: 15px;
-                    grid-template-columns: 1fr 1fr 1fr;
-                    .news-part {
+                .news-part {
+                    &.list {
+                        grid-template-rows: 1fr; 
+                        grid-template-columns: 300px auto;
                     }
                 }
             }

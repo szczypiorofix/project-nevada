@@ -68,14 +68,20 @@ class PageLista extends Page {
             }
             $date = new \DateTime($row['update_date']);
             $dateString = $date->format('Y-m-d H:i');
-            $pageDynamicContent .= '<div class="news-part">
+            $pageDynamicContent .= '<div class="news-part list">
                                         <div class="image-div">
                                             <a href="post/'.$row['url'].'"><img src="'.$imageFile.'" /></a>
+                                            <span class="image-caption">'.$row['kategorie'].'</span>
                                         </div>
-                                        <div class="main-content"><a href="post/'.$row['url'].'#disqus_thread"><h3>'.$row['title'].'</h3></a>'.mb_substr($Parsedown->text($row['content']), 0, 185).'...</div>
-                                        <div class="additional-info">
-                                            <span class="post-date">'.$dateString.'</span>
-                                            <span class="post-comments"><i class="far fa-comment-alt"></i> 1</span>
+                                        <div class="main-post-content">
+                                            <a href="post/'.$row['url'].'#disqus_thread">
+                                                <h3>'.$row['title'].'</h3>
+                                            </a>'
+                                            .mb_substr($Parsedown->text($row['content']), 0, 185).'...
+                                            <div class="additional-info">
+                                                <span class="post-date">'.$dateString.'</span>
+                                                <span class="post-comments"><i class="far fa-comment-alt"></i> 1</span>
+                                            </div>
                                         </div>
                                     </div>';
         }
@@ -192,14 +198,20 @@ HTML;
             }
             $date = new \DateTime($row['update_date']);
             $dateString = $date->format('Y-m-d H:i');
-            $pageDynamicContent .= '<div class="news-part">
+            $pageDynamicContent .= '<div class="news-part list">
                                         <div class="image-div">
                                             <a href="post/'.$row['url'].'"><img src="'.$imageFile.'" /></a>
+                                            <span class="image-caption">'.$row['kategorie'].'</span>
                                         </div>
-                                        <div class="main-content"><a href="post/'.$row['url'].'#disqus_thread"><h3>'.$row['title'].'</h3></a>'.mb_substr($Parsedown->text($row['content']), 0, 185).'...</div>
-                                        <div class="additional-info">
-                                            <span class="post-date">'.$dateString.'</span>
-                                            <span class="post-comments"><i class="far fa-comment-alt"></i> 1</span>
+                                        <div class="main-post-content">
+                                            <a href="post/'.$row['url'].'#disqus_thread">
+                                                <h3>'.$row['title'].'</h3>
+                                            </a>
+                                            '.mb_substr($Parsedown->text($row['content']), 0, 185).'...
+                                            <div class="additional-info">
+                                                <span class="post-date">'.$dateString.'</span>
+                                                <span class="post-comments"><i class="far fa-comment-alt"></i> 1</span>
+                                            </div>
                                         </div>
                                     </div>';
         }
@@ -326,14 +338,19 @@ HTML;
             }
             $date = new \DateTime($row['update_date']);
             $dateString = $date->format('Y-m-d H:i');
-            $pageDynamicContent .= '<div class="news-part">
+            $pageDynamicContent .= '<div class="news-part list">
                                         <div class="image-div">
                                             <a href="post/'.$row['url'].'"><img src="'.$imageFile.'" /></a>
+                                            <span class="image-caption">'.$row['kategorie'].'</span>
                                         </div>
-                                        <div class="main-content"><a href="post/'.$row['url'].'#disqus_thread"><h3>'.$row['title'].'</h3></a>'.mb_substr($Parsedown->text($row['content']), 0, 185).'...</div>
-                                        <div class="additional-info">
-                                            <span class="post-date">'.$dateString.'</span>
-                                            <span class="post-comments"><i class="far fa-comment-alt"></i> 1</span>
+                                        <div class="main-post-content">
+                                            <a href="post/'.$row['url'].'#disqus_thread">
+                                                <h3>'.$row['title'].'</h3>
+                                            </a>'.mb_substr($Parsedown->text($row['content']), 0, 185).'...
+                                            <div class="additional-info">
+                                                <span class="post-date">'.$dateString.'</span>
+                                                <span class="post-comments"><i class="far fa-comment-alt"></i> 1</span>
+                                            </div>
                                         </div>
                                     </div>';
         }
@@ -459,14 +476,20 @@ HTML;
             }
             $date = new \DateTime($row['update_date']);
             $dateString = $date->format('Y-m-d H:i');
-            $pageDynamicContent .= '<div class="news-part">
+            $pageDynamicContent .= '<div class="news-part list">
                                         <div class="image-div">
                                             <a href="post/'.$row['url'].'"><img src="'.$imageFile.'" /></a>
+                                            <span class="image-caption">'.$row['kategorie'].'</span>
                                         </div>
-                                        <div class="main-content"><a href="post/'.$row['url'].'#disqus_thread"><h3>'.$row['title'].'</h3></a>'.mb_substr($Parsedown->text($row['content']), 0, 185).'...</div>
-                                        <div class="additional-info">
-                                            <span class="post-date">'.$dateString.'</span>
-                                            <span class="post-comments"><i class="far fa-comment-alt"></i> 1</span>
+                                        <div class="main-post-content">
+                                            <a href="post/'.$row['url'].'#disqus_thread">
+                                                <h3>'.$row['title'].'</h3>
+                                            </a>
+                                            '.mb_substr($Parsedown->text($row['content']), 0, 185).'...
+                                            <div class="additional-info">
+                                                <span class="post-date">'.$dateString.'</span>
+                                                <span class="post-comments"><i class="far fa-comment-alt"></i> 1</span>
+                                            </div>
                                         </div>
                                     </div>';
         }

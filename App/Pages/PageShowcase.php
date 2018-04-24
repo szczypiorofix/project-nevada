@@ -67,11 +67,16 @@ class PageShowcase extends Page {
             $pageDynamicContent .= '<div class="news-part">
                                         <div class="image-div">
                                             <a href="post/'.$row['url'].'"><img src="'.$imageFile.'" /></a>
+                                            <span class="image-caption">'.$row['kategorie'].'</span>
                                         </div>
-                                        <div class="main-content"><a href="post/'.$row['url'].'#disqus_thread"><h3>'.$row['title'].'</h3></a>'.mb_substr($Parsedown->text($row['content']), 0, 185).'...</div>
-                                        <div class="additional-info">
-                                            <span class="post-date">'.$dateString.'</span>
-                                            <span class="post-comments"><i class="far fa-comment-alt"></i> 1</span>
+                                        <div class="main-post-content">
+                                            <div class="post-title"><a href="post/'.$row['url'].'"><h3>'.$row['title'].'</h3></a></div>'
+                                            .mb_substr($Parsedown->text($row['content']), 0, 150).'...
+                                            <div class="additional-info">
+                                                <span class="post-date">'.$dateString.'</span>
+                                                <span class="post-comments"><i class="far fa-comment-alt"></i> 1</span>
+                                            </div>
+                                            <a class="readmore" href="post/'.$row['url'].'">Czytaj więcej</a>
                                         </div>';
             $pageDynamicContent .= '</div>';
         }
@@ -267,7 +272,7 @@ class PageShowcase extends Page {
                     {$pageDynamicContent}
                 </div>
                 <div class="all-posts">
-                    <a href="lista">Zobacz wszystkie posty...</a>
+                    <a href="lista">Wszystkie posty...</a>
                 </div>
             </div>
         </section>

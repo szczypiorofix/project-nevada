@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>http://localhost/project-nevada/</loc>
-    <lastmod>2018-04-23 11:04:46</lastmod>
+    <lastmod>2018-04-24 15:04:36</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -139,14 +139,14 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://localhost/project-nevada/kanciarz---currency-converter-update</loc>
-    <lastmod>2018-04-20 10:37:33</lastmod>
+    <loc>http://localhost/project-nevada/kanciarz---kalkulator-walut-aktualizacja</loc>
+    <lastmod>2018-04-24 15:15:36</lastmod>
     <changefreq>montly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>http://localhost/project-nevada/prognoza-pogody</loc>
-    <lastmod>2018-04-18 14:20:56</lastmod>
+    <lastmod>2018-04-24 15:12:13</lastmod>
     <changefreq>montly</changefreq>
     <priority>0.8</priority>
   </url>
