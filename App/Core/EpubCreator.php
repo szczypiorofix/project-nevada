@@ -26,6 +26,7 @@ class EpubCreator {
     private function __construct() {}
     private function __clone() {}
 
+    
     public static function create() {
 
     }    
@@ -39,12 +40,12 @@ class EpubCreator {
     mimetype
     content.opf
     toc.ncx
-    Stylesheet.css
-    BookCover.jpg
-    HomePage.xhtml
-    Chapter1.xhtml
+    style.css
+    cover.jpg
+    home.xhtml
+    chapter1.xhtml
     ...
-    ChapterN.xhtml
-    Index.xhtml
+    chapterN.xhtml
+    index.xhtml
     */
 }
