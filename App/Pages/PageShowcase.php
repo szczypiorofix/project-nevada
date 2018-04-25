@@ -90,7 +90,7 @@ class PageShowcase extends Page {
                         <h1>Kilka słów o mnie</h1>
                     </div>
                     <img src="images/dog.jpeg" alt="My Skills" />
-                    <p>Witaj, nazywam się Piotr.</p>
+                    <p>Witaj, jestem Piotr.</p>
                     <p>Programowaniem zacząłem zajmować się już w liceum. Tedy były czasy Turbo Pascala 7.0, BASICa i innych żółwików Logo. Potem nastąpiła u mnie kilkuletnia przerwa w przygodnie z programowaniem jednak jakiś czas temu postanowiłem do tego wrócić. Dlaczego? Bo to uwielbiam. Zwłaszcza gdy włożony wysiłek przynosi zamierzone rezultaty. Wszelkie porażki traktuję jako swego rodzaju lekcję i przestrogę na przyszłość. Wszelkie trudnośći jeszcze bardziej mniej motywują. Żółte komunikaty w konsoli przeglądarki podwajają moją czujność a na czerwone jestem wręcz uczulony.</p>
                     <p>Uwielbiam Javę za mocne typowanie, PHP za działanie w ukryciu a JavaScript za szybkie prototypowanie.</p>
                     <p>Chętnie uczę się nowych języków, technik, nowych narzędzi. Uwielbiam API.</p>
