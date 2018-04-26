@@ -710,6 +710,7 @@ HTML;
                     <div class="input-group">
                         <input type="password" placeholder="hasło" name="loginpassword" autocomplete="current-password" required/>
                     </div>
+                    <div id="recaptcha_element"></div>
                     <div class="input-group">
                         <input type="submit" value="Zaloguj" />
                     </div>
@@ -727,6 +728,15 @@ HTML;
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'js/jquery/jquery-1.12.4.min.js']);
         $this->addJSFile(['name' => 'Admin scripts', 'path' => 'js/admin.js']);
         $this->addJS('tableOfPosts.init('.json_encode($content).'); tableOfPosts.show();');
+
+        $this->addJS('
+        var onloadCallback = function() {
+          grecaptcha.render("recaptcha_element", {
+            "sitekey" : "'.\Core\Config::get('RECAPTCHA_KEY').'"
+          });
+        };
+      ');
+      $this->addJSFile(['name' => 'reCAPTCHA script', 'path' => 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit', 'async' => true, 'defer' => true]);
         
         //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
 

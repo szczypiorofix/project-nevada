@@ -5,6 +5,8 @@ namespace Test;
 
 use PHPUnit\Framework\TestCase;
 
+//include_once("Email.php");
+
 final class EmailTest extends TestCase {
 
     public function testCanBeCreatedFromValidEmailAddress()
