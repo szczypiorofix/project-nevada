@@ -24,14 +24,12 @@ class PageShowcase extends Page {
         
         if (!isset($args[0])) {
             $type = 'list';
-        }
-        else {
+        } else {
             $type = $args[0];
         }
         if (!isset($args[1])) {
             $pages = 0;
-        }
-        else {
+        } else {
             $pages = intval($args[1]);
         }
         

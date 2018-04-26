@@ -55,7 +55,7 @@ class PageLista extends Page {
         /**
          * https://github.com/erusev/parsedown
         */
-        $Parsedown = new \Vendors\Parsedown\Parsedown();
+        $parsedown = new \Parsedown();
         
         $defaultImageFile = DIR_UPLOADS_IMAGES."default.jpg";
         $imageFile = $defaultImageFile;
@@ -74,10 +74,10 @@ class PageLista extends Page {
                                             <span class="image-caption">'.$row['kategorie'].'</span>
                                         </div>
                                         <div class="main-post-content">
-                                            <a href="post/'.$row['url'].'#disqus_thread">
+                                            <a href="post/'.$row['url'].'">
                                                 <h3>'.$row['title'].'</h3>
                                             </a>'
-                                            .mb_substr($Parsedown->text($row['content']), 0, 185).'...
+                                            .mb_substr($parsedown->text($row['content']), 0, 185).'...
                                             <div class="additional-info">
                                                 <span class="post-date">'.$dateString.'</span>
                                                 <span class="post-comments"><i class="far fa-comment-alt"></i> 1</span>
@@ -159,14 +159,12 @@ HTML;
     public function kategoria($args) {
         if (!isset($args[0])) {
             $type = 'list';
-        }
-        else {
+        } else {
             $type = $args[0];
         }
         if (!isset($args[1])) {
             $pages = 0;
-        }
-        else {
+        } else {
             $pages = intval($args[1]);
         }
 
@@ -185,7 +183,7 @@ HTML;
         /**
          * https://github.com/erusev/parsedown
         */
-        $Parsedown = new \Vendors\Parsedown\Parsedown();
+        $parsedown = new \Parsedown();
         
         $defaultImageFile = DIR_UPLOADS_IMAGES."default.jpg";
         $imageFile = $defaultImageFile;
@@ -204,10 +202,10 @@ HTML;
                                             <span class="image-caption">'.$row['kategorie'].'</span>
                                         </div>
                                         <div class="main-post-content">
-                                            <a href="post/'.$row['url'].'#disqus_thread">
+                                            <a href="post/'.$row['url'].'">
                                                 <h3>'.$row['title'].'</h3>
                                             </a>
-                                            '.mb_substr($Parsedown->text($row['content']), 0, 185).'...
+                                            '.mb_substr($parsedown->text($row['content']), 0, 185).'...
                                             <div class="additional-info">
                                                 <span class="post-date">'.$dateString.'</span>
                                                 <span class="post-comments"><i class="far fa-comment-alt"></i> 1</span>
@@ -299,14 +297,12 @@ HTML;
         
         if (!isset($args[0])) {
             $type = 'list';
-        }
-        else {
+        } else {
             $type = $args[0];
         }
         if (!isset($args[1])) {
             $pages = 0;
-        }
-        else {
+        } else {
             $pages = intval($args[1]);
         }
 
@@ -325,7 +321,7 @@ HTML;
         /**
          * https://github.com/erusev/parsedown
         */
-        $Parsedown = new \Vendors\Parsedown\Parsedown();
+        $parsedown = new \Parsedown();
         
         $defaultImageFile = DIR_UPLOADS_IMAGES."default.jpg";
         $imageFile = $defaultImageFile;
@@ -344,9 +340,9 @@ HTML;
                                             <span class="image-caption">'.$row['kategorie'].'</span>
                                         </div>
                                         <div class="main-post-content">
-                                            <a href="post/'.$row['url'].'#disqus_thread">
+                                            <a href="post/'.$row['url'].'">
                                                 <h3>'.$row['title'].'</h3>
-                                            </a>'.mb_substr($Parsedown->text($row['content']), 0, 185).'...
+                                            </a>'.mb_substr($parsedown->text($row['content']), 0, 185).'...
                                             <div class="additional-info">
                                                 <span class="post-date">'.$dateString.'</span>
                                                 <span class="post-comments"><i class="far fa-comment-alt"></i> 1</span>
@@ -437,14 +433,12 @@ HTML;
 
         if (!isset($args[0])) {
             $type = 'list';
-        }
-        else {
+        } else {
             $type = $args[0];
         }
         if (!isset($args[1])) {
             $pages = 0;
-        }
-        else {
+        } else {
             $pages = intval($args[1]);
         }
                 
@@ -463,7 +457,7 @@ HTML;
         /**
          * https://github.com/erusev/parsedown
         */
-        $Parsedown = new \Vendors\Parsedown\Parsedown();
+        $parsedown = new \Parsedown();
         
         $defaultImageFile = DIR_UPLOADS_IMAGES."default.jpg";
         $imageFile = $defaultImageFile;
@@ -482,10 +476,10 @@ HTML;
                                             <span class="image-caption">'.$row['kategorie'].'</span>
                                         </div>
                                         <div class="main-post-content">
-                                            <a href="post/'.$row['url'].'#disqus_thread">
+                                            <a href="post/'.$row['url'].'">
                                                 <h3>'.$row['title'].'</h3>
                                             </a>
-                                            '.mb_substr($Parsedown->text($row['content']), 0, 185).'...
+                                            '.mb_substr($parsedown->text($row['content']), 0, 185).'...
                                             <div class="additional-info">
                                                 <span class="post-date">'.$dateString.'</span>
                                                 <span class="post-comments"><i class="far fa-comment-alt"></i> 1</span>

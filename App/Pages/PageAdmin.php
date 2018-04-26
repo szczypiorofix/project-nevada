@@ -710,7 +710,7 @@ HTML;
                     <div class="input-group">
                         <input type="password" placeholder="hasło" name="loginpassword" autocomplete="current-password" required/>
                     </div>
-                    <div id="recaptcha_element"></div>
+                    <div class="g-recaptcha" data-sitekey="'.\Core\Config::get('RECAPTCHA_KEY').'" data-theme="dark"></div>
                     <div class="input-group">
                         <input type="submit" value="Zaloguj" />
                     </div>
@@ -729,14 +729,14 @@ HTML;
         $this->addJSFile(['name' => 'Admin scripts', 'path' => 'js/admin.js']);
         $this->addJS('tableOfPosts.init('.json_encode($content).'); tableOfPosts.show();');
 
-        $this->addJS('
-        var onloadCallback = function() {
-          grecaptcha.render("recaptcha_element", {
-            "sitekey" : "'.\Core\Config::get('RECAPTCHA_KEY').'"
-          });
-        };
-      ');
-      $this->addJSFile(['name' => 'reCAPTCHA script', 'path' => 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit', 'async' => true, 'defer' => true]);
+    //     $this->addJS('
+    //     var captchLoadCallBack = function() {
+    //       grecaptcha.render("recaptcha_element", {
+    //         "sitekey" : "'.\Core\Config::get('RECAPTCHA_KEY').'"
+    //       });
+    //     };
+    //   ');
+      $this->addJSFile(['name' => 'reCAPTCHA script', 'path' => 'https://www.google.com/recaptcha/api.js', 'async' => true, 'defer' => true]);
         
         //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
 

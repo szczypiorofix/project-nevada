@@ -29,8 +29,7 @@ class Pagepost extends Page {
 
         if (!isset($args[0])) {
            $input = '';
-        }
-        else {
+        } else {
            $input = $args[0];
         }
         
@@ -115,15 +114,15 @@ class Pagepost extends Page {
                         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
                         /*
                         var disqus_config = function () {
-                        this.page.url = '.$actual_link.';  // Replace PAGE_URL with your pages canonical URL variable
-                        this.page.identifier = '.$content['id'].'; // Replace PAGE_IDENTIFIER with your pages unique identifier variable
+                            this.page.url = '.$actual_link.';  // Replace PAGE_URL with your pages canonical URL variable
+                            this.page.identifier = '.$content['id'].'; // Replace PAGE_IDENTIFIER with your pages unique identifier variable
                         };
                         */
                         (function() { // DONT EDIT BELOW THIS LINE
-                        var d = document, s = d.createElement("script");
-                        s.src = "https://wroblewskipiotr.disqus.com/embed.js";
-                        s.setAttribute("data-timestamp", +new Date());
-                        (d.head || d.body).appendChild(s);
+                            var d = document, s = d.createElement("script");
+                            s.src = "https://wroblewskipiotr.disqus.com/embed.js";
+                            s.setAttribute("data-timestamp", +new Date());
+                            (d.head || d.body).appendChild(s);
                         })();
                         </script>
                         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
@@ -204,7 +203,7 @@ class Pagepost extends Page {
         $ctaButton = new \Widgets\CTAButton();
 
         $sessionContent = "";
-        if (\core\Session::check($dbConnection)) {
+        if (\Core\Session::check($dbConnection)) {
             $sessionContent = '<a href="admin/edit?&postid='.$content['id'].'" class="edit-post-button">EDYTUJ</a>';
         }
         

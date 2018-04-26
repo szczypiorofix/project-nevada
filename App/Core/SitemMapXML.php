@@ -92,7 +92,7 @@ class SitemMapXML {
             
             $loc = $doc->createElement("loc");
             $loc = $url->appendChild($loc);
-            $urlText = $doc->createTextNode(BASE_HREF.$results[$i]['url']);
+            $urlText = $doc->createTextNode(BASE_HREF.'post/'.$results[$i]['url']);
             $urlText = $loc->appendChild($urlText);
 
             $lastmod = $doc->createElement("lastmod");
