@@ -1,0 +1,7 @@
+{
+    "require": {
+        "erusev/parsedown": "^1.7",
+        "dompdf/dompdf": "^0.8.2",
+        "sendgrid/sendgrid": "^6.2"
+    }
+}

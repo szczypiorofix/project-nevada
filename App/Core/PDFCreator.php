@@ -20,7 +20,6 @@ class PDFCreator {
     private function __construct() {}
 
     public static function make($content, $title) {
-        require(DIR_VENDORS."Dompdf/autoload.inc.php");
         
         $dompdf = new Dompdf();
         $dompdf->loadHtml('<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>

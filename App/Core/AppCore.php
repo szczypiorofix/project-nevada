@@ -29,7 +29,7 @@ class AppCore {
         $calledDefaultClass = false;
        
         $url = self::parseUrl();
-        
+
         //var_dump($url);
         
         $maintenance = intval(\Core\Config::get('MAINTENANCE'));

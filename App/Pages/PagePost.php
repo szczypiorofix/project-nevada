@@ -70,8 +70,9 @@ class Pagepost extends Page {
             /**
              * https://github.com/erusev/parsedown
              */
-            $Parsedown = new \Vendors\Parsedown\Parsedown();
-            $postContent = $Parsedown->text($content['content']);
+            $parsedown = new \Parsedown();
+
+            $postContent = $parsedown->text($content['content']);
             //var_dump($postContent);
             $pageContent .= 
                 '<section class="post-content">

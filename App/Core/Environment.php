@@ -31,7 +31,7 @@ class Environment {
         define("DIR_ROOT", "..".DS);
         define("DIR_APP", DIR_ROOT . 'App' . DS);
         define("DIR_CORE", DIR_APP . 'Core' . DS);
-        define("DIR_VENDORS", DIR_APP . 'Vendors' . DS);
+        define("DIR_VENDORS", DIR_APP . 'vendor' . DS);
         define("DIR_VIEWS", DIR_APP . 'Views' . DS);
         define("DIR_PAGES", DIR_APP . 'Pages' . DS);
         define('DIR_UPLOADS_IMAGES', 'uploads'.DS.'images'.DS);

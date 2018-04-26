@@ -35,8 +35,6 @@ class PageSendMail extends Page {
                     $contactFormEmail = filter_input(INPUT_POST, 'contact-form-email', FILTER_SANITIZE_STRING);
                     $contactFormMessage = filter_input(INPUT_POST, 'contact-form-message', FILTER_SANITIZE_STRING);
                     
-                    require(DIR_VENDORS."Sendgrid/sendgrid-php.php");
-
                     $from = new \SendGrid\Email("Administrator strony wroblewskipiotr.pl", "poczta@wroblewskipiotr.pl");
                     $subject = "Wiadomość ze strony www.wroblewskipiotr.pl";
                     $to = new \SendGrid\Email("Wróblewski Piotr", "szczypiorofix@o2.pl");
