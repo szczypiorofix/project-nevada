@@ -16,7 +16,7 @@ use Models\PostModel;
  *
  * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
-class Pagepost extends Page {
+class PagePost extends Page {
     
     
     public function __construct($data = []) {}
