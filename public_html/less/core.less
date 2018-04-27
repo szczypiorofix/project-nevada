@@ -800,7 +800,7 @@ main.content-maindiv {
                             margin: 0 auto;
                             min-height: 250px;
                             width: 95%;
-                            background-image: url(../images/gm-fallback.jpg);
+                            background-image: url(../images/gm-fallback.png);
                             background-size: cover;
                             background-repeat: no-repeat;
                             background-position: center; 
@@ -851,7 +851,15 @@ main.content-maindiv {
 
     section.admin-container {
         .login-container {
-            margin: 10px 0;
+            margin: 2px;
+            fieldset {
+                border: 2px solid @secondary2Color;
+                .borderRadius(2px);
+                legend {
+                    padding: 0 3px;
+                    margin: 0 3px;
+                }
+            }
             .input-group {
                 margin: 15px 5px;
 
@@ -881,7 +889,7 @@ main.content-maindiv {
         }
 
         .admin-panel {
-            margin: 30px 0;
+            margin: 0;
             .add-post-panel {
                 margin: 15px 5px;
                 a.button {

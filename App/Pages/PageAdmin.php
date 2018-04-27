@@ -652,28 +652,40 @@ HTML;
         if (filter_input(INPUT_POST, 'loginname', FILTER_SANITIZE_EMAIL) !== null
             && filter_input(INPUT_POST, 'loginpassword', FILTER_SANITIZE_STRING) !== null) {
 
-            $userlogin = filter_input(INPUT_POST, 'loginname', FILTER_SANITIZE_EMAIL);
-            $userpass = filter_input(INPUT_POST, 'loginpassword', FILTER_SANITIZE_STRING);
-            
-            // INICJOWANIE CIASTECZKA
-            if (Session::checkPassword($dbConnection, $userlogin, $userpass)) {
-                try {
-                    $queryLogin = $dbConnection['db']->prepare("UPDATE `users` SET `date_login`=NOW() WHERE `email`=:email");
-                    $queryLogin->bindValue(':email', $userlogin, PDO::PARAM_STR);
-                    $queryLogin->execute();
-                    $dbConnection['error'] = false;
-                }
-                catch (FrameworkException $exc) {
-                    $dbConnection['error'] = true;
-                    $dbConnection['errorMsg'] = $exc->getMessage();
-                }
-                if (!$dbConnection['error']) {
-                    setcookie('session_id', md5($userlogin), time() + (86400), "/");
+            if (filter_input(INPUT_POST, 'g-recaptcha-response', FILTER_SANITIZE_STRING) !== null) {
+                $captcha = $_POST['g-recaptcha-response'];
+                $secretKey = \Core\Config::get('RECAPTCHA_SECRET_KEY');
+                //$ip = $_SERVER['REMOTE_ADDR'];
+                $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha);
+                $responseKeys = json_decode($response, true);
+                if(intval($responseKeys["success"]) !== 1) {
+                    echo 'WRONG CAPTCHA!';
+                    exit();
                 } else {
-                    echo 'Błąd: '.$dbConnection['errorMsg'];
-                    exit;
+                    $userlogin = filter_input(INPUT_POST, 'loginname', FILTER_SANITIZE_EMAIL);
+                    $userpass = filter_input(INPUT_POST, 'loginpassword', FILTER_SANITIZE_STRING);
+                    
+                    // INICJOWANIE CIASTECZKA
+                    if (Session::checkPassword($dbConnection, $userlogin, $userpass)) {
+                        try {
+                            $queryLogin = $dbConnection['db']->prepare("UPDATE `users` SET `date_login`=NOW() WHERE `email`=:email");
+                            $queryLogin->bindValue(':email', $userlogin, PDO::PARAM_STR);
+                            $queryLogin->execute();
+                            $dbConnection['error'] = false;
+                        }
+                        catch (FrameworkException $exc) {
+                            $dbConnection['error'] = true;
+                            $dbConnection['errorMsg'] = $exc->getMessage();
+                        }
+                        if (!$dbConnection['error']) {
+                            setcookie('session_id', md5($userlogin), time() + (86400), "/");
+                        } else {
+                            echo 'Błąd: '.$dbConnection['errorMsg'];
+                            exit;
+                        }
+                        header("Location: ".BASE_HREF."admin/");
+                    }
                 }
-                header("Location: ".BASE_HREF."admin/");
             }
         }
         
@@ -710,7 +722,7 @@ HTML;
                     <div class="input-group">
                         <input type="password" placeholder="hasło" name="loginpassword" autocomplete="current-password" required/>
                     </div>
-                    <div class="g-recaptcha" data-sitekey="'.\Core\Config::get('RECAPTCHA_KEY').'" data-theme="dark"></div>
+                    <div class="g-recaptcha" data-sitekey="'.\Core\Config::get('RECAPTCHA_KEY').'" data-theme="light"></div>
                     <div class="input-group">
                         <input type="submit" value="Zaloguj" />
                     </div>
