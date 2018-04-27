@@ -50,8 +50,15 @@ class AppCore {
                 if (!is_null($url)) {
                     $class = "Error";
                 } else {
-                    $class = self::DEFAULT_CLASS;
-                    $calledDefaultClass = true;
+                    switch ($url[0]) {
+                        case 'admin' :
+                            $class = "Admin";
+                            break;
+                        default: 
+                            $class = self::DEFAULT_CLASS;
+                            $calledDefaultClass = true;
+                            break;
+                    }
                 }
             }
         } else { // MAINTENANCE PAGE && AJAX
@@ -63,10 +70,6 @@ class AppCore {
                 }
                 case 'sendmail': {
                     $class = "SendMail";
-                    break;
-                }
-                case 'admin': {
-                    $class = "Admin";
                     break;
                 }
                 case 'countdownend' : {
