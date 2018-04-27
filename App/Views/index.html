@@ -25,7 +25,24 @@
     <!--[if lt IE 9]>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
     <![endif]-->
-    
+    <!-- FACEBOOK MESSENGER SCRIPT -->
+    <script>
+		window.fbAsyncInit = function() {
+            FB.init({
+                appId : '261673414375505',
+                xfbml : true,
+                version : 'v2.6'
+            });
+		};
+		 
+		(function(d, s, id){
+		    var js, fjs = d.getElementsByTagName(s)[0];
+		    if (d.getElementById(id)) {return;}
+		    js = d.createElement(s); js.id = id;
+		    js.src = "//connect.facebook.net/pl_PL/sdk.js";
+		    fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
 </head>
 
 <body>
@@ -38,9 +55,13 @@
         <![endif]-->
 
         <?=$this->getBody();?>
-    
+        <!-- FACEBOOK MESSENGER DIV -->
+        <div class="fb-customerchat"
+            page_id="220388458721168"
+            ref="https://wroblewskipiotr.pl"
+            minimized="true">
+        </div>
         <?=$this->getFooter();?>
-        
     </div>
     
     <?=$this->getJSFiles();?>
