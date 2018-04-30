@@ -188,7 +188,7 @@ class PagePost extends Page {
             'twitter-meta-field-right' => 'Wróblewski Piotr',
             'twitter-meta-field-right-below' => $actual_link,
             'image' => $imageFullPath,
-            'domain' => 'https://www.wroblewskipiotr.pl/',
+            'domain' => 'https://wroblewskipiotr.pl/',
             'accent-color' => '#333333',
         ]);
         

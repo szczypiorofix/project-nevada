@@ -659,8 +659,7 @@ HTML;
                 $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha);
                 $responseKeys = json_decode($response, true);
                 if(intval($responseKeys["success"]) !== 1) {
-                    echo 'WRONG CAPTCHA!';
-                    exit();
+                    $this->addJS('showNotification("Błędny kod CAPTCHA");');
                 } else {
                     $userlogin = filter_input(INPUT_POST, 'loginname', FILTER_SANITIZE_EMAIL);
                     $userpass = filter_input(INPUT_POST, 'loginpassword', FILTER_SANITIZE_STRING);
@@ -678,7 +677,12 @@ HTML;
                             $dbConnection['errorMsg'] = $exc->getMessage();
                         }
                         if (!$dbConnection['error']) {
-                            setcookie('session_id', md5($userlogin), time() + (86400), "/");
+                            $cookieTime = 86400;
+                            if ($_POST['rememberme'] !== null) {
+                                // set cookie time to 30 days
+                                $cookieTime = $cookieTime * 30;
+                            }
+                            setcookie('session_id', md5($userlogin), time() + $cookieTime, "/");
                         } else {
                             echo 'Błąd: '.$dbConnection['errorMsg'];
                             exit;
@@ -718,11 +722,17 @@ HTML;
                     
                     <div class="input-group">
                         <input type="text" placeholder="login" name="loginname" autocomplete="username" required/>
-                        </div>
+                    </div>
                     <div class="input-group">
                         <input type="password" placeholder="hasło" name="loginpassword" autocomplete="current-password" required/>
                     </div>
                     <div class="g-recaptcha" data-sitekey="'.\Core\Config::get('RECAPTCHA_KEY').'" data-theme="light"></div>
+                    <div class="input-group">
+                        <label class="rememberme-label">
+                            <input type="checkbox" name="rememberme"/>
+                            Zapamiętaj mnie
+                        </label>
+                    </div>
                     <div class="input-group">
                         <input type="submit" value="Zaloguj" />
                     </div>

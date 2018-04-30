@@ -24,14 +24,14 @@ class MetaData extends Widget {
         'description' => 'To moja strona internetowa.',
         'author' => 'Wróblewski Piotr',
         'keywords' => 'JavaScript',
-        'url' => 'https://www.wroblewskipiotr.pl/',
+        'url' => 'https://wroblewskipiotr.pl/',
         'content' => 'website',
         'twitter-meta-field-left' => '',
         'twitter-meta-field-left-below' => '',
         'twitter-meta-field-right' => '',
         'twitter-meta-field-right-below' => '',
-        'image' => 'https://www.wroblewskipiotr.pl/avatar.png',
-        'domain' => 'https://www.wroblewskipiotr.pl/',
+        'image' => 'https://wroblewskipiotr.pl/avatar.png',
+        'domain' => 'https://wroblewskipiotr.pl/',
         'accent-color' => '#303F9F',
     ];
     
