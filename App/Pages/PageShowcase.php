@@ -78,6 +78,9 @@ class PageShowcase extends Page {
                                         </div>';
             $pageDynamicContent .= '</div>';
         }
+
+        $captchaKey = \Core\Config::get('RECAPTCHA_KEY');
+        
         $pageContent =
 <<<HTML
     <main class="content-maindiv">
@@ -286,6 +289,7 @@ class PageShowcase extends Page {
                             <input type="text" placeholder="Imię i nazwisko" name="contact-form-name" autocomplete="name" required>
                             <input type="email" placeholder="E-mail" name="contact-form-email" autocomplete="email" required>
                             <textarea rows="12" placeholder="Twoja wiadomość" name="contact-form-message" required></textarea>
+                            <div class="g-recaptcha" data-sitekey="{$captchaKey}" data-theme="light"></div>
                             <div class="contact-us-form-actions">
                                 <input type="submit" class="button" value="Wyślij"/>
                             </div>
@@ -310,8 +314,12 @@ HTML;
         $this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
         $this->addJSFile(['name' => 'Google Translate Script', 'path' => 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit', 'versioning' => false, 'async' => false]);
         $this->addJSFile(['name' => 'Google Translate Script Starter', 'path' => 'js/translate.js', 'versioning' => true]);
-        $this->addJSFile(['name' => 'Google Maps API', 'path' => 'https://maps.googleapis.com/maps/api/js?key='.\Core\Config::get("GOOGLE_MAPS_API_KEY").'&callback=showGoogleMaps']);
+        //$this->addJSFile(['name' => 'Google Maps API', 'path' => 'https://maps.googleapis.com/maps/api/js?key='.\Core\Config::get("GOOGLE_MAPS_API_KEY").'&callback=showGoogleMaps']);
         $this->addJSFile(['name' => 'AddThis Follow buttons', 'path' => '//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ad1f6633ca8b854']);
+
+        $this->addJSFile(['name' => 'Cookie consent script', 'path' => 'js/cookieconsent.js']);
+
+        $this->addJSFile(['name' => 'reCAPTCHA script', 'path' => 'https://www.google.com/recaptcha/api.js', 'async' => true, 'defer' => true]);
 
         $metaData = new \Widgets\MetaData();
         $head = $metaData->getBody();
