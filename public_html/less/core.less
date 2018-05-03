@@ -1318,7 +1318,7 @@ main.post-card {
                         flex-direction: row;
                         justify-content: space-between;
                         span.title {
-                            margin: auto 5;
+                            margin: auto 10px;
                             color: @textColor;
                             font-size: 110%;
                             letter-spacing: 0.06em;
@@ -1333,6 +1333,9 @@ main.post-card {
                             text-align: center;
                             margin-right: 5px;
                         }
+                    }
+                    &:hover {
+                        background-color: darken(@textColorDark, 10%);
                     }
                 }
             }
@@ -1378,6 +1381,9 @@ main.post-card {
                     }
                     &.biggest {
                         font-size: 26px;
+                    }
+                    &:hover {
+                        background-color: darken(@textColorDark, 10%);
                     }
                 }
             }

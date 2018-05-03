@@ -9,40 +9,81 @@
 
 class CookieConsent {
 
-    private expireDays:number;
-
     constructor() {}
 
-    private e(el: string) {
+    private static e(el: string) {
         return document.getElementById(el);
     }
 
-    public disableNotification() {
-        let d = new Date();
-        d.setTime(d.getTime() + (this.expireDays * 24 * 60 * 60 * 1000));
-        let expires = "expires="+d.toUTCString();
-        document.cookie = "wpcookieconsent=1;"+expires+";path=/";
+    private static createCookie(name, value, expires, path, domain) {
+        var cookie = name + "=" + escape(value) + ";";
+        if (expires) {
+            if(expires instanceof Date) {
+                if (isNaN(expires.getTime()))
+                expires = new Date();
+            } else
+                expires = new Date(new Date().getTime() + parseInt(expires) * 1000 * 60 * 60 * 24);
+            cookie += "expires=" + expires.toGMTString() + ";";
+        }
+        if (path)
+            cookie += "path=" + path + ";";
+        if (domain)
+            cookie += "domain=" + domain + ";";
+        document.cookie = cookie;
     }
 
-    public check() {
-        var decodedCookie = decodeURIComponent(document.cookie);
-        
-        var cookieObject:Object;
+    private static getCookie(name) {
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split('; ');
+        for (let i = 0; i < ca.length; i++) {
+            if (ca[i] == name) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-        var ca = decodedCookie.split(';');
-        //for (let i = 0; i < ca.length; i++) {
-            
-            //cookieObject.ca[i] = 'dupa';
-            
-            //let s = ca[i].split("=");
-            
-        //}
+    public static check() {
+        if (!this.getCookie('wpcookieconsent=1')) {
+            let divEl = document.createElement('div');
+            divEl.className = "cookieconsent";
+            let divElSpan = document.createElement('span');
+            let divElText = document.createTextNode('Powiadomienie o ciasteczkach');
 
-        console.log(cookieObject);
+            divElSpan.appendChild(divElText);
+
+            let divElButton = document.createElement('button');
+            let divElButtonText = document.createTextNode('Rozumiem');
+
+            let css = '.cookieconsent {display:flex;flex-direction:row;justify-content:space-between;position:fixed;bottom:0;left:0;color:#eeeeee;background-color:#333333;width:100%;z-index:101;padding:10px 15px; }'
+            + '.cookieconsent button {background-color:#ff0d5f;color:#eeeeee;padding:6px 10px;border:none;border-radius:2px;} '
+            + '.cookieconsent button:hover {cursor:pointer; background-color: #ef0e4f} ';
+            let style = document.createElement('style');
+            
+            style.appendChild(document.createTextNode(css));
+            divEl.appendChild(style);
+
+            divElButton.appendChild(divElButtonText);
+            var self = this;
+            
+            divElButton.onclick = function() {
+                /* Domena bez http/https !!! */
+                self.createCookie("wpcookieconsent", "1", 1, "/" , "wroblewskipiotr.pl");
+                divEl.style.display = 'none';
+            };
+
+            divEl.appendChild(divElSpan);
+            divEl.appendChild(divElButton);
+
+            document.body.appendChild(divEl);
+        }
+    }
+
+    private static deleteCookie(name, path, domain) {
+        if (this.getCookie(name))
+            this.createCookie(name, "", -1, path, domain);
     }
 
 }
 
-var cookieConsent = new CookieConsent();
-cookieConsent.check();
-//cookieConsent.disableNotification();
+CookieConsent.check();

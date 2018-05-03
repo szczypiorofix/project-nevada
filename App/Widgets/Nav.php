@@ -39,11 +39,11 @@ class Nav extends Widget {
                         <li><a href="{$baseHref}#contact" class="scroll-btn">Kontakt</a></li>
                     </ul>
                     <div class="socialmedia-div">
-                        <a href="http://facebook.com" target="_blank" title="Facebook" class="fab fa-facebook-f"></a>
-                        <a href="http://twitter.com" target="_blank" title="Twitter" class="fab fa-twitter"></a>
-                        <a href="http://slack.com" target="_blank" title="Slack" class="fab fa-slack"></a>
-                        <a href="http://youtube.com" target="_blank" title="Youtube" class="fab fa-youtube"></a>
-                        <a href="http://github.com" target="_blank" title="GitHub" class="fab fa-github"></a>
+                        <a href="https://www.facebook.com/szczypiorofix/" target="_blank" title="Facebook" class="fab fa-facebook-f"></a>
+                        <a href="https://twitter.com/szczypiorofix/" target="_blank" title="Twitter" class="fab fa-twitter"></a>
+                        <a href="https://slack.com" target="_blank" title="Slack" class="fab fa-slack"></a>
+                        <a href="https://www.youtube.com/user/szczypiorofixable/" target="_blank" title="Youtube" class="fab fa-youtube"></a>
+                        <a href="https://github.com/szczypiorofix/" target="_blank" title="GitHub" class="fab fa-github"></a>
                     </div>
                 </nav>
                 <div class="navbar-launcher-container">

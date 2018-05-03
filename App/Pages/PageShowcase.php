@@ -90,7 +90,7 @@ class PageShowcase extends Page {
                     <div class="title">
                         <h1>Kilka słów o mnie</h1>
                     </div>
-                    <img src="images/dog.jpeg" alt="My Skills" />
+                    <img src="images/avatar.png" alt="My Skills" />
                     <p>Witaj, jestem Piotr.</p>
                     <p>Programowaniem zacząłem zajmować się już w liceum. Tedy były czasy Turbo Pascala 7.0, BASICa i innych żółwików Logo. Potem nastąpiła u mnie kilkuletnia przerwa w przygodnie z programowaniem jednak jakiś czas temu postanowiłem do tego wrócić. Dlaczego? Bo to uwielbiam. Zwłaszcza gdy włożony wysiłek przynosi zamierzone rezultaty. Wszelkie porażki traktuję jako swego rodzaju lekcję i przestrogę na przyszłość. Wszelkie trudnośći jeszcze bardziej mniej motywują. Żółte komunikaty w konsoli przeglądarki podwajają moją czujność a na czerwone jestem wręcz uczulony.</p>
                     <p>Uwielbiam Javę za mocne typowanie, PHP za działanie w ukryciu a JavaScript za szybkie prototypowanie.</p>
@@ -316,8 +316,6 @@ HTML;
         $this->addJSFile(['name' => 'Google Translate Script Starter', 'path' => 'js/translate.js', 'versioning' => true]);
         //$this->addJSFile(['name' => 'Google Maps API', 'path' => 'https://maps.googleapis.com/maps/api/js?key='.\Core\Config::get("GOOGLE_MAPS_API_KEY").'&callback=showGoogleMaps']);
         $this->addJSFile(['name' => 'AddThis Follow buttons', 'path' => '//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ad1f6633ca8b854']);
-
-        $this->addJSFile(['name' => 'Cookie consent script', 'path' => 'js/cookieconsent.js']);
 
         $this->addJSFile(['name' => 'reCAPTCHA script', 'path' => 'https://www.google.com/recaptcha/api.js', 'async' => true, 'defer' => true]);
 

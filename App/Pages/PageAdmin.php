@@ -67,7 +67,7 @@ class PageAdmin extends Page {
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'js/jquery/jquery-1.12.4.min.js']);
         
         // https://github.com/showdownjs/showdown
-        $this->addJSFile(['name' => 'Showdown markdown parser JS', 'path' => 'js/showdown/showdown.js']);
+        $this->addJSFile(['name' => 'Showdown markdown parser JS', 'path' => 'js/showdown/showdown.min.js']);
         $this->addJSFile(['name' => 'Markdown in real time script', 'path' => 'js/markdown.js']);
 
         // http://ashleighy.github.io/emoji.js/
@@ -227,7 +227,7 @@ HTML;
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'js/jquery/jquery-1.12.4.min.js']);
         
         // https://github.com/showdownjs/showdown
-        $this->addJSFile(['name' => 'Showdown markdown parser JS', 'path' => 'js/showdown/showdown.js']);
+        $this->addJSFile(['name' => 'Showdown markdown parser JS', 'path' => 'js/showdown/showdown.min.js']);
         $this->addJSFile(['name' => 'Markdown in real time script', 'path' => 'js/markdown.js']);
 
         // http://ashleighy.github.io/emoji.js/
@@ -658,7 +658,7 @@ HTML;
                 //$ip = $_SERVER['REMOTE_ADDR'];
                 $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha);
                 $responseKeys = json_decode($response, true);
-                if(intval($responseKeys["success"]) !== 1) {
+                if (intval($responseKeys["success"]) !== 1) {
                     $this->addJS('showNotification("Błędny kod CAPTCHA");');
                 } else {
                     $userlogin = filter_input(INPUT_POST, 'loginname', FILTER_SANITIZE_EMAIL);
