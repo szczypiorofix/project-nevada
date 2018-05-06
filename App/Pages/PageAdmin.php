@@ -62,20 +62,15 @@ class PageAdmin extends Page {
         }
         $tagsContent .= '</div>';
         
-        $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
+        $this->addCSSFile(['name' => 'Main CSS file', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'js/jquery/jquery-1.12.4.min.js']);
         
         // https://github.com/showdownjs/showdown
         $this->addJSFile(['name' => 'Showdown markdown parser JS', 'path' => 'js/showdown/showdown.min.js']);
         $this->addJSFile(['name' => 'Markdown in real time script', 'path' => 'js/markdown.js']);
-
-        // http://ashleighy.github.io/emoji.js/
-        //$this->addJSFile(['name' => 'Emojii', 'path' => 'js/emoji/emoji.js.js']);
         
         $this->addJSFile(['name' => 'Admin scripts', 'path' => 'js/admin.js']);
-
-        //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
         
         $pageContent =
 <<<HTML
@@ -222,7 +217,7 @@ HTML;
         }
         $tagsContent .= '</div>';
         
-        $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
+        $this->addCSSFile(['name' => 'Main CSS file', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'js/jquery/jquery-1.12.4.min.js']);
         
@@ -230,14 +225,8 @@ HTML;
         $this->addJSFile(['name' => 'Showdown markdown parser JS', 'path' => 'js/showdown/showdown.min.js']);
         $this->addJSFile(['name' => 'Markdown in real time script', 'path' => 'js/markdown.js']);
 
-        // http://ashleighy.github.io/emoji.js/
-        //$this->addJSFile(['name' => 'Emojii', 'path' => 'js/emoji/emoji.js.js']);
-        
         $this->addJSFile(['name' => 'Admin scripts', 'path' => 'js/admin.js']);
-        
-        
-        //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
-        
+                
         $content = $query->fetch();
         //var_dump($content);
         $pageContent =
@@ -561,7 +550,7 @@ HTML;
             header("Location: ".BASE_HREF."admin");
         }
         
-        $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
+        $this->addCSSFile(['name' => 'Main CSS file', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'js/jquery/jquery-1.12.4.min.js']);
         $this->addJSFile(['name' => 'Admin scripts', 'path' => 'js/admin.js']);
@@ -745,23 +734,14 @@ HTML;
         $postListModel = new PostListModel(PostListModel::TYPE_ID_SORT, $dbConnection, $type, $pages, PostListModel::GET_ALL_POSTS);
         $content = $postListModel->getContent();
         
-        $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
+        $this->addCSSFile(['name' => 'Main CSS file', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'js/jquery/jquery-1.12.4.min.js']);
         $this->addJSFile(['name' => 'Admin scripts', 'path' => 'js/admin.js']);
         $this->addJS('tableOfPosts.init('.json_encode($content).'); tableOfPosts.show();');
 
-    //     $this->addJS('
-    //     var captchLoadCallBack = function() {
-    //       grecaptcha.render("recaptcha_element", {
-    //         "sitekey" : "'.\Core\Config::get('RECAPTCHA_KEY').'"
-    //       });
-    //     };
-    //   ');
-      $this->addJSFile(['name' => 'reCAPTCHA script', 'path' => 'https://www.google.com/recaptcha/api.js', 'async' => true, 'defer' => true]);
+        $this->addJSFile(['name' => 'reCAPTCHA script', 'path' => 'https://www.google.com/recaptcha/api.js', 'async' => true, 'defer' => true]);
         
-        //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
-
         $pageContent =
 <<<HTML
     <main class="content-maindiv">

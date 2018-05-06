@@ -103,7 +103,7 @@ class PageLista extends Page {
     </main>
 HTML;
         
-        $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
+        $this->addCSSFile(['name' => 'Main CSS file', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'js/jquery/jquery-1.12.4.min.js']);
         
@@ -231,7 +231,7 @@ HTML;
     </main>
 HTML;
         
-        $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
+        $this->addCSSFile(['name' => 'Main CSS file', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
         
@@ -367,7 +367,7 @@ HTML;
     </main>
 HTML;
         
-        $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
+        $this->addCSSFile(['name' => 'Main CSS file', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
         
@@ -503,7 +503,7 @@ HTML;
     </main>
 HTML;
         
-        $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
+        $this->addCSSFile(['name' => 'Main CSS file', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
         

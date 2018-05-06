@@ -142,15 +142,12 @@ class PagePost extends Page {
             </section>';
         }
         
-        $this->addCSSFile(['name' => 'NavbarCSSFile', 'path' => 'css/style.css']);
+        $this->addCSSFile(['name' => 'Main CSS file', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'js/jquery/jquery-1.12.4.min.js']);
         $this->addJSFile(['name' => 'Google Translate Script', 'path' => 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit', 'versioning' => false, 'async' => false]);
         $this->addJSFile(['name' => 'Google Translate Script Starter', 'path' => 'js/translate.js', 'versioning' => true]);
         $this->addJSFile(['name' => 'AddThis Script', 'path' => '//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ad1f6633ca8b854"']);
-        
-        // http://ashleighy.github.io/emoji.js/
-        //$this->addJSFile(['name' => 'Emojii', 'path' => 'js/emoji/emoji.js.js']);
 
         // image modal script
         $this->addJS('

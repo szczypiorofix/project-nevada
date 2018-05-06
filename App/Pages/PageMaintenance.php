@@ -27,7 +27,7 @@ class PageMaintenance extends Page {
         $maintenancePage = new MaintenanceModel();
         $pageContent = $maintenancePage->getContent();
         
-        $this->addCSSFile(['name' => 'MaintenanceCSSFile', 'path' => 'css/maintenance.css']);
+        $this->addCSSFile(['name' => 'Maintenance CSS File', 'path' => 'css/maintenance.css']);
         $this->addJSFile(['name' => 'Countdown script', 'path' => 'js/maintenance.js', 'versioning' => true]);
         $this->addJSFile(['name' => 'Google Translate Script', 'path' => 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit', 'versioning' => false, 'async' => false]);
         $this->addJSFile(['name' => 'Google Translate Script Starter', 'path' => 'js/translate.js', 'versioning' => true]);
