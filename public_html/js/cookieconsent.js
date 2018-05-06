@@ -63,7 +63,6 @@ class CookieConsent {
                 if (l.startsWith('http://localhost/')) {
                     domena = 'localhost';
                 }
-                console.log(domena);
                 self.createCookie("wpcookieconsent", "1", 1, "/", domena);
                 divEl.style.display = 'none';
             };
