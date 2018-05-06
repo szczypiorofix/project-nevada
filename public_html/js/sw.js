@@ -42,6 +42,7 @@ self.addEventListener('activate', function(event){
 });
 
 self.addEventListener('fetch', function(event){
+    console.log('Fetch event');
     console.log(event.request.url);
     // return something for each interception
 });
