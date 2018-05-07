@@ -63,11 +63,11 @@ class CookieConsent {
             let divElButton = document.createElement('button');
             let divElButtonText = document.createTextNode(a.buttonText);
 
-            let css = '.cookieconsent {display:flex;flex-direction:row;justify-content:space-between;position:fixed;bottom:0;left:0;color:'+a.textColor+';background-color:'+a.backgroundColor+';width:100%;z-index:101; }'
+            let css = '.cookieconsent {display:flex;flex-direction:row;justify-content:space-between;position:fixed;bottom:0;left:0;color:'+a.titleColor+';background-color:'+a.backgroundColor+';width:100%;z-index:101; }'
             + '.cookieconsent span {margin: 10px;height: auto;}'
             + '.cookieconsent button {background-color:'+a.buttonBackgroundColor+';color:'+a.buttonTextColor+';border:none;border-radius:2px;margin:10px;padding: 10px 20px; } '
             + '.cookieconsent button:hover {cursor:pointer;} '
-            + '.cookieconsent span a {margin-left: 10px;color:'+a.textColor+'}';
+            + '.cookieconsent span a {margin-left: 10px;color:'+a.titleColor+'}';
             let style = document.createElement('style');
             
             style.appendChild(document.createTextNode(css));
@@ -84,7 +84,7 @@ class CookieConsent {
                 if (l.startsWith('http://localhost/')) {
                     domena = 'localhost';
                 }
-                self.createCookie("wpcookieconsent", "1", 1, "/" , domena);
+                self.createCookie("wpcookieconsent", "1", a.days, "/" , domena);
                 divEl.style.display = 'none';
             };
 
@@ -99,13 +99,13 @@ class CookieConsent {
         if (this.getCookie(name))
             this.createCookie(name, "", -1, path, domain);
     }
-
 }
 
 CookieConsent.check({
+    days: 1,
     title: 'Z ciasteczkami na razie jeszcze nic nie robię ale muszę o nich informować :)',
+    titleColor: '#eeeeee',
     backgroundColor: '#333333',
-    textColor: '#eeeeee',
     buttonText: 'Zrozumiałem!',
     buttonBackgroundColor: '#ff0d5f',
     buttonTextColor: '#eeeeee',
