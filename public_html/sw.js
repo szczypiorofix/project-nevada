@@ -8,13 +8,29 @@ var CACHE_FILES = [
     'images/gm-fallback.png',
     'images/code.jpeg',
     'images/bg-main3.jpeg',
+    'uploads/images/default.jpg',
+    'uploads/images/code.jpeg',
+    'uploads/images/codegenerator1.png',
+    'uploads/images/kanciarz1.png',
+    'images/portfolio/kanciarz1.png',
+    'images/portfolio/tequilaplatformer1.png',
+    'images/portfolio/spaceinvaders1.png',
+    'images/portfolio/furyroad1.png',
+
+    'webfonts/fa-regular-400.woff2',
+    'webfonts/fa-regular-400.woff',
+    'webfonts/fa-regular-400.ttf',
 
     'webfonts/Lato-Regular.ttf',
     'webfonts/Raleway-Light.ttf',
 
     'css/normalize.min.css',
     'css/fa-regular.min.css',
+    'css/fontawesome-all.min.css',
     'css/style.css',
+
+    'icons/manifest.json',
+
     'js/script.js',
     'js/jquery/jquery-1.12.4.min.js',
     'js/external.js',
@@ -22,11 +38,11 @@ var CACHE_FILES = [
     'js/translate.js',
     'js/worker.js',
     'js/markdown.js',
-    'js/cookieconsent.js'
+    'js/cookieconsent.js',
 
-    //'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit',
-    //'https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ad1f6633ca8b854',
-    //'https://www.google.com/recaptcha/api.js',
+    'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit',
+    'https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ad1f6633ca8b854',
+    'https://www.google.com/recaptcha/api.js',
 ];
 
 
