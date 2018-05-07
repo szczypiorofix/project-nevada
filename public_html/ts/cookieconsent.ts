@@ -43,21 +43,31 @@ class CookieConsent {
         return false;
     }
 
-    public static check() {
+    public static check(a) {
         if (!this.getCookie('wpcookieconsent=1')) {
             let divEl = document.createElement('div');
             divEl.className = "cookieconsent";
             let divElSpan = document.createElement('span');
-            let divElText = document.createTextNode('Powiadomienie o ciasteczkach');
+            let readMoreLink = document.createElement('a');
+            let readMoreLinkText = document.createTextNode(a.readMoreText);
+
+            readMoreLink.appendChild(readMoreLinkText);
+            readMoreLink.href = a.readMoreUrl;
+            readMoreLink.target = "_blank";
+
+            let divElText = document.createTextNode(a.title);
 
             divElSpan.appendChild(divElText);
+            divElSpan.appendChild(readMoreLink);
 
             let divElButton = document.createElement('button');
-            let divElButtonText = document.createTextNode('Rozumiem');
+            let divElButtonText = document.createTextNode(a.buttonText);
 
-            let css = '.cookieconsent {display:flex;flex-direction:row;justify-content:space-between;position:fixed;bottom:0;left:0;color:#eeeeee;background-color:#333333;width:100%;z-index:101;padding:10px 15px; }'
-            + '.cookieconsent button {background-color:#ff0d5f;color:#eeeeee;padding:6px 10px;border:none;border-radius:2px;} '
-            + '.cookieconsent button:hover {cursor:pointer; background-color: #ef0e4f} ';
+            let css = '.cookieconsent {display:flex;flex-direction:row;justify-content:space-between;position:fixed;bottom:0;left:0;color:'+a.textColor+';background-color:'+a.backgroundColor+';width:100%;z-index:101; }'
+            + '.cookieconsent span {margin: 10px;height: auto;}'
+            + '.cookieconsent button {background-color:'+a.buttonBackgroundColor+';color:'+a.buttonTextColor+';border:none;border-radius:2px;margin:10px;padding: 10px 20px; } '
+            + '.cookieconsent button:hover {cursor:pointer;} '
+            + '.cookieconsent span a {margin-left: 10px;color:'+a.textColor+'}';
             let style = document.createElement('style');
             
             style.appendChild(document.createTextNode(css));
@@ -92,4 +102,13 @@ class CookieConsent {
 
 }
 
-CookieConsent.check();
+CookieConsent.check({
+    title: 'Z ciasteczkami na razie jeszcze nic nie robię ale muszę o nich informować :)',
+    backgroundColor: '#333333',
+    textColor: '#eeeeee',
+    buttonText: 'Zrozumiałem!',
+    buttonBackgroundColor: '#ff0d5f',
+    buttonTextColor: '#eeeeee',
+    readMoreText: 'Dowiedz się więcej',
+    readMoreUrl: 'https://www.google.pl'
+});
