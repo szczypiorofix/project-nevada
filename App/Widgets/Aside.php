@@ -69,12 +69,6 @@ class Aside extends Widget {
         $this->body = 
 <<<HTML
         <aside class="sidebar">
-            <div class="search-form-container">
-                <form method="GET" class="search-form" action="lista/szukaj">
-                    <input class="search-input" type="text" name="q" id="search-input">
-                    <button class="search-submit-button"><i class="fas fa-search"></i></button>
-                </form>
-            </div>
             <div class="categories-list-container">
                 <h3>Kategorie:</h3>
                 <ul>{$categoriesListContent}</ul>

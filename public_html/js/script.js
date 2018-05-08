@@ -35,6 +35,19 @@ function goToTop() {
         }
     })();
 }
+(function welcome() {
+    let logo = 'MMMMMMMMMMMMMO  OMMMMMMMMMMMMM\n'
+        + 'MMMMMMMMMMO        OMMMMMMMMMM\n'
+        + 'MMMMMMMMO     OO     OMMMMMMMM\n'
+        + 'MMMMMMO     OOOOOO     OMMMMMM\n'
+        + 'MMMMO     OOOOOOOOOO     OMMMM\n'
+        + 'MMMMO     OOOOOOOOOO     OMMMM\n'
+        + 'MMMMMMO     OOOOOO     OMMMMMM\n'
+        + 'MMMMMMMMO     OO     OMMMMMMMM\n'
+        + 'MMMMMMMMMMO        OMMMMMMMMMM\n'
+        + 'MMMMMMMMMMMMMO  OMMMMMMMMMMMMM\n';
+    console.log(logo);
+})();
 window.addEventListener("DOMContentLoaded", function () {
     window.onclick = function (event) {
         if (event.target !== document.getElementById("navbarLauncher")) {
