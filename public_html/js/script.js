@@ -48,6 +48,27 @@ function goToTop() {
         + 'MMMMMMMMMMMMMO  OMMMMMMMMMMMMM\n';
     console.log(logo);
 })();
+
+
+(function searchInput() {
+    var si = document.getElementById('search-input');
+    var ss = document.getElementById('search-submit');
+    var sr = document.getElementById('search-results');
+    ss.onclick = function(event) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                console.log(this.response);
+                sr.innerHTML = this.response;
+            }
+        };
+        xmlhttp.open("GET", "lista/szukaj?q="+si.value, true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send();
+    }
+})();
+
+
 window.addEventListener("DOMContentLoaded", function () {
     window.onclick = function (event) {
         if (event.target !== document.getElementById("navbarLauncher")) {

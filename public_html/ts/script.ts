@@ -55,6 +55,7 @@ function goToTop() {
     console.log(logo);
 })();
 
+
 window.addEventListener("DOMContentLoaded", function() {
 
     window.onclick = function(event) {

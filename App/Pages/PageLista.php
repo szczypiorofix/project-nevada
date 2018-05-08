@@ -44,9 +44,9 @@ class PageLista extends Page {
         
         $postListModel = new PostListModel(PostListModel::TYPE_SEARCH_SORT, $dbConnection, $type, $pages);
         $content = $postListModel->getContent();
-        
-        //var_dump($content);
-        //exit;
+
+        var_dump($content);
+        exit;
         
         if (is_null($content)) {
             $content = ['posts' => [], 'postsonsite' => 6, 'maxrecords' => -1];
