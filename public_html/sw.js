@@ -40,9 +40,9 @@ var CACHE_FILES = [
     'js/markdown.js',
     'js/cookieconsent.js',
 
-    'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit',
-    'https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ad1f6633ca8b854',
-    'https://www.google.com/recaptcha/api.js',
+    //'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit',
+    //'https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ad1f6633ca8b854',
+    //'https://www.google.com/recaptcha/api.js',
 ];
 
 
@@ -50,7 +50,7 @@ self.addEventListener('install', function (event) {
     event.waitUntil(
         caches.open(CACHE_VERSION)
             .then(function (cache) {
-                console.log('Opened cache');
+                console.log('cache addAll');
                 return cache.addAll(CACHE_FILES);
             })
     );
@@ -59,8 +59,10 @@ self.addEventListener('install', function (event) {
 self.addEventListener('activate', function (event) {
     event.waitUntil(
         caches.keys().then(function(keys){
-            return Promise.all(keys.map(function(key, i){
-                if(key !== CACHE_VERSION){
+            return Promise.all(keys.map(function(key, i) {
+                console.log('Return keys map');
+                if(key !== CACHE_VERSION) {
+                    console.log('Caches delete' +keys[i]);
                     return caches.delete(keys[i]);
                 }
             }))
@@ -71,7 +73,8 @@ self.addEventListener('activate', function (event) {
 self.addEventListener('fetch', function (event) {
     event.respondWith(
         caches.match(event.request).then(function(res){
-            if(res){
+            console.log('caches match');
+            if (res) {                
                 return res;
             }
             requestBackend(event);
@@ -83,7 +86,8 @@ function requestBackend(event){
     var url = event.request.clone();
     return fetch(url).then(function(res){
         //if not a valid response send the error
-        if(!res || res.status !== 200 || res.type !== 'basic'){
+        console.log('fetch url');
+        if(!res || res.status !== 200 || res.type !== 'basic') {
             return res;
         }
 
