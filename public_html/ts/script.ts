@@ -48,21 +48,6 @@ function goToTop() {
     })();
 }
 
-// Just for fun ;)
-(function welcome() {
-    let logo:string = 'MMMMMMMMMMMMMO  OMMMMMMMMMMMMM\n'
-                     +'MMMMMMMMMMO        OMMMMMMMMMM\n'
-                     +'MMMMMMMMO     OO     OMMMMMMMM\n'
-                     +'MMMMMMO     OOOOOO     OMMMMMM\n'
-                     +'MMMMO     OOOOOOOOOO     OMMMM\n'
-                     +'MMMMO     OOOOOOOOOO     OMMMM\n'
-                     +'MMMMMMO     OOOOOO     OMMMMMM\n'
-                     +'MMMMMMMMO     OO     OMMMMMMMM\n'
-                     +'MMMMMMMMMMO        OMMMMMMMMMM\n'
-                     +'MMMMMMMMMMMMMO  OMMMMMMMMMMMMM\n';
-    console.log(logo);
-})();
-
 
 // Search input function
 (function searchInput() {

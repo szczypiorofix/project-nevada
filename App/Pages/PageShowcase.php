@@ -83,10 +83,26 @@ class PageShowcase extends Page {
 
         /**
          * Sprawdzanie czy dane są aktualne? -tak: wczytanie z localstorage, jeśli nie to aktualizacja z serwera
+         * 
+         * Routing z VUE ???
          */    
+
+        //var_dump($content);
+        //exit();
 
         for ($i = count($content['posts'])-1; $i > count($content['posts'])-7; $i--) {
             $row = $content['posts'][$i];
+            $kategoria = "";
+            
+            for ($a = 0; $a < count($content['categories']); $a++) {
+                for ($j = 0; $j < count($content['post_categories']); $j++) {
+                    if ($content['categories'][$a]['id'] === $content['post_categories'][$j]['categoryid']
+                    && $content['posts'][$i]['id'] == $content['post_categories'][$j]['id']) {
+                        $kategoria = $content['categories'][$a]['name'];
+                    }
+                }
+            }
+
             if (file_exists(DIR_UPLOADS_IMAGES.$row['image']) && !is_dir(DIR_UPLOADS_IMAGES.$row['image'])) {
                 $imageFile = DIR_UPLOADS_IMAGES.$row['image'];
             } else {
@@ -97,7 +113,7 @@ class PageShowcase extends Page {
             $pageDynamicContent .= '<div class="news-part">
                                         <div class="image-div">
                                             <a href="post/'.$row['url'].'"><img src="'.$imageFile.'" /></a>
-                                            
+                                            <span class="image-caption">'.$kategoria.'</span>
                                         </div>
                                         <div class="main-post-content">
                                             <div class="post-title"><a href="post/'.$row['url'].'"><h3>'.$row['title'].'</h3></a></div>'
@@ -345,7 +361,7 @@ HTML;
         
         $this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
         $this->addJSFile(['name' => 'Google Translate Script', 'path' => 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit', 'versioning' => false, 'async' => false]);
-        $this->addJSFile(['name' => 'Google Translate Script Starter', 'path' => 'js/translate.js', 'versioning' => true]);
+        $this->addJSFile(['name' => 'Google Translate Script Starter', 'path' => 'js/translate.js']);
         //$this->addJSFile(['name' => 'Google Maps API', 'path' => 'https://maps.googleapis.com/maps/api/js?key='.\Core\Config::get("GOOGLE_MAPS_API_KEY").'&callback=showGoogleMaps']);
         $this->addJSFile(['name' => 'AddThis Follow buttons', 'path' => '//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ad1f6633ca8b854']);
 

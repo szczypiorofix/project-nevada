@@ -8,23 +8,6 @@
  */
 
 
-function googleTranslateElementInit() {
-    // $.ajax({ 
-    //     url: "http://ajaxhttpheaders.appspot.com", 
-    //     dataType: 'jsonp', 
-    //     success: function(headers) {
-    //         language = headers['Accept-Language'];
-    //         console.log(language);
-    //     }
-    // });
-    // pl-PL,pl;q=0.9,en-US;q=0.8,en;q=0.7
-
-
-    //var language = window.navigator.userLanguage || window.navigator.language;
-    //console.log(language);
-    //language = 'en-US'
-
-    
+function googleTranslateElementInit() {    
     new google.translate.TranslateElement({pageLanguage: 'pl'}, 'google_translate_element');
-    
 };
