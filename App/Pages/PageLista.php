@@ -45,7 +45,7 @@ class PageLista extends Page {
         $postListModel = new PostListModel(PostListModel::TYPE_SEARCH_SORT, $dbConnection, $type, $pages);
         $content = $postListModel->getContent();
 
-        var_dump($content);
+        echo json_encode($content);
         exit;
         
         if (is_null($content)) {

@@ -8,7 +8,7 @@
 namespace Pages;
 
 use Core\ModelClasses\Page;
-use Models\PostListModel;
+use Models\PostAllModel;
 /**
  * This is showcase of Page
  *
@@ -16,9 +16,9 @@ use Models\PostListModel;
  */
 class PageShowcase extends Page {
         
-    public function __toString() {
-        return get_class($this);
-    }
+    // public function __toString() {
+    //     return get_class($this);
+    // }
     
     public function defaultmethod($args) {
         
@@ -37,10 +37,12 @@ class PageShowcase extends Page {
         
         $dbConnection = \Core\DBConnection::getInstance();
         
-        $postListModel = new PostListModel(PostListModel::TYPE_ID_SORT, $dbConnection, $type, $pages);
+        //$postListModel = new PostListModel(PostListModel::TYPE_ID_SORT, $dbConnection, $type, $pages);
+        $postListModel = new PostAllModel($dbConnection, $type, $pages);
         $content = $postListModel->getContent();
         
         //var_dump($content);
+        //exit;
         
         if (is_null($content)) {
             $content = ['posts' => []];
@@ -54,7 +56,37 @@ class PageShowcase extends Page {
         $defaultImageFile = DIR_UPLOADS_IMAGES."default.jpg";
         $imageFile = $defaultImageFile;
         $pageDynamicContent = '';
-        foreach($content['posts'] as $row) {
+        // foreach($content['posts'] as $row) {
+        //     if (file_exists(DIR_UPLOADS_IMAGES.$row['image']) && !is_dir(DIR_UPLOADS_IMAGES.$row['image'])) {
+        //         $imageFile = DIR_UPLOADS_IMAGES.$row['image'];
+        //     } else {
+        //         $imageFile = $defaultImageFile;
+        //     }
+        //     $date = new \DateTime($row['update_date']);
+        //     $dateString = $date->format('Y-m-d H:i');
+        //     $pageDynamicContent .= '<div class="news-part">
+        //                                 <div class="image-div">
+        //                                     <a href="post/'.$row['url'].'"><img src="'.$imageFile.'" /></a>
+        //                                     <span class="image-caption">'.$row['kategorie'].'</span>
+        //                                 </div>
+        //                                 <div class="main-post-content">
+        //                                     <div class="post-title"><a href="post/'.$row['url'].'"><h3>'.$row['title'].'</h3></a></div>'
+        //                                     .mb_substr($parsedown->text($row['content']), 0, 150).'...
+        //                                     <div class="additional-info">
+        //                                         <span class="post-date">'.$dateString.'</span>
+        //                                         <span class="post-comments"><i class="far fa-comment-alt"></i> 1</span>
+        //                                     </div>
+        //                                     <a class="readmore" href="post/'.$row['url'].'">Czytaj więcej</a>
+        //                                 </div>';
+        //     $pageDynamicContent .= '</div>';
+        // }
+
+        /**
+         * Sprawdzanie czy dane są aktualne? -tak: wczytanie z localstorage, jeśli nie to aktualizacja z serwera
+         */    
+
+        for ($i = count($content['posts'])-1; $i > count($content['posts'])-7; $i--) {
+            $row = $content['posts'][$i];
             if (file_exists(DIR_UPLOADS_IMAGES.$row['image']) && !is_dir(DIR_UPLOADS_IMAGES.$row['image'])) {
                 $imageFile = DIR_UPLOADS_IMAGES.$row['image'];
             } else {
@@ -65,7 +97,7 @@ class PageShowcase extends Page {
             $pageDynamicContent .= '<div class="news-part">
                                         <div class="image-div">
                                             <a href="post/'.$row['url'].'"><img src="'.$imageFile.'" /></a>
-                                            <span class="image-caption">'.$row['kategorie'].'</span>
+                                            
                                         </div>
                                         <div class="main-post-content">
                                             <div class="post-title"><a href="post/'.$row['url'].'"><h3>'.$row['title'].'</h3></a></div>'

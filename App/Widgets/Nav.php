@@ -48,16 +48,15 @@ class Nav extends Widget {
                 </nav>
                 <div class="navbar-launcher-container">
                     <span class="navbar-launcher" onclick="SideNavbar.openNav()"><i class="fas fa-bars" id="navbarLauncher"></i></span>
-                    <div class="search-form-container">
-                        <div class="search-form">
-                            <input class="search-input" type="text" id="search-input">
-                            <button class="search-submit-button" id="search-submit"><i class="fas fa-search"></i></button>
-                        </div>
-                        <div id="search-results"></div>
-                    </div>
                     <div id="google_translate_element"></div>
                 </div>
-                
+                <div class="search-form-container">
+                    <div class="search-form">
+                        <input class="search-input" type="text" id="search-input">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div id="search-results"></div>
+                </div>
             </div>
 HTML;
     }
