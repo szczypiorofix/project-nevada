@@ -371,7 +371,7 @@ HTML;
 
         
         $this->addJSFile(['name' => 'IndexedDB Script', 'path' => 'js/indexeddb.js']);
-        $this->addJS("iDB.init('postsDB', ".json_encode($content).");");
+        //$this->addJS("iDB.init('postsDB', ".json_encode($content).");");
 
 
         $metaData = new \Widgets\MetaData();
