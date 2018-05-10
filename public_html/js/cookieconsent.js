@@ -93,6 +93,6 @@ CookieConsent.check({
     buttonBackgroundColor: '#ff0d5f',
     buttonTextColor: '#eeeeee',
     readMoreText: 'Dowiedz się więcej',
-    readMoreUrl: 'https://www.google.pl'
+    readMoreUrl: 'https://www.cookielaw.org/the-cookie-law/'
 });
 //# sourceMappingURL=cookieconsent.js.map

@@ -78,8 +78,9 @@ function goToTop() {
 })();
 
 
-window.addEventListener("DOMContentLoaded", function() {
 
+window.addEventListener("DOMContentLoaded", function() {
+    
     window.onclick = function(event) {
         if (event.target !== document.getElementById("navbarLauncher")) {
             SideNavbar.closeNav();

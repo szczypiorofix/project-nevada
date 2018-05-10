@@ -82,9 +82,9 @@ class PageShowcase extends Page {
         // }
 
         /**
+         * 
          * Sprawdzanie czy dane są aktualne? -tak: wczytanie z localstorage, jeśli nie to aktualizacja z serwera
          * 
-         * Routing z VUE ???
          */    
 
         //var_dump($content);
@@ -368,6 +368,11 @@ HTML;
         $this->addJSFile(['name' => 'reCAPTCHA script', 'path' => 'https://www.google.com/recaptcha/api.js', 'async' => true, 'defer' => true]);
 
         $this->addJSFile(['name' => 'Service Worker Script', 'path' => 'js/worker.js']);
+
+        
+        $this->addJSFile(['name' => 'IndexedDB Script', 'path' => 'js/indexeddb.js']);
+        $this->addJS("iDB.init('postsDB', ".json_encode($content).");");
+
 
         $metaData = new \Widgets\MetaData();
         $head = $metaData->getBody();
