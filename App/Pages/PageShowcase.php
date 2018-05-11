@@ -140,7 +140,7 @@ class PageShowcase extends Page {
                     </div>
                     <img src="images/avatar.png" alt="My Skills" />
                     <p>Witaj, jestem Piotr.</p>
-                    <p>Programowaniem zacząłem zajmować się już w liceum. Tedy były czasy Turbo Pascala 7.0, BASICa i innych żółwików Logo. Potem nastąpiła u mnie kilkuletnia przerwa w przygodnie z programowaniem jednak jakiś czas temu postanowiłem do tego wrócić. Dlaczego? Bo to uwielbiam. Zwłaszcza gdy włożony wysiłek przynosi zamierzone rezultaty. Wszelkie porażki traktuję jako swego rodzaju lekcję i przestrogę na przyszłość. Wszelkie trudnośći jeszcze bardziej mniej motywują. Żółte komunikaty w konsoli przeglądarki podwajają moją czujność a na czerwone jestem wręcz uczulony.</p>
+                    <p>Programowaniem zacząłem zajmować się już w liceum. Wtedy były czasy Turbo Pascala 7.0, BASICa i innych żółwików Logo. Potem nastąpiła u mnie kilkuletnia przerwa w przygodnie z programowaniem jednak jakiś czas temu postanowiłem do tego wrócić. Dlaczego? Bo to uwielbiam. Zwłaszcza gdy włożony wysiłek przynosi zamierzone rezultaty. Wszelkie porażki traktuję jako swego rodzaju lekcję i przestrogę na przyszłość. Wszelkie trudności jeszcze bardziej mniej motywują. Żółte komunikaty w konsoli przeglądarki podwajają moją czujność a na czerwone jestem wręcz uczulony.</p>
                     <p>Uwielbiam Javę za mocne typowanie, PHP za działanie w ukryciu a JavaScript za szybkie prototypowanie.</p>
                     <p>Chętnie uczę się nowych języków, technik, nowych narzędzi. Uwielbiam API.</p>
                     <div class="skills-button-container">
@@ -357,6 +357,9 @@ HTML;
         
         $this->addCSSFile(['name' => 'Main CSS file', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
+
+        $this->addJS('searchInput("'.\Core\Config::get("BASE_HREF").'");');
+
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'js/jquery/jquery-1.12.4.min.js']);
         
         $this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
@@ -367,11 +370,11 @@ HTML;
 
         $this->addJSFile(['name' => 'reCAPTCHA script', 'path' => 'https://www.google.com/recaptcha/api.js', 'async' => true, 'defer' => true]);
 
-        $this->addJSFile(['name' => 'Service Worker Script', 'path' => 'js/worker.js']);
+        //$this->addJSFile(['name' => 'Service Worker Script', 'path' => 'js/worker.js']);
 
-        
-        $this->addJSFile(['name' => 'IndexedDB Script', 'path' => 'js/indexeddb.js']);
-        $this->addJS("iDB.init('postsDB', ".json_encode($content).");");
+        //$this->addJSFile(['name' => 'IndexedDB Script', 'path' => 'js/indexeddb.js']);
+        //$this->addJSFile(['name' => 'IndexedDB Script', 'path' => 'js/idb.js']);
+        //$this->addJS("iDB.init('postsDB', ".json_encode($content).");");
 
 
         $metaData = new \Widgets\MetaData();

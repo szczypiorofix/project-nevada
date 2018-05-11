@@ -50,22 +50,41 @@ function goToTop() {
 
 
 // Search input function
-(function searchInput() {
+function searchInput(bhref) {
     var si:HTMLInputElement = <HTMLInputElement>document.getElementById('search-input');
     var ss:HTMLElement = document.getElementById('search-submit');
     var sr:HTMLElement = document.getElementById('search-results');
     si.addEventListener('focusout', function(e) {
-        sr.style.display = 'none';
+        setTimeout(function() {
+            sr.style.display = 'none';
+        }, 100);
     });
     si.addEventListener('input', function(event) {
         if (this.value.length >= 3) {
-            sr.style.display = 'block';
+            sr.style.display = 'flex';
+            sr.style.flexDirection = 'column';
             let xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState === 4 && this.status === 200) {
                     let res = JSON.parse(this.response);
-                    console.log(res);
-                    sr.innerHTML = res;
+                    sr.innerHTML = '';
+                    if (res !== null) {
+                        //console.log(res);
+                        let el:HTMLAnchorElement, elText;
+                        for(let i = 0; i < res.posts.length; i++) {
+                            el = document.createElement('a');
+                            elText = document.createTextNode(res.posts[i].title);
+                            el.href = bhref+'post/'+res.posts[i].url;
+                            el.appendChild(elText);
+                            sr.appendChild(el);
+                        }
+                    } else {
+                        let el:HTMLParagraphElement, elText;
+                        el = document.createElement('p');
+                        elText = document.createTextNode('Niczego nie znaleziono...');
+                        el.appendChild(elText);
+                        sr.appendChild(el);
+                    }
                 }
             };
             xmlhttp.open("GET", "lista/szukaj?q="+this.value, true);
@@ -75,8 +94,7 @@ function goToTop() {
             sr.style.display = 'none';
         }
     }, true);
-})();
-
+}
 
 
 window.addEventListener("DOMContentLoaded", function() {

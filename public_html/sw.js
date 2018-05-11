@@ -40,9 +40,10 @@ var CACHE_FILES = [
     'js/markdown.js',
     'js/cookieconsent.js',
 
-    //'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit',
-    //'https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ad1f6633ca8b854',
-    //'https://www.google.com/recaptcha/api.js',
+    'https://www.google.com/recaptcha/api.js',
+    'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit',
+    'https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ad1f6633ca8b854',
+    'https://www.google.com/recaptcha/api.js',
 ];
 
 
@@ -50,8 +51,6 @@ self.addEventListener('install', function (event) {
     event.waitUntil(
         caches.open(CACHE_VERSION)
             .then(function (cache) {
-                console.log('cache addAll:');
-                console.log(cache);
                 return cache.addAll(CACHE_FILES);
             })
     );
@@ -61,8 +60,6 @@ self.addEventListener('activate', function (event) {
     event.waitUntil(
         caches.keys().then(function(keys){
             return Promise.all(keys.map(function(key, i) {
-                console.log('Return keys map');
-                console.log(key + " : " + i);
                 if(key !== CACHE_VERSION) {
                     console.log('Caches delete' + keys[i]);
                     return caches.delete(keys[i]);
@@ -75,8 +72,6 @@ self.addEventListener('activate', function (event) {
 self.addEventListener('fetch', function (event) {
     event.respondWith(
         caches.match(event.request).then(function(res){
-            console.log('caches match:');
-            console.log(res);
             if (res) {                
                 return res;
             }
@@ -88,21 +83,13 @@ self.addEventListener('fetch', function (event) {
 function requestBackend(event){
     var url = event.request.clone();
     return fetch(url).then(function(res){
-        //if not a valid response send the error
-        console.log('fetch url:');
-        console.log(res);
         if(!res || res.status !== 200 || res.type !== 'basic') {
             return res;
         }
-
         var response = res.clone();
-
         caches.open(CACHE_VERSION).then(function(cache){
-            console.log('Cachesz open response:');
-            console.log(response);
             cache.put(event.request, response);
         });
-
         return res;
     })
 }
