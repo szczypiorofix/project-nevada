@@ -15,10 +15,6 @@ use Models\PostAllModel;
  * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
 class PageShowcase extends Page {
-        
-    // public function __toString() {
-    //     return get_class($this);
-    // }
     
     public function defaultmethod($args) {
         
@@ -56,39 +52,6 @@ class PageShowcase extends Page {
         $defaultImageFile = DIR_UPLOADS_IMAGES."default.jpg";
         $imageFile = $defaultImageFile;
         $pageDynamicContent = '';
-        // foreach($content['posts'] as $row) {
-        //     if (file_exists(DIR_UPLOADS_IMAGES.$row['image']) && !is_dir(DIR_UPLOADS_IMAGES.$row['image'])) {
-        //         $imageFile = DIR_UPLOADS_IMAGES.$row['image'];
-        //     } else {
-        //         $imageFile = $defaultImageFile;
-        //     }
-        //     $date = new \DateTime($row['update_date']);
-        //     $dateString = $date->format('Y-m-d H:i');
-        //     $pageDynamicContent .= '<div class="news-part">
-        //                                 <div class="image-div">
-        //                                     <a href="post/'.$row['url'].'"><img src="'.$imageFile.'" /></a>
-        //                                     <span class="image-caption">'.$row['kategorie'].'</span>
-        //                                 </div>
-        //                                 <div class="main-post-content">
-        //                                     <div class="post-title"><a href="post/'.$row['url'].'"><h3>'.$row['title'].'</h3></a></div>'
-        //                                     .mb_substr($parsedown->text($row['content']), 0, 150).'...
-        //                                     <div class="additional-info">
-        //                                         <span class="post-date">'.$dateString.'</span>
-        //                                         <span class="post-comments"><i class="far fa-comment-alt"></i> 1</span>
-        //                                     </div>
-        //                                     <a class="readmore" href="post/'.$row['url'].'">Czytaj więcej</a>
-        //                                 </div>';
-        //     $pageDynamicContent .= '</div>';
-        // }
-
-        /**
-         * 
-         * Sprawdzanie czy dane są aktualne? -tak: wczytanie z localstorage, jeśli nie to aktualizacja z serwera
-         * 
-         */    
-
-        //var_dump($content);
-        //exit();
 
         for ($i = count($content['posts'])-1; $i > count($content['posts'])-7; $i--) {
             $row = $content['posts'][$i];

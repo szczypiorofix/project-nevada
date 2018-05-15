@@ -99,6 +99,9 @@ function showNotification(n) {
     }, 3000);
 }
 window.addEventListener("DOMContentLoaded", function () {
+    console.log(navigator.language);
+    if (window.navigator.language != 'pl-PL') {
+    }
     window.onclick = function (event) {
         if (event.target !== document.getElementById("navbarLauncher")) {
             SideNavbar.closeNav();

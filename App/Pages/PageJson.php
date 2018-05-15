@@ -9,7 +9,7 @@
 
 namespace Pages;
 
-use Models\PostListModel;
+use Models\PostAllModel;
 
 /**
  * Page that returns JSON data
@@ -28,9 +28,7 @@ class PageJson extends \Core\ModelClasses\Page {
             $fex->showError();
         }
         
-        $this->db = $dbConnection->getDB();
-        
-        $postList = new PostListModel(PostListModel::TYPE_ID_SORT, $dbConnection, 0, 0);
+        $postList = new PostAllModel($dbConnection);
         
         header('Content-Type: application/json');
         echo json_encode($postList->getContent());
