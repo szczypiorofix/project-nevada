@@ -60,18 +60,7 @@ class DefaultPage extends Page {
     }
 
     public function defaultmethod($args) {
-        
-        if (!isset($args[0])) {
-            $type = 'list';
-        } else {
-            $type = $args[0];
-        }
-        if (!isset($args[1])) {
-            $pages = 0;
-        } else {
-            $pages = intval($args[1]);
-        }
-        
+                
         // $this->AllData -> wybór tylko tych danych, które nas interesują.
         //echo __FUNCTION__.'<br>';
         //var_dump($this->allData);
@@ -318,7 +307,7 @@ class DefaultPage extends Page {
                     <h3>czyli co w kodzie piszczy...</h3>
                 </div>
                 <div class="news-container">
-                    <div class="news-part" id="postContent">
+                    <div id="postContent">
                     </div>
                 </div>
                 <div class="all-posts">

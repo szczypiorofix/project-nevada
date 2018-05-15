@@ -34,8 +34,12 @@ class AppCore {
         //var_dump($url);
         
         $maintenance = intval(\Core\Config::get('MAINTENANCE'));
+        if ($url[0] == 'json') {
+            $class = "PageJson";
+        } else {
+            $class = self::DEFAULT_CLASS;
+        }
         
-        $class = self::DEFAULT_CLASS;
 
         $className = "\Pages\\".$class;
         $page = new $className();
