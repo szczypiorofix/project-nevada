@@ -40,10 +40,10 @@ var CACHE_FILES = [
     'js/markdown.js',
     'js/cookieconsent.js',
 
-    'https://www.google.com/recaptcha/api.js',
-    'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit',
-    'https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ad1f6633ca8b854',
-    'https://www.google.com/recaptcha/api.js',
+    // 'https://www.google.com/recaptcha/api.js',
+    // 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit',
+    // 'https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ad1f6633ca8b854',
+    // 'https://www.google.com/recaptcha/api.js',
 ];
 
 

@@ -134,7 +134,7 @@ var countDownToNumer = (function(e) {
     };
 })();
 
-var el = document.getElementById("numbers");
+var el = document.getElementById("liczby");
 
 window.onscroll = function() {
     if ( document.body.scrollTop > (el.offsetTop - el.offsetHeight - 300) || document.documentElement.scrollTop > (el.offsetTop - el.offsetHeight - 300)) {

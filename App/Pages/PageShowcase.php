@@ -134,7 +134,7 @@ class PageShowcase extends Page {
     <main class="content-maindiv">
         <section class="myskills">
             <div class="container">
-                <div class="left-side" id="aboutMe">
+                <div class="left-side" id="omnie">
                     <div class="title">
                         <h1>Kilka słów o mnie</h1>
                     </div>
@@ -150,7 +150,7 @@ class PageShowcase extends Page {
                     <!-- Go to www.addthis.com/dashboard to customize your tools -->
                     <div class="addthis_inline_follow_toolbox"></div>
                 </div>
-                <div class="right-side" id="mySkills">
+                <div class="right-side" id="umiejetnosci">
                     <div class="title">
                         <h1>Umiejętności</h1>
                     </div>
@@ -202,7 +202,7 @@ class PageShowcase extends Page {
                 </div>
             </div>
         </section>
-        <section class="whatIDo" id="whatIDo">
+        <section class="whatIDo" id="corobie">
             <div class="container">
                 <div class="title">
                     <h1>Co ja robię</h1>
@@ -242,7 +242,7 @@ class PageShowcase extends Page {
                 </div>
             </div>
         </section>
-        <section class="numbers" id="numbers">
+        <section class="numbers" id="liczby">
             <div class="bg"></div>
             <div class="container">
                 <div class="numbers-container">
@@ -311,7 +311,7 @@ class PageShowcase extends Page {
                 </div>
             </div>
         </section>
-        <section class="news" id="news">
+        <section class="news" id="informacje">
             <div class="container">
                 <div class="title">
                     <h1>Najnowsze informacje</h1>
@@ -325,7 +325,7 @@ class PageShowcase extends Page {
                 </div>
             </div>
         </section>
-        <section class="contact" id="contact">
+        <section class="contact" id="kontakt">
             <div class="title">
                 <h1>Kontakt</h1>
             </div>

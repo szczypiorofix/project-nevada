@@ -30,13 +30,13 @@ class Nav extends Widget {
                     <ul>
                         <li><a href="javascript:void(0)" class="closebtn" onclick="SideNavbar.closeNav()"><i class="fas fa-times"></i></a></li>
                         <li><a href="{$baseHref}" class="scroll-btn">Strona główna</a></li>
-                        <li><a href="{$baseHref}#aboutMe" class="scroll-btn">O mnie</a></li>
-                        <li><a href="{$baseHref}#mySkills" class="scroll-btn">Umiejętności</a></li>
-                        <li><a href="{$baseHref}#whatIDo" class="scroll-btn">Co ja robię</a></li>
-                        <li><a href="{$baseHref}#numbers" class="scroll-btn">Liczby</a></li>
+                        <li><a href="{$baseHref}#omnie" class="scroll-btn">O mnie</a></li>
+                        <li><a href="{$baseHref}#umiejetnosci" class="scroll-btn">Umiejętności</a></li>
+                        <li><a href="{$baseHref}#corobie" class="scroll-btn">Co ja robię</a></li>
+                        <li><a href="{$baseHref}#liczby" class="scroll-btn">Liczby</a></li>
                         <li><a href="{$baseHref}#portfolio" class="scroll-btn">Portfolio</a></li>
-                        <li><a href="{$baseHref}#news" class="scroll-btn">Informacje</a></li>
-                        <li><a href="{$baseHref}#contact" class="scroll-btn">Kontakt</a></li>
+                        <li><a href="{$baseHref}#informacje" class="scroll-btn">Informacje</a></li>
+                        <li><a href="{$baseHref}#kontakt" class="scroll-btn">Kontakt</a></li>
                     </ul>
                     <div class="socialmedia-div">
                         <a href="https://www.facebook.com/szczypiorofix/" target="_blank" title="Facebook" class="fab fa-facebook-f"></a>
