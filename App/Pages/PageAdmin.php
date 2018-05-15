@@ -139,9 +139,6 @@ HTML;
         </main>
         {$ctaButton->getBody()}
         {$footer->getBody()}
-        <div id="notificationsPanel">
-            <span id="notificationsContent"></span>
-        </div>
     </div>
 HTML;
         $this->setBody($body);
@@ -297,9 +294,6 @@ HTML;
         </main>
         {$ctaButton->getBody()}
         {$footer->getBody()}
-        <div id="notificationsPanel">
-            <span id="notificationsContent"></span>
-        </div>
     </div>
 HTML;
         $this->setBody($body);
@@ -602,9 +596,6 @@ HTML;
         </main>
         {$ctaButton->getBody()}
         {$footer->getBody()}
-        <div id="notificationsPanel">
-            <span id="notificationsContent"></span>
-        </div>
     </div>
 HTML;
         $this->setBody($body);
@@ -776,9 +767,6 @@ HTML;
         </main>
         {$ctaButton->getBody()}
         {$footer->getBody()}
-        <div id="notificationsPanel">
-            <span id="notificationsContent"></span>
-        </div>
     </div>
 HTML;
         $this->setBody($body);

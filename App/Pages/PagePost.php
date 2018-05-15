@@ -219,9 +219,6 @@ class PagePost extends Page {
         </main>
         {$ctaButton->getBody()}
         {$footer->getBody()}
-        <div id="notificationsPanel">
-            <span id="notificationsContent"></span>
-        </div>
     </div>
 HTML;
         

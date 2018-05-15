@@ -286,12 +286,10 @@ function savePost() {
     $(document).keydown(function(e) {
         var key = undefined;
         var possible = [e.key, e.keyIdentifier, e.keyCode, e.which];
-        while (key === undefined && possible.length > 0)
-        {
+        while (key === undefined && possible.length > 0) {
             key = possible.pop();
         }
-        if (key && (key == '115' || key == '83' ) && (e.ctrlKey || e.metaKey) && !(e.altKey))
-        {
+        if (key && (key == '115' || key == '83' ) && (e.ctrlKey || e.metaKey) && !(e.altKey)) {
             e.preventDefault();
             savePost();
             return false;
@@ -314,14 +312,4 @@ function makeBackup(b) {
     };
     xhttp.open("GET", "Admin/backup", true);
     xhttp.send();
-}
-
-function showNotification(n) {
-    let notificationsPanel = document.getElementById("notificationsPanel");
-    let notificationsContent = document.getElementById("notificationsContent");
-    notificationsContent.innerHTML = n;
-    notificationsPanel.className = "show";
-    setTimeout(function() {
-        notificationsPanel.className = notificationsPanel.className.replace("show", "");
-    }, 3000);
 }

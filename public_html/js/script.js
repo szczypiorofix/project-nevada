@@ -61,7 +61,7 @@ function searchInput(bhref) {
                     let res = JSON.parse(this.response);
                     sr.innerHTML = '';
                     if (res !== null) {
-                        console.log(res);
+                        //console.log(res);
                         let el, elText;
                         for (let i = 0; i < res.posts.length; i++) {
                             el = document.createElement('a');
@@ -88,6 +88,15 @@ function searchInput(bhref) {
             sr.style.display = 'none';
         }
     }, true);
+}
+function showNotification(n) {
+    let notificationsPanel = document.getElementById("notificationsPanel");
+    let notificationsContent = document.getElementById("notificationsContent");
+    notificationsContent.innerHTML = n;
+    notificationsPanel.className = "show";
+    setTimeout(function () {
+        notificationsPanel.className = notificationsPanel.className.replace("show", "");
+    }, 3000);
 }
 window.addEventListener("DOMContentLoaded", function () {
     window.onclick = function (event) {

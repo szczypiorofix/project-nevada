@@ -404,9 +404,6 @@ HTML;
         {$pageContent}
         {$ctaButton->getBody()}
         {$footer->getBody()}
-        <div id="notificationsPanel">
-            <span id="notificationsContent"></span>
-        </div>
     </div>
 HTML;
         

@@ -96,6 +96,16 @@ function searchInput(bhref) {
     }, true);
 }
 
+function showNotification(n:string) {
+    let notificationsPanel:HTMLElement = document.getElementById("notificationsPanel");
+    let notificationsContent:HTMLSpanElement = document.getElementById("notificationsContent");
+    notificationsContent.innerHTML = n;
+    notificationsPanel.className = "show";
+    setTimeout(function() {
+        notificationsPanel.className = notificationsPanel.className.replace("show", "");
+    }, 3000);
+}
+
 
 window.addEventListener("DOMContentLoaded", function() {
     
