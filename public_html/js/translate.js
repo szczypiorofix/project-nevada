@@ -7,7 +7,6 @@
  * 
  */
 
-
 function googleTranslateElementInit() {    
     new google.translate.TranslateElement({pageLanguage: 'pl'}, 'google_translate_element');
 };

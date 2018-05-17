@@ -1,10 +1,6 @@
 declare var showdown:any;
 
-class DefaultContent {
-
-    public constructor() {
-        this.start();
-    }
+class PageContent {
 
     // PROMISE-FRIENDLY
     // private async connect() {
@@ -21,12 +17,28 @@ class DefaultContent {
     //     });
     // }
 
-    private async start() {
-        let r = await fetch('json');
-        this.showContent(await r.json());
+    private static listOf6:number = 0;
+    private static singlePost:number = 1;
+
+
+    public static showDefaultList() {
+        this.start(this.listOf6);
     }
 
-    private async parseCategories(data, id) {
+    private static async start(mode:number) {
+        let r = await fetch('json');
+        switch (mode) {
+            case this.singlePost: {
+
+            }
+            default: {
+                this.showListOfPosts(await r.json());
+                break;
+            }
+        }
+    }
+
+    private static async getCategoryName(data, id) {
         for (let i = 0; i < data['post_categories'].length; i++) {
             if (data['post_categories'][i]['postid'] == id) {
                 for (let j = 0; j < data['categories'].length; j++) {
@@ -39,13 +51,27 @@ class DefaultContent {
         return 'error';
     }
 
+    private static async getTagsName(data, id) {
+        let tag:string = '';
+        for (let i = 0; i < data['post_tags'].length; i++) {
+            if (data['post_tags'][i]['postid'] == id) {
+                for (let j = 0; j < data['tags'].length; j++) {
+                    if (data['tags'][j]['id'] == data['post_tags'][i]['tagid']) {
+                        tag += data['tags'][j]['name']+', ';
+                    }
+                }
+            }
+        }
+        return tag.substr(0, tag.length-2);
+    }
+
     private async parseData(d) {
         // Zmiana danych
         // d['categories'] = [1,2,3,4];
         return d;
     }
 
-    private async showContent(data) {        
+    private static async showListOfPosts(data) {        
         let r = document.getElementById("postContent");
         for (let i = data['posts'].length-1; i > data['posts'].length - 7; i--) {
             let divNewsPart = document.createElement('div');
@@ -82,7 +108,10 @@ class DefaultContent {
 
             let categorySpan = document.createElement('span');
             categorySpan.className = 'image-caption';
-            categorySpan.innerHTML = await this.parseCategories(data, data['posts'][i]['id']);
+            categorySpan.innerHTML = await this.getCategoryName(data, data['posts'][i]['id']);
+            
+            let s = await this.getTagsName(data, data['posts'][i]['id']);
+            console.log(await s);
 
             postLink.appendChild(postThumbnail);
             imageDiv.appendChild(postLink);
@@ -109,7 +138,7 @@ class DefaultContent {
             let converter = new showdown.Converter({simpleLineBreaks: true});
             let postContent:string = converter.makeHtml(data['posts'][i]['content']);
             let postContetnDiv = document.createElement('p');
-            postContetnDiv.innerHTML = postContent.substr(0, 225)+"...";
+            postContetnDiv.innerHTML = postContent.substr(0, 180)+"...";
             mainPostContent.appendChild(postContetnDiv);
             mainPostContent.appendChild(additionalInfo);
             mainPostContent.appendChild(readMore);
@@ -121,5 +150,3 @@ class DefaultContent {
         }
     }
 }
-
-var defaultContent = new DefaultContent();

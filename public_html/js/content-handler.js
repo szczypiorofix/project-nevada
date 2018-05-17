@@ -6,30 +6,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-class DefaultContent {
-    constructor() {
-        this.start();
+class PageContent {
+    static showDefaultList() {
+        this.start(this.listOf6);
     }
-    // private async connect() {
-    //     return new Promise(resolve => {
-    //         let xmlhttp = new XMLHttpRequest();
-    //         xmlhttp.onreadystatechange = function() {
-    //             if (this.readyState === 4 && this.status === 200) {
-    //                 resolve(this.response);
-    //             }
-    //         };
-    //         xmlhttp.open("GET", "json", true);
-    //         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    //         xmlhttp.send();
-    //     });
-    // }
-    start() {
+    static start(mode) {
         return __awaiter(this, void 0, void 0, function* () {
             let r = yield fetch('json');
-            this.showContent(yield r.json());
+            switch (mode) {
+                case this.singlePost: {
+                }
+                default: {
+                    this.showListOfPosts(yield r.json());
+                    break;
+                }
+            }
         });
     }
-    parseCategories(data, id) {
+    static getCategoryName(data, id) {
         return __awaiter(this, void 0, void 0, function* () {
             for (let i = 0; i < data['post_categories'].length; i++) {
                 if (data['post_categories'][i]['postid'] == id) {
@@ -43,6 +37,21 @@ class DefaultContent {
             return 'error';
         });
     }
+    static getTagsName(data, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let tag = '';
+            for (let i = 0; i < data['post_tags'].length; i++) {
+                if (data['post_tags'][i]['postid'] == id) {
+                    for (let j = 0; j < data['tags'].length; j++) {
+                        if (data['tags'][j]['id'] == data['post_tags'][i]['tagid']) {
+                            tag += data['tags'][j]['name'] + ', ';
+                        }
+                    }
+                }
+            }
+            return tag.substr(0, tag.length - 2);
+        });
+    }
     parseData(d) {
         return __awaiter(this, void 0, void 0, function* () {
             // Zmiana danych
@@ -50,9 +59,8 @@ class DefaultContent {
             return d;
         });
     }
-    showContent(data) {
+    static showListOfPosts(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            //data = await this.parseData(data);
             let r = document.getElementById("postContent");
             for (let i = data['posts'].length - 1; i > data['posts'].length - 7; i--) {
                 let divNewsPart = document.createElement('div');
@@ -81,7 +89,9 @@ class DefaultContent {
                 postThumbnail.src = "uploads/images/" + data['posts'][i]['image'];
                 let categorySpan = document.createElement('span');
                 categorySpan.className = 'image-caption';
-                categorySpan.innerHTML = yield this.parseCategories(data, data['posts'][i]['id']);
+                categorySpan.innerHTML = yield this.getCategoryName(data, data['posts'][i]['id']);
+                let s = yield this.getTagsName(data, data['posts'][i]['id']);
+                console.log(yield s);
                 postLink.appendChild(postThumbnail);
                 imageDiv.appendChild(postLink);
                 imageDiv.appendChild(categorySpan);
@@ -101,7 +111,7 @@ class DefaultContent {
                 let converter = new showdown.Converter({ simpleLineBreaks: true });
                 let postContent = converter.makeHtml(data['posts'][i]['content']);
                 let postContetnDiv = document.createElement('p');
-                postContetnDiv.innerHTML = postContent.substr(0, 220) + "...";
+                postContetnDiv.innerHTML = postContent.substr(0, 180) + "...";
                 mainPostContent.appendChild(postContetnDiv);
                 mainPostContent.appendChild(additionalInfo);
                 mainPostContent.appendChild(readMore);
@@ -112,5 +122,20 @@ class DefaultContent {
         });
     }
 }
-var defaultContent = new DefaultContent();
+// PROMISE-FRIENDLY
+// private async connect() {
+//     return new Promise(resolve => {
+//         let xmlhttp = new XMLHttpRequest();
+//         xmlhttp.onreadystatechange = function() {
+//             if (this.readyState === 4 && this.status === 200) {
+//                 resolve(this.response);
+//             }
+//         };
+//         xmlhttp.open("GET", "json", true);
+//         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+//         xmlhttp.send();
+//     });
+// }
+PageContent.listOf6 = 0;
+PageContent.singlePost = 1;
 //# sourceMappingURL=content-handler.js.map
