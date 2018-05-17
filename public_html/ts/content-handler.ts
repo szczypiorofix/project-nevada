@@ -6,6 +6,7 @@ class DefaultContent {
         this.start();
     }
 
+    // PROMISE-FRIENDLY
     // private async connect() {
     //     return new Promise(resolve => {
     //         let xmlhttp = new XMLHttpRequest();
@@ -44,9 +45,7 @@ class DefaultContent {
         return d;
     }
 
-    private async showContent(data) {
-        //data = await this.parseData(data);
-        
+    private async showContent(data) {        
         let r = document.getElementById("postContent");
         for (let i = data['posts'].length-1; i > data['posts'].length - 7; i--) {
             let divNewsPart = document.createElement('div');
@@ -110,7 +109,7 @@ class DefaultContent {
             let converter = new showdown.Converter({simpleLineBreaks: true});
             let postContent:string = converter.makeHtml(data['posts'][i]['content']);
             let postContetnDiv = document.createElement('p');
-            postContetnDiv.innerHTML = postContent.substr(0, 220)+"...";
+            postContetnDiv.innerHTML = postContent.substr(0, 225)+"...";
             mainPostContent.appendChild(postContetnDiv);
             mainPostContent.appendChild(additionalInfo);
             mainPostContent.appendChild(readMore);
