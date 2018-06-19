@@ -66,10 +66,10 @@ function searchInput(bhref) {
             let xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState === 4 && this.status === 200) {
-                    //console.log(this.response);
                     let res = JSON.parse(this.response);
                     sr.innerHTML = '';
                     if (res !== null) {
+                        //console.log(res);
                         let el:HTMLAnchorElement, elText;
                         for(let i = 0; i < res.posts.length; i++) {
                             el = document.createElement('a');
@@ -108,10 +108,10 @@ function showNotification(n:string) {
 
 
 window.addEventListener("DOMContentLoaded", function() {
-    // console.log(navigator.language);
-    // if (window.navigator.language != 'pl-PL') {       
+    //console.log(navigator.language);
+    if (window.navigator.language != 'pl-PL') {       
         
-    // }
+    }
     window.onclick = function(event) {
         if (event.target !== document.getElementById("navbarLauncher")) {
             SideNavbar.closeNav();

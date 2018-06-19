@@ -15,6 +15,15 @@ use Models\PostAllModel;
  * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
 class PageShowcase extends Page {
+        
+    // public function __toString() {
+    //     return get_class($this);
+    // }
+
+    public function dupa($args) {
+        echo 'OK!';
+        exit;
+    }
     
     public function defaultmethod($args) {
         

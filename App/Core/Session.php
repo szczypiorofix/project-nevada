@@ -1,18 +1,9 @@
 <?php
-/*
- * The MIT License
- *
- * Copyright 2018 Piotr Wróblewski.
- *
- */
+
 namespace Core;
 
 use PDO;
-/**
- * This is Session class.
- *
- * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
- */
+
 class Session {
     
     private static $session = false;
@@ -73,6 +64,17 @@ class Session {
     }
 
     public static function encryptIt($p) {
+        /**
+         * ARGONIANIN MUSI CZEKAĆ ...
+         */
+        /*
+        $options = [
+            'memory_cost' => 2048,
+            'time_cost' => 4,
+            'threads' => 3
+        ];
+        return password_hash($p, PASSWORD_ARGON2I, $options);
+        */
         $options = [
             'cost' => 11
         ];
