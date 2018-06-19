@@ -8,151 +8,139 @@
 namespace Pages;
 
 use Core\ModelClasses\Page;
-use Models\PostAllModel;
+use Models\PostListModel, Models\PostModel;
 /**
  * This is showcase of Page
  *
  * @author Piotr Wróblewski <poczta@wroblewskipiotr.pl>
  */
 class DefaultPage extends Page {
-    
-    private $allData = [];
 
 
     public function __construct() {
-        $this->allData = $this->getAllDataFromDatabase();
+        $this->dbConnection = \Core\DBConnection::getInstance();
     }
 
-    private function getAllDataFromDatabase() {
-        $dbConnection = \Core\DBConnection::getInstance();
-        $postListModel = new PostAllModel($dbConnection);
-
-        // WRZUCENIE WSZYSTKICH DANYCH DO IndexedDB
-        // Sprawdzanie danych w IndexedDB - 1) aktualne? - wyświetlanie, 2) nieaktualne lub brak - pobieranie
-        // sprawdzanie, czy dane są i czy są aktualne (sprawdzanie wersji danych?)
-        // to pobieranie nowych do IndexedDB i do zwrotu do klasy
-
-        return $postListModel->getContent();
-    }
 
     public function post($args) {
         if (!isset($args[0])) {
             $input = '';
-         } else {
+        } else {
             $input = $args[0];
-         }
-         
-         
-         //var_dump($content);
+        }
                  
-        //  $pageContent = '';
-        //  $defaultImageFile = DIR_UPLOADS_IMAGES."default.jpg";
-        //  $imageFile = $defaultImageFile;
-        //  $postContent = null;
-        //  if (is_array($content) || !is_null($content)) {
-        //     if (file_exists(DIR_UPLOADS_IMAGES.$content['image']) && !is_dir(DIR_UPLOADS_IMAGES.$content['image'])) {
-        //         $imageFile = DIR_UPLOADS_IMAGES.$content['image'];
-        //     } else {
-        //         $imageFile = $defaultImageFile;
-        //     }
-        //     $date = new \DateTime($content['update_date']);
-        //     $dateString = $date->format('Y-m-d H:i');
+        $postModel = new PostModel($this->dbConnection, $input);
+        $content = $postModel->getContent();
+        //var_dump($content);
+        //exit;
+        $pageDynamicContent = '';
+        $pageContent = '';
+        $defaultImageFile = DIR_UPLOADS_IMAGES."default.jpg";
+        $imageFile = $defaultImageFile;
+        $postContent = null;
+        if (is_array($content) || !is_null($content)) {
+            if (file_exists(DIR_UPLOADS_IMAGES.$content['image']) && !is_dir(DIR_UPLOADS_IMAGES.$content['image'])) {
+                $imageFile = DIR_UPLOADS_IMAGES.$content['image'];
+            } else {
+                $imageFile = $defaultImageFile;
+            }
+            $date = new \DateTime($content['update_date']);
+            $dateString = $date->format('Y-m-d H:i');
 
-        //     $tagsOfPost = explode(',', $content['tagi']);
-        //     $taglist = '';
-        //     foreach($tagsOfPost as $tags) {
-        //         $taglist .= '<a href="lista/tag/'.$tags.'">'.$tags.'</a>, ';
-        //     }
-        //     // USUNIĘCIE OSATNIEGO PRZECINKA Z LISTY TAGÓW
-        //     $taglist = rtrim($taglist,", ");
+            $tagsOfPost = explode(',', $content['tagi']);
+            $taglist = '';
+            foreach($tagsOfPost as $tags) {
+                $taglist .= '<a href="lista/tag/'.$tags.'">'.$tags.'</a>, ';
+            }
+            // USUNIĘCIE OSATNIEGO PRZECINKA Z LISTY TAGÓW
+            $taglist = rtrim($taglist,", ");
             
-        //     //$actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-        //     $actual_link = $this->getCurrentUrl();
+            $actual_link = $this->getCurrentUrl();
             
-        //     /**
-        //      * https://github.com/erusev/parsedown
-        //      */
-        //     $parsedown = new \Parsedown();
+            /**
+             * https://github.com/erusev/parsedown
+             */
+            $parsedown = new \Parsedown();
 
-        //     $postContent = $parsedown->text($content['content']);
-        //     //var_dump($postContent);
-        //     $pageContent .= 
-        //         '<section class="post-content">
-        //             <div class="post-title">
-        //                 <h1>'.$content['title'].'</h1>
-        //             </div>
-        //             <div class="post-date">
-        //                 <p>'.$dateString.'</p>
-        //             </div>
-        //             <div class="post-image">
-        //                 <img id="imageModalSrc" src="'.$imageFile.'" alt="'.$content['image_description'].'" />
-        //                 <div id="imageModalDiv" class="modal">
-        //                     <span class="close" id="imageModalClose">&times;</span>
-        //                     <img class="modal-content" id="imageModalDest">
-        //                     <div id="imageModalCaption"></div>
-        //                 </div>
-        //             </div>
-        //             <div class="post-content"
-        //                 <p>'.$postContent.'</p>
-        //             </div>
-        //             <div class="additional">
-        //                 <div class="post-categories">
-        //                     <p><strong><i class="fas fa-folder-open"></i></strong>: <a href="lista/kategoria/'.$content['kategorie'].'">'.$content['kategorie'].'</a></p>
-        //                 </div>
-        //                 <div class="post-tags">
-        //                     <p><strong><i class="fas fa-tags"></i></strong>: '.$taglist.'</p>
-        //                 </div>
-        //                 <div class="pdf-container">
-        //                     <a href="post/'.strtolower($content['url']).'/pdf" title="Pobierz ten artykuł jako plik PDF">Pobierz <i class="far fa-file-pdf"></i></a>
-        //                 </div>
-        //             </div>
-        //             <div class="add-this-container">
-        //                 <div class="addthis_inline_share_toolbox"></div>
-        //             </div>
-        //             <div class="disqus-container">
-        //                 <div id="disqus_thread"></div>
-        //                 <script>
-        //                 /**
-        //                 *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-        //                 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-        //                 /*
-        //                 var disqus_config = function () {
-        //                     this.page.url = '.$actual_link.';  // Replace PAGE_URL with your pages canonical URL variable
-        //                     this.page.identifier = '.$content['id'].'; // Replace PAGE_IDENTIFIER with your pages unique identifier variable
-        //                 };
-        //                 */
-        //                 (function() { // DONT EDIT BELOW THIS LINE
-        //                     var d = document, s = d.createElement("script");
-        //                     s.src = "https://wroblewskipiotr.disqus.com/embed.js";
-        //                     s.setAttribute("data-timestamp", +new Date());
-        //                     (d.head || d.body).appendChild(s);
-        //                 })();
-        //                 </script>
-        //                 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        //             </div>
-        //         </section>';
-        //         if (isset($args[1])) {
-        //             if ($args[1] === 'pdf') {
-        //                 \Core\PDFCreator::make('<img src="'.$imageFile.'" alt="'.$content['image_description'].'" />'.$postContent, $content['title']);
-        //             }
-        //         }         
-        // } else {
-        //     $pageContent = '<section class="post-content">
-        //         <div class="post-not-found">
-        //             <h1 class="post-title">404<h1>
-        //             <h3 class="post-title">NIE ZNALEZIONO POSTU !!!</h3>
-        //         </div>
-        //     </section>';
-        // }
+            $postContent = $parsedown->text($content['content']);
+
+            //var_dump($postContent);
+            
+            $pageContent .= 
+                '<section class="post-content">
+                    <div class="post-title">
+                        <h1>'.$content['title'].'</h1>
+                    </div>
+                    <div class="post-date">
+                        <p>'.$dateString.'</p>
+                    </div>
+                    <div class="post-image">
+                        <img id="imageModalSrc" src="'.$imageFile.'" alt="'.$content['image_description'].'" />
+                        <div id="imageModalDiv" class="modal">
+                            <span class="close" id="imageModalClose">&times;</span>
+                            <img class="modal-content" id="imageModalDest">
+                            <div id="imageModalCaption"></div>
+                        </div>
+                    </div>
+                    <div class="post-content"
+                        <p>'.$postContent.'</p>
+                    </div>
+                    <div class="additional">
+                        <div class="post-categories">
+                            <p><strong><i class="fas fa-folder-open"></i></strong>: <a href="lista/kategoria/'.$content['kategorie'].'">'.$content['kategorie'].'</a></p>
+                        </div>
+                        <div class="post-tags">
+                            <p><strong><i class="fas fa-tags"></i></strong>: '.$taglist.'</p>
+                        </div>
+                        <div class="pdf-container">
+                            <a href="post/'.strtolower($content['url']).'/pdf" title="Pobierz ten artykuł jako plik PDF">Pobierz <i class="far fa-file-pdf"></i></a>
+                        </div>
+                    </div>
+                    <div class="add-this-container">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
+                    <div class="disqus-container">
+                        <div id="disqus_thread"></div>
+                        <script>
+                        /**
+                        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                        /*
+                        var disqus_config = function () {
+                            this.page.url = '.$actual_link.';  // Replace PAGE_URL with your pages canonical URL variable
+                            this.page.identifier = '.$content['id'].'; // Replace PAGE_IDENTIFIER with your pages unique identifier variable
+                        };
+                        */
+                        (function() { // DONT EDIT BELOW THIS LINE
+                            var d = document, s = d.createElement("script");
+                            s.src = "https://wroblewskipiotr.disqus.com/embed.js";
+                            s.setAttribute("data-timestamp", +new Date());
+                            (d.head || d.body).appendChild(s);
+                        })();
+                        </script>
+                        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                    </div>
+                </section>';
+                if (isset($args[1])) {
+                    if ($args[1] === 'pdf') {
+                        \Core\PDFCreator::make('<img src="'.$imageFile.'" alt="'.$content['image_description'].'" />'.$postContent, $content['title']);
+                    }
+                }         
+        } else {
+            $pageContent = '<section class="post-content">
+                <div class="post-not-found">
+                    <h1 class="post-title">404<h1>
+                    <h3 class="post-title">NIE ZNALEZIONO POSTU !!!</h3>
+                </div>
+            </section>';
+        }
         $this->addCSSFile(['name' => 'Main CSS file', 'path' => 'css/style.css']);
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'js/jquery/jquery-1.12.4.min.js']);
         $this->addJSFile(['name' => 'Google Translate Script', 'path' => 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit', 'versioning' => false, 'async' => false]);
         $this->addJSFile(['name' => 'Google Translate Script Starter', 'path' => 'js/translate.js']);
         $this->addJSFile(['name' => 'AddThis Script', 'path' => '//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ad1f6633ca8b854"']);
-
-        $this->addJSFile(['name' => 'Content Handler Script', 'path' => 'js/content-handler.js']);
-        $this->addJS("PageContent.showDefaultList();");
+        $this->addJSFile(['name' => 'Showdown markdown parser JS', 'path' => 'js/showdown/showdown.min.js']);
 
         // image modal script
         $this->addJS('
@@ -199,7 +187,7 @@ class DefaultPage extends Page {
         $header = new \Widgets\Header();
         $header->addBody($navbar->getBody().$logo->getBody());
         $footer = new \Widgets\Footer();
-        $sideBar = new \Widgets\Aside($dbConnection);
+        $sideBar = new \Widgets\Aside($this->dbConnection);
         $ctaButton = new \Widgets\CTAButton();
 
         $body =
@@ -224,33 +212,16 @@ HTML;
 
     public function admin($args) {
         echo __FUNCTION__.'<br>';
-        var_dump($this->allData);
         exit();
     }
 
     public function lista($args) {
         echo __FUNCTION__.'<br>';
-        var_dump($this->allData);
-        exit();
-    }
-
-    public function test($args) {
-        echo __FUNCTION__.'<br>';
-        var_dump($this->allData);
         exit();
     }
 
     public function defaultmethod($args) {
-                
-        // $this->AllData -> wybór tylko tych danych, które nas interesują.
-        //echo __FUNCTION__.'<br>';
-        //var_dump($this->allData);
-        //exit();
-        
-        // if (is_null($content)) {
-        //     $content = ['posts' => []];
-        // }
- 
+  
         /**
          * https://github.com/erusev/parsedown
         */
@@ -258,44 +229,40 @@ HTML;
         
         $defaultImageFile = DIR_UPLOADS_IMAGES."default.jpg";
         $imageFile = $defaultImageFile;
+
+        //$dbConnection = \Core\DBConnection::getInstance();
+        $postModel = new PostListModel(PostListModel::TYPE_ID_SORT, $this->dbConnection, 0, 0);
+        $content = $postModel->getContent();
+        //var_dump($content);
+        //exit;
         $pageDynamicContent = '';
 
-        // for ($i = count($content['posts'])-1; $i > count($content['posts'])-7; $i--) {
-        //     $row = $content['posts'][$i];
-        //     $kategoria = "";
-            
-        //     for ($a = 0; $a < count($content['categories']); $a++) {
-        //         for ($j = 0; $j < count($content['post_categories']); $j++) {
-        //             if ($content['categories'][$a]['id'] === $content['post_categories'][$j]['categoryid']
-        //             && $content['posts'][$i]['id'] == $content['post_categories'][$j]['id']) {
-        //                 $kategoria = $content['categories'][$a]['name'];
-        //             }
-        //         }
-        //     }
+        for ($i = 0; $i < count($content['posts']); $i++) {
+            $row = $content['posts'][$i];
 
-        //     if (file_exists(DIR_UPLOADS_IMAGES.$row['image']) && !is_dir(DIR_UPLOADS_IMAGES.$row['image'])) {
-        //         $imageFile = DIR_UPLOADS_IMAGES.$row['image'];
-        //     } else {
-        //         $imageFile = $defaultImageFile;
-        //     }
-        //     $date = new \DateTime($row['update_date']);
-        //     $dateString = $date->format('Y-m-d H:i');
-        //     $pageDynamicContent .= '<div class="news-part">
-        //                                 <div class="image-div">
-        //                                     <a href="post/'.$row['url'].'"><img src="'.$imageFile.'" /></a>
-        //                                     <span class="image-caption">'.$kategoria.'</span>
-        //                                 </div>
-        //                                 <div class="main-post-content">
-        //                                     <div class="post-title"><a href="post/'.$row['url'].'"><h3>'.$row['title'].'</h3></a></div>'
-        //                                     .mb_substr($parsedown->text($row['content']), 0, 150).'...
-        //                                     <div class="additional-info">
-        //                                         <span class="post-date">'.$dateString.'</span>
-        //                                         <span class="post-comments"><i class="far fa-comment-alt"></i> 1</span>
-        //                                     </div>
-        //                                     <a class="readmore" href="post/'.$row['url'].'">Czytaj więcej</a>
-        //                                 </div>';
-        //     $pageDynamicContent .= '</div>';
-        // }
+            if (file_exists(DIR_UPLOADS_IMAGES.$row['image']) && !is_dir(DIR_UPLOADS_IMAGES.$row['image'])) {
+                $imageFile = DIR_UPLOADS_IMAGES.$row['image'];
+            } else {
+                $imageFile = $defaultImageFile;
+            }
+            $date = new \DateTime($row['update_date']);
+            $dateString = $date->format('Y-m-d H:i');
+            $pageDynamicContent .= '<div class="news-part">
+                                        <div class="image-div">
+                                            <a href="post/'.$row['url'].'"><img src="'.$imageFile.'" /></a>
+                                            <span class="image-caption">'.$row['kategorie'].'</span>
+                                        </div>
+                                        <div class="main-post-content">
+                                            <div class="post-title"><a href="post/'.$row['url'].'"><h3>'.$row['title'].'</h3></a></div>'
+                                            .mb_substr($parsedown->text($row['content']), 0, 150).'...
+                                            <div class="additional-info">
+                                                <span class="post-date">'.$dateString.'</span>
+                                                <span class="post-comments"><i class="far fa-comment-alt"></i> 1</span>
+                                            </div>
+                                            <a class="readmore" href="post/'.$row['url'].'">Czytaj więcej</a>
+                                        </div>';
+            $pageDynamicContent .= '</div>';
+        }
 
         $captchaKey = \Core\Config::get('RECAPTCHA_KEY');
         
@@ -488,8 +455,7 @@ HTML;
                     <h3>czyli co w kodzie piszczy...</h3>
                 </div>
                 <div class="news-container">
-                    <div id="postContent">
-                    </div>
+                    {$pageDynamicContent}
                 </div>
                 <div class="all-posts">
                     <a href="lista">Wszystkie posty...</a>
@@ -542,9 +508,6 @@ HTML;
         $this->addJSFile(['name' => 'reCAPTCHA script', 'path' => 'https://www.google.com/recaptcha/api.js', 'async' => true, 'defer' => true]);
 
         //$this->addJSFile(['name' => 'Service Worker Script', 'path' => 'js/worker.js']);
-
-        $this->addJSFile(['name' => 'Content Handler Script', 'path' => 'js/content-handler.js']);
-        $this->addJS("PageContent.showDefaultList();");
 
         //$this->addJSFile(['name' => 'IndexedDB Script', 'path' => 'js/indexeddb.js']);
         //$this->addJSFile(['name' => 'IndexedDB Script', 'path' => 'js/idb.js']);

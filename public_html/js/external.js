@@ -7,6 +7,7 @@
  *
  */
 
+ // Smooth scroll to sections
 (function smoothScrollToSections() {
     $(".scroll-btn").on('click', function (event) {
         if (this.hash !== "") {
@@ -21,6 +22,7 @@
     });
 })();
 
+// Google Maps
 function showGoogleMaps() {
     if (typeof google === 'object' && typeof google.maps === 'object') {
         var myLatLng = {lat: 52.160161, lng: 21.022213};
@@ -34,7 +36,7 @@ function showGoogleMaps() {
             title: 'Piotr Wróblewski'
         });
     } else {
-        console.log('Uuups coś poszło nie tak ...');
+        console.warn('Uuups coś poszło nie tak ...');
     }
 };
 
@@ -55,7 +57,7 @@ function showGoogleMaps() {
             data: serializedData
         });
         request.done(function (response, textStatus, jqXHR){
-            console.log(response);
+            //console.log(response);
             showNotification(response);
             $('input[type="text"],input[type="email"],textarea').val('');
         });
@@ -102,6 +104,11 @@ function showGoogleMaps() {
     });
 })();
 
+
+/**
+ * Notification function - shows notifications on the bottom of web page.
+ * @param {String} n - notification text. 
+ */
 function showNotification(n) {
     let notificationsPanel = document.getElementById("notificationsPanel");
     let notificationsContent = document.getElementById("notificationsContent");
@@ -113,7 +120,7 @@ function showNotification(n) {
 }
 
 
-
+// Number on main page - counter.
 var countDownToNumer = (function(e) {
     var executed = false;
      return function(e) {
