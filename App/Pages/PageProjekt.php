@@ -9,7 +9,7 @@
 namespace Pages;
 
 use Core\ModelClasses\Page;
-use Models\PostModel;
+use Models\ProjectModel;
 
 /**
  * This is a controller class for project-type post.
@@ -35,7 +35,7 @@ class PageProjekt extends Page {
         
         $dbConnection = \Core\DBConnection::getInstance();
         
-        $postModel = new PostModel($dbConnection, $input);
+        $postModel = new ProjectModel($dbConnection, $input);
         $content = $postModel->getContent();
           
         //var_dump($content);

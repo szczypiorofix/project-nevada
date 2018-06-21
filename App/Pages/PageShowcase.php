@@ -117,7 +117,7 @@ class PageShowcase extends Page {
                     <p>Chętnie uczę się nowych języków, technik, nowych narzędzi. Uwielbiam API.</p>
                     <div class="skills-button-container">
                         <a href="#" class="cv-download">POBIERZ CV</a>
-                        <a href="#contact" class="hire-me scroll-btn">ZATRUDNIJ MNIE</a>
+                        <a href="#kontakt" class="hire-me scroll-btn">ZATRUDNIJ MNIE</a>
                     </div>
                     <!-- Go to www.addthis.com/dashboard to customize your tools -->
                     <div class="addthis_inline_follow_toolbox"></div>
