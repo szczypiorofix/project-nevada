@@ -35,10 +35,11 @@ class PageProjekt extends Page {
         
         $dbConnection = \Core\DBConnection::getInstance();
         
-        $postModel = new ProjectModel($dbConnection, $input);
+        $postModel = new ProjectModel($input);
         $content = $postModel->getContent();
           
         //var_dump($content);
+        //exit;
                 
         $pageContent = '';
         $defaultImageFile = DIR_UPLOADS_IMAGES."default.jpg";
@@ -105,7 +106,11 @@ class PageProjekt extends Page {
                     <div class="add-this-container">
                         <div class="addthis_inline_share_toolbox"></div>
                     </div>
-                    <div class="disqus-container">
+                    <div>
+                        <p>Powiązane posty:</p>
+                        <p>Lista postów które posiadają w kategorii "projekty" oraz są powiązane z danym projektem</p>
+                    </div>
+                    <!-- <div class="disqus-container">
                         <div id="disqus_thread"></div>
                         <script>
                         /**
@@ -125,7 +130,7 @@ class PageProjekt extends Page {
                         })();
                         </script>
                         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                    </div>
+                    </div> -->
                 </section>';
                 if (isset($args[1])) {
                     if ($args[1] === 'pdf') {
@@ -200,11 +205,6 @@ class PageProjekt extends Page {
         $footer = new \Widgets\Footer();
         $sideBar = new \Widgets\Aside($dbConnection);
         $ctaButton = new \Widgets\CTAButton();
-
-        $sessionContent = "";
-        if (\Core\Session::check($dbConnection)) {
-            $sessionContent = '<a href="admin/edit?&postid='.$content['id'].'" class="edit-post-button">EDYTUJ</a>';
-        }
         
         $body =
 <<<HTML
@@ -214,7 +214,6 @@ class PageProjekt extends Page {
         </header>
         <main class="post-card">
             <article>
-                {$sessionContent}
                 {$pageContent}
             </article>
             {$sideBar->getBody()}
