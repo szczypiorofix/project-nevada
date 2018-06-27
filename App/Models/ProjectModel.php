@@ -22,7 +22,7 @@ class ProjectModel extends DataModel {
     private $projects = [
         'tequila' => [
             'id' => 0,
-            'image' => 'default',
+            'image' => 'tequilaplatformer1.png',
             'update_date' => '2016-03-04, 13:33:23',
             'title' => 'Tequila Platformer',
             'image_description' => 'Opis obrazka',
@@ -31,20 +31,9 @@ class ProjectModel extends DataModel {
             'kategorie' => 'projekty',
             'tagi' => 'Java,software'
         ],
-        'library' => [
-            'id' => 2,
-            'image' => 'default',
-            'update_date' => '2016-03-04, 13:33:23',
-            'title' => 'Biblioteka Szkolna',
-            'image_description' => 'Opis obrazka',
-            'content' => 'Treść projektu Biblioteka Szkolna.',
-            'url' => 'http://localhost',
-            'kategorie' => 'projekty',
-            'tagi' => 'web,CSS,JavaScript,PHP'
-        ],
         'spaceinvaders' => [
-            'id' => 3,
-            'image' => 'default',
+            'id' => 1,
+            'image' => 'spaceinvades1.png',
             'update_date' => '2016-03-04, 13:33:23',
             'title' => 'Space Invaders',
             'image_description' => 'Opis obrazka',
@@ -54,22 +43,22 @@ class ProjectModel extends DataModel {
             'tagi' => 'web,CSS,JavaScript,PHP,NodeJS'
         ],
         'kanciarz' => [
-            'id' => 4,
-            'image' => 'default',
+            'id' => 2,
+            'image' => 'kanciarz1.png',
             'update_date' => '2016-03-04, 13:33:23',
             'title' => 'Kanciarz',
-            'image_description' => 'Opis obrazka',
+            'image_description' => 'Kanciarz',
             'content' => 'Treść projektu Kanciarz',
             'url' => 'http://localhost',
             'kategorie' => 'projekty',
             'tagi' => 'web,CSS,JavaScript,PHP,NodeJS'
         ],
         'furyroad' => [
-            'id' => 5,
-            'image' => 'default',
+            'id' => 3,
+            'image' => 'furyroad1.png',
             'update_date' => '2016-03-04, 13:33:23',
             'title' => 'Fury Road',
-            'image_description' => 'Opis obrazka',
+            'image_description' => 'Fury Road',
             'content' => 'Treść projektu Fury Road.',
             'url' => 'http://localhost',
             'kategorie' => 'projekty',

@@ -63,7 +63,6 @@ class PageProjekt extends Page {
             // USUNIĘCIE OSATNIEGO PRZECINKA Z LISTY TAGÓW
             $taglist = rtrim($taglist,", ");
             
-            //$actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
             $actual_link = $this->getCurrentUrl();
             
             /**
@@ -110,27 +109,6 @@ class PageProjekt extends Page {
                         <p>Powiązane posty:</p>
                         <p>Lista postów które posiadają w kategorii "projekty" oraz są powiązane z danym projektem</p>
                     </div>
-                    <!-- <div class="disqus-container">
-                        <div id="disqus_thread"></div>
-                        <script>
-                        /**
-                        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-                        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-                        /*
-                        var disqus_config = function () {
-                            this.page.url = '.$actual_link.';  // Replace PAGE_URL with your pages canonical URL variable
-                            this.page.identifier = '.$content['id'].'; // Replace PAGE_IDENTIFIER with your pages unique identifier variable
-                        };
-                        */
-                        (function() { // DONT EDIT BELOW THIS LINE
-                            var d = document, s = d.createElement("script");
-                            s.src = "https://wroblewskipiotr.disqus.com/embed.js";
-                            s.setAttribute("data-timestamp", +new Date());
-                            (d.head || d.body).appendChild(s);
-                        })();
-                        </script>
-                        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                    </div> -->
                 </section>';
                 if (isset($args[1])) {
                     if ($args[1] === 'pdf') {

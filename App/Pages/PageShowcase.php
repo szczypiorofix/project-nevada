@@ -246,7 +246,7 @@ class PageShowcase extends Page {
                 <div class="portfolio-container">
                     <div class="portfolio-part">
                         <div class="image-div">
-                            <img src="images/portfolio/spaceinvaders1.png" />
+                            <img src="uploads/images/spaceinvaders1.png" />
                             <div class="overlay">
                                 <p>Space Invaders</p>
                                 <a href="projekt/spaceinvaders/"><i class="far fa-play-circle"></i></a>
@@ -255,7 +255,7 @@ class PageShowcase extends Page {
                     </div>
                     <div class="portfolio-part">
                         <div class="image-div">
-                            <img src="images/portfolio/tequilaplatformer1.png" />
+                            <img src="uploads/images/tequilaplatformer1.png" />
                             <div class="overlay">
                                 <p>Tequila Platformer</p>
                                 <a href="projekt/tequila/"><i class="far fa-play-circle"></i></a>
@@ -264,7 +264,7 @@ class PageShowcase extends Page {
                     </div>
                     <div class="portfolio-part">
                         <div class="image-div">
-                            <img src="images/portfolio/kanciarz1.png" />
+                            <img src="uploads/images/kanciarz1.png" />
                             <div class="overlay">
                                 <p>Kanciarz - kalkulator walut</p>
                                 <a href="projekt/kanciarz/"><i class="far fa-play-circle"></i></a>
@@ -273,7 +273,7 @@ class PageShowcase extends Page {
                     </div>
                     <div class="portfolio-part">
                         <div class="image-div">
-                            <img src="images/portfolio/furyroad1.png" />
+                            <img src="uploads/images/furyroad1.png" />
                             <div class="overlay">
                                 <p>Fury Road</p>
                                 <a href="projekt/furyroad/"><i class="far fa-play-circle"></i></a>
