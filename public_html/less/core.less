@@ -313,18 +313,30 @@ div.navbar-container {
         #search-results {
             display: none;
             position: fixed;
-            top: 50px;
+            top: 32px;
             left: 0px;
             max-width: 100%;
+            width: 100%;
             height: 400px;
-            padding: 5px;
+            padding: 10px;
+            border-radius: 3px;
             line-height: 200%;
             line-break: auto;
-            background-color: rgba(0, 0, 0, 0.9);
+            //background-color: rgba(0, 0, 0, 0.85);
+            border-radius: 3px;
+            border: 2px solid @secondary1Color;
+            outline: none;
+            background-color: fade(@secondary2Color, 80%);
+            color: @textColorDark;
             z-index: 1;
             overflow-x: auto;
             overflow-y: auto;
             overflow-wrap: break-word;
+            a, p {
+                font-size: 18px;
+                font-weight: 600;
+                color: @textColorDark;
+            }
         }
         .search-form {
             .flexBox();
@@ -335,7 +347,6 @@ div.navbar-container {
                 min-width: 30px;
                 width: 80px;
                 box-sizing: border-box;
-                font-size: 14px;
                 padding: 5px 5px 5px 30px;
                 border-radius: 3px;
                 border: 2px solid @secondary1Color;
@@ -350,7 +361,7 @@ div.navbar-container {
                     .boxShadow(1px, 1px, 12px, 0, @secondary1Color);
                 }
                 &:focus {
-                    width: 300px;
+                    width: 380px;
                 }
             }
             i {

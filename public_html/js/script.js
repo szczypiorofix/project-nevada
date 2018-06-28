@@ -58,14 +58,15 @@ function searchInput(bhref) {
             let xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
+                    //console.log(this.response);
                     let res = JSON.parse(this.response);
                     sr.innerHTML = '';
                     if (res !== null) {
-                        //console.log(res);
                         let el, elText;
                         for (let i = 0; i < res.posts.length; i++) {
                             el = document.createElement('a');
-                            elText = document.createTextNode(res.posts[i].title);
+                            let title = res.posts[i].title;
+                            elText = document.createTextNode(title.substring(0, 40) + '...');
                             el.href = bhref + 'post/' + res.posts[i].url;
                             el.appendChild(elText);
                             sr.appendChild(el);

@@ -107,6 +107,8 @@ HTML;
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'js/jquery/jquery-1.12.4.min.js']);
         
+        $this->addJS('searchInput("'.\Core\Config::get("BASE_HREF").'");');
+
         //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
         $this->addJSFile(['name' => 'Google Translate Script', 'path' => 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit', 'versioning' => false, 'async' => false]);
         $this->addJSFile(['name' => 'Google Translate Script Starter', 'path' => 'js/translate.js']);
@@ -235,6 +237,8 @@ HTML;
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
         
+        $this->addJS('searchInput("'.\Core\Config::get("BASE_HREF").'");');
+
         //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
         $this->addJSFile(['name' => 'Google Translate Script', 'path' => 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit', 'versioning' => false, 'async' => false]);
         $this->addJSFile(['name' => 'Google Translate Script Starter', 'path' => 'js/translate.js']);
@@ -371,6 +375,8 @@ HTML;
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
         
+        $this->addJS('searchInput("'.\Core\Config::get("BASE_HREF").'");');
+
         //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
         $this->addJSFile(['name' => 'Google Translate Script', 'path' => 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit', 'versioning' => false, 'async' => false]);
         $this->addJSFile(['name' => 'Google Translate Script Starter', 'path' => 'js/translate.js']);
@@ -507,6 +513,8 @@ HTML;
         $this->addJSFile(['name' => 'Main Script', 'path' => 'js/script.js']);
         $this->addJSFile(['name' => 'jQuery 1.12.4', 'path' => 'https://code.jquery.com/jquery-1.12.4.min.js']);
         
+        $this->addJS('searchInput("'.\Core\Config::get("BASE_HREF").'");');
+
         //$this->addJSFile(['name' => 'External Script', 'path' => 'js/external.js']);
         $this->addJSFile(['name' => 'Google Translate Script', 'path' => 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit', 'versioning' => false, 'async' => false]);
         $this->addJSFile(['name' => 'Google Translate Script Starter', 'path' => 'js/translate.js']);

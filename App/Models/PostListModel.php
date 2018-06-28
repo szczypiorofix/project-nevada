@@ -177,6 +177,46 @@ LIMIT
 OFFSET
     :offset
    ';
+
+
+   const GET_SEARCH_PAGE_COUNTER_LIKE = "
+SELECT
+   COUNT(`posts`.id) AS 'counter'
+FROM
+  `posts`
+WHERE
+    `title` LIKE ':searchname'
+OR
+    `content` LIKE ':searchname'
+";
+
+   const GET_SEARCH_PAGE_LIKE = "
+   SELECT
+   `posts`.*, `categories`.*, `post_categories`.*, GROUP_CONCAT(`categories`.`name`) AS `kategorie`
+FROM
+   `posts`
+LEFT JOIN
+   `post_categories`
+ON
+   `posts`.id = `post_categories`.postid	
+LEFT JOIN
+   `categories`
+ON
+   `post_categories`.categoryid = `categories`.id
+WHERE
+    `title` LIKE CONCAT('%', ?, '%')
+OR
+    `content` LIKE CONCAT('%', ?, '%')
+GROUP BY
+   `posts`.id
+ORDER BY
+   `posts`.id
+DESC
+LIMIT
+    ?
+OFFSET
+    ?
+   ";
     
     function __construct($type, $dbConnection, $input, $inputPage, $postsToDisplay = 6) {
         $maxrecords = -1;
@@ -272,16 +312,17 @@ OFFSET
         // ############## POST SEARCH SORT ####################### ///
         if ($this->type === self::TYPE_SEARCH_SORT) {
             try {
-                $query = $dbConnection['db']->prepare(self::GET_SEARCH_PAGE);
-                $query->bindValue(':searchname', '%'.$input.'%', PDO::PARAM_STR);
-                $query->bindValue(':postsonsite', $postsOnSite, PDO::PARAM_INT);
-                $query->bindValue(':offset', $offset, PDO::PARAM_INT);
-                $query->execute();
+                $query = $dbConnection['db']->prepare(self::GET_SEARCH_PAGE_LIKE);
+                //$query->bindValue(':searchname', $input, PDO::PARAM_STR);
+                //$query->bindValue(':postsonsite', $postsOnSite, PDO::PARAM_INT);
+                //$query->bindValue(':offset', $offset, PDO::PARAM_INT);
+                $query->execute(array($input, $input, $postsOnSite, $offset));
 
-                $querySearchAll = $dbConnection['db']->prepare(self::GET_SEARCH_PAGE_COUNTER);
-                $querySearchAll->bindValue(':searchname', '%'.$input.'%', PDO::PARAM_STR);
-                $querySearchAll->execute();
-                $maxrecords = $querySearchAll->fetch()['counter'];
+                // $querySearchAll = $dbConnection['db']->prepare(self::GET_SEARCH_PAGE_COUNTER_LIKE);
+                // $querySearchAll->bindValue(':searchname', $input, PDO::PARAM_STR);
+                // $querySearchAll->execute();
+                // $maxrecords = $querySearchAll->fetch()['counter'];
+                $maxrecords = 0;
             }
             catch (FrameworkException $exc) {
                 $dbConnection['error'] = true;

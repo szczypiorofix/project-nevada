@@ -11,6 +11,8 @@
 --
 -- Zrzut danych tabeli `posts`
 --
+SET NAMES 'utf8';
+SET CHARACTER SET 'UTF8';
 
 INSERT INTO `posts` (`id`, `title`, `content`, `url`, `image`, `image_description`, `insert_date`, `update_date`) VALUES
 (1, 'Reaktywacja mojej strony', '###Reaktywacja mojej strony po raz drugi!\r\n\r\n####To już drugi raz kiedy tworzę moją stronę zupełnie od zera. Tym razem mam nadzieję, że wszystko pójdzie zgodnie z planem i tak jak sobie założyłem.\r\n\r\n##Trzymajcie kciuki!\r\n', 'reaktywacja-mojej-strony', 'default.jpg', 'Opis obrazka', '2017-03-06 11:43:21', '2018-04-20 13:53:07'),
