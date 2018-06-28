@@ -27,7 +27,7 @@ class ProjectModel extends DataModel {
             'title' => 'Tequila Platformer',
             'image_description' => 'Opis obrazka',
             'content' => 'Treść projektu Tequila Platformer <br>Kolejna linia...<br> <br>',
-            'url' => 'http://localhost',
+            'url' => 'tequila',
             'kategorie' => 'projekty',
             'tagi' => 'Java,software'
         ],
@@ -38,7 +38,7 @@ class ProjectModel extends DataModel {
             'title' => 'Space Invaders',
             'image_description' => 'Opis obrazka',
             'content' => 'Treść projektu Space Invaders',
-            'url' => 'http://localhost',
+            'url' => 'spaceinvaders',
             'kategorie' => 'projekty',
             'tagi' => 'web,CSS,JavaScript,PHP,NodeJS'
         ],
@@ -49,7 +49,7 @@ class ProjectModel extends DataModel {
             'title' => 'Kanciarz',
             'image_description' => 'Kanciarz',
             'content' => 'Treść projektu Kanciarz',
-            'url' => 'http://localhost',
+            'url' => 'kanciarz',
             'kategorie' => 'projekty',
             'tagi' => 'web,CSS,JavaScript,PHP,NodeJS'
         ],
@@ -60,7 +60,7 @@ class ProjectModel extends DataModel {
             'title' => 'Fury Road',
             'image_description' => 'Fury Road',
             'content' => 'Treść projektu Fury Road.',
-            'url' => 'http://localhost',
+            'url' => 'furyroad',
             'kategorie' => 'projekty',
             'tagi' => 'web,CSS,JavaScript,PHP,NodeJS'
         ]
@@ -78,7 +78,7 @@ class ProjectModel extends DataModel {
             'title' => 'Nie znaleziono projektu',
             'image_description' => 'Opis obrazka',
             'content' => 'Projekt o podanej nazwie "'.$name.'" nie istnieje!',
-            'url' => 'http://localhost',
+            'url' => 'https://wroblewskipiotr.pl/',
             'kategorie' => 'projekty',
             'tagi' => ''
         ];

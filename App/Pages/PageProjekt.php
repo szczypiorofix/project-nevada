@@ -99,7 +99,7 @@ class PageProjekt extends Page {
                             <p><strong><i class="fas fa-tags"></i></strong>: '.$taglist.'</p>
                         </div>
                         <div class="pdf-container">
-                            <a href="post/'.strtolower($content['url']).'/pdf" title="Pobierz ten artykuł jako plik PDF">Pobierz <i class="far fa-file-pdf"></i></a>
+                            <a href="projekt/'.strtolower($content['url']).'/pdf" title="Pobierz ten artykuł jako plik PDF">Pobierz <i class="far fa-file-pdf"></i></a>
                         </div>
                     </div>
                     <div class="add-this-container">
