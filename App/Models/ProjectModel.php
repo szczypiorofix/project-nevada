@@ -19,56 +19,68 @@ use PDO, Date;
  */
 class ProjectModel extends DataModel {
     
-    private $projects = [
-        'tequila' => [
-            'id' => 0,
-            'image' => 'tequilaplatformer1.png',
-            'update_date' => '2016-03-04, 13:33:23',
-            'title' => 'Tequila Platformer',
-            'image_description' => 'Opis obrazka',
-            'content' => 'Treść projektu Tequila Platformer <br>Kolejna linia...<br> <br>',
-            'url' => 'tequila',
-            'kategorie' => 'projekty',
-            'tagi' => 'Java,software'
-        ],
-        'spaceinvaders' => [
-            'id' => 1,
-            'image' => 'spaceinvades1.png',
-            'update_date' => '2016-03-04, 13:33:23',
-            'title' => 'Space Invaders',
-            'image_description' => 'Opis obrazka',
-            'content' => 'Treść projektu Space Invaders',
-            'url' => 'spaceinvaders',
-            'kategorie' => 'projekty',
-            'tagi' => 'web,CSS,JavaScript,PHP,NodeJS'
-        ],
-        'kanciarz' => [
-            'id' => 2,
-            'image' => 'kanciarz1.png',
-            'update_date' => '2016-03-04, 13:33:23',
-            'title' => 'Kanciarz',
-            'image_description' => 'Kanciarz',
-            'content' => 'Treść projektu Kanciarz',
-            'url' => 'kanciarz',
-            'kategorie' => 'projekty',
-            'tagi' => 'web,CSS,JavaScript,PHP,NodeJS'
-        ],
-        'furyroad' => [
-            'id' => 3,
-            'image' => 'furyroad1.png',
-            'update_date' => '2016-03-04, 13:33:23',
-            'title' => 'Fury Road',
-            'image_description' => 'Fury Road',
-            'content' => 'Treść projektu Fury Road.',
-            'url' => 'furyroad',
-            'kategorie' => 'projekty',
-            'tagi' => 'web,CSS,JavaScript,PHP,NodeJS'
-        ]
-    ];
+    private $projectsData = [];
 
+
+    function __construct($input) {
+        $this->projectsData = [
+            'tequila' => [
+                'id' => 0,
+                'image' => 'tequilaplatformer1.png',
+                'update_date' => '2016-03-04, 13:33:23',
+                'title' => 'Tequila Platformer',
+                'image_description' => 'Opis obrazka',
+                'content' => $this->getProjectFileContent('tequila.md'),
+                'url' => 'tequila',
+                'kategorie' => 'projekty',
+                'tagi' => 'Java,software'
+            ],
+            'spaceinvaders' => [
+                'id' => 1,
+                'image' => 'spaceinvades1.png',
+                'update_date' => '2016-03-04, 13:33:23',
+                'title' => 'Space Invaders',
+                'image_description' => 'Opis obrazka',
+                'content' => $this->getProjectFileContent('spaceinvaders.md'),
+                'url' => 'spaceinvaders',
+                'kategorie' => 'projekty',
+                'tagi' => 'web,CSS,JavaScript'
+            ],
+            'kanciarz' => [
+                'id' => 2,
+                'image' => 'kanciarz1.png',
+                'update_date' => '2016-03-04, 13:33:23',
+                'title' => 'Kanciarz',
+                'image_description' => 'Kanciarz',
+                'content' => $this->getProjectFileContent('kanciarz.md'),
+                'url' => 'kanciarz',
+                'kategorie' => 'projekty',
+                'tagi' => 'web,CSS,JavaScript,PHP'
+            ],
+            'furyroad' => [
+                'id' => 3,
+                'image' => 'furyroad1.png',
+                'update_date' => '2016-03-04, 13:33:23',
+                'title' => 'Fury Road',
+                'image_description' => 'Fury Road',
+                'content' => $this->getProjectFileContent('furyroad.md'),
+                'url' => 'furyroad',
+                'kategorie' => 'projekty',
+                'tagi' => 'web,CSS,JavaScript,PHP'
+            ]];
+        $this->content = $this->getContentOfProject($input);
+    }
+
+    private function getProjectFileContent($fileName) {
+        if (file_exists(__DIR__.DS."Projects/".$fileName) && is_file(__DIR__.DS."Projects/".$fileName))
+            return file_get_contents(__DIR__.DS."Projects/".$fileName, true);
+        else
+            return 'Nie znaleziono pliku: '.$fileName;
+    }
+    
     private function getContentOfProject($name) {
-        if (isset($this->projects[$name])) {
-            return $this->projects[$name];
+        if (isset($this->projectsData[$name])) {
+            return $this->projectsData[$name];
         } else 
         // DEFAULT "PROJECT NOT FOUND" DATA
         return [
@@ -83,9 +95,4 @@ class ProjectModel extends DataModel {
             'tagi' => ''
         ];
     }
-
-    function __construct($input) {
-        $this->content = $this->getContentOfProject($input);        
-    }
-    
 }
