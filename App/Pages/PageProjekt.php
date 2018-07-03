@@ -27,14 +27,25 @@ class PageProjekt extends Page {
     
     public function defaultmethod($args) {
 
+        $dbConnection = \Core\DBConnection::getInstance();
+
+        // GET TEQUILA PLATFORMER RESULTS
+        if (isset($args[1]) && $args[0] == 'tequila') {
+            if ($args[1] == 'getresults') {
+                $query = $dbConnection['db']->prepare("SELECT * FROM `tequilabestscores`");
+                $query->execute();
+                echo json_encode($query->fetchAll());
+                exit;
+            }
+        }
+        
+
         if (!isset($args[0])) {
            $input = '';
         } else {
            $input = $args[0];
         }
-        
-        $dbConnection = \Core\DBConnection::getInstance();
-        
+                
         $postModel = new ProjectModel($input);
         $content = $postModel->getContent();
           
@@ -154,7 +165,27 @@ class PageProjekt extends Page {
             }
         }
         ');
+
+
+    // https://www.ag-grid.com/javascript-getting-started/
+
+
+
+        // PROJECT SPECIFIC SCRIPTS
+        foreach($content['js'] as $script) {
+            $this->addJSFile(['name' => 'Project Script', 'path' => $script]);
+        }
         
+        // PROJECT SPECIFIC HEADER SCRIPTS
+        foreach($content['headjs'] as $script) {
+            $this->addJSHeadFile(['name' => 'Project HeadScript', 'path' => $script]);
+        }
+
+        // PROJECT SPECIFIC CSSs
+        foreach($content['css'] as $script) {
+            $this->addCssFile(['name' => 'Project Style Sheet', 'path' => $script]);
+        }
+
         $imageFullPath = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]".DS.$imageFile;
 
         $metaData = new \Widgets\MetaData(

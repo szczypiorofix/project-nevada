@@ -2,144 +2,148 @@
 
 ## Spis treści
 
-1. [Co to za gra?](projekt/tequila#cotozagra)
-2. [Wątek główny](projekt/tequila#watekglowny)
-3. [Cele gry](projekt/tequila#celegry)
-4. [Kryształy Mocy](projekt/tequila#krysztalymocy)
-5. [Niebezpieczeństwa](projekt/tequila#niebezpieczenstwa)
-6. [Główne cechy](projekt/tequila#cechy)
-7. [Biblioteki](projekt/tequila#biblioteki)
-8. [Assety](projekt/tequila#assety)
-9. [Najlepsze wyniki](projekt/tequila#wyniki)
-10. [Programy](projekt/tequila#programy)
-11. [Media](projekt/tequila#media)
-12. [Linki](projekt/tequila#linki)
+1. [Co to za gra?](projekt/tequila#co-to-za-gra)
+2. [Wątek główny](projekt/tequila#watek-glowny)
+3. [Cele gry](projekt/tequila#cele-gry)
+4. [Jak grać?](projekt/tequila#jak-grac)
+5. [Kryształy Mocy](projekt/tequila#krysztaly-mocy)
+6. [Główne cechy](projekt/tequila#glowne-cechy)
+7. [Wymagania sprzętowe](projekt/tequila#wymagania)
+8. [Biblioteki](projekt/tequila#biblioteki)
+9. [Assety](projekt/tequila#assety)
+10. [Najlepsze wyniki](projekt/tequila#najlepsze-wyniki)
+11. [Programy](projekt/tequila#programy-i-narzedzia)
+12. [Media](projekt/tequila#media)
+13. [Linki](projekt/tequila#linki)
 
 
-## Co to za gra?<a name="cotozagra"></a>
+<a name="co-to-za-gra"></a>
+## Co to za gra?
 
-Tequila Platformer it's a side-scrolling platform game. It's supposed to be easy, simple and pleasant.
-
-## Wątek główny<a name="watekglowny"></a>
-
-The main character of the game is a farmer named Marcello, who's trying to find his lost goat - Matilda. When Matilda disappeared, Marcello, disregarding the dangers, decides to find his pet and bring her back home.
-
-## Cele gry<a name="celegry"></a>
-
-The main goal of the game is to complete all 11 levels and bring Matilda back home.
-The second goal of the game is to gain points by collecting coins, drinking Tequilas, eating Tacos and collecting Power Gems.
-Sometimes, you loose your point when hit by Spikes, Bees, Thumbleweeds and by spikes throwed by Angry Cactus.
-Marcello begins his journey with 5 points of Health.
-When his Health reach 0 - Marcello dies and the player has to restart the current level.
-At the end of each level the player has to write down his name. His name and score are stored in the **Hall of Fame**
+Tequila Platformer to prosta gra platformowa.
 
 
-### Jak grać?
+<a name="watek-glowny"></a>
+## Wątek główny
 
-How to play? It's simple, just run, jump, drink Tequilas and eat Tacos. Watch out for dangerous spikes, Angry Cactuses and other dangerous things.
-But, don't let Marcello eat too much Tacos. It's makes him overweighted for a while, so he can't jump high when he's overweighted.
-There are 2 powerups in the game:      
-- Tequila - makes Marcello jump higher temporary.
-- Taco - recovers 1 point of Health & makes Marcello overweighted for a while.
-        
-            
-### Kryształy Mocy
+Główną postacią w grze jest Marcello - farmer znany w okolicy ze swej słabości do kóz oraz tequili. Gdy jest ulubiona koza o imieniu Matylda zaginęła, Marcello nie zważając na niebezpieczeństwa, wyruszył na poszukiwania swojego zwierzaka. Dlaczego i jakich okolicznościach Matylda zaginęła? Czy ktoś lub COŚ mogło ją porwać? Skąd wzięły się te dziwne kryształy rozrzucone po okolicy? No i podstawowe pytanie: jak Marcello zniesie trudną wędrówkę przy ograniczonych zasobach tequili? Na tym głównie skupia się wątek główny tej gry.
 
-Power Gems are special collectibles (they are spawned in random areas on current level).
-They allow Marcello to use some of special "powers" like regenerate his health etc.
-To activate each of abilities you need to collect 5 (or more) Power Gems of each power you want to use.
-The use of current power costs 5 Power Gems.
+
+<a name="cele-gry"></a>
+## Cele gry
+
+Głównym celem gry jest ukończenie 11 poziomów w grze, odnalezienie i bezpieczne sprowadzenie do domu kozy Matyly.
+Pobocznym celem gry jest zbieranie złotych monet, picie Tequili, jedzenie taco oraz zbieranie Kryształów Mocy.
+
+Marcello rozpoczyna grę z 5 puntami zdrowia. Może utracić punkt zdrowia gdy zostanie trafiony przez kolce wypuszczane przez Wredne Kaktusy, gdy zostanie użądlony przez pszczoły, poraniony przez kolczastą roślinę lub przez kolczaste pułapki w ziemii.
+
+Gdy zdrowie Marcella spadnie do 0 postać umiera i musi rozpoczynać poziom od początku. Gdy postać dojdzie do końca poziomu etap zostanie ukończony a gracz zostaje poproszony o wpisanie swojego imienia (ksywki). Wyniki trafiają do **Ściany Chwały** a następny poziom zostaje na stałe odblokowany.
+
+
+
+<a name="jak-grac"></a>
+## Jak grać?
+
+Gra jest typową grą platformową - trzeba biegać, skakać, pić tequilę, zjadać tacosy i przede wszystkim dobrze się bawić.
+Trzeba uważać na różne niebezpieczeństwa, na które może napotkać na swej drodze Marcello:
+- woda - niestety, Marcello nie umie pływać i gdy wpadnie do wody następuje koniec gry
+- Pszczoły - mogą użądlić
+- Wredne Kaktusy - strzelają igłami gdy tylko ktoś się do nich zbliży
+- Biegacze (ang. tumbleweed) - kręcą się i podskakują poruszane przy pomocy wiatru, mają ostre krawędzie i mogą zranić Marcello
+
+W grze występują 2 rodzaje "wzmacniaczy":
+- Tequila - powoduje, że Marcello jest w stanie skakać o wiele wyżej niż normalnie
+- Taco - przywraca 1 punkt zdrowia jednak powoduje chwilowe przeciążenie, przez co Marcello nie może skoczyć na normalną wysokość
+
+
+
+<a name="krysztaly-mocy"></a>
+## Kryształy Mocy
+
+Kryształy Mocy są specjalnymi przedmiotami do zbierania (ich lokalizacja jest losowa na poszczególnych poziomach), ich pojawienie się w okolicy gdzie znajduje się farma Marcello jest owiana tajemnicą i nikt nie wie skąd się tam pojawiły. Jedno jest pewne - ich pojawienie się zbiegło się w czasie ze zniknięciem kozy Matyldy.
+
+Zbieranie ich przez Marcella powoduje rożne "magiczne" efekty takie jak np. uzdrowienie czy zniknięcie niektórych niebezpieczeństw.
+Jednak żeby to zadziałało, Marcello musi mieć przy sobie co najmniej 5 Kryształów Mocy danego typu. Użycie specjalnej mocy powoduje zużycie 5 Kryształów danego typu.
+
+Typy Kryształów Mocy:
+- czerwony - przywraca 1 punkt zdrowia Marcello
+- zielony - zwiększa maksymalne zdrowie Marcello o 1 punkt (i tym samym zwiększa jego aktualny poziom zdrowia o 1)
+- seledynowy - przywraca całe zdrowie Marcello
+- niebieski - powoduje chwilową nietykalność i niewrażliwość na użądlenia, kolce Wrednych Kaktusów, Biegacze czy kolczaste pułapki
+- żółty - powoduje usunięcie wszystkich Pszczół na danym poziomie
+- fioletowy - powoduje usunięcie wszystkich Wrednych Kaktusuów na danym poziomie
+- różowy - powoduje usunięcie wszystkich przeciwników (Pszczół, Wrednych Kaktusów czy Biegaczy) na danym poziomie
+
+
+
+<a name="glowne-cechy"></a>
+## Główne cechy
+
+- 100% Java
+- 100% darmowa
+- maksykański klimat
+- 11 poziomów
+- miła dla ucha muzyka
+- "znajdźki"
+- Kryształy Mocy
+- poziomy do odblokowania
+- system osiągnięć
+- globalna Ściana Chwały
+- gra jest w języku polskim oraz angielskim
+
+
+<a name="wymagania"></a>
+## Wymagania Sprzętowe
+
+- komputer podłączony do prądu ;)
+- połączenie z internetem - dostęp do globalnej Ściany Chwały
+- gamepad - opcjonalnie
+
+
+<a name="biblioteki"></a>
+## Biblioteki
+
+- JLayer (1.0.1) - biblioteka do obsługi muzyki w formacie .mp3
+- JInput (2.0.5) - biblioteka do obsługi gamepada - obecnie nie jest w pełni wspierana.
+
+
+<a name="assety"></a>
+## Assety
 	
-Power Gems types and powers:
+Zestawy assetów użytych w grze:
 
-<li><span style="color:crimson;">red</span> - regenerates 1 point of health</li>
-<li><span style="color:limegreen;">green</span> - increase 1 point of maximum health</li>
-<li><span style="color:cyan;">celadon</span> - regenerates full health</li>
-<li><span style="color:lightskyblue;">blue</span> - temporary invulnerability</li>
-<li><span style="color:yellow;">yellow</span> - removes all bees on current level</li>
-<li><span style="color:mediumpurple;">violet</span> - removes all cactuses on current level</li>
-<li><span style="color:violet;">pink</span> - removes all enemies (bees, cactuses, tumbleweends) on current level</li>
+- grafiki i muzyka z [opengameart.org](https://www.opengameart.org) oraz [gameart2d.com](http://www.gameart2d.com)
+- pewne grafiki zostały stworzone (np. Kryształy Mocy, ptaki w menu głównym, "pływające" litery, Biegacze) lub zmodyfikowane (np. ruchome platformy, samolot w menu głównym, Wredne Kaktusy) przeze mnie.
+- _Cowboy Hippie Pro_ i _Smokun_ - czcionki z [www.fontsquirrel.com](www.fontsquirrel.com "Font Squirrel")
 
 
-### Niebezpieczeństwa
+<a name="najlepsze-wyniki"></a>
+## Najlepsze wyniki
 
-- water - unfortunately, Marcello can't swim
-- Bees - can sting
-- Angry Cactuses - can shot needles
-- Tumbleweeds - can spin around and harm Marcello
 
-	
-	<h2 id="tpmainfeatures">Main features</h2>
-	<hr />
-	<ul>
-        <li>100% Java</li>
-        <li>100% free</li>
-        <li>Mexican vibe</li>
-        <li>11 levels</li>
-        <li>nice music</li>
-        <li>collectibles</li>
-        <li>Power Gems</li>
-        <li>unlockable levels</li>
-        <li>achievements system</li>
-        <li>global best scores (Hall of Fame)</li>
-        <li>english & polish language</li>
-	</ul><p> </p>
+<div id="tequila-best-scores" style="height: 600px;width:550px;" class="ag-theme-balham"></div>
 
-	<h2 id="tplibraries">Additional libraries</h2><hr />
-	<ul>
-            <li>JLayer (1.0.1) - support for .mp3 files</li>
-            <li><del>JInput (2.0.5) - gamepad support</del>
-              - gamepad support is not fully available<del><br /></del></li>
-            <li><del>MySQL Connector (ver. 5.1.39) - JDBC driver for MySQL database</del> Since 1.01 version the game connects with database by PHP script
-                , not client-server app based by sockets connection.</li>
-	</ul><p> </p>
 
-	<h2 id="tpassets">Assets</h2>
-	<hr />
-        <p>A several free assets are used in this game:</p>
-	<ul>
-            <li>graphics & music from <a href="https://www.opengameart.org">opengameart.org</a> and <a href="http://www.gameart2d.com">gameart2d.com</a>.</li>
-            <li>some of the graphics was made (eg Power Gems, birds in main menu, floating letters, tumbleweeds) or modified
-                    (eg moving platforms, airplane, cactuses) by me.</li>
-            <li>Cowboy Hippie Pro and Smokun fonts are from <a href="https://www.fontsquirrel.com">www.fontsquirrel.com</a></li>
-	</ul><p> </p>
 
-	<h2 id="tpbestscores">Best Scores</h2>
-	<hr />
-	$bestScoresContent
-	<br>
+<a name="programy-i-narzedzia"></a>
+## Programy i narzędzia
 
-	<h2 id="tpprograms">Programs & Tools</h2><hr />
-	<ul>
-            <li>Eclipse Neon JEE</li>
-            <li>GIMP</li>
-            <li>Inkscape</li>
-            <li>Paint.NET</li>
-            <li>Git (Bitbucket)</li>
-	</ul>
-	<br>
+- Eclipse Neon JEE
+- GIMP
+- Inkscape
+- Paint.NET
+- Git (Bitbucket)
 
-	<h2 id="tpscreenshots">Screenshots : </h2><hr />
 
-	{$imagesSlider}
+<a name="media"></a>
+## Media
         
-        <br>
-	<h2 id="tpvideo">Latest video:</h2><hr />
-	<div class="embed-responsive embed-responsive-16by9">
-	  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/fqqohkISWI4"></iframe>
-	</div><br>
-        
-        <br>
-	<h2>Progress :</h2><hr />
-	<div class="embed-responsive embed-responsive-16by9">
-	  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/playlist?list=PLd5riWaV_JX_aIHMNUsPY4_wLiKkPbqhQ"></iframe>
-	</div><br>
+[I'm an inline-style link](https://www.youtube.com/embed/fqqohkISWI4)
+[Progress :](https://www.youtube.com/embed/playlist?list=PLd5riWaV_JX_aIHMNUsPY4_wLiKkPbqhQ)
 
-	<h2 id="tplinks">Links :</h2><hr />
-	<div class="btn-group" style="margin-bottom: 10px;">
-            <a class="btn btn-danger" href="download/tp.rar">DOWNLOAD</a>
-            <a class="btn btn-info" href="http://warsztat.gd/projects/Tequila_Platformer">Project on warsztat.gd</a>
-            <a class="btn btn-warning" href="http://forum.warsztat.gd/index.php?topic=30878.0">Project on warsztat.gd forum</a>
-            <a class="btn btn-primary" href="https://szczypiorofix.itch.io/tequilaplatformer">Project on ITCH.IO</a>
-	</div>
-    </div>
+
+<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/fqqohkISWI4"></iframe>
+
+<a name="linki"></a>
+## Linki
+

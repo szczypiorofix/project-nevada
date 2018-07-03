@@ -344,6 +344,8 @@ HTML;
 
         //$this->addJSFile(['name' => 'Service Worker Script', 'path' => 'js/worker.js']);
 
+        $this->addJSFile(['name' => 'External Script', 'path' => 'js/tequila.js']);
+
         //$this->addJSFile(['name' => 'IndexedDB Script', 'path' => 'js/indexeddb.js']);
         //$this->addJSFile(['name' => 'IndexedDB Script', 'path' => 'js/idb.js']);
         //$this->addJS("iDB.init('postsDB', ".json_encode($content).");");

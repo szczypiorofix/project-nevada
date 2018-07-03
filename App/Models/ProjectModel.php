@@ -29,11 +29,17 @@ class ProjectModel extends DataModel {
                 'image' => 'tequilaplatformer1.png',
                 'update_date' => '2016-03-04, 13:33:23',
                 'title' => 'Tequila Platformer',
-                'image_description' => 'Opis obrazka',
+                'image_description' => 'Tequila Platformer - logo gry',
                 'content' => $this->getProjectFileContent('tequila.md'),
                 'url' => 'tequila',
                 'kategorie' => 'projekty',
-                'tagi' => 'Java,software'
+                'tagi' => 'Java,software',
+                'js' => [],
+                'css' => [ 
+                    'https://unpkg.com/ag-grid/dist/styles/ag-grid.css',
+                    'https://unpkg.com/ag-grid/dist/styles/ag-theme-balham.css'
+                ],
+                'headjs' => ['https://unpkg.com/ag-grid/dist/ag-grid.min.noStyle.js'],
             ],
             'spaceinvaders' => [
                 'id' => 1,
