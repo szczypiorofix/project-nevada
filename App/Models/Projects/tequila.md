@@ -37,40 +37,37 @@ At the end of each level the player has to write down his name. His name and sco
 ### Jak grać?
 
 How to play? It's simple, just run, jump, drink Tequilas and eat Tacos. Watch out for dangerous spikes, Angry Cactuses and other dangerous things.
-        But, don't let Marcello eat too much Tacos. It's makes him overweighted for a while, so he can't jump high when he's overweighted.
-        There are 2 powerups in the game:
-        
-        Tequila - makes Marcello jump higher temporary.
-        Taco - recovers 1 point of Health & makes Marcello overweighted for a while.
+But, don't let Marcello eat too much Tacos. It's makes him overweighted for a while, so he can't jump high when he's overweighted.
+There are 2 powerups in the game:      
+- Tequila - makes Marcello jump higher temporary.
+- Taco - recovers 1 point of Health & makes Marcello overweighted for a while.
         
             
-    <h2 id="tppowergems">Power Gems</h2>
-    <hr />
-    <p>Power Gems are special collectibles (they are spawned in random areas on current level).
-    They allow Marcello to use some of special "powers" like regenerate his health etc.
-    To activate each of abilities you need to collect 5 (or more) Power Gems of each power you want to use.
-    The use of current power costs 5 Power Gems.</p>
+### Kryształy Mocy
+
+Power Gems are special collectibles (they are spawned in random areas on current level).
+They allow Marcello to use some of special "powers" like regenerate his health etc.
+To activate each of abilities you need to collect 5 (or more) Power Gems of each power you want to use.
+The use of current power costs 5 Power Gems.
 	
-	<p>Power Gems types and powers:</p>
+Power Gems types and powers:
 
-	<ul>
-		<li><span style="color:crimson;">red</span> - regenerates 1 point of health</li>
-		<li><span style="color:limegreen;">green</span> - increase 1 point of maximum health</li>
-		<li><span style="color:cyan;">celadon</span> - regenerates full health</li>
-		<li><span style="color:lightskyblue;">blue</span> - temporary invulnerability</li>
-		<li><span style="color:yellow;">yellow</span> - removes all bees on current level</li>
-		<li><span style="color:mediumpurple;">violet</span> - removes all cactuses on current level</li>
-		<li><span style="color:violet;">pink</span> - removes all enemies (bees, cactuses, tumbleweends) on current level</li>
-	</ul><p> </p>
+<li><span style="color:crimson;">red</span> - regenerates 1 point of health</li>
+<li><span style="color:limegreen;">green</span> - increase 1 point of maximum health</li>
+<li><span style="color:cyan;">celadon</span> - regenerates full health</li>
+<li><span style="color:lightskyblue;">blue</span> - temporary invulnerability</li>
+<li><span style="color:yellow;">yellow</span> - removes all bees on current level</li>
+<li><span style="color:mediumpurple;">violet</span> - removes all cactuses on current level</li>
+<li><span style="color:violet;">pink</span> - removes all enemies (bees, cactuses, tumbleweends) on current level</li>
 
-	<h2 id="tpdangers">Dangers</h2>
-	<hr />
-	<ul>
-            <li>water - unfortunately, Marcello can't swim</li>
-            <li>Bees - can sting</li>
-            <li>Angry Cactuses - can shot needles</li>
-            <li>Tumbleweeds - can spin around and harm Marcello</li>
-        </ul><p> <br></p>
+
+### Niebezpieczeństwa
+
+- water - unfortunately, Marcello can't swim
+- Bees - can sting
+- Angry Cactuses - can shot needles
+- Tumbleweeds - can spin around and harm Marcello
+
 	
 	<h2 id="tpmainfeatures">Main features</h2>
 	<hr />
