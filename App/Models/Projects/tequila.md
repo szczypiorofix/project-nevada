@@ -121,7 +121,7 @@ Zestawy assetów użytych w grze:
 ## Najlepsze wyniki
 
 
-<div id="tequila-best-scores" style="height: 600px;width:550px;" class="ag-theme-balham"></div>
+<div id="tequila-best-scores" class="ag-theme-balham"></div>
 
 
 

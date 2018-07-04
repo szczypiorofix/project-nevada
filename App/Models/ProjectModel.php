@@ -34,7 +34,7 @@ class ProjectModel extends DataModel {
                 'url' => 'tequila',
                 'kategorie' => 'projekty',
                 'tagi' => 'Java,software',
-                'js' => [],
+                'js' => ['js/tequila.js'],
                 'css' => [ 
                     'https://unpkg.com/ag-grid/dist/styles/ag-grid.css',
                     'https://unpkg.com/ag-grid/dist/styles/ag-theme-balham.css'

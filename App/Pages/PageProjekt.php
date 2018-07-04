@@ -32,7 +32,7 @@ class PageProjekt extends Page {
         // GET TEQUILA PLATFORMER RESULTS
         if (isset($args[1]) && $args[0] == 'tequila') {
             if ($args[1] == 'getresults') {
-                $query = $dbConnection['db']->prepare("SELECT * FROM `tequilabestscores`");
+                $query = $dbConnection['db']->prepare("SELECT * FROM `tequilabestscores` ORDER BY `score` DESC");
                 $query->execute();
                 echo json_encode($query->fetchAll());
                 exit;
