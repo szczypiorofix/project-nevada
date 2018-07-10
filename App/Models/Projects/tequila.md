@@ -132,7 +132,7 @@ Zestawy assetów użytych w grze:
 - GIMP
 - Inkscape
 - Paint.NET
-- Git (Bitbucket)
+- Git (GitHub)
 
 
 <a name="media"></a>

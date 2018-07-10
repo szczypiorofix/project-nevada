@@ -27,7 +27,7 @@ class ProjectModel extends DataModel {
             'tequila' => [
                 'id' => 0,
                 'image' => 'tequilaplatformer1.png',
-                'update_date' => '2016-03-04, 13:33:23',
+                'update_date' => '2016-07-10, 10:07:23',
                 'title' => 'Tequila Platformer',
                 'image_description' => 'Tequila Platformer - logo gry',
                 'content' => $this->getProjectFileContent('tequila.md'),
@@ -43,14 +43,17 @@ class ProjectModel extends DataModel {
             ],
             'spaceinvaders' => [
                 'id' => 1,
-                'image' => 'spaceinvades1.png',
+                'image' => 'spaceinvaders1.png',
                 'update_date' => '2016-03-04, 13:33:23',
                 'title' => 'Space Invaders',
                 'image_description' => 'Opis obrazka',
                 'content' => $this->getProjectFileContent('spaceinvaders.md'),
                 'url' => 'spaceinvaders',
                 'kategorie' => 'projekty',
-                'tagi' => 'web,CSS,JavaScript'
+                'tagi' => 'web,CSS,JavaScript',
+                'js' => [],
+                'css' => [],
+                'headjs' => []
             ],
             'kanciarz' => [
                 'id' => 2,
@@ -61,7 +64,10 @@ class ProjectModel extends DataModel {
                 'content' => $this->getProjectFileContent('kanciarz.md'),
                 'url' => 'kanciarz',
                 'kategorie' => 'projekty',
-                'tagi' => 'web,CSS,JavaScript,PHP'
+                'tagi' => 'web,CSS,JavaScript,PHP',
+                'js' => [],
+                'css' => [],
+                'headjs' => []
             ],
             'furyroad' => [
                 'id' => 3,
@@ -72,7 +78,10 @@ class ProjectModel extends DataModel {
                 'content' => $this->getProjectFileContent('furyroad.md'),
                 'url' => 'furyroad',
                 'kategorie' => 'projekty',
-                'tagi' => 'web,CSS,JavaScript,PHP'
+                'tagi' => 'web,CSS,JavaScript',
+                'js' => [],
+                'css' => [],
+                'headjs' => []
             ]];
         $this->content = $this->getContentOfProject($input);
     }

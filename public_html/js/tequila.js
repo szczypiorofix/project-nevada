@@ -5,6 +5,7 @@ class TableDrawer {
             enableSorting: true,
             enableFilter: true,
             columnDefs: [
+                { headerName: "Miejsce", field: "place", minWidth: 120, width: 120, maxWidth: 150 },
                 { headerName: "Imię", field: "name", minWidth: 150, width: 200, maxWidth: 350 },
                 { headerName: "Wynik", field: "score", minWidth: 150, width: 150, maxWidth: 150 },
                 { headerName: "Poziom", field: "level", minWidth: 120, width: 120, maxWidth: 150 },
@@ -17,13 +18,18 @@ class TableDrawer {
                 filter: 'agTextColumnFilter'
             },
             gridAutoHeight: true,
+            pagination: true,
+            paginationPageSize: 10,
         };
         let eGridDiv = document.querySelector('#tequila-best-scores');
         new agGrid.Grid(eGridDiv, gridOptions);
         fetch('projekt/tequila/getresults').then(function (response) {
             return response.json();
         }).then(function (data) {
+            let count = 0;
             data.forEach(element => {
+                count++;
+                element.place = count;
                 let min = element.millis / 60000;
                 let sec = (element.millis / 1000) % 60;
                 min = Math.round(min);

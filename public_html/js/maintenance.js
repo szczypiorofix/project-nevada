@@ -88,7 +88,7 @@ function getDataFromTreloAPI() {
 
 window.addEventListener("DOMContentLoaded", function() {
     CountDownToDate.start({
-        "date": "July 14, 2018 00:00:00",
+        "date": "July 24, 2018 00:00:00",
         "daysElement": "counter-days",
         "hoursElement": "counter-hours",
         "minutesElement": "counter-minutes",
