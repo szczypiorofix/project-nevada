@@ -20,8 +20,8 @@ use Core\Registry;
 class MetaData extends Widget {
     
     private $defaultMetaData = [
-        'title' => 'Wróblewski Piotr - strona domowa',
-        'description' => 'To moja strona internetowa.',
+        'title' => 'Wróblewski Piotr - homepage',
+        'description' => 'I turn pizza and covfefe into spaghetti code ...',
         'author' => 'Wróblewski Piotr',
         'keywords' => 'JavaScript',
         'url' => 'https://wroblewskipiotr.pl/',
@@ -31,7 +31,7 @@ class MetaData extends Widget {
         'twitter-meta-field-right' => '',
         'twitter-meta-field-right-below' => '',
         'image' => 'https://wroblewskipiotr.pl/avatar.png',
-        'domain' => 'https://wroblewskipiotr.pl/',
+        'domain' => 'wroblewskipiotr.pl',
         'accent-color' => '#303F9F',
     ];
     
