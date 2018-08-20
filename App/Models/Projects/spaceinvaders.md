@@ -2,51 +2,49 @@
 
 ## Spis treści
 
-1. [Co to za gra?](projekt/furyroad#co-to-za-gra)
-2. [Wątek główny](projekt/furyroad#watek-glowny)
-3. [Cele gry](projekt/furyroad#cele-gry)
-4. [Jak grać?](projekt/furyroad#jak-grac)
-5. [Główne cechy](projekt/furyroad#glowne-cechy)
-6. [Wymagania sprzętowe](projekt/furyroad#wymagania)
-7. [Biblioteki](projekt/tequila#biblioteki)
-8. [Assety](projekt/tequila#assety)
-9. [Programy](projekt/furyroad#programy-i-narzedzia)
-10. [Media](projekt/furyroad#media)
-11. [Linki](projekt/furyroad#linki)
+1. [Co to za gra?](projekt/spaceinvaders#co-to-za-gra)
+2. [Wątek główny](projekt/spaceinvaders#watek-glowny)
+3. [Cele gry](projekt/spaceinvaders#cele-gry)
+4. [Jak grać?](projekt/spaceinvaders#jak-grac)
+5. [Główne cechy](projekt/spaceinvaders#glowne-cechy)
+6. [Wymagania sprzętowe](projekt/spaceinvaders#wymagania)
+7. [Biblioteki](projekt/spaceinvaders#biblioteki)
+8. [Assety](projekt/spaceinvaders#assety)
+9. [Programy](projekt/spaceinvaders#programy-i-narzedzia)
+10. [Media](projekt/spaceinvaders#media)
+11. [Linki](projekt/spaceinvaders#linki)
 
 
 <a name="co-to-za-gra"></a>
 ## Co to za gra?
 
-Fury Road to gra typu - zarządzanie samochodem jadącym przez postapokaliptyczne pustkowia.
+Space Invaders to moje podejście do klasyka gier czyli SPACE INVADERS.
 
-W grę możesz zagrać klikając [TUTAJ](sandbox/foryroad/)
+W grę możesz zagrać klikając [TUTAJ](sandbox/spaceinvaders/)
 
 <a name="watek-glowny"></a>
 ## Wątek główny
 
-Gra w klimatach Mad Maxa - jedziesz samochodem przez pustkowia. Wydażenia, spotkania i miejsca są generowane losowo więc nigdy nie wiesz co Cię spotka na drodze. Mogą to być zarówno osady, gdzie zaopatrzysz się w wodę, jedzenie czy benzynę a nawet możesz naprawić uszkodzone auto czy zainstalować w nim różne wspomagacze. Droga przez pustkowia może być także mniej przyjemna, możesz napotkać bantydów czy wygłodniałe zdziczałe hordy psów. Niektórzy mówią, że sam Immortan Joe jeździ też w tych okolicach.
+Wątku głównego w zasadzie nie ma - musisz strzelać do wrogich statków UFO i przeżyć jak najdłużej.
 
 
 <a name="cele-gry"></a>
 ## Cele gry
 
-Głównym celem gry jest po prostu dojechanie jak najdalej. Pobocznymi celami gry jest utrzymywanie poziomu wody i jedzenia żeby nie umrzeć z pragnienia czy głodu. Zbierany złom służy jako waluta, za którą można w osadach kupować jedzenie, wodę oraz naprawiać czy wzmacniać samochód.
-
+Celem gry jest strzelanie do wrogich jednostek UFO i przeżycie jak najdłużej.
 
 <a name="jak-grac"></a>
 ## Jak grać?
 
-W Fury Road gra się w przeglądarce. Wystarczy uruchomić stronę internetową na komputerze, tablecie bądź telefonie.
+W Space Invaders gra się w przeglądarce. Wystarczy uruchomić stronę internetową na komputerze, tablecie bądź telefonie.
 
 <a name="glowne-cechy"></a>
 ## Główne cechy
 
 - 100% darmowa
-- klimat Mad Maxa
+- kosmiczny klimat
 - całkowita losowość wydażeń, miejsc i spotkań
-- samochód może poruszać się po 4 różnych terenach (losowo) co wpływa na jego zużycie paliwa i prędkość poruszania
-- lokalne najlepsze wyniki
+- strzelanie do UFO, system tarcz, powerup regenerujący tarcze
 - gra jest w języku angielskim
 
 
@@ -59,7 +57,8 @@ W Fury Road gra się w przeglądarce. Wystarczy uruchomić stronę internetową 
 <a name="biblioteki"></a>
 ## Biblioteki
 
-Gra napisana w JavaScripcie - początek mojej przygody z tym językiem.
+Gra napisana w JavaScripcie. HTML i CSS.
+Dodatkowo wykorzystano bibliotekę [Chiptune2](https://github.com/deskjet/chiptune2.js/)
 
 
 <a name="assety"></a>
@@ -68,8 +67,7 @@ Gra napisana w JavaScripcie - początek mojej przygody z tym językiem.
 Zestawy assetów użytych w grze:
 
 - grafiki własne
-- muzyka - "My Chrysalis Highwayman" - Mark Morgan z "Vault Archives"
-
+- muzyka: chiptune
 
 <a name="programy-i-narzedzia"></a>
 ## Programy i narzędzia
