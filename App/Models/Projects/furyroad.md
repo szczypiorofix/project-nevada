@@ -61,6 +61,8 @@ W Fury Road gra się w przeglądarce. Wystarczy uruchomić stronę internetową 
 
 Gra napisana w JavaScripcie - początek mojej przygody z tym językiem.
 
+Gra wykorzystuje localStorage do zapisywania lokalnych najlepszych wyników.
+
 
 <a name="assety"></a>
 ## Assety

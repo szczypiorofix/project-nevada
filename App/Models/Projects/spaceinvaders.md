@@ -81,8 +81,7 @@ Zestawy assetów użytych w grze:
 
 <a name="media"></a>
 ## Media
-        
-Screenshot z gry: 
+
 ![alt text](uploads/images/spaceinvaders2.png "Space Invaders - screenshot 1")
 
 
