@@ -72,7 +72,7 @@ class SitemMapXML {
 
         $lastmod = $doc->createElement("lastmod");
         $lastmod = $url->appendChild($lastmod);
-        $lastmodText = $doc->createTextNode(date("Y-m-d H:m:s"));
+        $lastmodText = $doc->createTextNode(date("Y-m-d"));
         $lastmodText = $lastmod->appendChild($lastmodText);
 
         $changefreq = $doc->createElement("changefreq");
@@ -97,12 +97,12 @@ class SitemMapXML {
 
             $lastmod = $doc->createElement("lastmod");
             $lastmod = $url->appendChild($lastmod);
-            $lastmodText = $doc->createTextNode($results[$i]['update_date']);
+            $lastmodText = $doc->createTextNode(date('Y-m-d', strtotime($results[$i]['update_date'])));
             $lastmodText = $lastmod->appendChild($lastmodText);
             
             $changefreq = $doc->createElement("changefreq");
             $changefreq = $url->appendChild($changefreq);
-            $changefreqText = $doc->createTextNode("montly");
+            $changefreqText = $doc->createTextNode("monthly");
             $changefreqText = $changefreq->appendChild($changefreqText);
             
             $priority = $doc->createElement("priority");
