@@ -4,5 +4,16 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"less.compile": {
+			"out": "${workspaceRoot}\\public_html\\css\\",
+			"compress": true,
+			"sourceMap": true,
+			"main": [
+				"style.less",
+				"maintenance.less",
+				"tequila.less"
+			]
+		}
+	}
 }
