@@ -20,7 +20,7 @@
 
 Fury Road to gra typu - zarządzanie samochodem jadącym przez postapokaliptyczne pustkowia.
 
-W grę możesz zagrać klikając [TUTAJ](sandbox/foryroad/)
+W grę możesz zagrać klikając [TUTAJ](sandbox/furyroad/)
 
 <a name="watek-glowny"></a>
 ## Wątek główny
