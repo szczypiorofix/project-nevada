@@ -47,10 +47,10 @@ class PageSendMail extends Page {
                             $contactFormEmail = filter_input(INPUT_POST, 'contact-form-email', FILTER_SANITIZE_STRING);
                             $contactFormMessage = filter_input(INPUT_POST, 'contact-form-message', FILTER_SANITIZE_STRING);
                             
-                            $from = new \SendGrid\Email("Administrator strony wroblewskipiotr.pl", "poczta@wroblewskipiotr.pl");
-                            $subject = "Wiadomość ze strony www.wroblewskipiotr.pl";
-                            $to = new \SendGrid\Email("Wróblewski Piotr", "szczypiorofix@o2.pl");
-                            $content = new \SendGrid\Content("text/plain", $contactFormName." pisze: ".$contactFormMessage);
+                            $from = new \SendGrid\Email($contactFormName, $contactFormEmail);
+                            $subject = "Email from wroblewskipiotr.pl";
+                            $to = new \SendGrid\Email("Wróblewski Piotr", "szczypiorofix.pw@gmail.com");
+                            $content = new \SendGrid\Content("text/plain", $contactFormName." pisze:<br>".$contactFormMessage);
                             $mail = new \SendGrid\Mail($from, $subject, $to, $content);
                             
                             $sg = new \SendGrid(Config::get('SENDGRID_API_KEY'));
@@ -65,7 +65,6 @@ class PageSendMail extends Page {
                         } else {
                             echo 'Nie udało się wysłać wiadomości e-mail. Błąd weryfikacji pół wejściowych.';
                         }
-
                     }
                 }
             } else {
