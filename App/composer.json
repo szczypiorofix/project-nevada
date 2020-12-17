@@ -1,4 +1,6 @@
 {
+    "name": "szczypiorofix/nevada",
+    "description": "This is my homepage.",
     "require": {
         "erusev/parsedown": "^1.7",
         "dompdf/dompdf": "^0.8.2",
